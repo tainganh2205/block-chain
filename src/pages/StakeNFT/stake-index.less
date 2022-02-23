@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+.p-bsc-myartwork {
+  font-family: 'Montserrat';
+  display: flex;
+  width: 100%;
+  max-width: 1505px !important;
+  // height: calc(100vh - 64px);
+  flex-direction: column;
+  padding: 30px;
+  .p-bsc-myartwork-list {
+    margin-top: 20px;
+  }
+}
+
+.p-bsc-myartwork-mobile {
+  padding: 0px 20px;
+}
+.box-content {
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 12px;
+  padding: 20px 0px;
+}
+.info-content {
+  color: #fac668;
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+.box-content .info-profit {
+  border-top: 2px solid #fac668;
+  max-width: 450px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.box-content .info-profit .desc-profit {
+  font-size: 18px;
+  padding-top: 10px;
+}
+.color-main {
+  color: #fac668;
+}
+.btn-pending {
+  font-size: 16px;
+  padding-left: 5px;
+  color: #b1b1b1;
+}
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #fac668 !important;
+  text-shadow: 0 0 0.25px currentColor;
+}
+.ant-tabs-tab:hover {
+  color: #ffdd94 !important;
+}
+.ant-tabs-ink-bar {
+  position: absolute;
+  background: #fac668 !important;
+  pointer-events: none;
+}
+
+@media screen and(max-width: 567px) {
+  .h__customMobile {
+    margin-top: 29px;
+    margin-bottom: 28px;
+  }
+}
+
+.h__art-myartwork-list {
+  .ant-tabs-top > .ant-tabs-nav::before {
+    border-bottom: 0;
+  }
+  .ant-tabs-ink-bar {
+    display: none;
+  }
+
+  .h__myartwork {
+    .ant-tabs-nav {
+      height: 65px !important;
+    }
+
+    .ant-tabs-nav-list {
+      align-items: center;
+      .ant-tabs-tab {
+        width: 103px;
+        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #30ffae;
+        background: rgba(19, 200, 90, 0.1);
+        border-radius: 8px;
+        transition: 0.2s ease;
+
+        &.ant-tabs-tab-active {
+          color: #fff !important;
+          background: #16b979;
+
+          .ant-tabs-tab-btn {
+            color: #fff !important;
+          }
+        }
+
+        & + .ant-tabs-tab {
+          margin: 0 0 0 18px;
+
+          @media screen and (max-width: 576px) {
+            margin: 0 0 0 10px;
+          }
+        }
+
+        &:nth-child(3) {
+          position: relative;
+          top: -5px;
+          width: 90px;
+          height: 45px;
+          border-top-left-radius: 48px;
+          border-top-right-radius: 48px;
+          cursor: no-drop;
+          background: linear-gradient(180deg, #044b32 0%, rgba(57, 105, 94, 0) 91.15%);
+
+          &:hover {
+            background: linear-gradient(180deg, #044b32 0%, rgba(57, 105, 94, 0) 91.15%) !important;
+            color: inherit;
+          }
+          .ant-tabs-tab-btn {
+            font-size: 14px !important;
+            position: relative;
+
+            &::after {
+              position: absolute;
+              content: 'Additional pool weight';
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, 140%);
+              font-size: 8px;
+              color: #fff;
+              z-index: 9;
+            }
+          }
+
+          &::after {
+            position: absolute;
+            content: '0%';
+            font-size: 10px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, 40%);
+          }
+
+          &::before {
+            position: absolute;
+            content: '';
+            background-image: url(../../images/Frame.png);
+            top: -10px;
+            width: 100%;
+            height: 40px;
+            right: 4px;
+            top: -8px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,131 @@
+.bsc-p-launchpad_detail-investment {
+  display: flex;
+  flex-direction: column;
+  border-radius: 18px;
+  background-color: #262424;
+  margin-top: 45px;
+  width: 100%;
+  min-width: fit-content;
+  min-height: 280px;
+  position: relative;
+  .bsc-p-launchpad_detail-investment-not-whitelisted {
+    position: absolute;
+    display: flex;
+    background-color: #151007;
+    opacity: 0.85;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    border-radius: 18px;
+    span {
+      text-align: center;
+      font-size: 30px;
+      color: #EFEBE5;
+      font-family: poppins_semibold;
+    }
+  }
+  .bsc-p-launchpad_detail-investment-top {
+    display: flex;
+    background-color: #726429;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    height: 60px;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 30px;
+    span {
+      font-size: 21px;
+      font-family: poppins_bold;
+      color: #EFEBE5;
+      font-weight: bold;
+    }
+  
+  }
+  .poly-p-launchpad_detail-investment-top {
+    display: flex;
+    background-color: #8247e5;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    height: 60px;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 30px;
+    span {
+      font-size: 21px;
+      font-family: poppins_bold;
+      color: #EFEBE5;
+      font-weight: bold;
+    }
+  }
+  .bsc-p-launchpad_detail-investment-mid {
+    display: flex;
+    flex: 1;
+    padding-left: 30px;
+    min-width: fit-content;
+    .bsc-p-launchpad_detail-investment-mid-col {
+      display: flex;
+      flex-direction: column;
+      span {
+        margin-top: 20px;
+        margin-right: 20px;
+      }
+      & > span:nth-child(1) {
+        font-size: 18px;
+        color: #818181;
+      }
+
+      & > span:nth-child(2) {
+        font-size: 24px;
+        color: #FDB636;
+      }
+    }
+  }
+
+  .bsc-p-launchpad_detail-investment-bottom {
+    display: flex;
+    padding-left: 30px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+  }
+}
+
+.bsc-p-launchpad_detail-investment-mobile {
+  .bsc-p-launchpad_detail-investment-mid {
+    flex-direction: column;
+  }
+
+  .bsc-p-launchpad_detail-investment-top span {
+    font-size: 20px;
+  }
+  .bsc-p-launchpad_detail-investment-mid{
+    .bsc-p-launchpad_detail-investment-mid-col {
+      display: flex;
+      flex-direction: column;
+      span {
+        margin-top: 20px;
+        margin-right: 20px;
+      }
+      & > span:nth-child(1) {
+        font-size: 14px;
+        color: #818181;
+      }
+
+      & > span:nth-child(2) {
+        font-size: 16px;
+        color: #FDB636;
+      }
+    }
+  }
+  .bsc-p-launchpad_detail-investment-not-whitelisted span {
+    font-size: 20px;
+  }
+}
+.icon-warning-networks {
+  color: #ffa427;
+  font-size: 30px;
+  align-items: center;
+  padding-left: 10px;
+  cursor: pointer;
+}

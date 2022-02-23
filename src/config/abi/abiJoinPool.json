@@ -1,0 +1,15 @@
+[
+  { "payable": true, "stateMutability": "payable", "type": "fallback" },
+  {
+    "constant": false,
+    "inputs": [
+      { "internalType": "address payable", "name": "_to", "type": "address" },
+      { "internalType": "uint256", "name": "_value", "type": "uint256" }
+    ],
+    "name": "transferBNB",
+    "outputs": [],
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "function"
+  }
+]

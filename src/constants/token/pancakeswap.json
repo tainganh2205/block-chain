@@ -1,0 +1,41 @@
+{
+  "name": "Bscsswap",
+  "timestamp": "2021-03-09T15:41:29.665Z",
+  "version": {
+    "major": 1,
+    "minor": 3,
+    "patch": 1
+  },
+  "tags": {},
+  "logoURI": "/images/coins/BSCS.png",
+  "keywords": [
+    "BSCS",
+    "default"
+  ],
+  "tokens": [
+    {
+      "name": "CAKE",
+      "symbol": "CAKE",
+      "address": "0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/CAKE.png"
+    },
+    {
+      "name": "BUSD Token",
+      "symbol": "BUSD",
+      "address": "0xe9e7cea3dedca5984780bafc599bd69add087d56",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/BUSD.png"
+    },
+    {
+      "name": "BUSD Token",
+      "symbol": "BUSD",
+      "address": "0x615446C0Fd5eA8A5FD7fb763f3FC2C58774474F3",
+      "chainId": 97,
+      "decimals": 18,
+      "logoURI": "/images/coins/BTC.png"
+    }
+  ]
+}

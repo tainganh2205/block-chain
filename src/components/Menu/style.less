@@ -1,0 +1,114 @@
+header {
+    width: 100%;
+}
+.main-header {
+    padding: 20px 25px;
+    background: #1E1F28;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.main-header .header-left {
+    display: flex;
+    align-items: center;
+}
+.main-header .header-left .main-menu .list-menu {
+    display: flex;
+}
+.main-header .header-left .main-menu .list-menu li {
+    list-style-type: none;
+}
+.main-header .header-left .main-menu .list-menu li {
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.01em;
+    color: #B8BDB9;
+    cursor: pointer;
+    position: relative;
+    padding: 12px 20px;
+    transition: 0.3s ease;
+    border-radius: 10px;
+}
+.main-header .header-left .main-menu .list-menu li:hover {
+    background: #272C35;
+}
+.main-header .header-left .main-menu .list-menu {
+    margin-left: 65px;
+}
+.main-header .header-left .main-menu .list-menu li img {
+    margin-right: 10px;
+}
+.main-header .header-left .main-menu .list-menu li > .submenu-nav > ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    white-space: nowrap;
+    background: #fff;
+    box-shadow: 3px 3px 15px 0 rgb(0 0 0 / 30%);
+    color: #000;
+    z-index: 9999;
+}
+.main-header .header-left .main-menu .list-menu li:hover .submenu-nav > ul {
+    display: block;
+}
+.main-header .header-left .main-menu .list-menu li > .submenu-nav > ul {
+    background: #1E1F28;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    padding: 10px;
+}
+.main-header .header-left .main-menu .list-menu li > .submenu-nav > ul > li {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.01em;
+    color: #B8BDB9;
+    padding: 15px 20px;
+    margin-right: 0;
+}
+.main-header .header-right {
+    display: flex;
+    align-items: center;
+}
+.main-header .header-right .value-token {
+    display: flex;
+    align-items: center;
+    margin-right: 40px;
+}
+.main-header .header-right .value-token span {
+    margin-left: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.01em;
+    color: #FFFFFF;
+}
+.main-header .header-right .setting {
+    margin-right: 40px;
+}
+.main-header .header-right .connect-wallet .button-cnt {
+    background: #16B979;
+    box-shadow: 0px 1px 20px rgba(54, 189, 86, 0.26);
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.01em;
+    color: #FFFFFF;
+    border: 0px solid transparent;
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    transition: 0.3s ease;
+}
+.button-cnt img {
+    margin-right: 5px;
+}
+.main-header .header-right .connect-wallet .button-cnt:hover {
+    background:#0B6B45;
+}

@@ -1,0 +1,31 @@
+.box-free-return {
+    display: flex;
+    padding: 30px 10px;
+    justify-content: space-between;
+    background-position: center;
+    border-radius: 18px;
+    margin-bottom: 40px;
+    position: absolute;
+    top: -210px;
+    width: 100%;
+}
+.box-free-return .desc {
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+.box-free-return button {
+    background: #0DBA88;
+    border: 0px solid transparent;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+.ant-tooltip-inner {
+    background-color: #404040 !important;
+    border: 0px solid transparent !important;
+    padding: 10px !important;
+    border-radius: 10px !important;
+    color: #fac668 !important;
+    font-size: 16px !important;
+}

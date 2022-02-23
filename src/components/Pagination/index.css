@@ -1,0 +1,28 @@
+.ant-pagination-item a,
+.ant-pagination-next span,
+.ant-pagination-prev span,
+.ant-pagination-options span,
+.ant-pagination-item-ellipsis
+{
+    color: white !important;
+}
+
+.ant-select-item-option-selected,
+.ant-select-item-option-active{
+    color: white !important;
+    background-color: #FAC668 !important;
+}
+
+.ant-select-item-option-content {
+    color: white !important;
+}
+
+.ant-pagination-item-active a,
+.ant-pagination-item:hover a {
+  color: #FAC668 !important;
+}
+
+.bsc-pagination {
+    display: flex;
+    justify-content: center;
+}
