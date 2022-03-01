@@ -31,10 +31,10 @@ const StyledNav = styled.div`
     }
     button.active, a.active {
       &:hover,&:active{
-        background-color: #f5de05 !important;
+        background-color: #05D8F5 !important;
         color: #000000 !important; 
       }
-      background-color: #f5de05;
+      background-color: #05D8F5;
       color: #000000;
     }
   }

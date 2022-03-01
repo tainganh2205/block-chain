@@ -91,7 +91,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     .notifications-component .notification .success.notification__item--warning .notification__content::after {
-      background-color: #16B979!important;
+      background-color: #169CE7!important;
   }
 
     div[role='presentation']{

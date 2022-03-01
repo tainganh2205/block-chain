@@ -19,7 +19,7 @@ const StyledRangeInput = styled.input<{ size: number }>`
     -webkit-appearance: none;
     height: ${({ size }) => size}px;
     width: ${({ size }) => size}px;
-    background-color: #F5DE05;
+    background-color: #05D8F5;
     border-radius: 100%;
     border: none;
     transform: translateY(-50%);

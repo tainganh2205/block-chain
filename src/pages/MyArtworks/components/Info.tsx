@@ -225,7 +225,7 @@ const Info = memo(() => {
           objData?.author === '' ? (
             <h3 className="author">
               <span className="author-title">Author:&ensp; </span>
-              <span className="author-name" style={{ color: '#16B979' }}>
+              <span className="author-name" style={{ color: '#169CE7' }}>
                 N/A{' '}
               </span>
             </h3>
@@ -247,7 +247,7 @@ const Info = memo(() => {
         ) : (
           <h3 className="author">
             <span className="author-title">Author:&ensp; </span>
-            <span className="author-name" style={{ color: '#16B979' }}>
+            <span className="author-name" style={{ color: '#169CE7' }}>
               {' '}
               N/A{' '}
             </span>
@@ -270,7 +270,7 @@ const Info = memo(() => {
               {account ? (
                 objData?.publicProfileLink === undefined ? (
                   <>
-                    <span className="author-social" style={{ color: '#16B979' }}>
+                    <span className="author-social" style={{ color: '#169CE7' }}>
                       N/A
                     </span>
                   </>
@@ -287,7 +287,7 @@ const Info = memo(() => {
                   </>
                 )
               ) : (
-                <span className="author-social" style={{ color: '#16B979' }}>
+                <span className="author-social" style={{ color: '#169CE7' }}>
                   N/A
                 </span>
               )}
@@ -338,7 +338,7 @@ const Info = memo(() => {
                   </span>
                 </>
               ) : (
-                <span className="art-add" style={{ color: '#16B979' }}>
+                <span className="art-add" style={{ color: '#169CE7' }}>
                   N/A
                 </span>
               )}

@@ -77,7 +77,7 @@ const Info = memo(() => {
             font-size: 14px;
           }
           & > span {
-            color: #f5de05;
+            color: #05D8F5;
             font-family: 'Montserrat';
 
             @media (max-width: 576px) {

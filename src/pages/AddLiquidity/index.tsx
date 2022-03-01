@@ -54,7 +54,7 @@ const PageWrapper = styled(WrapperPage)`
 const PanePrice = styled(Pane)`
     background: linear-gradient(
     267.96deg, #0F3E2B -14.47%, #062016 99.64%);
-    border: 1px solid #16B979;
+    border: 1px solid #169CE7;
     box-sizing: border-box;
     box-shadow: inset 0px 0px 11px rgb(0 0 0 / 49%);
     border-radius: 10px;
@@ -457,7 +457,7 @@ export default function AddLiquidity({
                         ? 'danger'
                         : 'primary'
                     }
-                    
+
                   >
                     {error ?? 'Supply'}
                   </Button>

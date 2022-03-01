@@ -150,3 +150,16 @@ export function isTokenOnList(defaultTokens: TokenAddressMap, currency?: Currenc
   if (currency === ETHER) return true
   return Boolean(currency instanceof Token && defaultTokens[currency.chainId]?.[currency.address])
 }
+
+export function formatNumber(number: number) {
+  return Intl.NumberFormat().format(number)
+}
+
+export function formatCurrency(
+  amount: string | number,
+  currency = 'USD',
+): string {
+  return new Intl.NumberFormat('en-VN', { style: 'currency', currency }).format(
+    Number(amount),
+  )
+}

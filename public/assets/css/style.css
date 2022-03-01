@@ -947,7 +947,7 @@ form label {
   /* color: #797160; */
   /* padding-left: 27px; */
   margin-bottom: 15px;
-  color: #f5de05;
+  color: #05D8F5;
 }
 
 .c-detail__artist span {
@@ -1778,7 +1778,7 @@ ul.c-list {
   padding-right: 5px;
 
   background: linear-gradient(0deg, rgba(22, 185, 121, 0.05) -24.9%, rgba(22, 185, 121, 0) 97.01%);
-  border: 0.5px dashed #16b979;
+  border: 0.5px dashed #169CE7;
   box-sizing: border-box;
   border-radius: 10px;
 }
@@ -3272,7 +3272,7 @@ input[type='checkbox'].c-checkbox-bscs-hiden:checked + .c-checkbox-bscs:after {
 .notification__item--warning {
   background-color: #262424 !important;
   position: relative;
-  border-left: 18px solid #16b979 !important;
+  border-left: 18px solid #169CE7 !important;
 }
 
 .notification__item {
@@ -3287,7 +3287,7 @@ input[type='checkbox'].c-checkbox-bscs-hiden:checked + .c-checkbox-bscs:after {
   background-color: #262424 !important;
 }
 .notification__item--warning .notification__timer-filler {
-  background-color: #16b979 !important;
+  background-color: #169CE7 !important;
 }
 
 /* start CSS infodetai new */
@@ -4233,7 +4233,7 @@ span.decs-info.text-white.row-flex {
   font-size: 20px;
   align-items: center;
   padding-right: 10px; */
-  color: #16b979;
+  color: #169CE7;
   position: absolute !important;
   font-size: 42px;
   left: 19px;
@@ -4242,7 +4242,7 @@ span.decs-info.text-white.row-flex {
 .success {
   background-color: #262424 !important;
   position: relative;
-  border-left: 18px solid #16b979 !important;
+  border-left: 18px solid #169CE7 !important;
 }
 .success.notification__item--warning .notification__timer-filler {
   background-color: #38f2bc !important;
@@ -4381,7 +4381,7 @@ a:hover {
 }
 
 .form-control:focus {
-  border-color: #16b979 !important ;
+  border-color: #169CE7 !important ;
   box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25) !important;
 }
 
@@ -4397,14 +4397,14 @@ a:hover {
   margin-bottom: 20px !important;
 }
 .text-connect {
-  color: #f5de05 !important;
+  color: #05D8F5 !important;
 }
 .btn-disconnect {
-  border: 1px solid #16b979 !important;
+  border: 1px solid #169CE7 !important;
   border-radius: 8px !important;
   font-weight: 500 !important;
   height: 40px !important;
-  padding: 0px 20px !important;
+  padding: 0 20px !important;
 }
 .row-token-select:hover {
   background-color: #272c35 !important;
@@ -4416,7 +4416,7 @@ a:hover {
 
 }
 .HelpLink-text {
-  color: #F5DE05 !important;
+  color: #05D8F5 !important;
 }
 .coppy-icon:active {
   transform: translateY(4px);

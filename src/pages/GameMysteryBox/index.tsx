@@ -87,7 +87,7 @@ const HeaderStyled = styled.div`
     margin-top: 24px;
   }
   .create-nft {
-    color: #30ffae;
+    color: #169CE7;
     font-size: 14px;
     font-weight: 500;
   }

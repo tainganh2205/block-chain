@@ -42,7 +42,7 @@ export const InputArt = styled(Input)`
   }
   &:focus {
     background-color: #272c35;
-    border: 0.75px solid #16b979 !important;
+    border: 0.75px solid #169CE7 !important;
     /* box-shadow: inset 0px 0px 4px rgba(22, 185, 121, 0.27) !important; */
   }
 `
@@ -65,7 +65,7 @@ export const InputArtNew = styled(Input)`
   }
   &:focus {
     background-color: #272c35;
-    border: 0.75px solid #16b979 !important;
+    border: 0.75px solid #169CE7 !important;
     /* box-shadow: inset 0px 0px 4px rgba(22, 185, 121, 0.27) !important; */
   }
 `
@@ -93,7 +93,7 @@ export const WrapperHeaderArticle = styled.article`
     font-size: 30px;
   }
   .subtitle {
-    color: #f5de05;
+    color: #05D8F5;
     font-size: 16px;
   }
 `

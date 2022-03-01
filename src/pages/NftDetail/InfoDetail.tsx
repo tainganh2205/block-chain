@@ -95,7 +95,7 @@ const Wrapper = styled.div`
     padding: 12px 0 0 0px;
     /* padding-left: ${(props) => (props['data-mobile'] ? '0' : '27px')}; */
     margin-bottom: 18px;
-    color: #f5de05;
+    color: #05D8F5;
   }
   .c-detail__image {
     width: ${(props) => (props['data-mobile'] ? 'auto' : '365px')};
@@ -104,7 +104,7 @@ const Wrapper = styled.div`
       padding: 0px;
       border-radius: 10px;
       background: #20242e;
-      border: 1px solid #16b979;
+      border: 1px solid #169CE7;
       box-shadow: 0px 0px 20px rgba(22, 185, 121, 0.44);
       img {
         border-radius: 8px;
@@ -131,7 +131,7 @@ const Wrapper = styled.div`
       font-size: 14px;
       line-height: 17px;
       letter-spacing: 0.01em;
-      color: #16b979;
+      color: #169CE7;
     }
     .c-detail__ttl {
       width: ${(props) => (props['data-mobile'] ? 'auto' : 'auto')};
@@ -167,7 +167,7 @@ const Wrapper = styled.div`
       letter-spacing: 0.01em;
       font-weight: 600;
 
-      color: #f5de05;
+      color: #05D8F5;
       margin-bottom: 8px;
     }
     .detail-action {

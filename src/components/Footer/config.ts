@@ -20,7 +20,7 @@ const config: FooterItem[] = [
       },
       {
         title: 'Github',
-        href: 'https://github.com/artinfinityofficial',
+        href: 'https://github.com/legendfantasywar',
       },
     ],
   },

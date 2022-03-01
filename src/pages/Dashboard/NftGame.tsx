@@ -76,7 +76,7 @@ const Wrapper = styled.div`
         content: '';
         width: 124px;
         height: 4px;
-        background: #16b979;
+        background: #169CE7;
         bottom: -10px;
         left: 50%;
         transform: translateX(-50%);
@@ -149,7 +149,7 @@ const Wrapper = styled.div`
       padding-top: 12px;
 
       button {
-        color: #f5de05;
+        color: #05D8F5;
         background: transparent;
         border: none;
         outline: none;

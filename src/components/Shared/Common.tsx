@@ -30,16 +30,16 @@ export const LinkStyledButton = styled.button<{ disabled?: boolean }>`
 export const StyledInternalLink = styled(Link)`
   text-decoration: none;
   cursor: pointer;
-  color: #F5DE05;
+  color: #05D8F5;
   font-weight: 500;
 
   :hover {
-    color: #F5DE05 !important;
+    color: #05D8F5 !important;
     text-decoration: underline !important;
   }
 
   :focus {
-    color: #F5DE05 !important;
+    color: #05D8F5 !important;
     outline: none;
     text-decoration: underline !important;
   }
@@ -52,16 +52,16 @@ export const StyledInternalLink = styled(Link)`
 const StyledLink = styled.a`
   text-decoration: none;
   cursor: pointer;
-  color: #F5DE05;
+  color: #05D8F5;
   font-weight: 500;
 
   :hover {
-    color: #F5DE05 !important;
+    color: #05D8F5 !important;
     text-decoration: underline !important;
   }
 
   :focus {
-    color: #F5DE05 !important;
+    color: #05D8F5 !important;
     outline: none;
     text-decoration: underline !important;
   }

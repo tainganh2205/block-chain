@@ -543,7 +543,7 @@ export default function RemoveLiquidity({
             {!showDetailed && (
               <>
                 <ColumnCenter>
-                  <ArrowDown size="16" color="#30FFAE" />
+                  <ArrowDown size="16" color="#169CE7" />
                 </ColumnCenter>
                 <Body>
                   <OutlineCard>

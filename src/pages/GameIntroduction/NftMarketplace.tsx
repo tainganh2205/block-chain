@@ -149,7 +149,7 @@ const Wrapper = styled.div`
         content: '';
         width: 207px;
         height: 4px;
-        background: #16b979;
+        background: #169CE7;
         bottom: -10px;
         left: 50%;
         transform: translateX(-50%);
@@ -201,10 +201,10 @@ const Wrapper = styled.div`
       padding-top: 12px;
 
       a {
-        color: #f5de05;
+        color: #05D8F5;
 
         &:hover {
-          color: #f5de05 !important;
+          color: #05D8F5 !important;
         }
       }
     }

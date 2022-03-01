@@ -86,7 +86,7 @@ const HeaderStyled = styled.div`
     margin-top: 24px;
   }
   .create-nft {
-    color: #30ffae;
+    color: #169CE7;
     font-size: 14px;
     font-weight: 500;
   }
@@ -146,7 +146,7 @@ const Nft = memo(() => {
               <Link to="/mintNFT">Create NFT</Link>
             </ButtonArt>
             <ButtonArt
-              style={{ border: '2px solid #16b979', padding: '0px' }}
+              style={{ border: '2px solid #169CE7', padding: '0px' }}
               className="create-nft btn-w"
               data-variant="tertiary"
             >

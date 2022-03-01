@@ -1,11 +1,19 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { isMobile } from 'react-device-detect'
-import './style.less'
-import { ReactComponent as MenuIcon } from '../../images/img/iconMenu.svg'
-import FooterMb from './FooterMobile'
+import React from "react";
+import { Link } from "react-router-dom";
+import { isMobile } from "react-device-detect";
+import "./style.less";
+
+import { useFetchWithCache } from "hooks/useFetchWithCache";
+import { client, GET_PATHS } from "utils/apis";
+import { formatCurrency, formatNumber } from "utils";
+import { UpDownChange } from "components/UpDownChange";
+import FooterMb from "./FooterMobile";
 
 const Footer = () => {
+  const { data } = useFetchWithCache(GET_PATHS.tokenInfo, () =>
+    client.getTokenInfo()
+  );
+  const tokenInfo = data?.data;
   return (
     <>
       <div className="footer">
@@ -16,10 +24,10 @@ const Footer = () => {
                 <div className="col-50">
                   <div className="item-token">
                     <div className="icon">
-                      <MenuIcon />
+                      <img src="/images/icon-lfw.png" height="30" width="20" alt="" />
                     </div>
                     <div className="text">
-                      ATF <span className="value-token">$0</span>
+                      LFW <span className="value-token">{formatCurrency(tokenInfo?.price ?? 0)}</span>
                     </div>
                   </div>
                   <div className="item-token">
@@ -28,8 +36,8 @@ const Footer = () => {
                     </div>
                     <div className="text">
                       <button type="button" className="btn-bought">
-                        <a href="https://artinfinity.app/#/swap" target="_blank" rel="noreferrer">
-                          Buy ATF
+                        <a href="https://pancakeswap.finance/swap?outputCurrency=0xd71239a33c8542bd42130c1b4aca0673b4e4f48b" target="_blank" rel="noreferrer">
+                          Buy LFW
                         </a>
                       </button>
                     </div>
@@ -40,35 +48,42 @@ const Footer = () => {
                     <li>
                       <div className="text-sp-l">Max supply:</div>
                       <div className="text-left">
-                        <div className="text-sp-r">1 000 000 000</div>
+                        <div className="text-sp-r">200,000,000</div>
                       </div>
                     </li>
                     <li>
                       <div className="text-sp-l ">Total supply:</div>
 
                       <div className="text-left h__custom">
-                        <div className="text-sp-r">0</div>
+                        <div className="text-sp-r">{formatNumber(tokenInfo?.totalSupply || 0)}</div>
                       </div>
                     </li>
                     <li>
                       <div className="text-sp-l ">Circulating supply:</div>
 
                       <div className="text-left h__custom">
-                        <div className="text-sp-r">0</div>
+                        <div className="text-sp-r">{formatNumber(tokenInfo?.circulatingSupply || 0)}</div>
                       </div>
                     </li>
                     <li>
-                      <div className="text-sp-l ">Total Burned:</div>
+                      <div className="text-sp-l ">Total Volume (24h):</div>
 
                       <div className="text-left h__custom">
-                        <div className="text-sp-r">0</div>
+                        <div className="text-sp-r">
+                          {formatCurrency(tokenInfo?.totalVolume || 0)}
+                        </div>
                       </div>
+
                     </li>
                     <li>
-                      <div className="text-sp-l ">Market Cap:</div>
+                      <div className="text-sp-l "/>
 
                       <div className="text-left h__custom">
-                        <div className="text-sp-r">0%</div>
+                        <div className="text-sp-r">
+                          <UpDownChange className="ftext-sp-r">
+                          {tokenInfo?.totalVolumeChange || 0}
+                        </UpDownChange>
+                        </div>
                       </div>
                     </li>
                   </ul>
@@ -106,7 +121,7 @@ const Footer = () => {
                           >
                             <li>Roadmap</li>
                           </a>
-                          <a href="https://github.com/artinfinityofficial" target="_blank" rel="noreferrer">
+                          <a href="https://github.com/legendfantasywar" target="_blank" rel="noreferrer">
                             <li>Github</li>
                           </a>
                         </ul>
@@ -123,7 +138,7 @@ const Footer = () => {
                             <li>Add liquidity</li>
                           </Link>
                           <a href="https://stake.artinfinity.app/#/">
-                            <li>Start Pools </li>
+                            <li>Start Pools</li>
                           </a>
                           <a href="https://stake.artinfinity.app/#/Farms">
                             <li>Farms</li>
@@ -217,6 +232,6 @@ const Footer = () => {
         </div>
       </div>
     </>
-  )
-}
-export default Footer
+  );
+};
+export default Footer;

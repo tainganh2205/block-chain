@@ -17,7 +17,6 @@ import TradePrice from 'components/swap/TradePrice'
 import TokenWarningModal from 'components/TokenWarningModal'
 import SyrupWarningModal from 'components/SyrupWarningModal'
 import ProgressSteps from 'components/ProgressSteps'
-import BoxFreeWithdraw from 'components/BoxFreeWithdraw'
 import { INITIAL_ALLOWED_SLIPPAGE } from 'constants/index'
 import { useActiveWeb3React } from 'hooks'
 import { useCurrency } from 'hooks/Tokens'
@@ -39,12 +38,6 @@ import AppBody from '../AppBody'
 import './style.less'
 
 const PageWrapper = styled(WrapperPage)`
-  // background: linear-gradient(
-  //   199.07deg,
-  //   rgba(13, 14, 17, 0.26) -30.81%,
-  //   rgba(13, 14, 17, 0.35) -30.77%,
-  //   #5ff985 342.39%
-  // );
   padding-top: 46px;
   padding-bottom: 110px;
   .wrapper-body {
@@ -52,7 +45,7 @@ const PageWrapper = styled(WrapperPage)`
   }
   width: 100%;
   height: 100%;
-  background: url(./images/game-banner.png);
+  background: url(./images/lfw-swap-banner.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -342,10 +335,10 @@ const Swap = () => {
                         setApprovalSubmitted(false) // reset 2 step UI for approvals
                         onSwitchTokens()
                       }}
-                      style={{ borderRadius: '50%', background: 'rgba(19, 200, 90, 0.1)' }}
+                      style={{ borderRadius: '50%', background: 'rgba(5, 216, 245, 0.1)' }}
                       size="sm"
                     >
-                      <img className="swap-icon" src="/images/imagesSwap/swap.png" width={20} height={20} alt="" />
+                      <img className="swap-icon" src="/images/imagesSwap/swap.png" width={30} height={30} alt="" />
                       {/* <ArrowDownIcon color="primary" width="24px" /> */}
                     </IconButton>
                   </ArrowWrapper>

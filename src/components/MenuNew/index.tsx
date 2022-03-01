@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import throttle from 'lodash/throttle'
 import styled from 'styled-components'
-import { Menu } from 'antd'
 import { isMobile } from 'react-device-detect'
 import { Link } from 'react-router-dom'
 import MenuNewMobile from './MenuNewMobile'
@@ -16,15 +15,19 @@ import { ReactComponent as NftIcon } from '../../images/img/NFT.svg'
 import { ReactComponent as NftIcon1 } from '../../images/img/NFT1.svg'
 import { ReactComponent as GameIcon } from '../../images/img/Game.svg'
 import { ReactComponent as GameIcon1 } from '../../images/img/Game1.svg'
-import { ReactComponent as DotIcon } from '../../images/img/IconDot.svg'
-import { ReactComponent as MenuIcon } from '../../images/img/iconMenu.svg'
+import { ReactComponent as MetaverseIcon } from '../../images/img/metaverse.svg'
 import { ReactComponent as IconMenu } from '../../images/img/Menu.svg'
-import { ReactComponent as IconAtc } from '../../images/img/AtcIcon.svg'
+import { useFetchWithCache } from "../../hooks/useFetchWithCache";
+import { client, GET_PATHS } from "../../utils/apis";
+import { formatCurrency } from "../../utils";
 
 const MenuNew = () => {
   const [showMenu, setShowMenu] = useState(true)
   const refPrevOffset = useRef(window.pageYOffset)
-
+  const { data } = useFetchWithCache(GET_PATHS.tokenInfo, () =>
+    client.getTokenInfo()
+  );
+  const tokenInfo = data?.data;
   useEffect(() => {
     const handleScroll = () => {
       const currentOffset = window.pageYOffset
@@ -53,11 +56,7 @@ const MenuNew = () => {
       window.removeEventListener('scroll', throttledHandleScroll)
     }
   }, [])
-  const { SubMenu } = Menu
-  const [current, setCurrent] = useState('trade')
-  const handleClick = (e) => {
-    console.log('click ', e)
-  }
+
   if (isMobile) {
     return <MenuNewMobile />
   }
@@ -71,7 +70,7 @@ const MenuNew = () => {
               <Link to="/dashboard">
                 <div className="d-flex align-items-center">
                   <IconMenu className="IconText" />
-                  <IconAtc className="Icon" />
+                  {/* <IconAtc className="Icon" /> */}
                 </div>
               </Link>
             </div>
@@ -173,20 +172,15 @@ const MenuNew = () => {
                   </div>
                 </li>
                 <li>
-                  <DotIcon />
+                  <div className="h__customLogoTrade">
+                    <MetaverseIcon />
+                    <MetaverseIcon />
+                  </div>
+                  Metaverse
                   <div className="submenu-nav">
                     <ul>
-                      <a href="https://docs.artinfinity.app/welcome-to-artinfinity/" target="_blank" rel="noreferrer">
-                        <li>Docs</li>
-                      </a>
-                      <Link to="/">
-                        <li>Blogs</li>
-                      </Link>
-                      <a href="https://github.com/artinfinityofficial" target="_blank" rel="noreferrer">
-                        <li>Github</li>
-                      </a>
-                      <Link to="/">
-                        <li>Certik Audit</li>
+                      <Link to="/Introduction">
+                        <li>Introduction</li>
                       </Link>
                     </ul>
                   </div>
@@ -196,7 +190,7 @@ const MenuNew = () => {
           </div>
           <div className="header-right">
             <div className="value-token">
-              <MenuIcon /> <span>$0</span>
+              <img src="/images/logo-lfw.png" width={40} height={40} alt=""/> <span className="value-token">{formatCurrency(tokenInfo?.price ?? 0)}</span>
             </div>
             <div className="connect-wallet">
               <UnlockButton />

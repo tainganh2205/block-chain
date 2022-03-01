@@ -1,6 +1,6 @@
 import React from 'react'
 import { useWeb3React } from '@web3-react/core'
-import { ButtonProps, ConnectorId, useWalletModal } from '@artechain/uikit'
+import { ConnectorId, useWalletModal } from '@artechain/uikit'
 import { injected, walletconnect } from 'connectors'
 import useI18n from 'hooks/useI18n'
 import { ButtonArt as Button } from 'components/Art'

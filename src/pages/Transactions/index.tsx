@@ -11,7 +11,10 @@ import styled from 'styled-components'
 import AppBody from '../AppBody'
 
 const PageWrapper = styled(WrapperPage)`
-  background: linear-gradient(199.07deg, rgba(13, 14, 17, 0.26) -30.81%, rgba(13, 14, 17, 0.35) -30.77%, #5FF985 342.39%);
+  background: url(./images/lfw-swap-banner.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   padding-top: 46px;
   padding-bottom: 110px;
   .wrapper-body{
@@ -25,7 +28,7 @@ export default function Transactions() {
 
   const handleLogin = (connectorId: ConnectorId) => {
     if (connectorId === 'walletconnect') {
-    
+
       return activate(walletconnect)
     }
     return activate(injected)

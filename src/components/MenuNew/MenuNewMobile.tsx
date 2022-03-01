@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, {  useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Drawer, Button, Collapse } from 'antd'
 import 'antd/dist/antd.css'
-import { AppstoreOutlined, MailOutlined, MenuUnfoldOutlined, SettingOutlined } from '@ant-design/icons'
 import UnlockButton from '../ConnectWalletButton'
 
 function MenuNewMobile() {
@@ -149,7 +148,7 @@ function MenuNewMobile() {
         <Link to="/">
           <li>Blogs</li>
         </Link>
-        <a href="https://github.com/artinfinityofficial" target="_blank" rel="noreferrer">
+        <a href="https://github.com/legendfantasywar" target="_blank" rel="noreferrer">
           <li>Github</li>
         </a>
         <Link to="/">
@@ -181,7 +180,7 @@ function MenuNewMobile() {
       <div className="footer-menu">
         <div className="box-footer-menu">
           <div className="value-token">
-            <img src="/images/imagesDashboard/icon-coin.png" alt="" /> <span>$0</span>
+            <img src="/images/logo-lfw.png" alt="" /> <span>$0</span>
           </div>
           <div className="socail-footer">
             <a className="h__boxIcon" href="https://t.me/artinfinityofficial" target="_blank" rel="noreferrer">

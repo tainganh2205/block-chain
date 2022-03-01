@@ -5,7 +5,7 @@ const Wrapper = styled.div<{ top: any }>`
   width: 50px;
   height: 50px;
   border-radius: 50px;
-  border: 2px solid #16b979;
+  border: 2px solid #169CE7;
   position: fixed;
   bottom: 30px;
   right: 30px;
@@ -25,7 +25,7 @@ const Wrapper = styled.div<{ top: any }>`
         fill: none;
     }
     .cls-2 {
-        fill: #239667;
+        fill: #169CE7
     }
   }
 `

@@ -1,16 +1,16 @@
-import React, { useCallback, useEffect, useState, useMemo } from 'react'
+import React, {useCallback, useEffect, useState, useMemo} from 'react'
 // import { useHookNft as useHookNftDetail } from './Store'
 import Modal from 'react-modal'
-import { store } from 'react-notifications-component'
+import {store} from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { ButtonArt } from 'components/Art'
-import { useHistory } from 'react-router'
+import {CopyToClipboard} from 'react-copy-to-clipboard'
+import {ButtonArt} from 'components/Art'
+import {useHistory} from 'react-router'
 import styled from 'styled-components'
-import { Collapse } from 'antd'
-import { isMobile } from 'react-device-detect'
+import {Collapse} from 'antd'
+import {isMobile} from 'react-device-detect'
 import Button from 'components/Button'
-import { STATUS_ARTWORK } from 'pages/Nft_new/components/ArtworkList'
+import {STATUS_ARTWORK} from 'pages/Nft_new/components/ArtworkList'
 import {
   NFT_CONTRACTID,
   TOKEN_BSCS_TESTNET,
@@ -20,28 +20,31 @@ import {
   CONTRACT_BID,
   API_VIDEO,
 } from '../../constants'
-import { useNftContract, useNftMarketContract } from '../../hooks/useContract'
-import { useActiveWeb3React } from '../../hooks'
-import { useApproveCallbackCustom } from '../../hooks/useApproveCallback'
-import { useTokenAllowanceCustom, useBalanceBSCS, useTokenAllowanceNFTCustom } from '../../data/Allowances'
-import { useOwnerTokenFT } from '../../data/Nft'
-import { isTransactionRecent, useAllTransactions } from '../../state/transactions/hooks'
-import { TransactionDetails } from '../../state/transactions/reducer'
-import { useHookNft } from './Store'
-import { useHookNft as useHookNftMain } from '../Nft/Store-Nft'
+import {useNftContract, useNftMarketContract} from '../../hooks/useContract'
+import {useActiveWeb3React} from '../../hooks'
+import {useApproveCallbackCustom} from '../../hooks/useApproveCallback'
+import {useTokenAllowanceCustom, useBalanceBSCS, useTokenAllowanceNFTCustom} from '../../data/Allowances'
+import {useOwnerTokenFT} from '../../data/Nft'
+import {isTransactionRecent, useAllTransactions} from '../../state/transactions/hooks'
+import {TransactionDetails} from '../../state/transactions/reducer'
+import {useHookNft} from './Store'
+import {useHookNft as useHookNftMain} from '../Nft/Store-Nft'
 
 import ButtonCustom from '../Nft/ButtonCustom'
-import { _getBids, _cancelTokenTo } from '../Nft/utils'
+import {_getBids, _cancelTokenTo} from '../Nft/utils'
 import BidTrad from './Bin-trad'
 
 const Wrapper = styled.div`
   /* data-mobile */
+
   .cl-white {
     color: white !important;
   }
+
   .fw-500 {
     font-weight: 500 !important;
   }
+
   .fz-14 {
     font-size: 14px !important;
   }
@@ -55,48 +58,60 @@ const Wrapper = styled.div`
     align-items: center;
     white-space: nowrap;
   }
+
   .f-space {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
+
   .f-wrap {
     flex-wrap: nowrap;
   }
+
   .dl-inline-block {
     display: inline-block !important;
   }
+
   .cursor-pointer {
     cursor: pointer;
   }
+
   .art-id {
     margin-left: ${(props) => (props['data-mobile'] ? '0' : '1rem')};
   }
+
   .back-market {
     img {
       margin-right: 10px;
     }
   }
+
   .btn-bidding {
     height: 30px;
     margin-left: 5px;
     margin-right: 5px;
   }
+
   .author {
     display: flex;
+
     .file-type {
       margin: 0;
       padding: 0;
     }
   }
+
   .reward-panel {
     width: 100%;
     background: #20242e;
     height: auto;
     padding: 22px;
     border-radius: 10px;
+
     .list-reward {
       line-height: 1.5rem;
+
       li {
         list-style: none;
         display: flex;
@@ -105,6 +120,7 @@ const Wrapper = styled.div`
       }
     }
   }
+
   .file-type {
     font-weight: 600;
     font-size: 14px;
@@ -112,10 +128,11 @@ const Wrapper = styled.div`
     /* identical to box height */
 
     letter-spacing: 0.01em;
-    padding: 12px 0 0 0px;
-    /* padding-left: ${(props) => (props['data-mobile'] ? '0' : '27px')}; */
+    padding: 12px 0 0 0;
+      /* padding-left: ${(props) => (props['data-mobile'] ? '0' : '27px')}; */
     margin-bottom: 18px;
-    color: #f5de05;
+    color: #05D8F5;
+
     .title {
       display: flex;
       justify-content: start;
@@ -123,15 +140,18 @@ const Wrapper = styled.div`
       margin-bottom: 0;
     }
   }
+
   .c-detail__image {
     width: ${(props) => (props['data-mobile'] ? 'auto' : '365px')};
-    /* height: ${(props) => (props['data-mobie'] ? '361px' : '361px')}; */
+      /* height: ${(props) => (props['data-mobie'] ? '361px' : '361px')}; */
+
     .c-detail__img {
       padding: 0px;
       border-radius: 10px;
       background: #20242e;
-      border: 1px solid #16b979;
+      border: 1px solid #169CE7;
       box-shadow: 0px 0px 20px rgba(22, 185, 121, 0.44);
+
       img {
         border-radius: 8px;
         width: 365px;
@@ -146,24 +166,29 @@ const Wrapper = styled.div`
     gap: 20px;
     padding: 20px 10px;
     align-items: center;
+
     .c-detail__box {
       margin-bottom: 0;
     }
   }
+
   .c-detail__cont {
     width: ${(props) => (props['data-mobile'] ? 'auto' : '100%')};
+
     .item-detail {
       width: 100%;
       padding: 0px;
       background-color: transparent;
     }
+
     .c-detail__artist {
       font-weight: 500;
       font-size: 14px;
       line-height: 17px;
       letter-spacing: 0.01em;
-      color: #16b979;
+      color: #169CE7;
     }
+
     .c-detail__ttl {
       width: ${(props) => (props['data-mobile'] ? 'auto' : 'auto')};
       font-weight: bold;
@@ -172,12 +197,14 @@ const Wrapper = styled.div`
       letter-spacing: 0.01em;
       color: #ffffff;
     }
+
     .c-detail__text {
       font-size: 14px;
       line-height: 17px;
       color: #ffffff;
       text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     }
+
     .price-art {
       font-weight: 500;
       font-size: 20px;
@@ -189,18 +216,21 @@ const Wrapper = styled.div`
       width: auto !important;
       min-width: 100px !important;
     }
+
     .c-detail__price {
       display: inline-block;
     }
+
     .label-detail {
       font-size: 14px;
       line-height: 17px;
       letter-spacing: 0.01em;
       font-weight: 600;
 
-      color: #f5de05;
+      color: #05D8F5;
       margin-bottom: 8px;
     }
+
     // .detail-action {
     //   display: flex;
     //   justify-content: space-between;
@@ -209,15 +239,18 @@ const Wrapper = styled.div`
     .c-productdetail__title {
       align-items: unset;
     }
+
     .c-productdetail__img {
       width: 70px;
       height: 70px;
+
       img {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
     }
+
     .ant-collapse-header {
       padding-top: 16px;
       padding-left: 21px;
@@ -236,14 +269,17 @@ const Wrapper = styled.div`
         border-bottom: 1px solid #575757;
       }
     }
+
     .ant-collapse-content {
       border-radius: 0px 0px 10px 10px !important;
       background: #20242e;
     }
   }
+
   .p-market__table {
     padding-top: 10px;
   }
+
   .bidding-title {
     display: flex;
     padding-top: 16px;
@@ -251,27 +287,33 @@ const Wrapper = styled.div`
     margin-bottom: 0px;
     font-weight: 500;
     font-size: 20px;
+
     img {
       margin-right: 10px;
     }
   }
+
   .c-table {
     table th {
       background: #20242e;
+
       .table-reponse,
       table,
       thead {
         border-radius: 10px;
       }
     }
+
     .custom-row-table {
       background: #20242e;
     }
   }
+
   .btn-flex-row {
     text-align: ${(props) => (props['data-mobile'] ? 'left' : 'right')};
-    // justify-content: ${(props) => (props['data-mobile'] ? 'left' : 'right')};
+      // justify-content: ${(props) => (props['data-mobile'] ? 'left' : 'right')};
   }
+
   .table-biding {
     .under-title {
       font-weight: 500;
@@ -280,35 +322,43 @@ const Wrapper = styled.div`
 
       color: #808982;
     }
+
     tr:hover {
       background: #1e1f28;
       border-radius: 10px;
     }
+
     td {
       font-size: 14px;
       padding: 10px 12px !important;
     }
+
     .bid-price {
       text-align: end;
     }
   }
+
   .c-detail__box {
     width: ${(props) => (props['data-mobile'] ? '100%' : 'auto')};
   }
+
   .table-reponse-biding {
     /* width */
+
     ::-webkit-scrollbar,
     ::-webkit-scrollbar:horizontal {
       width: 7px !important;
     }
 
     /* Track */
+
     ::-webkit-scrollbar-track {
       box-shadow: inset 0 0 5px grey !important;
       border-radius: 4px !important;
     }
 
     /* Handle */
+
     ::-webkit-scrollbar-thumb,
     ::-webkit-scrollbar-thumb:horizontal {
       background: linear-gradient(0deg, #272c35, #272c35), #000000 !important;
@@ -316,9 +366,11 @@ const Wrapper = styled.div`
     }
 
     /* Handle on hover */
+
     ::-webkit-scrollbar-thumb:hover {
       background: linear-gradient(0deg, #272c35, #272c35), #000000 !important;
     }
+
     max-height: ${(props) => (props['data-mobile'] ? '350px' : '200px')} !important;
   }
 
@@ -336,6 +388,7 @@ const Wrapper = styled.div`
 function newTransactionsFirst(a: TransactionDetails, b: TransactionDetails) {
   return b.addedTime - a.addedTime
 }
+
 const customStyles = {
   content: {
     top: '50%',
@@ -347,7 +400,7 @@ const customStyles = {
   },
 }
 
-const ListType = ({ item }) => {
+const ListType = ({item}) => {
   const [state, actions] = useHookNft()
 
   return (
@@ -357,24 +410,24 @@ const ListType = ({ item }) => {
   )
 }
 
-const InfoDetail = ({ props }: any): any => {
+const InfoDetail = ({props}: any): any => {
   const [state, actions]: any = useHookNft()
   const [stateNFT, actionsNFT] = useHookNftMain()
 
   const history = useHistory()
 
-  const { objData, objListType } = state
+  const {objData, objListType} = state
   // console.log('🚀 ~ file: InfoDetail.tsx ~ line 171 ~ InfoDetail ~ objData', objData)
-  const { objDataBid, objListBid } = state
+  const {objDataBid, objListBid} = state
 
   const {
-    match: { params },
+    match: {params},
   }: any = props
-  const { account } = useActiveWeb3React()
+  const {account} = useActiveWeb3React()
   useEffect(() => {
     actions.getTypeArtworkList()
     actions.getProductsDetail(params && params.id)
-    window.scrollTo({ top: 0 })
+    window.scrollTo({top: 0})
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id])
 
@@ -446,6 +499,7 @@ const InfoDetail = ({ props }: any): any => {
   const allowanceApplyBSCS = useTokenAllowanceCustom(TOKEN_BSCS_TESTNET, account ?? undefined, CONTRACT_BID)
 
   const [approval] = useApproveCallbackCustom(TOKEN_BSCS_TESTNET, CONTRACT_BID, objData.tokenId ?? undefined)
+
   async function onAttemptToApprove() {
     return approval()
   }
@@ -466,11 +520,12 @@ const InfoDetail = ({ props }: any): any => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [approval])
 
-  const { Panel } = Collapse
+  const {Panel} = Collapse
 
   function callback(key) {
     console.log(key)
   }
+
   const text = (
     <div className="c-detail__info">
       <ul>
@@ -493,7 +548,7 @@ const InfoDetail = ({ props }: any): any => {
           <span className="cl-white fw-500 f-center">
             {objData && objData.authorName}
             <a href={`#/usercenter/${objData.author}`} className="f-center">
-              <img className="ml-2 cursor-pointer" src="/images/link-direct.svg" alt="..." />
+              <img className="ml-2 cursor-pointer" src="/images/link-direct.svg" alt="..."/>
             </a>
           </span>
         </li>
@@ -514,7 +569,7 @@ const InfoDetail = ({ props }: any): any => {
                   message: (
                     <div className="custom-fontsize">
                       {/* <i className="fa fa-check-square-o icon-success" aria-hidden="true" /> */}
-                      <i className="fa fa-check-circle icon-success" aria-hidden="true" />
+                      <i className="fa fa-check-circle icon-success" aria-hidden="true"/>
                       Successfully !
                     </div>
                   ),
@@ -534,7 +589,7 @@ const InfoDetail = ({ props }: any): any => {
                 })
               }
             >
-              <img className="ml-2 cursor-pointer" src="/images/coppy.svg" alt="..." />
+              <img className="ml-2 cursor-pointer" src="/images/coppy.svg" alt="..."/>
             </CopyToClipboard>
           </span>
         </li>
@@ -554,7 +609,7 @@ const InfoDetail = ({ props }: any): any => {
                   message: (
                     <div className="custom-fontsize">
                       {/* <i className="fa fa-check-square-o icon-success" aria-hidden="true" /> */}
-                      <i className="fa fa-check-circle icon-success" aria-hidden="true" />
+                      <i className="fa fa-check-circle icon-success" aria-hidden="true"/>
                       Successfully !
                     </div>
                   ),
@@ -574,7 +629,7 @@ const InfoDetail = ({ props }: any): any => {
                 })
               }
             >
-              <img className="ml-2 cursor-pointer" src="/images/coppy.svg" alt="..." />
+              <img className="ml-2 cursor-pointer" src="/images/coppy.svg" alt="..."/>
             </CopyToClipboard>
           </span>
         </li>
@@ -589,12 +644,12 @@ const InfoDetail = ({ props }: any): any => {
           <div className="c-popup__inner">
             <h3 className="c-popup__ttl custom">auction</h3>
             <div className="c-popup__input">
-              <input type="text" name="" value="" className="custom" placeholder="0.0" />
+              <input type="text" name="" value="" className="custom" placeholder="0.0"/>
               <a className="a-bsc" href="#!">
                 Bake
               </a>
             </div>
-            <br />
+            <br/>
             <div className="c-popup__btn">
               <button type="button" onClick={closeModal}>
                 Cancel
@@ -611,7 +666,7 @@ const InfoDetail = ({ props }: any): any => {
         <div className="l-container">
           <a href="#/NFTmarket" className="">
             <div className="cl-primary f-center cursor-pointer back-market">
-              <img src="/images/imagesDashboard/arrow-left.svg" alt=".." />
+              <img src="/images/imagesDashboard/arrow-left.svg" alt=".."/>
               Back to Market
             </div>
           </a>
@@ -647,7 +702,7 @@ const InfoDetail = ({ props }: any): any => {
                         width: 'auto',
                       }}
                     >
-                      <img src="/images/Logo-art.png" alt="..." />
+                      <img src="/images/Logo-art.png" alt="..."/>
                       <span
                         className="price-art"
                         style={{
@@ -673,14 +728,14 @@ const InfoDetail = ({ props }: any): any => {
                               {balance && balance >= objData.price ? (
                                 <>
                                   <ButtonCustom
-                                    data={{ ...objData, bidContract, type: 'auction' }}
+                                    data={{...objData, bidContract, type: 'auction'}}
                                     className="c-detail__btn"
                                     text="Auction"
                                     type=""
                                     isLoading={getStatus('auction')}
                                   />
                                   <ButtonCustom
-                                    data={{ ...objData, bidContract, type: 'sell' }}
+                                    data={{...objData, bidContract, type: 'sell'}}
                                     className="c-detail__btn"
                                     text="Sell"
                                     type="sell"
@@ -689,7 +744,7 @@ const InfoDetail = ({ props }: any): any => {
                                 </>
                               ) : (
                                 <ButtonCustom
-                                  data={{ ...objData, bidContract, type: 'auction' }}
+                                  data={{...objData, bidContract, type: 'auction'}}
                                   className="c-detail__btn"
                                   text="Auction"
                                   type=""
@@ -699,7 +754,7 @@ const InfoDetail = ({ props }: any): any => {
                             </>
                           ) : (
                             <>
-                              <Button disabled className="not-enough" type="button" text="Buy" />
+                              <Button disabled className="not-enough" type="button" text="Buy"/>
                             </>
                           )}
                         </>
@@ -759,7 +814,7 @@ const InfoDetail = ({ props }: any): any => {
                                     </ButtonArt>
                                   ) : (
                                     <ButtonCustom
-                                      data={{ ...objData, bidContract, type: 'bid' }}
+                                      data={{...objData, bidContract, type: 'bid'}}
                                       className="c-detail__btn"
                                       text="Place Bid"
                                       type="bidding"
@@ -802,7 +857,7 @@ const InfoDetail = ({ props }: any): any => {
                                     </ButtonArt>
                                   ) : (
                                     <ButtonCustom
-                                      data={{ ...objData, bidContract, type: 'buy' }}
+                                      data={{...objData, bidContract, type: 'buy'}}
                                       className="c-detail__btn"
                                       text="Buy"
                                       type="buy"
@@ -848,7 +903,7 @@ const InfoDetail = ({ props }: any): any => {
                                     </ButtonArt>
                                   ) : (
                                     <ButtonCustom
-                                      data={{ ...objData, bidContract, type: 'bid' }}
+                                      data={{...objData, bidContract, type: 'bid'}}
                                       className="c-detail__btn"
                                       text="Place Bid"
                                       type="bidding"
@@ -864,7 +919,7 @@ const InfoDetail = ({ props }: any): any => {
                               disabled={getStatusAprrove()}
                               click={() => handleApprove()}
                               type="button"
-                              right={getStatusAprrove() && <i className="fa fa-spinner fa-spin" />}
+                              right={getStatusAprrove() && <i className="fa fa-spinner fa-spin"/>}
                             >
                               Approve NFT
                             </ButtonArt>
@@ -913,11 +968,11 @@ const InfoDetail = ({ props }: any): any => {
                         {(() => {
                           switch (objData?.status) {
                             case STATUS_ARTWORK.REVIEWED:
-                              return <img className="ml-2" src="/images/checked.png" alt="..." />
+                              return <img className="ml-2" src="/images/checked.png" alt="..."/>
                             case STATUS_ARTWORK.PENDING:
-                              return <img className="ml-2" src="/images/peding.svg" alt="..." />
+                              return <img className="ml-2" src="/images/peding.svg" alt="..."/>
                             case STATUS_ARTWORK.REJECT:
-                              return <img className="ml-2" src="/images/reject.svg" alt="..." />
+                              return <img className="ml-2" src="/images/reject.svg" alt="..."/>
                             default:
                               return false
                           }
@@ -929,11 +984,11 @@ const InfoDetail = ({ props }: any): any => {
                 <div className="author">
                   <span className="file-type">
                     <span className="title">
-                      <img src="/images/icon-user-octagon.svg" alt="" />
+                      <img src="/images/icon-user-octagon.svg" alt=""/>
                       &nbsp;Owner:&nbsp;&nbsp;&nbsp;&nbsp;
                     </span>
                   </span>
-                  <span className="cl-white fz-14" style={{ overflow: 'hidden', flex: '1' }}>
+                  <span className="cl-white fz-14" style={{overflow: 'hidden', flex: '1'}}>
                     {objData &&
                       objData.creatorAddress &&
                       `${objData.creatorAddress.substring(0, 5)}...${
@@ -946,7 +1001,7 @@ const InfoDetail = ({ props }: any): any => {
                           title: 'Copied',
                           message: (
                             <div className="custom-fontsize">
-                              <i className="fa fa-check-circle icon-success" aria-hidden="true" />
+                              <i className="fa fa-check-circle icon-success" aria-hidden="true"/>
                               Successfully !
                             </div>
                           ),
@@ -966,13 +1021,13 @@ const InfoDetail = ({ props }: any): any => {
                         })
                       }
                     >
-                      <img className="ml-2 cursor-pointer" src="/images/coppy.svg" alt="..." />
+                      <img className="ml-2 cursor-pointer" src="/images/coppy.svg" alt="..."/>
                     </CopyToClipboard>
                   </span>
                 </div>
                 <p className="file-type">
                   <p className="title">
-                    <img src="/images/icon-note-octagon.svg" alt="" />
+                    <img src="/images/icon-note-octagon.svg" alt=""/>
                     &nbsp;
                     {objData?.fileType === 2 ? 'Video' : 'Description'}
                   </p>
@@ -980,7 +1035,7 @@ const InfoDetail = ({ props }: any): any => {
                 <p className="c-detail__text">{objData && objData.descriptions}</p>
                 <p className="file-type">
                   <p className="title">
-                    <img src="/images/icon-rewards.svg" alt="" />
+                    <img src="/images/icon-rewards.svg" alt=""/>
                     &nbsp; Rewards
                   </p>
                 </p>
@@ -997,43 +1052,43 @@ const InfoDetail = ({ props }: any): any => {
                     </li>
                     <li>
                       <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="10" height="10" rx="1" fill="#FFA776" />
+                        <rect width="10" height="10" rx="1" fill="#FFA776"/>
                       </svg>
                       <span style={{color: '#fff'}}>Nhận ATF</span>
                     </li>
                     <li>
                       <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="10" height="10" rx="1" fill="#76CEFF" />
+                        <rect width="10" height="10" rx="1" fill="#76CEFF"/>
                       </svg>
                       <span style={{color: '#fff'}}>Equipment upgrade items</span>
                     </li>
                     <li>
                       <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="10" height="10" rx="1" fill="white" />
+                        <rect width="10" height="10" rx="1" fill="white"/>
                       </svg>
                       <span style={{color: '#fff'}}>White card</span>
                     </li>
                     <li>
                       <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="10" height="10" rx="1" fill="#55C595" />
+                        <rect width="10" height="10" rx="1" fill="#55C595"/>
                       </svg>
                       <span style={{color: '#55C595'}}>Green card</span>
                     </li>
                     <li>
                       <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="10" height="10" rx="1" fill="#2613FF" />
+                        <rect width="10" height="10" rx="1" fill="#2613FF"/>
                       </svg>
                       <span style={{color: "#2613ff"}}>Blue card</span>
                     </li>
                     <li>
                       <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="10" height="10" rx="1" fill="#F5DE05" />
+                        <rect width="10" height="10" rx="1" fill="#05D8F5"/>
                       </svg>
-                      <span style={{color: '#f5de05'}}>Gold card</span>
+                      <span style={{color: '#05D8F5'}}>Gold card</span>
                     </li>
                     <li>
                       <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="10" height="10" rx="1" fill="#F249E1" />
+                        <rect width="10" height="10" rx="1" fill="#F249E1"/>
                       </svg>
                       <span style={{color: '#f249e1'}}>Special card</span>
                     </li>
@@ -1159,13 +1214,13 @@ const InfoDetail = ({ props }: any): any => {
           <div className="c-detail no-mg">
             {isMobile ? (
               <>
-                <div className="c-detail__cont" style={{ display: 'none' }}>
+                <div className="c-detail__cont" style={{display: 'none'}}>
                   <div className="c-detail__cont item-detail">
                     <Collapse collapsible="disabled" defaultActiveKey={['1']} onChange={callback}>
                       <Panel
                         header={
                           <div className="header-collapse">
-                            <img src="/images/author-infomation.svg" alt="..." />
+                            <img src="/images/author-infomation.svg" alt="..."/>
                             <span>Author Information</span>
                           </div>
                         }
@@ -1196,7 +1251,7 @@ const InfoDetail = ({ props }: any): any => {
                               <span className="cl-gray fz-14 dl-inline-block mr-2">{`Author : `}</span>
                               <span className="cl-white fz-14 dl-inline-block">{objData.authorName}</span>
                               <a href={`#/usercenter/${objData.author}`} className="f-center">
-                                <img className="ml-2 cursor-pointer" src="/images/link-direct.svg" alt="..." />
+                                <img className="ml-2 cursor-pointer" src="/images/link-direct.svg" alt="..."/>
                               </a>
                             </p>
                             <p>
@@ -1216,7 +1271,7 @@ const InfoDetail = ({ props }: any): any => {
                                       message: (
                                         <div className="custom-fontsize">
                                           {/* <i className="fa fa-check-square-o icon-success" aria-hidden="true" /> */}
-                                          <i className="fa fa-check-circle icon-success" aria-hidden="true" />
+                                          <i className="fa fa-check-circle icon-success" aria-hidden="true"/>
                                           Successfully !
                                         </div>
                                       ),
@@ -1236,7 +1291,7 @@ const InfoDetail = ({ props }: any): any => {
                                     })
                                   }
                                 >
-                                  <img className="ml-2 cursor-pointer" src="/images/coppy.svg" alt="..." />
+                                  <img className="ml-2 cursor-pointer" src="/images/coppy.svg" alt="..."/>
                                 </CopyToClipboard>
                               </span>
                             </p>
@@ -1256,13 +1311,13 @@ const InfoDetail = ({ props }: any): any => {
                 {/* <div style={{ width: '100%' }}>
                   <BidTrad />
                 </div> */}
-                <div className="c-detail__cont" style={{ display: 'none' }}>
+                <div className="c-detail__cont" style={{display: 'none'}}>
                   <div className="c-detail__cont item-detail">
                     <Collapse collapsible="disabled" defaultActiveKey={['1']} onChange={callback}>
                       <Panel
                         header={
                           <div className="header-collapse">
-                            <img src="/images/author-infomation.svg" alt="..." />
+                            <img src="/images/author-infomation.svg" alt="..."/>
                             <span>Author Information</span>
                           </div>
                         }
@@ -1293,7 +1348,7 @@ const InfoDetail = ({ props }: any): any => {
                               <span className="cl-gray fz-14 dl-inline-block mr-2">{`Author : `}</span>
                               <span className="cl-white fz-14 dl-inline-block">{objData.authorName}</span>
                               <a href={`#/usercenter/${objData.author}`} className="f-center">
-                                <img className="ml-2 cursor-pointer" src="/images/link-direct.svg" alt="..." />
+                                <img className="ml-2 cursor-pointer" src="/images/link-direct.svg" alt="..."/>
                               </a>
                             </p>
                             <p>
@@ -1313,7 +1368,7 @@ const InfoDetail = ({ props }: any): any => {
                                       message: (
                                         <div className="custom-fontsize">
                                           {/* <i className="fa fa-check-square-o icon-success" aria-hidden="true" /> */}
-                                          <i className="fa fa-check-circle icon-success" aria-hidden="true" />
+                                          <i className="fa fa-check-circle icon-success" aria-hidden="true"/>
                                           Successfully !
                                         </div>
                                       ),
@@ -1333,7 +1388,7 @@ const InfoDetail = ({ props }: any): any => {
                                     })
                                   }
                                 >
-                                  <img className="ml-2 cursor-pointer" src="/images/coppy.svg" alt="..." />
+                                  <img className="ml-2 cursor-pointer" src="/images/coppy.svg" alt="..."/>
                                 </CopyToClipboard>
                               </span>
                             </p>

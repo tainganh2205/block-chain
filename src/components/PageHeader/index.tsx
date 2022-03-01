@@ -34,7 +34,7 @@ const StyledPageHeader = styled.div`
     svg {
       width: 20px;
       height: 20px;
-      fill: #16b979;
+      fill: #169CE7;
     }
   }
 `
@@ -58,14 +58,14 @@ const PageHeader = ({ title, description, children }: PageHeaderProps) => {
             </Text>
           )}
         </Details>
-       
+
         <Tooltip placement="bottom" title='Recent transactions'>
           <IconButton variant="text" onClick={onPresentRecentTransactions} title="">
             <img src="/images/imagesSwap/refresh.png" alt="" />
           </IconButton>
         </Tooltip>
-        
-        
+
+
         <Tooltip placement="bottom" title='Settings'>
           <IconButton className='setting-icon' variant="text" onClick={onPresentSettings} title="">
             <img src="/images/imagesSwap/setting.png" alt="" />
