@@ -5,11 +5,16 @@ import {
   createContainer,
   createSubscriber,
 } from "react-sweet-state";
-import { API_TEST, API_NFT } from 'constants/index';
+import { API_NFT } from 'constants/index';
 import _ from 'lodash'
+
+const headersConfig = {
+  'Content-Type': 'application/json',
+}
 
 const StoreDetail = createStore({
   initialState: {
+    isShowDisClaimer:false,
     statusClaimed:false,
     statusJoined:false,
     objData: null,
@@ -27,7 +32,8 @@ const StoreDetail = createStore({
       isJoined: false,
       isClaimed: false,
     },
-    isReloadDetail: false
+    isReloadDetail: false,
+    isHideRefundClaiming:false
   },
   actions: {
     insertClaimIDo: (idoId, account, amount) =>
@@ -91,8 +97,14 @@ const StoreDetail = createStore({
         })
       })
     },
+    updateShowDisClaimer: (val) => ({ setState }) => {
+      setState({ isShowDisClaimer: val});
+    },
     resetData: () => ({ setState }) => {
-      setState({ objData: null });
+      setState({ objData: null});
+    },
+    resetListAllocations: () => ({ setState }) => {
+      setState({ listAllocations:[] });
     },
     checkIsClaim:
       (idoId, account) => ({ getState, setState }) => {
@@ -121,6 +133,20 @@ const StoreDetail = createStore({
               })
           })
       },
+      addDisclaimer:
+      (valueConfirm) => ({ getState, setState }) => {
+          // console.log("statuis:", valueConfirm)
+          return new Promise((resolve, reject) => {
+            
+            axios
+              .post(`${API_NFT}/Ido/disclaimer`, valueConfirm, {
+                headers: headersConfig
+              })
+              .then((res) => {
+                resolve(res.data)
+              })
+          })
+      },
     getYourAllocations: (account, idoId) => async ({ setState }) => {
         const res = await axios.post(`${API_NFT}/Ido/your_allocations`, {
           ownerAddress: account,
@@ -131,6 +157,9 @@ const StoreDetail = createStore({
     },
     changeLoadDetail: (isReload) => ({ setState }) => {
       setState({ isReloadDetail: isReload })
+    },
+    changeRefundStatus: (status) => ({ setState }) => {
+      setState({ isHideRefundClaiming: status })
     },
   },
   name: "Detail Store",

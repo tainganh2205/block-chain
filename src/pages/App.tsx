@@ -7,7 +7,6 @@ import { Credentials, StringTranslations } from '@crowdin/crowdin-api-client'
 import ReactNotification from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 import yall from 'yall-js'
-
 import Popups from '../components/Popups'
 import Web3ReactManager from '../components/Web3ReactManager'
 import { RedirectDuplicateTokenIds, RedirectOldAddLiquidityPathStructure } from './AddLiquidity/redirects'
@@ -18,6 +17,7 @@ import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
 import Swap from './Swap'
 import Dashboard from './Dashboard'
+import LaunchpadV3 from './LaunchpadV3'
 import Transactions from './Transactions'
 // import Nft from './Nft'
 import Maintenance from '../components/Maintenance/index'
@@ -206,8 +206,11 @@ export default function App() {
                           component={RedirectOldRemoveLiquidityPathStructure}
                         />
                         <Route exact strict path="/NFTmarket" component={Nft} />
-                        <Route exact strict path="/launchpad" component={Launchpad} />
+                        {/* <Route exact strict path="/launchpad" component={Launchpad} />
+                        <Route exact strict path="/launchpad/:ownerAddress/:id" component={LaunchpadDetail} /> */}
+                        <Route exact strict path="/launchpad" component={LaunchpadV3} />
                         <Route exact strict path="/launchpad/:ownerAddress/:id" component={LaunchpadDetail} />
+                        {/* <Route exact strict path="/LaunchpadV3/:ownerAddress/:id" component={LaunchpadV3Detail} /> */}
                         <Route exact strict path="/genesisMarket" component={GenesisMarketplace} />
                         <Route exact strict path="/maintenance" component={Maintenance} />
 

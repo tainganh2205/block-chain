@@ -4,10 +4,13 @@
 
 import React, { memo, useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import ModalDisClaimer from 'pages/LaunchpadDetail/ModalDisClaimer'
 import { store } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
+import { isMobile } from 'react-device-detect'
+import { Modal, Checkbox } from 'antd'
 import { useWeb3React } from '@web3-react/core'
-import { MAPPING_CHAINID, ADDRESS_RECEVIE_BUSD, ADDRESS_USD } from 'config/constants'
+import { CHAINID_FULLNAME, CHAINID_CONVERT, MAPPING_CHAINID, ADDRESS_RECEVIE_BUSD, ADDRESS_USD } from 'config/constants'
 import { useContract } from 'hooks/useContract'
 import Button, { PropsButtonBSC } from 'components/Button'
 import addNotify from 'components/Notify/addNotify'
@@ -19,9 +22,12 @@ import abiBUSD from '../abiBUSD.json'
 
 const Actions = memo(({ props }: any): any => {
   const [state, actions]: any = useHookDetail()
+  const {isShowDisClaimer} = state;
+  const [isOpenJoin,setIsOpenJoin] = useState(false);
   const { objData, objJoin, process, listAllocations } = state
   const [loading, setLoading] = useState(false)
   const [statusJoin, setstatusJoin] = useState(false)
+  const [isOtherChain, setOtherChain] = useState(false)
   const [amount, setAmount]: any = useState(0)
   const [decimal, setDecimal]: any = useState(0)
   const { account, chainId }: any = useWeb3React()
@@ -42,6 +48,7 @@ const Actions = memo(({ props }: any): any => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idoId, busdContract, account])
+
 
   const is_network_bep = objData && objData.network === 'bep'
   const is_network_erc = objData && objData.network === 'erc'
@@ -74,14 +81,21 @@ const Actions = memo(({ props }: any): any => {
   }
   useEffect(() => {
     if (objData) {
-      switchNetwork(MAPPING_CHAINID[objData.network])
+      if (isMobile) {
+        if (objData && objData.network !== CHAINID_CONVERT[chainId]) {
+          setOtherChain(true)
+        }
+      } else {
+        switchNetwork(MAPPING_CHAINID[objData.network])
+      }
     }
-    return () => {
-      console.log("cleaned up");
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [idoId, objData])
 
+    return () => {
+      // TODO
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [idoId, objData,account, chainId])
+  // commet
   const _handleJoinPool = () => {
     const amtJoin = objJoin.busd
     if (is_network_bep && chainId !== 56) {
@@ -147,7 +161,17 @@ const Actions = memo(({ props }: any): any => {
     }
   }
 
+  // const _handleJoinPool = () => {
+  //   if(isShowDisClaimer) {
+  //       setIsOpenJoin(true);
+  //       setTimeout(() => {
+  //       setIsOpenJoin(false)
+  //     }, 200);
+  //   }
+  // }
+
   let checkJoin = false
+
   if (objJoin.isJionPool) {
     checkJoin = true
   }
@@ -182,7 +206,7 @@ const Actions = memo(({ props }: any): any => {
       className: whiteListed ? 'hide' : 'bsc-p-launchpad_detail-project-actions-btn',
       loading: loading,
       primary: objJoin.status === 1 && !isJoinPool,
-      disabled: isJoinPool || !checkJoin || loading,
+      disabled: isShowDisClaimer||  isJoinPool || !checkJoin || loading,
       click: () => {
         _handleJoinPool()
       },
@@ -192,6 +216,14 @@ const Actions = memo(({ props }: any): any => {
 
   return (
     <div className="bsc-p-launchpad_detail-project-actions-wrapper">
+      <ModalDisClaimer isOpenJoin={isShowDisClaimer} idoID={idoId}/>
+      <Modal onCancel={() => setOtherChain(false)} className="modal-beta-show" title="Alert!" visible={isOtherChain}>
+        <>
+          <div className="content-modal-show">
+            <p className="desc-beta">This one choose network {objData && CHAINID_FULLNAME[objData.network]}</p>
+          </div>
+        </>
+      </Modal>
       {actions1.map((btn) => (
         <Button {...btn} />
       ))}

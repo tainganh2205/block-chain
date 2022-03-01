@@ -8,6 +8,8 @@ import abiJoinPool from 'config/abi/abiJoinPool.json'
 
 import useWeb3 from 'hooks/useWeb3'
 
+import idoTokenClaimAbi from 'config/abi/idoTokenClaim.json'
+import idoTokenClaimDailyAbi from 'config/abi/idoTokenClaimDaily.json'
 import { getBep20Contract, getContract, getIDOContract, getJoinPoolContract } from 'utils'
 import { useWeb3React } from '@web3-react/core'
 import ENS_ABI from '../constants/abis/ens-registrar.json'
@@ -103,3 +105,6 @@ export function useJoinPoolContract(address): any {
   return useContract(address, abiJoinPool, true)
 }
 
+export function useIdoTokenClaimContract(scAddr, item): any {
+  return useContract(scAddr, item && item.claimRound === 100 ? idoTokenClaimDailyAbi : idoTokenClaimAbi)
+}

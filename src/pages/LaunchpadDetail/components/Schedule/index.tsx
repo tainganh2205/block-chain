@@ -23,7 +23,7 @@ const Schedule = memo(() => {
           </tr>
           {schedules ? (
             schedules.map((item: any, i) => (
-              <tr>
+              <tr key={i.dateClose}>
                 <td>
                   {item.name}
                 </td>

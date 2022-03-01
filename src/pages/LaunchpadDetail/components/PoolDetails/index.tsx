@@ -90,6 +90,7 @@ const PoolDetails = memo(() => {
         className='bsc-p-launchpad_detail-pool-left'
       >
         <PoolDetailTabel
+          key='1'
           title='Pool information'
           rows={rowsPoolInformation}
         />
@@ -98,6 +99,7 @@ const PoolDetails = memo(() => {
         className='bsc-p-launchpad_detail-pool-right'
       >
         <PoolDetailTabel
+          key='2'
           title='Token information'
           rows={rowsTokenInformation}
         />

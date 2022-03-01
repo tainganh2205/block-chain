@@ -84,17 +84,18 @@ export const MIN_ETH: JSBI = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(16))
 export const NETWORK_CHAIN_ID: number = parseInt(process.env.REACT_APP_CHAIN_ID ?? '56')
 
 export const STATKE_NFTS = {
-  56: '0x2bf314b388935fB9b4a0F568939a663f22e99b33',
+  // 56: '0x2bf314b388935fB9b4a0F568939a663f22e99b33',
+  56: '0x1e3fA6a96C20259E030a105308a9a09d1B6d150F',
   97: '0xD6B35471f4a35F4E93c42E7D145C6f865c84CC52',
 }
 
 const NFTs = {
-  56: '0x11324c97fe24184175E69457F7B27001FBE3bFad',
-  97: '0xbC5120990004677aA4bB8AfaD1C2AaFad929e9fd',
+  56: '0x2433bE070fAeE3F960C435fb91e9f320986DdE34',
+  97: '0x341EAd06CbcfA919Ef2bD902DF6f536d730E0456',
 }
 
 const Bids = {
-  56: '0x46B57454DF7f2FaA537ad7E61beA58c4C8EE4F2d',
+  56: '0x1B02D6E3BD9B2C812ACeE4068195fE29680f0c0C',
   97: '0x1e288b14a3e78433609aFF438Bae2cB15c65b761',
 }
 const BSCSs = {
@@ -103,8 +104,8 @@ const BSCSs = {
 }
 
 export const CONTRACT_BID_VERSION = {
-  0: '0x46B57454DF7f2FaA537ad7E61beA58c4C8EE4F2d', // contract bid old
-  1: '0x46B57454DF7f2FaA537ad7E61beA58c4C8EE4F2d', // contract bid new
+  0: '0xF6155243b3649b0957A9c11620D8EA62E11a59C4', // contract bid old
+  1: '0x1B02D6E3BD9B2C812ACeE4068195fE29680f0c0C', // contract bid new
 }
 
 export const STAKE_NFT = STATKE_NFTS[NETWORK_CHAIN_ID]
@@ -115,12 +116,12 @@ export const CONTRACT_NFT = NFTs[NETWORK_CHAIN_ID]
 export const CONTRACT_BID = Bids[NETWORK_CHAIN_ID]
 export const MINT_PRICE = '1000000000000000' // 0,01BNB
 
-export const NFT_CONTRACTID = '0x11324c97fe24184175E69457F7B27001FBE3bFad'
-export const API_NFT = 'https://api.artinfinity.app/api' // 'https://api.bscstation.org/api'
-export const API_TEST = '' // 'https://testapi.bscstation.org/api'
-export const API_IMAGE = 'https://api.artinfinity.app/img/nft/'
+export const NFT_CONTRACTID = '0x2433bE070fAeE3F960C435fb91e9f320986DdE34'
+export const API_NFT = 'https://api.bscstation.org/api'
+export const API_TEST = 'https://api.bscstation.org/api'
+export const API_IMAGE = 'https://api.bscstation.org/img/nft/'
 export const BSCSCAN_APIKEY = 'T2IXE481IAX4947JTMHSB7482992S7VE1W'
-export const API_VIDEO = 'https://api.artinfinity.app/video/'
+export const API_VIDEO = 'https://api.bscstation.org/video/'
 export const TOKEN_BSCS_TESTNET = BSCSs[NETWORK_CHAIN_ID]
 export const BSCSCAN_API_MAINNET = 'https://api.bscscan.com'
 
@@ -150,9 +151,10 @@ export const FILE_TYPE_LIST = [
 
 export const KEY_CRYPTOJS = '4kHlZXyYTew38QnxvWFnag=='
 export const ADDRESS_ADMIN_BSCS = '0xe806Aa2470D4922C7C7e7fA7C05025508E592b2F'
-
 export const ADDRESS_ADMIN_BNB = '0x793101bB7a0001F5bC579A541E8F8124432383DA'
 export const CONTRACT_JOIN_POOL = '0xa4319680d9bF208CeB32d019A4F45503F58ABB44'
+export const CONTRACT_BOX_MYSTERY = '0x77d5feb1cd060914D45e99ff6555f32Fc4D87BeC'
+export const CONTRACT_BOX_MARKET= '0x52318cFaC6D199DE0D703B3470eF3865af3AB3AA'
 
 const idoSC = {
   56: '0x32c0fc73d084a7D830d033264d14945E60e0314e',

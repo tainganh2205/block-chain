@@ -18,6 +18,16 @@ export const MAPPING_CHAINID = {
   'erc': "0x1",  // 1
   'poly': "0x89", // 138
 }
+export const CHAINID_CONVERT = {
+  56: 'bep',
+  1: 'erc',
+  138: 'poly',
+}
+export const CHAINID_FULLNAME = {
+  bep: 'BSC',
+  erc: 'Ethereum',
+  poly: 'Polygon',
+}
 const communityFarms = []
 
 export default communityFarms
