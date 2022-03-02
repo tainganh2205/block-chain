@@ -67,7 +67,7 @@ const TabsIDO = () => {
         <Tabs activeKey={defaultKey} onChange={callback}>
           <TabPane tab="Upcoming" key="Upcoming">
             <div className="table-collapse-custom">
-              <div>
+              <div className='w-100'>
                 <div className="devCusIdo">
                   <Flex alignItems="center">
                     <p className="title-1">NEXT PROJECTS</p>
@@ -87,7 +87,7 @@ const TabsIDO = () => {
           </TabPane>
           <TabPane tab="Active" key="Active">
             <div className="main-cnt-tabs">
-              <div>
+              <div className='w-100'>
                 <div className="devCusIdo">
                   <Flex alignItems="center">
                     <p className="title-1">NEXT PROJECTS</p>
@@ -106,7 +106,7 @@ const TabsIDO = () => {
             </div>
           </TabPane>
           <TabPane tab="Ended" key="Ended">
-            <div>
+            <div className='w-100'>
               <div className="devCusIdo">
                 <Flex alignItems="center">
                   <p className="title-1">NEXT PROJECTS</p>
@@ -131,7 +131,6 @@ const TabsIDO = () => {
               </Flex>
               <Flex justifyContent="space-between">
                 <p className="title-2">JOINED</p>
-               
               </Flex>
             </div>
             <TabsContentJoined
