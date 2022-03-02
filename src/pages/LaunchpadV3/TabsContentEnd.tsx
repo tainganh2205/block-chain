@@ -220,8 +220,8 @@ const TabsContentEnd = (props): any => {
               ) : (
                 <td colSpan={6}>
                   <div className="box-message res">
-                    <img src="/images/nobidding.svg" alt="unknown-artwork" className="img-message" />
                     <div className="info-message">Empty !</div>
+                    <img src="/images/nobidding.svg" alt="unknown-artwork" className="img-message" />
                   </div>
                 </td>
               )}
