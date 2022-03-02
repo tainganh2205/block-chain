@@ -49,7 +49,7 @@ const Nav = ({ activeIndex = 0 }: { activeIndex?: number }) => (
       <ButtonMenuItem  className={activeIndex === 1 ? 'active' : ''}  id="pool-nav-link" to="/pool" as={Link}>
         <TranslatedText translationId={74}>Liquidity</TranslatedText>
       </ButtonMenuItem>
-      <ButtonMenuItem  className={activeIndex === 2 ? 'active' : ''} id="bridge-nav-link" as="a" target='_blank' href='https://www.binance.org/en/bridge'>
+      <ButtonMenuItem  className={activeIndex === 2 ? 'active' : ''} id="bridge-nav-link" to="/bridge" as={Link}>
         <TranslatedText translationId={8}>Bridge</TranslatedText>
       </ButtonMenuItem>
       <ButtonMenuItem  className={activeIndex === 3 ? 'active' : ''}  id="transaction-nav-link" to="/transactions" as={Link}>

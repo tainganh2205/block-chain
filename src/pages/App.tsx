@@ -19,7 +19,6 @@ import Swap from './Swap'
 import Dashboard from './Dashboard'
 import LaunchpadV3 from './LaunchpadV3'
 import Transactions from './Transactions'
-// import Nft from './Nft'
 import Maintenance from '../components/Maintenance/index'
 import NftDetail from './NftDetail'
 import MysteryBoxDetail from './MysteryBoxDetail/index'
@@ -41,6 +40,7 @@ import ToTop from '../components/ToTop'
 
 import './App.less'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import Bridge from './Bridge'
 
 const Nft = React.lazy(() => import('./Nft_new'))
 const MyArtworks = React.lazy(() => import('./MyArtworks'))
@@ -193,6 +193,7 @@ export default function App() {
                         <Route exact strict path="/swap" component={Swap} />
                         <Route exact strict path="/find" component={PoolFinder} />
                         <Route exact strict path="/pool" component={Pool} />
+                        <Route exact strict path="/bridge" component={Bridge} />
                         <Route exact strict path="/transactions" component={Transactions} />
                         <Route exact path="/add" component={AddLiquidity} />
                         <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
