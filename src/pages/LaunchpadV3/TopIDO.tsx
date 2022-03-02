@@ -46,17 +46,17 @@ const TopIDO = () => {
   }
 
   return (
-    <>
       <div className="main-banner-v3">
         <div className="box-banner-v3-new">
           <div className="box-img">
-            <img src="/images/imagesV3/Background-v3.png" alt="" />
+            <img src="/images/imagesV3/banner-ido.png" alt="" />
           </div>
         </div>
         <div className="box-content-v3">
           <div className="text-l-banner">
-            <h3 className="title-v3">BSCStation Launchpad</h3>
-            <p className="desc">The Ultimate Incubation Hub on Binance Smart Chain, Ethereum and Polygon</p>
+            <h3 className="title-v3">IDO Launchpad</h3>
+            <p className="desc">The Ultimate Incubation Hub on Binance Smart Chain, Ethereum and Polygon.</p>
+            <button type='button' className='explore'>EXPLORE</button>
           </div>
           <div className="text-r-banner">
             <div className="list-staking">
@@ -76,7 +76,6 @@ const TopIDO = () => {
           </div>
         </div>
       </div>
-    </>
   )
 }
 export default TopIDO
