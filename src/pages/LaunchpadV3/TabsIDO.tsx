@@ -114,10 +114,10 @@ const TabsIDO = () => {
                 </Flex>
                 <Flex justifyContent="space-between">
                   <p className="title-2">ENDED</p>
-                  <Select className="devCus__select" disabled defaultValue="CALENDER" style={{ width: 194 }}>
+                  {/* <Select className="devCus__select" disabled defaultValue="CALENDER" style={{ width: 194 }}>
                     <Option value="Calendar">Calendar</Option>
                     <Option value="Table">Table</Option>
-                  </Select>
+                  </Select> */}
                 </Flex>
               </div>
             </div>
@@ -130,7 +130,7 @@ const TabsIDO = () => {
                 <img style={{ paddingLeft: '8px' }} src="/images/imagesV3/IdoLoad.png" alt="..." />
               </Flex>
               <Flex justifyContent="space-between">
-                <p className="title-2">ENDED</p>
+                <p className="title-2">JOINED</p>
                
               </Flex>
             </div>

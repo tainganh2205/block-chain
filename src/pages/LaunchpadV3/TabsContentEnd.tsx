@@ -2,16 +2,19 @@
 /* eslint-disable consistent-return */
 import React, { useCallback, useEffect, useState } from 'react'
 import { useHistory, Router } from 'react-router-dom'
-import { Tabs, Progress, Input } from 'antd'
+import { Tabs, Progress, Input, Select } from 'antd'
 import { AudioOutlined } from '@ant-design/icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { useWeb3React } from '@web3-react/core'
+
+import { Flex } from '@artechain/uikit'
 
 import { useHookProjects } from './Store'
 import TabsContentActive from './TabsContentActive'
 import TabDetail from './TabDetail'
 
 const TabsContentEnd = (props): any => {
+  const { Option } = Select
   const { idoList, listIdoEnd, status, activeTab } = props
   const { Search } = Input
   const [showDetail, setShowDetail] = useState(false)
@@ -137,6 +140,13 @@ const TabsContentEnd = (props): any => {
             <div className="box-search-stake">
               <Search placeholder="Search" onSearch={handleChange} />
             </div>
+
+            <Flex justifyContent="space-between">
+                  <Select className="devCus__select" disabled defaultValue="CALENDER" style={{ width: 194 }}>
+                    <Option value="Calendar">Calendar</Option>
+                    <Option value="Table">Table</Option>
+                  </Select>
+                </Flex>
           </div>
         )}
 
