@@ -208,8 +208,8 @@ const TabsContentActive = (props): any => {
                 ))
                 : (
                   <div className="box-message res">
-                    <img src="/images/nobidding.svg" alt="unknown-artwork" className="img-message" />
                     <div className="info-message">Empty !</div>
+                    <img src="/images/imagesV3/noEmpty.svg" alt="unknown-artwork" className="img-message" />
                     </div>
                 ) : <TabDetail activeTab={activeTab}/>
                 

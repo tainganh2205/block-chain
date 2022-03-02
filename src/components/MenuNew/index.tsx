@@ -20,6 +20,7 @@ import { ReactComponent as DotIcon } from '../../images/img/IconDot.svg'
 import { ReactComponent as MenuIcon } from '../../images/img/iconMenu.svg'
 import { ReactComponent as IconMenu } from '../../images/img/Menu.svg'
 import { ReactComponent as IconAtc } from '../../images/img/AtcIcon.svg'
+import { ReactComponent as IconIdo } from '../../images/img/IDO.svg'
 
 const MenuNew = () => {
   const [showMenu, setShowMenu] = useState(true)
@@ -172,6 +173,17 @@ const MenuNew = () => {
                     </ul>
                   </div>
                 </li>
+
+                <Link to="/IDO">
+                  <li>
+                    <div className="h__customLogoTrade">
+                      <IconIdo />
+                      <IconIdo />
+                    </div>
+                    IDO
+                  </li>
+                </Link>
+
                 <li>
                   <DotIcon />
                   <div className="submenu-nav">
