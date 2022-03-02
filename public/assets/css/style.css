@@ -3119,7 +3119,7 @@ input[type='checkbox'].c-checkbox-bscs-hiden:checked + .c-checkbox-bscs:after {
   /* background-color: #252525; */
 }
 .info-message {
-  color: #fac668;
+  color: rgba(103, 111, 105, 1);
   margin: 0px 0px 26px;
   font-family: 'Baloo Da';
   font-size: 18px;

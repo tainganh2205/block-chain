@@ -2,6 +2,7 @@ import React from 'react'
 import { useHistory, Route } from 'react-router-dom'
 import { useHookProjects } from './Store'
 import { POOL_WEIGHT } from './index.d'
+import UnlockButton from '../../components/ButtonV2'
 
 const TopIDO = () => {
   const [state, actions]: any = useHookProjects()
@@ -49,16 +50,21 @@ const TopIDO = () => {
       <div className="main-banner-v3">
         <div className="box-banner-v3-new">
           <div className="box-img">
-            <img src="/images/imagesV3/banner-ido.png" alt="" />
+            <img src="/images/imagesV3/BgIdo.png" alt="" />
           </div>
         </div>
         <div className="box-content-v3">
           <div className="text-l-banner">
             <h3 className="title-v3">IDO Launchpad</h3>
-            <p className="desc">The Ultimate Incubation Hub on Binance Smart Chain, Ethereum and Polygon.</p>
-            <button type='button' className='explore'>EXPLORE</button>
-          </div>
+            <p className="desc">The Ultimate Incubation Hub on Binance Smart Chain,</p>
+            <p className="desc">Ethereum and Polygon.</p>
+            <div className='devCus__bt'>
+              <UnlockButton text="EXPLORE" />
+            </div>
+          </div> 
+
           <div className="text-r-banner">
+            <div className="CusAb" />
             <div className="list-staking">
               <div className="text-flex">
                 <span className="t-left">IDO Pool staked:</span>
