@@ -359,7 +359,10 @@ const ItemIdo = ({ x, network }) => {
   return (
     <>
       <div className="round-one">
-        <h4 className="title">{x.name}</h4>
+        <div className="g-title">
+          <h4 className="title">{x.name}</h4>
+          <img className='blur-title' src="/images/imagesV3/blur-title.svg" alt="" />
+        </div>
         <div className="list-info-ido border-none">
           <div className="item">
             <div className="t-left">Total Raise:</div>
@@ -379,7 +382,7 @@ const ItemIdo = ({ x, network }) => {
           </div>
           <div className="item">
             <div className="t-left">Vesting:</div>
-            <div className="t-right">
+            <div className="t-right exc-vt">
               <Tooltip placement="leftTop" title={x.vesting ? x.vesting : 'TBA'}>
                 <ExclamationCircleOutlined />
               </Tooltip>
