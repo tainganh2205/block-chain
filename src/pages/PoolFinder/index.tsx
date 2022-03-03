@@ -29,7 +29,7 @@ const PageWrapper = styled(WrapperPage)`
   };
   width: 100%;
   height: 100%;
-  background: url(./images/game-banner.png);
+  background: url(./images/lfw-swap-banner.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -107,7 +107,7 @@ export default function PoolFinder() {
               }}
               startIcon={currency0 ? <CurrencyLogo currency={currency0} style={{ marginRight: '.5rem' }} /> : null}
               endIcon={<ChevronDownIcon width="24px" color="white" />}
-              
+
             >
               {currency0 ? currency0.symbol : <TranslatedText translationId={82}>Select a Token</TranslatedText>}
             </Button>
@@ -123,7 +123,7 @@ export default function PoolFinder() {
               }}
               startIcon={currency1 ? <CurrencyLogo currency={currency1} style={{ marginRight: '.5rem' }} /> : null}
               endIcon={<ChevronDownIcon width="24px" color="white" />}
-              
+
             >
               {currency1 ? currency1.symbol : <TranslatedText translationId={82}>Select a Token</TranslatedText>}
             </Button>

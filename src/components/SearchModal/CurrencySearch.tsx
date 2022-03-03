@@ -57,7 +57,7 @@ export function CurrencySearch({
   // if they input an address, use it
   const isAddressSearch = isAddress(searchQuery)
   const searchToken = useToken(searchQuery)
-
+  console.log('isAddressSearch',searchToken);
   const showETH: boolean = useMemo(() => {
     const s = searchQuery.toLowerCase().trim()
     return s === '' || s === 'e' || s === 'et' || s === 'eth'
@@ -192,7 +192,7 @@ export function CurrencySearch({
               />
             )}
           </AutoSizer>
-          ): 
+          ):
           (
             <Flex flexDirection='column' alignItems='center'>
               <img alt='' className='swap-icon' src='/images/imagesSwap/not-found-token.png' width={120} height={105} />
@@ -202,7 +202,7 @@ export function CurrencySearch({
             </Flex>
           )
         }
-       
+
       </div>
 
       {null && (

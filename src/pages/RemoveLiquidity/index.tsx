@@ -69,7 +69,7 @@ const PageWrapper = styled(WrapperPage)`
   };
   width: 100%;
   height: 100%;
-  background: url(./images/game-banner.png);
+  background: url(./images/lfw-swap-banner.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -526,7 +526,7 @@ export default function RemoveLiquidity({
                           75%
                         </ButtonYel>
                         <ButtonYel
-                          scale="sm" 
+                          scale="sm"
                           variant="tertiary"
                           data-variant="tertiary"
                           size="sm"
