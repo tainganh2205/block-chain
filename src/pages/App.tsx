@@ -45,11 +45,12 @@ import Bridge from './Bridge'
 const Nft = React.lazy(() => import('./Nft_new'))
 const MyArtworks = React.lazy(() => import('./MyArtworks'))
 const StakeNFT = React.lazy(() => import('./StakeNFT/index'))
-const Launchpad = React.lazy(() => import('./Launchpad'))
+const Ido = React.lazy(() => import('./LaunchpadV3'))
 const LaunchpadDetail = React.lazy(() => import('./LaunchpadDetail'))
 const GenesisMarketplace = React.lazy(() => import('./GenesisMarketplace'))
 const Introduction = React.lazy(() => import('./GameIntroduction/index'))
 const MysteryBox = React.lazy(() => import('./GameMysteryBox'))
+
 
 const AppWrapper = styled.div`
   display: flex;
@@ -207,9 +208,9 @@ export default function App() {
                           component={RedirectOldRemoveLiquidityPathStructure}
                         />
                         <Route exact strict path="/NFTmarket" component={Nft} />
-                        {/* <Route exact strict path="/launchpad" component={Launchpad} />
+                        {/* <Route exact strict path="/launchpad" component={Ido} />
                         <Route exact strict path="/launchpad/:ownerAddress/:id" component={LaunchpadDetail} /> */}
-                        <Route exact strict path="/launchpad" component={LaunchpadV3} />
+                        <Route exact strict path="/IDO" component={Ido} />
                         <Route exact strict path="/launchpad/:ownerAddress/:id" component={LaunchpadDetail} />
                         {/* <Route exact strict path="/LaunchpadV3/:ownerAddress/:id" component={LaunchpadV3Detail} /> */}
                         <Route exact strict path="/genesisMarket" component={GenesisMarketplace} />

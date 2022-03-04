@@ -4,6 +4,8 @@ import { Drawer, Button, Collapse } from 'antd'
 import 'antd/dist/antd.css'
 import UnlockButton from '../ConnectWalletButton'
 
+import { ReactComponent as IconIdo } from '../../images/img/IDO.svg'
+
 function MenuNewMobile() {
   const [visible, setVisible] = useState(false)
   const showDrawer = () => {
@@ -54,6 +56,18 @@ function MenuNewMobile() {
       </div>
     </>
   )
+
+  const ido = (
+    <>
+        <>
+      <Link to="/IDO">
+        <div className="header-collapse">
+          <IconIdo className='css-icon-home' /> <span className="text-home">IDO</span>
+        </div>
+      </Link>
+    </>
+    </>
+  )
   const docs = (
     <>
       <div className="header-collapse">
@@ -74,6 +88,16 @@ function MenuNewMobile() {
     </>
   )
   const menuHome = (
+    <>
+      <ul>
+        <Link to="/swap">
+          <li>Home</li>
+        </Link>
+      </ul>
+    </>
+  )
+
+  const menuIdo = (
     <>
       <ul>
         <Link to="/swap">
@@ -173,7 +197,11 @@ function MenuNewMobile() {
         <Panel header={game} key="4">
           <p>{menuGame}</p>
         </Panel>
-        <Panel header={docs} key="5">
+        {ido}
+        {/* <Panel header={ido} key="5">
+          <p>{''}</p>
+        </Panel> */}
+        <Panel header={docs} key="6">
           <p>{menuDocs}</p>
         </Panel>
       </Collapse>

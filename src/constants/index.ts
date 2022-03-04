@@ -1,7 +1,8 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@artechain/sdk'
 
 // export const ROUTER_ADDRESS = '0x3041B4FDF86006B0A87415A93929e8F617F0DAE7'
-export const ROUTER_ADDRESS = '0xFF43Ab0e317b18e208a6ecE0520D5D6558DD3eb5'
+// export const ROUTER_ADDRESS = '0xFF43Ab0e317b18e208a6ecE0520D5D6558DD3eb5'
+export const ROUTER_ADDRESS = '0x08B2Afdad288F4337c6f5dad360a43ad7f1C20BB'
 export const BSCS_REWARD_ADDRESS = '0xbC3AcF6ce2FFF5692a8f0DD9ED28014c8E44115B'
 // export const STAKE_NFT_CONTRACT = '0xd16f97870e40ae90b0c65ca62239c3c0d25dd1e8'
 // a list of tokens by chain

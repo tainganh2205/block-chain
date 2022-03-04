@@ -20,6 +20,8 @@ import { ReactComponent as IconMenu } from '../../images/img/Menu.svg'
 import { useFetchWithCache } from "../../hooks/useFetchWithCache";
 import { client, GET_PATHS } from "../../utils/apis";
 import { formatCurrency } from "../../utils";
+import { ReactComponent as IconIdo } from '../../images/img/IDO.svg'
+
 
 const MenuNew = () => {
   const [showMenu, setShowMenu] = useState(true)
@@ -171,6 +173,17 @@ const MenuNew = () => {
                     </ul>
                   </div>
                 </li>
+
+                <Link to="/IDO">
+                  <li>
+                    <div className="h__customLogoTrade">
+                      <IconIdo />
+                      <IconIdo />
+                    </div>
+                    IDO
+                  </li>
+                </Link>
+
                 <li>
                   <div className="h__customLogoTrade">
                     <MetaverseIcon />

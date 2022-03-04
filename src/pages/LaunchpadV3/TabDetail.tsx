@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { store } from 'react-notifications-component'
 import { isMobile } from 'react-device-detect'
-import { CHAINID_FULLNAME,CHAINID_CONVERT, MAPPING_CHAINID } from 'config/constants'
+import { CHAINID_FULLNAME, CHAINID_CONVERT, MAPPING_CHAINID } from 'config/constants'
 import { useActiveWeb3React } from 'hooks'
 import { Modal, Checkbox } from 'antd'
 import switchNetwork from 'utils/wallet'
@@ -29,7 +29,7 @@ const TabDetail = (props): any => {
   const { chainId } = useActiveWeb3React()
   const [isOtherChain, setOtherChain] = useState(false)
   const [state, actions]: any = useHookProjects()
-  const [stateDetail, actionsDetail]: any = useHookDetail()  
+  const [stateDetail, actionsDetail]: any = useHookDetail()
   const { activeTab } = props
   const { account } = useWeb3React()
   const prevCount = usePrevious(account)
@@ -100,41 +100,53 @@ const TabDetail = (props): any => {
       {activeDetail && (
         <div className="main-cnt-tabs">
           <div className="box-content-active">
-            <div className="top-content" style={{ backgroundImage: `url(${bgLogo})` }}>
+            <div className="top-content">
               <div className="box-img">
                 <img src={activeDetail?.logoUrl} alt="" />
               </div>
+              <h4 className="title">
+                {activeDetail?.name} <span>{activeDetail?.unit}</span>
+              </h4>
             </div>
             <div className="body-content">
               <div className="guide-wrap">
                 <div className="wrap-top">
-                  <h4 className="title">
-                    {activeDetail?.name} <span>{activeDetail?.unit}</span>
-                  </h4>
                   <p className="desc">{activeDetail?.description}</p>
                 </div>
                 <div className="wrap-middle">
-                  <div className="social-address">
-                    <div className="box-social">
-                      <a href={activeDetail?.socical.telegram} target="blank">
-                        <img src="/images/imagesV3/telegram.png" alt="" />
-                      </a>
-                      <a href={activeDetail?.socical.twitter} target="blank">
-                        <img src="/images/imagesV3/twi.png" alt="" />
-                      </a>
-                      <a href={activeDetail?.socical.medium} target="blank">
-                        <img src="/images/imagesV3/medium.png" alt="" />
-                      </a>
-                      <a href={activeDetail?.socical.website} target="blank">
-                        <img src="/images/imagesV3/link.png" alt="" />
-                      </a>
+                  <div className="list-info-ido">
+                    <div className="item">
+                      <div className="t-left">Swap Rate:</div>
+                      <div className="t-right">{activeDetail?.swapAmount}</div>
                     </div>
+                    <div className="item">
+                      <div className="t-left">IDO Supply:</div>
+                      <div className="t-right">
+                        {activeDetail?.idoSupply} {activeDetail?.symbol}
+                      </div>
+                    </div>
+                    <div className="item">
+                      <div className="t-left">Total Supply:</div>
+                      <div className="t-right">
+                        {activeDetail?.totalSupply || 'TBA'} {activeDetail?.symbol}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="list-info-ido border-none">
+                    {activeDetail?.schedules.map((item) => (
+                      <div className="item">
+                        <div className="t-left">{item.round}</div>
+                        <div className="t-right">{item.startDate}</div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="social-address">
                     <div className="box-address">
                       <div className="address-wl">
                         <span>
                           {activeDetail?.idoContract &&
                             `${activeDetail?.idoContract.substring(0, 8)}...${activeDetail?.idoContract.substring(
-                              28,
+                              32,
                               activeDetail?.idoContract.length
                             )}`}
                         </span>
@@ -166,37 +178,25 @@ const TabDetail = (props): any => {
                           }
                         >
                           <span className="img">
-                            <img src="/images/imagesV3/copy-v3.png" alt="" />
+                            <img src="/images/imagesV3/copy-v3.svg" alt="" />
                           </span>
                         </CopyToClipboard>
                       </div>
                     </div>
-                  </div>
-                  <div className="list-info-ido">
-                    <div className="item">
-                      <div className="t-left">Swap Rate:</div>
-                      <div className="t-right">{activeDetail?.swapAmount}</div>
+                    <div className="box-social">
+                      <a href={activeDetail?.socical.telegram} target="blank">
+                        <img src="/images/imagesV3/telegram.svg" alt="" />
+                      </a>
+                      <a href={activeDetail?.socical.twitter} target="blank">
+                        <img src="/images/imagesV3/twi.svg" alt="" />
+                      </a>
+                      <a href={activeDetail?.socical.medium} target="blank">
+                        <img src="/images/imagesV3/medium.svg" alt="" />
+                      </a>
+                      <a href={activeDetail?.socical.website} target="blank">
+                        <img src="/images/imagesV3/youtube.svg" alt="" />
+                      </a>
                     </div>
-                    <div className="item">
-                      <div className="t-left">IDO Supply:</div>
-                      <div className="t-right">
-                        {activeDetail?.idoSupply} {activeDetail?.symbol}
-                      </div>
-                    </div>
-                    <div className="item">
-                      <div className="t-left">Total Supply:</div>
-                      <div className="t-right">
-                        {activeDetail?.totalSupply || 'TBA'} {activeDetail?.symbol}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="list-info-ido border-none">
-                    {activeDetail?.schedules.map((item) => (
-                      <div className="item">
-                        <div className="t-left">{item.round}</div>
-                        <div className="t-right">{item.startDate}</div>
-                      </div>
-                    ))}
                   </div>
                 </div>
               </div>

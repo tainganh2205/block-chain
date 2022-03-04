@@ -95,7 +95,8 @@ const TabsContentActive = (props): any => {
                 ? idoListView.map((ido, index) => (
                   <div className="main-cnt-tabs">
                     <div className="box-content-active">
-                      <div className="top-content" style={{ backgroundImage: `url(${bgLogo})` }}>
+                      {/* <div className="top-content" style={{ backgroundImage: `url(${bgLogo})` }}> */}
+                      <div className="top-content">
                         <div className="box-img">
                           <img src={ido.logoUrl} alt="" />
                         </div>
@@ -103,9 +104,6 @@ const TabsContentActive = (props): any => {
                       <div className="body-content">
                         <div className="guide-wrap">
                           <div className="wrap-top">
-                            <h4 className="title">
-                              {ido.name} <span>{ido.unit}</span>
-                            </h4>
                             <p className="desc">{ido.description}</p>
                           </div>
                           <div className="wrap-middle">
@@ -208,8 +206,8 @@ const TabsContentActive = (props): any => {
                 ))
                 : (
                   <div className="box-message res">
-                    <img src="/images/nobidding.svg" alt="unknown-artwork" className="img-message" />
                     <div className="info-message">Empty !</div>
+                    <img src="/images/imagesV3/noEmpty.svg" alt="unknown-artwork" className="img-message" />
                     </div>
                 ) : <TabDetail activeTab={activeTab}/>
                 

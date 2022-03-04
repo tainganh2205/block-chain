@@ -93,7 +93,7 @@ const LaunchPadV3 = () => {
   }, [loadDataOnConnectWallet])
   return (
     <>
-      <div>
+      <div style={{width: '100%'}} >
         <TopIDO />
         <TabsIDO />
       </div>
