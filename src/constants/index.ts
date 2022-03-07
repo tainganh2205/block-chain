@@ -118,11 +118,11 @@ export const CONTRACT_BID = Bids[NETWORK_CHAIN_ID]
 export const MINT_PRICE = '1000000000000000' // 0,01BNB
 
 export const NFT_CONTRACTID = '0x2433bE070fAeE3F960C435fb91e9f320986DdE34'
-export const API_NFT = 'https://api.bscstation.org/api'
-export const API_TEST = 'https://api.bscstation.org/api'
-export const API_IMAGE = 'https://api.bscstation.org/img/nft/'
+export const API_NFT = 'https://ex-api.lfw.finance/api'
+export const API_TEST = 'https://ex-api.lfw.finance/api'
+export const API_IMAGE = 'https://ex-api.lfw.finance/img/nft/'
 export const BSCSCAN_APIKEY = 'T2IXE481IAX4947JTMHSB7482992S7VE1W'
-export const API_VIDEO = 'https://api.bscstation.org/video/'
+export const API_VIDEO = 'https://api.bscstation.org/video/' // Save video
 export const TOKEN_BSCS_TESTNET = BSCSs[NETWORK_CHAIN_ID]
 export const BSCSCAN_API_MAINNET = 'https://api.bscscan.com'
 
