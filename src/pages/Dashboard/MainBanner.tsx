@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
@@ -65,44 +65,7 @@ const MainBanner = () => {
   const contentBannerVer1 = (
     <div className="main-banner">
       <div className="banner-main-img">
-        <div className="box-img">
-          <div className="img-v1 animation-css-scale">
-            <Icon1 />
-          </div>
-          <div className="img-v2 animation-css-scale">
-            <Icon2 />
-          </div>
-          <div className="img-v3 animation-css-rotate">
-            <Icon3 />
-          </div>
-          <div className="img-v4 animation-css-rotate">
-            <Icon3 />
-          </div>
-          <div className="img-v5 animation-css-rotate">
-            <Icon3 />
-          </div>
-          <div className="img-v6 animation-css-scale">
-            <Icon6 />
-          </div>
-          <div className="img-v7 animation-css-scale">
-            <Icon7 />
-          </div>
-          <div className="img-v8 animation-css-scale">
-            <Icon8 />
-          </div>
-          <div className="img-v9 animation-css-scale">
-            <Icon9 />
-          </div>
-          <div className="img-v10 animation-css-scale">
-            <Icon10 />
-          </div>
-          <div className="img-v11 animation-css">
-            <Icon11 />
-          </div>
-          <div className="img-v12 animation-css-scale">
-            <Icon12 />
-          </div>
-        </div>
+        <img src="/images/banner-right.png" alt="" />
       </div>
       <div className="all">
         <div className="content-banner-top">
@@ -133,6 +96,29 @@ const MainBanner = () => {
             Strengths we can create new payouts in transactions with the benefits of speed, cost, quality, reliability
             and safety in the DeFi space!
           </p>
+
+        </div>
+        <div className="content-right">
+          <ul className="list-item-right">
+            <li>
+              <div className="icon">
+                <img src="/images/imagesDashboard/bnb.png" alt="" />
+              </div>
+              <div className="text">
+                <p className="desc">Total Value Locked</p>
+                <p className="number">$0</p>
+              </div>
+            </li>
+            <li>
+              <div className="icon">
+                <img src="/images/imagesDashboard/chart.png" alt="" />
+              </div>
+              <div className="text">
+                <p className="desc">Total Trading Volume</p>
+                <p className="number">$0</p>
+              </div>
+            </li>
+          </ul>
         </div>
         <div className="content-banner-bottom">
           <div className="content-left">
@@ -157,28 +143,7 @@ const MainBanner = () => {
               </li>
             </ul>
           </div>
-          <div className="content-right">
-            <ul className="list-item-right">
-              <li>
-                <div className="icon">
-                  <img src="/images/imagesDashboard/bnb.png" alt="" />
-                </div>
-                <div className="text">
-                  <p className="desc">Total Value Locked</p>
-                  <p className="number">$0</p>
-                </div>
-              </li>
-              <li>
-                <div className="icon">
-                  <img src="/images/imagesDashboard/chart.png" alt="" />
-                </div>
-                <div className="text">
-                  <p className="desc">Total Trading Volume</p>
-                  <p className="number">$0</p>
-                </div>
-              </li>
-            </ul>
-          </div>
+
         </div>
       </div>
     </div>
