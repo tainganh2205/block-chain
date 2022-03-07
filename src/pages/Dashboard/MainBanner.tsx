@@ -65,7 +65,7 @@ const MainBanner = () => {
   const contentBannerVer1 = (
     <div className="main-banner">
       <div className="banner-main-img">
-        <img src="/images/banner-right.png" alt="" />
+        <img src="/images/benefits-left1.png" alt="" />
       </div>
       <div className="all">
         <div className="content-banner-top">
@@ -139,6 +139,14 @@ const MainBanner = () => {
                 <div className="text">
                   <p className="desc">Exchange Fee Reimbursement</p>
                   <p className="number">up to 100%</p>
+                </div>
+              </li>
+              <li>
+                <div className="icon">
+                  <img src="/images/imagesDashboard/icon-3.png" alt="" />
+                </div>
+                <div className="text">
+                  <p className="desc">Attractive series of IDO and INO on our launchpad</p>
                 </div>
               </li>
             </ul>

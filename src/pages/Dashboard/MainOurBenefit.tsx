@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import { ReactComponent as Icon1 } from '../../images/img/icon/daily.svg'
-import { ReactComponent as Icon2 } from '../../images/img/icon/total.svg'
-import { ReactComponent as Icon3 } from '../../images/img/icon/activeN.svg'
-import { ReactComponent as Icon4 } from '../../images/img/icon/trade.svg'
+import React from "react";
+import { ReactComponent as Icon1 } from "../../images/img/icon/daily.svg";
+import { ReactComponent as Icon2 } from "../../images/img/icon/total.svg";
+import { ReactComponent as Icon3 } from "../../images/img/icon/activeN.svg";
+import { ReactComponent as Icon4 } from "../../images/img/icon/trade.svg";
 
 const MainOurBenefit = () => {
   return (
@@ -15,10 +15,10 @@ const MainOurBenefit = () => {
               <div className="columns">
                 <div className="colum">
                   <div className="content-row">
-                    <div className="title">Cross-platform protocol.</div>
+                    <div className="title">Universal Smart Bridge.</div>
                     <p className="desc">
-                      We uses a cross-platform protocol. By using a variety of protocols and performing argument
-                      validation and execution verification makes transactions cost-effective and fas
+                      Linked Finance World provides a universal smart bridge that utilizes cross-chain technology to provide interoperable blockchain infrastructure for enabling abundant liquidity of
+                      both tokens and NFTs to support scalable multi-chain games and metaverse.
                     </p>
                   </div>
                 </div>
@@ -33,25 +33,56 @@ const MainOurBenefit = () => {
               <div className="columns">
                 <div className="colum">
                   <div className="content-row">
-                    <div className="title">Exchange fees are always the lowest</div>
+                    <div className="title">DeFi and Blockchain infrastructure for Gaming and Metaverse</div>
                     <p className="desc">
-                      The basic problem in most defi transactions is the high fees Thats why we solve this problem by
-                      building a stable yet decentralized ecosystem that provides solutions to reduce transaction fees
-                      when trading or liquidating NFTs tokens.
+                      Linked Finance World ecosystem includes Blockchain game infrastructure, DeFi infrastructure for gaming as well as metaverse applications. The technology is provided to game
+                      publishers around the world through Application Programming Interface (API).
                     </p>
                   </div>
                 </div>
                 <div className="colum">
                   <div className="box-img">
                     <span className="img-big">
-                      <img src="/images/imagesDashboard/img-a1.png" alt="" className="animation-css" />
+                      <img src="/images/benefits-left.png" alt="" className="animation-css" />
                     </span>
-                    <span className="img-small animation-css-scale">
-                      <img src="/images/imagesDashboard/small-img-row-1.png" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="table-benefit">
+              <div className="columns">
+                <div className="colum">
+                  <div className="content-row">
+                    <div className="title">Attractive launchpad for IDO and INO</div>
+                    <p className="desc">
+                      LFW token holders are able to join a series of IDO and INO on our launchpad and receive remarkable airdrops including tokens and NFTs from our partners, and share profits from
+                      transaction fees of trading activities.
+                    </p>
+                  </div>
+                </div>
+                <div className="colum">
+                  <div className="box-img">
+                    <span className="img-big">
+                      <img src="/images/benefits-right.png" alt="" className="animation-css" />
                     </span>
-                    <span className="img-small-1 animation-css-scale">
-                      <img src="/images/imagesDashboard/small-img-row-1-1.png" alt="" />
-                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="table-benefit">
+              <div className="columns">
+                <div className="colum">
+                  <div className="content-row">
+                    <div className="title">Exchange fees are always the lowest</div>
+                    <p className="desc">
+                      The basic problem in most DeFi transactions is the high fees.
+                      That&apos;s why we solve this problem by building a stable yet decentralized ecosystem that provides solutions to reduce transaction fees when trading or liquidating NFTs tokens.
+                    </p>
+                  </div>
+                </div>
+                <div className="colum">
+                  <div className="box-img animation-css">
+                    <img src="/images/benefits-left1.png" alt="" />
                   </div>
                 </div>
               </div>
@@ -62,47 +93,20 @@ const MainOurBenefit = () => {
                   <div className="content-row">
                     <div className="title">Secure and Safe</div>
                     <p className="desc">
-                      We offer the most advanced risk control system on the market. 100% security of transaction and
-                      customer information.
+                      We offer the most advanced risk control system on the market. 100% security of transaction and customer information.
                     </p>
                   </div>
                 </div>
                 <div className="colum">
                   <div className="box-img">
                     <span className="img-big">
-                      <img src="/images/imagesDashboard/img-a3N.png" alt="" className="animation-css" />
+                      <img src="/images/benefits-right2.png" alt="" className="animation-css" />
                     </span>
-                    <span className="img-small animation-css-scale cus">
-                      <img src="/images/imagesDashboard/small-img-row-1.png" alt="" />
-                    </span>
-                    <span className="img-small-1 animation-css-scale cus">
-                      <img src="/images/imagesDashboard/small-img-row-1-1.png" alt="" />
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="table-benefit">
-              <div className="columns">
-                <div className="colum">
-                  <div className="content-row">
-                    <div className="title">Build a collection of characters and items for game developers</div>
-                    <p className="desc">
-                      We provide a space to create and develop NTFs for the development of game characters and items.
-                      Here you can create content, images and build NTFs for the sale and exchange of creative ideas for
-                      the purpose of designing and building game platforms.
-                    </p>
-                  </div>
-                </div>
-                <div className="colum">
-                  <div className="box-img animation-css">
-                    <img src="/images/imagesDashboard/img-row-4.png" alt="" />
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          {/* ádkjahskdjas  */}
           <div className="benefit-bottom">
             <ul className="list-total-market">
               <li>
@@ -146,6 +150,6 @@ const MainOurBenefit = () => {
         </div>
       </div>
     </>
-  )
-}
-export default MainOurBenefit
+  );
+};
+export default MainOurBenefit;

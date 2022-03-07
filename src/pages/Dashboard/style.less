@@ -139,7 +139,7 @@
 }
 
 .content-banner-bottom .content-left {
-  width: 50%;
+  width: 100%;
 }
 
 .content-right {
@@ -148,7 +148,7 @@
 }
 
 .main-banner .content-banner-top .desc {
-  color: #51dfd4;
+  color: #ffffff;
   font-size: 16px;
   line-height: 25px;
 }
@@ -164,6 +164,7 @@
 .content-banner-bottom .content-left .list-item-left {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .content-banner-bottom .content-left .list-item-left li .icon {
@@ -240,7 +241,7 @@
   font-size: 12px;
   line-height: 15px;
   letter-spacing: 0.01em;
-  color: #808982;
+  color: #ffffff;
   margin-bottom: 8px;
 }
 
@@ -340,12 +341,14 @@
 
 .farm-content .farm-guide .farm-item .item-two-part .box-token-farm span {
   display: block;
-  font-weight: 500;
+  margin-top: 7px;
+  font-family: Montserrat, serif;
+  font-style: normal;
+  font-weight: normal;
   font-size: 12px;
   line-height: 15px;
   letter-spacing: 0.01em;
-  color: #808982;
-  margin-top: 7px;
+  color: #FFFFFF;
 }
 
 .farm-content .farm-guide .farm-item {
@@ -472,8 +475,9 @@
 }
 
 .main-our-benefit {
-  padding: 120px 0px 90px 0;
-  background: rgba(21, 25, 30, 0.8);
+  padding: 120px 0 90px 0;
+  background: url(../../images/our-benefits.png) repeat;
+  background-size: 100% 100%;
 }
 
 .columns {
@@ -849,6 +853,7 @@
 .table-benefit .columns .colum .box-img .img-big {
   position: relative;
   z-index: 1;
+  right: 3rem;
 }
 
 .table-benefit .columns .colum .box-img .img-small {
@@ -1063,9 +1068,10 @@
 }
 
 .nft-game {
-  background: url(../../images/bg-game-2.png);
   background-size: cover;
-  background-repeat: no-repeat;
+  background: url(../../images/ido-bg.png) no-repeat;
+  background-size: 100% 100%;
+  //mix-blend-mode: overlay;
 }
 
 .box-nft-game {

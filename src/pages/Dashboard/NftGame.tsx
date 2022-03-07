@@ -1,23 +1,23 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import styled from 'styled-components'
-import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import styled from "styled-components";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-import { Player, ControlBar } from 'video-react'
+import { Player, ControlBar } from "video-react";
 
-import 'video-react/dist/video-react.css'
+import "video-react/dist/video-react.css";
 
-import { ReactComponent as Icon1 } from '../../images/img/comming soon.svg'
+import { ReactComponent as Icon1 } from "../../images/img/comming soon.svg";
 
 const GIntroduction: any[] = [
   {
-    label: 'Introduction',
+    label: "Introduction",
     title:
-      '“The Lords of Galaxy” is a passing game with card role-playing; Players will have the opportunity to recruit more than 100 characters and build the most powerful ',
-    video: 'video',
-  },
-]
+      "“The Lords of Galaxy” is a passing game with card role-playing; Players will have the opportunity to recruit more than 100 characters and build the most powerful ",
+    video: "video"
+  }
+];
 const Wrapper = styled.div`
   width: 100%;
 
@@ -168,7 +168,7 @@ const Wrapper = styled.div`
       height: 300px;
     }
   }
-`
+`;
 const NftGame = () => {
   const settings = {
     dots: true,
@@ -187,43 +187,43 @@ const NftGame = () => {
           slidesToShow: 1,
           infinite: true,
           dots: true,
-          className: 'center',
-          centerPadding: '60px',
-        },
+          className: "center",
+          centerPadding: "60px"
+        }
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 1,
-          className: 'center',
-          centerPadding: '60px',
-        },
+          className: "center",
+          centerPadding: "60px"
+        }
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          className: 'center',
-          centerPadding: '60px',
-        },
-      },
-    ],
-  }
+          className: "center",
+          centerPadding: "60px"
+        }
+      }
+    ]
+  };
 
   return (
     <>
       <div className="main-our-benefit nft-game">
         <div className="all">
-          <div className="main-title-benefit">Metaverse RPG Game</div>
+          <div className="main-title-benefit">Coming IDO on our Launchpad</div>
           <div className="box-nft-game">
             <p className="desc">
-              The Lords of Galaxy is a crossroad game combined with general card role-playing; players will have the
-              opportunity to recruit more than 100 characters and build the most powerful squad to participate in
-              campaigns to capture the new land in the galaxy.
+              &quot;The Lords of Galaxy&quot; has gameplay that combines collecting, upgrading available cards, and overcoming challenges. Your task is to arrange, choose the best lineup of characters
+              and place
+              them in the path of the enemy in the game screen to win and conquer new lands.
             </p>
             <div className="box-img-nft-game">
-              <img src="/images/imagesDashboard/gameNftAtr.png" alt="" />
+              <img src="/images/ido-banner.png" alt="" />
             </div>
           </div>
           <div className="benefit-top2">
@@ -238,11 +238,9 @@ const NftGame = () => {
                   <div className="content-row">
                     <div className="title">Style</div>
                     <p className="desc cus">
-                      The Lords of Galaxy has gameplay that combines collecting, upgrading available cards, and
-                      overcoming challenges. Your task is to arrange, choose the best lineup of characters and place
-                      them in the path of the enemy in the game screen to win and conquer new lands. It is known that
-                      each hero has a different skill set, so it is imperative to find out who works well with each
-                      other.
+                      &quot;The Lords of Galaxy&quot; has gameplay that combines collecting, upgrading available cards, and overcoming challenges. Your task is to arrange, choose the best lineup of characters
+                      and place them in the path of the enemy in the game screen to win and conquer new lands. It is known that each hero has a different skill set, so it is imperative to find out who
+                      works well with each other.
                     </p>
                   </div>
                 </div>
@@ -284,49 +282,9 @@ const NftGame = () => {
               </div>
             </div>
           </div>
-          <Wrapper>
-            <div className="video-intro-home">
-              {GIntroduction.map((item) => (
-                <div className="h__Introduction f-column tw">
-                  <h1 className="tw">{item.label}</h1>
-                  <p>{item.title}</p>
-                  <div className="video">
-                    <Slider {...settings}>
-                      <iframe
-                        width="100%"
-                        height="650px"
-                        src="https://www.youtube.com/embed/FhuqM_UrHgw"
-                        title="YouTube video player"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
-
-                      <iframe
-                        width="100%"
-                        height="650px"
-                        src="https://www.youtube.com/embed/CfKNcD09KYY"
-                        title="YouTube video player"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
-
-                      <iframe
-                        width="100%"
-                        height="650px"
-                        src="https://www.youtube.com/embed/SaxmP3CiQI4"
-                        title="YouTube video player"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
-                    </Slider>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Wrapper>
         </div>
       </div>
     </>
-  )
-}
-export default NftGame
+  );
+};
+export default NftGame;
