@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text } from '@artechain/uikit'
-import { ChainId, Currency, currencyEquals, ETHER, Token } from '@artechain/sdk'
+import { ChainId, Currency, currencyEquals, ETHER, Token } from '@lfwfinance/sdk'
 import styled from 'styled-components'
 
 import { SUGGESTED_BASES } from '../../constants'

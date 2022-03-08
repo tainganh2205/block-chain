@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { JSBI, Pair, Percent } from '@artechain/sdk'
+import { JSBI, Pair, Percent } from '@lfwfinance/sdk'
 import { Button, Card as UIKitCard, CardBody, Text } from '@artechain/uikit'
 import { darken } from 'polished'
 import { ChevronDown, ChevronUp } from 'react-feather'

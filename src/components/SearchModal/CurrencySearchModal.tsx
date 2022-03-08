@@ -1,4 +1,4 @@
-import { Currency } from '@artechain/sdk'
+import { Currency } from '@lfwfinance/sdk'
 import React, { useCallback, useEffect, useState } from 'react'
 import useLast from '../../hooks/useLast'
 import { useSelectedListUrl } from '../../state/lists/hooks'

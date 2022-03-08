@@ -1,4 +1,4 @@
-import { Currency } from '@artechain/sdk'
+import { Currency } from '@lfwfinance/sdk'
 import React from 'react'
 import styled from 'styled-components'
 import CurrencyLogo from '../CurrencyLogo'

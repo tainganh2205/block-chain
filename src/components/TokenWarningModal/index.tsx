@@ -1,4 +1,4 @@
-import { Token } from '@artechain/sdk'
+import { Token } from '@lfwfinance/sdk'
 import { transparentize } from 'polished'
 import { Button, Text } from '@artechain/uikit'
 import React, { useCallback, useMemo, useState } from 'react'

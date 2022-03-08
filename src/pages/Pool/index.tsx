@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react'
-import { Pair } from '@artechain/sdk'
+import { Pair } from '@lfwfinance/sdk'
 import { Button, CardBody, Text, Heading } from '@artechain/uikit'
 import { Link } from 'react-router-dom'
 import CardNav from 'components/CardNav'

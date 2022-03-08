@@ -1,5 +1,5 @@
 import { Contract } from '@ethersproject/contracts'
-import { ChainId, WETH } from '@artechain/sdk'
+import { ChainId, WETH } from '@lfwfinance/sdk'
 import Web3 from 'web3'
 import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
 import { useCallback, useMemo } from 'react'

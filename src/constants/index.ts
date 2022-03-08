@@ -1,4 +1,4 @@
-import { ChainId, JSBI, Percent, Token, WETH } from '@artechain/sdk'
+import { ChainId, JSBI, Percent, Token, WETH } from '@lfwfinance/sdk'
 
 // export const ROUTER_ADDRESS = '0x3041B4FDF86006B0A87415A93929e8F617F0DAE7'
 // export const ROUTER_ADDRESS = '0xFF43Ab0e317b18e208a6ecE0520D5D6558DD3eb5'

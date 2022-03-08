@@ -1,4 +1,4 @@
-import { ChainId } from '@artechain/sdk'
+import { ChainId } from '@lfwfinance/sdk'
 import MULTICALL_ABI from './abi.json'
 
 const MULTICALL_NETWORKS: { [chainId in ChainId]: string } = {

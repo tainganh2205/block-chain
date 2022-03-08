@@ -3245,6 +3245,19 @@
   resolved "https://registry.yarnpkg.com/@ledgerhq/logs/-/logs-5.49.0.tgz#e14e34df1605c17d6b90eb32c591c7b3de3fbae8"
   integrity sha512-Ynl2JzRwh8l9PoXrDNihXEicpVo6Ra2lYZoqSYfVH/v/2/TSa/JB9Qll8P85XFYkS3ouDTTbp1S5KViaTkqD5g==
 
+"@lfwfinance/sdk@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@lfwfinance/sdk/-/sdk-1.0.0.tgz#2a5697323601f0399ee834a510bb043203756595"
+  integrity sha512-mNd4ftoxuqvRIZ8wMTiE1bgmGBVVdEs2Ntej0D9WI9WT+boUqPI2Oi4j9TkQiMN3yoWiYrLEIPR8Jds6PttkxA==
+  dependencies:
+    "@bscstation/core" "^21.9.5"
+    big.js "^5.2.2"
+    decimal.js-light "^2.5.0"
+    jsbi "^3.1.1"
+    tiny-invariant "^1.1.0"
+    tiny-warning "^1.0.3"
+    toformat "^2.0.0"
+
 "@metamask/safe-event-emitter@2.0.0", "@metamask/safe-event-emitter@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@metamask/safe-event-emitter/-/safe-event-emitter-2.0.0.tgz#af577b477c683fad17c619a78208cede06f9605c"

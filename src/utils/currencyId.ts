@@ -1,4 +1,4 @@
-import { Currency, ETHER, Token } from '@artechain/sdk'
+import { Currency, ETHER, Token } from '@lfwfinance/sdk'
 
 export function currencyId(currency: Currency): string {
   if (currency === ETHER) return 'BNB'

@@ -1,4 +1,4 @@
-import { ChainId } from '@artechain/sdk'
+import { ChainId } from '@lfwfinance/sdk'
 import { createStore, Store } from 'redux'
 import { addPopup, removePopup, toggleSettingsMenu, toggleWalletModal, updateBlockNumber } from './actions'
 import reducer, { ApplicationState } from './reducer'

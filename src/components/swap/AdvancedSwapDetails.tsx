@@ -1,5 +1,5 @@
 import React from 'react'
-import { Trade, TradeType } from '@artechain/sdk'
+import { Trade, TradeType } from '@lfwfinance/sdk'
 import { Card, CardBody, Text } from '@artechain/uikit'
 import styled from 'styled-components'
 import { Field } from '../../state/swap/actions'

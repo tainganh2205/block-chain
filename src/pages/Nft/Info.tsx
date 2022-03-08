@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState, useMemo } from 'react'
-import { Currency } from '@artechain/sdk'
+import { Currency } from '@lfwfinance/sdk'
 import { useCurrencyBalance } from '../../state/wallet/hooks'
 import { useActiveWeb3React } from '../../hooks'
 import { useHookNft } from './Store-Nft'

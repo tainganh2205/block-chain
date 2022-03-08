@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react'
-import { Currency, Pair } from '@artechain/sdk'
+import { Currency, Pair } from '@lfwfinance/sdk'
 import { Button, ChevronDownIcon, Text } from '@artechain/uikit'
 import styled from 'styled-components'
 import { darken } from 'polished'

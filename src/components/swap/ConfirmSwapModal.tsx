@@ -1,4 +1,4 @@
-import { currencyEquals, Trade } from '@artechain/sdk'
+import { currencyEquals, Trade } from '@lfwfinance/sdk'
 import React, { useCallback, useMemo } from 'react'
 import TransactionConfirmationModal, {
   ConfirmationModalContent,

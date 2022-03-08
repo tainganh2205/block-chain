@@ -1,4 +1,4 @@
-import { Currency, ETHER, Token } from '@artechain/sdk'
+import { Currency, ETHER, Token } from '@lfwfinance/sdk'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import useHttpLocations from '../../hooks/useHttpLocations'

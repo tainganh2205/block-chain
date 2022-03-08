@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@artechain/sdk'
+import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@lfwfinance/sdk'
 import { CardBody, AddIcon, Text as UIKitText, Heading, Text } from '@artechain/uikit'
 import { RouteComponentProps } from 'react-router-dom'
 import { LightCard } from 'components/Card'

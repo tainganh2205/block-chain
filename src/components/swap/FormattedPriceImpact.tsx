@@ -1,4 +1,4 @@
-import { Percent } from '@artechain/sdk'
+import { Percent } from '@lfwfinance/sdk'
 import React from 'react'
 import { ONE_BIPS } from '../../constants'
 import { warningSeverity } from '../../utils/prices'

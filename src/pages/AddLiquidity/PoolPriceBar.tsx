@@ -1,5 +1,5 @@
 import React from 'react'
-import { Currency, Percent, Price } from '@artechain/sdk'
+import { Currency, Percent, Price } from '@lfwfinance/sdk'
 import { Text } from '@artechain/uikit'
 import { AutoColumn } from '../../components/Column'
 import { AutoRow } from '../../components/Row'
