@@ -3245,10 +3245,10 @@
   resolved "https://registry.yarnpkg.com/@ledgerhq/logs/-/logs-5.49.0.tgz#e14e34df1605c17d6b90eb32c591c7b3de3fbae8"
   integrity sha512-Ynl2JzRwh8l9PoXrDNihXEicpVo6Ra2lYZoqSYfVH/v/2/TSa/JB9Qll8P85XFYkS3ouDTTbp1S5KViaTkqD5g==
 
-"@lfwfinance/sdk@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@lfwfinance/sdk/-/sdk-1.0.0.tgz#2a5697323601f0399ee834a510bb043203756595"
-  integrity sha512-mNd4ftoxuqvRIZ8wMTiE1bgmGBVVdEs2Ntej0D9WI9WT+boUqPI2Oi4j9TkQiMN3yoWiYrLEIPR8Jds6PttkxA==
+"@lfwfinance/sdk@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@lfwfinance/sdk/-/sdk-1.1.0.tgz#baee04ddcb682f9a6c9a20a888c39bf2e7090926"
+  integrity sha512-iAq8h7cKwdkKGSoO3mLxu7Mqx67vmV1L9QU0hn1c2l+Wl4EC39QShFUR/F4Z8JPtfd/oiBhYOzL9keclubN71g==
   dependencies:
     "@bscstation/core" "^21.9.5"
     big.js "^5.2.2"
