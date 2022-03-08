@@ -223,7 +223,7 @@ const NftGame = () => {
               them in the path of the enemy in the game screen to win and conquer new lands.
             </p>
             <div className="box-img-nft-game">
-              <img src="/images/ido-banner.png" alt="" />
+              <img src="/images/imagesDashboard/gameNftAtr.png" alt="" />
             </div>
           </div>
           <div className="benefit-top2">
