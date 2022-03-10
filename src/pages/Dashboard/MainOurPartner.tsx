@@ -1,122 +1,67 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React from "react";
+import { ImgWithFallback } from "components/ImageWithFallback";
+import cx from "classnames";
+import Slider, { Settings } from "react-slick";
+import data from "data/backer-partner.json";
+import { isMobile } from 'react-device-detect'
 
+interface Investor {
+  name: string;
+  logo: string;
+  url: string;
+}
+
+const settings: Settings = {
+  dots: true,
+  dotsClass: "slick-dots slick-thumb",
+  className: "partners-slick",
+  fade: true,
+  infinite: true,
+  speed: 2000,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 3000,
+  arrows: false,
+};
+const RenderLogos = (props: { investorList: Investor[] }) => {
+  return (
+    <div className="investor-wrap">
+      {/* eslint-disable-next-line react/destructuring-assignment */}
+      {props.investorList.map(({ name, logo, url }) => (
+        <div key={name} className="px-4 my-8" style={{maxWidth:isMobile ? 150 : 200}}>
+          <a href={url} target="_blank" rel="noreferrer">
+            <ImgWithFallback
+              title={name}
+              className={cx("mx-auto max-h-[80px]")}
+              src={`/images/investor/${logo}.webp`}
+              fallback={`/img/investor/${logo}.png`}
+              alt={name}
+              height={73}
+            />
+          </a>
+        </div>
+      ))}
+    </div>
+  );
+};
 const MainOurPartner = () => {
+  const { investorsPage1, investorsPage2, investorsPage3 } = data;
   return (
     <>
       <div className="main-partner">
         <div className="all">
           <div className="content-partner">
             <h3 className="main-title-benefit">Investor & Partner</h3>
-            <ul className="list-partner pd-top-50">
-              <li>
-                <div className="box-img ">
-                  <img src="/images/imagesDashboard/logoBscs.png" alt="" />
-                  <img src="/images/imagesDashboard/l-5-hv.png" alt="" />
-                </div>
-              </li>
-              <li>
-                <div className="box-img ">
-                  <img src="/images/imgGame/Dao.png" alt="" />
-                  {/* <img src="/images/imagesDashboard/l-1-hv.png" alt="" /> */}
-                </div>
-              </li>
-              
-              <li>
-                <div className="box-img ">
-                  <img src="/images/imgGame/Trush.png" alt="" />
-                  <img src="/images/imagesDashboard/l-3-hv.png" alt="" />
-                </div>
-              </li>
-              <li>
-                <div className="box-img ">
-                  <img src="/images/imgGame/KDG.png" alt="" />
-                  {/* <img src="/images/imagesDashboard/l-2-hv.png" alt="" /> */}
-                </div>
-              </li>
-
-              {/* <li>
-                <div className="box-img invisible">
-                  <img src="/images/imagesDashboard/l-6.png" alt="" />
-                  <img src="/images/imagesDashboard/l-6-hv.png" alt="" />
-                </div>
-              </li>
-              <li>
-                <div className="box-img invisible cus">
-                  <img src="/images/imagesDashboard/l-7.png" alt="" />
-                  <img src="/images/imagesDashboard/l-7-hv.png" alt="" />
-                </div>
-              </li>
-              <li>
-                <div className="box-img invisible">
-                  <img src="/images/imagesDashboard/l-8.png" alt="" />
-                  <img src="/images/imagesDashboard/l-8-hv.png" alt="" />
-                </div>
-              </li>
-              <li>
-                <div className="box-img invisible">
-                  <img src="/images/imagesDashboard/l-9.png" alt="" />
-                  <img src="/images/imagesDashboard/l-9-hv.png" alt="" />
-                </div>
-              </li>
-              {/* <li>
-                <div className="box-img invisible">
-                  <img src="/images/imagesDashboard/l-10.png" alt="" />
-                  <img src="/images/imagesDashboard/l-10-hv.png" alt="" />
-                </div>
-              </li>
-              <li>
-                <div className="box-img invisible">
-                  <img src="/images/imagesDashboard/l-11.png" alt="" />
-                  <img src="/images/imagesDashboard/l-11-hv.png" alt="" />
-                </div>
-              </li>
-              <li>
-                <div className="box-img invisible">
-                  <img src="/images/imagesDashboard/l-12.png" alt="" />
-                  <img src="/images/imagesDashboard/l-12-hv.png" alt="" />
-                </div>
-              </li>
-              <li>
-                <div className="box-img invisible">
-                  <img src="/images/imagesDashboard/l-13.png" alt="" />
-                  <img src="/images/imagesDashboard/l-13-hv.png" alt="" />
-                </div>
-              </li>
-              <li>
-                <div className="box-img invisible">
-                  <img src="/images/imagesDashboard/l-14.png" alt="" />
-                  <img src="/images/imagesDashboard/l-14-hv.png" alt="" />
-                </div>
-              </li>
-              <li>
-                <div className="box-img invisible">
-                  <img src="/images/imagesDashboard/l-15.png" alt="" />
-                  <img src="/images/imagesDashboard/l-15-hv.png" alt="" />
-                </div>
-              </li>
-              <li>
-                <div className="box-img invisible">
-                  <img src="/images/imagesDashboard/l-16.png" alt="" />
-                  <img src="/images/imagesDashboard/l-16-hv.png" alt="" />
-                </div>
-              </li>
-              <li>
-                <div className="box-img invisible">
-                  <img src="/images/imagesDashboard/l-17.png" alt="" />
-                  <img src="/images/imagesDashboard/l-17-hv.png" alt="" />
-                </div>
-              </li>
-              <li>
-                <div className="box-img invisible">
-                  <img src="/images/imagesDashboard/l-18.png" alt="" />
-                  <img src="/images/imagesDashboard/l-18-hv.png" alt="" />
-                </div>
-              </li> */}
-            </ul>
+            <Slider {...settings}>
+              <RenderLogos investorList={investorsPage1} />
+              <RenderLogos investorList={investorsPage2} />
+              <RenderLogos investorList={investorsPage3} />
+            </Slider>
           </div>
         </div>
       </div>
     </>
-  )
-}
-export default MainOurPartner
+  );
+};
+export default MainOurPartner;

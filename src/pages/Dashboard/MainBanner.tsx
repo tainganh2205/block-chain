@@ -3,26 +3,15 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Typed from "react-typed";
-import { ReactComponent as Icon1 } from "../../images/img/banner/Group-8.svg";
-import { ReactComponent as Icon2 } from "../../images/img/banner/Group-7.svg";
-import { ReactComponent as Icon6 } from "../../images/img/banner/Group-6.svg";
-import { ReactComponent as Icon7 } from "../../images/img/banner/Group-5.svg";
-import { ReactComponent as Icon8 } from "../../images/img/banner/Group-4.svg";
-import { ReactComponent as Icon9 } from "../../images/img/banner/Group-3.svg";
-import { ReactComponent as Icon10 } from "../../images/img/banner/Group-2.svg";
-import { ReactComponent as Icon11 } from "../../images/img/banner/Group-1.svg";
-import { ReactComponent as Icon12 } from "../../images/img/banner/Group.svg";
-
-import { ReactComponent as Icon3 } from "../../images/img/banner/Vector.svg";
 
 const MainBanner = () => {
   const settings = {
     dots: true,
     arrows: false,
-    autoplay: false,
+    autoplay: true,
     infinite: true,
     speed: 1000,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 2000,
     slidesToShow: 1,
     slidesToScroll: 1,
     initialSlide: 0,
@@ -159,7 +148,7 @@ const MainBanner = () => {
   const contentBannerVer2 = (
     <div className="main-banner cus">
       <div className="all">
-        <div className="content-banner-top cus">
+        <div className="content-banner-top content-banner-top2">
           <h3 className="title-banner">Welcome to linked Finance World</h3>
           <p className="desc color-fff">
             Linked Finance World is a leading universal Decentralized Exchange which drives massive adoptions in GameFi, Metaverse and many other blockchain technology project.

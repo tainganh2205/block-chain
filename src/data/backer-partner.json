@@ -1,0 +1,155 @@
+{
+  "investorsPage1": [
+    {
+      "name": "Spark Digital Capital",
+      "logo": "logo-spark",
+      "url": "https://sparkdigitalcapital.com/"
+    },
+    {
+      "name": "MorningStar Ventures",
+      "logo": "logo-morningstar",
+      "url": "https://morningstar.ventures/"
+    },
+    {
+      "name": "Polkastater",
+      "logo": "logo-polkastarter",
+      "url": "https://polkastarter.com/"
+    },
+    { "name": "Mexc", "logo": "logo-mexc", "url": "https://www.mexc.com/" },
+    { "name": "BYBIT", "logo": "logo-bybit", "url": "https://www.bybit.com/" },
+    {
+      "name": "Bimart",
+      "logo": "logo-bitmart",
+      "url": "https://www.bitmart.com/"
+    },
+    {
+      "name": "BSC Station",
+      "logo": "logo-bscs",
+      "url": "https://bscstation.finance/"
+    },
+    {
+      "name": "Cipholio",
+      "logo": "logo-cipholio",
+      "url": "https://www.cipholio.com/"
+    },
+    { "name": "x21", "logo": "logo-x21", "url": "https://x21digital.com/" },
+    {
+      "name": "Master Ventures",
+      "logo": "logo-master-ventures",
+      "url": "https://master.ventures/"
+    },
+    {
+      "name": "Ascensive Assets",
+      "logo": "logo-ascensive",
+      "url": "https://ascensiveassets.com/"
+    },
+    {
+      "name": "Lancer",
+      "logo": "logo-lancer",
+      "url": "http://www.lancergrp.com/"
+    }
+  ],
+  "investorsPage2": [
+    {
+      "name": "GenBlock Capital",
+      "logo": "logo-gen-capital",
+      "url": "https://genblock.capital/"
+    },
+    { "name": "Polygon", "logo": "logo-polygon", "url": "https://polygon.com" },
+    {
+      "name": "Israeli Blockchain Assosiation",
+      "logo": "logo-israeli-blockchain-association",
+      "url": "https://blockchainisrael.io/"
+    },
+    {
+      "name": "Good Games Guild",
+      "logo": "logo-ggg",
+      "url": "http://goodgamesguild.com/"
+    },
+    { "name": "499Block", "logo": "logo-499block", "url": "http://499.io/" },
+    {
+      "name": "Au21 Capital",
+      "logo": "logo-au21",
+      "url": "https://au21.capital/"
+    },
+    {
+      "name": "Basics Capital",
+      "logo": "logo-basic-capital",
+      "url": "https://www.basics.vip/"
+    },
+    { "name": "M6", "logo": "logo-m6", "url": "https://momentum6.com/" },
+    {
+      "name": "Lotus Capital",
+      "logo": "logo-lotus-capital",
+      "url": "https://www.lotuscapital.me/"
+    },
+    {
+      "name": "Bitcoin",
+      "logo": "logo-bitcoin",
+      "url": "https://www.bitcoin.com/"
+    },
+    {
+      "name": "Lucid Blue Ventures",
+      "logo": "logo-lucidblue",
+      "url": "https://www.lucidblueventures.com/"
+    },
+    {
+      "name": "HG Ventures",
+      "logo": "logo-hg-ventures",
+      "url": "https://www.hgventures.io/"
+    }
+  ],
+  "investorsPage3": [
+    {
+      "name": "ZBS Capital",
+      "logo": "logo-zbs-capital",
+      "url": "https://zbs.capital/"
+    },
+    {
+      "name": "Top 7 ICO",
+      "logo": "logo-top7ico",
+      "url": "https://twitter.com/top7ico"
+    },
+    {
+      "name": "Crypto Patlas",
+      "logo": "logo-cryptopatlas",
+      "url": "https://www.cryptoatlas.io/"
+    },
+    { "name": "Hoo", "logo": "logo-hoo", "url": "https://hoo.com/" },
+    {
+      "name": "Kyros Ventures",
+      "logo": "logo-kyros-ventures",
+      "url": "https://kyros.ventures/"
+    },
+    {
+      "name": "Onebit Ventures",
+      "logo": "logo-onebit",
+      "url": "https://onebit.capital/"
+    },
+    {
+      "name": "Titan Ventures",
+      "logo": "logo-titan",
+      "url": " https://titans.ventures/"
+    },
+    {
+      "name": "UB Ventures",
+      "logo": "logo-ub-ventures",
+      "url": "https://www.vbc.ventures/"
+    },
+    {
+      "name": "Kretos Ventures",
+      "logo": "logo-kretos-ventures",
+      "url": "http://www.kretos.ventures/"
+    },
+    {
+      "name": "Alphamoon Capital",
+      "logo": "logo-alphamoon",
+      "url": "https://alphamooncapital.net/"
+    },
+    {
+      "name": "GateIO",
+      "logo": "logo-gateio",
+      "url": "https://www.gate.io/"
+    }
+  ]
+}

@@ -122,6 +122,12 @@
   position: relative;
 }
 
+.main-banner .content-banner-top2 {
+  width: 35%;
+  margin-bottom: 10rem;
+  position: relative;
+}
+
 .main-banner .content-banner-top .title-banner {
   font-weight: bold;
   font-size: 30px;
@@ -582,7 +588,8 @@
 }
 
 .main-partner {
-  background: linear-gradient(85.19deg, rgba(13, 14, 17, 0.26) -23.83%, rgba(13, 14, 17, 0.35) -23.8%, #32c155 225.86%);
+  background: url(../../images/partner-bg.png) no-repeat;
+  background-size: 100% 100%;
   padding: 45px 0 60px 0;
 }
 
@@ -601,6 +608,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  gap: 2rem;
 }
 
 .list-partner.pd-top-50 {
@@ -667,17 +675,34 @@
   top: 7px;
   left: 0;
 }
-
-// ád
+.slick-dots li button:before {
+  font-family: 'slick', serif;
+  font-size: 20px;
+  line-height: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  color: unset;
+  text-align: center;
+  opacity: .25;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #05D8F5;
+}
 .slick-dots li.slick-active button:before {
   content: '';
   width: 18px;
-  height: 5px;
-  color: #169CE7;
-  background: #169CE7;
+  height: 18px;
+  color: #05D8F5;
+  background: #05D8F5;
   position: absolute;
-  top: 7px;
-  left: -5px;
+  border-radius: 50%;
+  border: 0.5px solid #05D8F5;
+  box-sizing: border-box;
 }
 
 .main-top-farm-box .main-title-farm .title-right .icon {
@@ -1122,8 +1147,7 @@
 }
 
 .box-nft-game .box-img-nft-game {
-  margin: 0 0;
-  margin-top: 30px;
+  margin: 30px 0 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -1525,6 +1549,15 @@
   .main-banner.cus {
     height: 510px;
   }
+}
+
+.investor-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 3rem;
+  justify-content: center;
+  margin-top: 5rem;
 }
 
 // .atf__cusImg {
