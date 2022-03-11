@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { useHistory } from 'react-router-dom'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
@@ -6,13 +6,12 @@ import { store } from 'react-notifications-component'
 import { isMobile } from 'react-device-detect'
 import { CHAINID_FULLNAME, CHAINID_CONVERT, MAPPING_CHAINID } from 'config/constants'
 import { useActiveWeb3React } from 'hooks'
-import { Modal, Checkbox } from 'antd'
+import { Modal } from 'antd'
 import switchNetwork from 'utils/wallet'
 import DetailsTabsContentActive from '../LaunchpadV3Detail/DetailsTabsContentActive'
 import { useHookProjects } from './Store'
 
 import { useHookDetail } from '../LaunchpadV3Detail/Store-Detail'
-import bgLogo from '../../images/bg-ab-v3.png'
 
 function usePrevious(value) {
   const ref = useRef()
@@ -46,10 +45,9 @@ const TabDetail = (props): any => {
     actions.getProjectDetal(param).then((res) => {
       if (res && res.status === 200) {
         setActiveDetail(res.data.data)
-        actionsDetail.updateShowDisClaimer(res.data.data.showdisclaimer)
+        actionsDetail.updateShowDisClaimer(res.data?.data?.showdisclaimer)
       }
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }
 
   useEffect(() => {

@@ -556,6 +556,7 @@ const ItemIdo = ({ x, network }) => {
 
 const DetailsTabsContentActive = (props): any => {
   const { activeDetail } = props
+  console.log('activeDetail',activeDetail);
   useState<
     Array<{
       checkJoin: boolean

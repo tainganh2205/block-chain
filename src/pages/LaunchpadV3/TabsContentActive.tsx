@@ -1,19 +1,15 @@
-import React, { useRef, useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { useHistory } from 'react-router-dom'
-import { Tabs, Progress, Input } from 'antd'
-import { AudioOutlined } from '@ant-design/icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { store } from 'react-notifications-component'
-import DetailsTabsContentActive from '../LaunchpadV3Detail/DetailsTabsContentActive'
 
 import { useHookProjects } from './Store'
-import bgLogo from '../../images/bg-ab-v3.png'
 import TabDetail from './TabDetail'
 
 const TabsContentActive = (props): any => {
   const [state, actions]: any = useHookProjects()
-  const { idoList, activeTab, activeSymbol } = props
+  const { idoList, activeTab } = props
   const { account } = useWeb3React()
 
 
@@ -49,27 +45,8 @@ const TabsContentActive = (props): any => {
     setTypeView("detail")
   }
 
-
-  const handleCallDetail = async (symbol) => {
-
-    const address = account
-    const param = { address, symbol }
-
-    actions.getProjectDetal(param).then((res) => {
-      if (res && res.status === 200) {
-
-        setActiveDetail(res.data.data)
-        const arr: any = []
-        arr.push(res.data.data)
-        setIdoListView(arr)
-      }
-    })
-   setTypeView('detail')
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }
-
   useEffect(() => {
-   
+
     if(tabSymbol) {
       setTypeView('detail')
     } else {
@@ -78,7 +55,7 @@ const TabsContentActive = (props): any => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[tabSymbol]);
-  
+
 
   useEffect(() => {
     if(!tabSymbol) {
@@ -210,9 +187,9 @@ const TabsContentActive = (props): any => {
                     <img src="/images/imagesV3/noEmpty.svg" alt="unknown-artwork" className="img-message" />
                     </div>
                 ) : <TabDetail activeTab={activeTab}/>
-                
+
               }
-      
+
     </>
   )
 }

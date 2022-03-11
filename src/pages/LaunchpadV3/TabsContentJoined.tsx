@@ -50,66 +50,6 @@ const ItemDesktop = ({ handleChangeView, account, ido, index }: any) => {
     </tr>
   )
 }
-const ItemMobile = ({ account, ido, index }: any) => {
-  const claimContract = useContract(ido.contractAddress, abiClaim)
-  const [claimed, setClaimed] = useState(0)
-  const [claimedDaily, setClaimedDaily] = useState(0)
-
-  useEffect(() => {
-    if (claimContract && ido.contractAddress) {
-      claimContract.totalClaimed(account).then((res) => {
-        setClaimed(res.toString() / 1e18)
-      })
-    }
-  }, [account, claimContract, ido.contractAddress])
-
-  useEffect(() => {
-    if (account && claimContract && ido.contractDailyAddress) {
-      claimContract.userInfo(account).then((res) => {
-        setClaimedDaily(res.tokensClaimed / 1e18)
-      })
-    }
-  }, [account, claimContract, ido.contractDailyAddress])
-
-  return (
-    <div className="content-joined-mobile">
-      <div className="colum-content">
-        <div className="item-content">
-          <div className="text-l">Next Claim:</div>
-          <div className="text-r">{ido.nextClaim}</div>
-        </div>
-        <div className="item-content">
-          <div className="text-l">Allocation:</div>
-          <div className="text-r">{ido.allocation}</div>
-        </div>
-        <div className="item-content">
-          <div className="text-l">Claimed:</div>
-          <td className="main-cl-v3">{(claimed + claimedDaily + ido.claimed).toFixed(2)}</td>
-        </div>
-        <div className="item-content">
-          <div className="text-l">Claimable:</div>
-          <div className="text-r">{ido.claimable}</div>
-        </div>
-      </div>
-    </div>
-  )
-}
-const ListHeader = (props: any) => {
-  const { ido, handleChangeView } = props
-  return (
-    <div className="content-heaer">
-      <div className="item">
-        <span className="main-cl-v3">{ido.name}</span>
-      </div>
-      <div className="item">{ido.symbol}</div>
-      <div className="item main-green">
-        <button type="button" className="btn-view-dt p-name-token" onClick={() => handleChangeView(ido.symbol)}>
-          Details
-        </button>
-      </div>
-    </div>
-  )
-}
 
 const TabsContentJoined = (props): any => {
   const [valueCus, setValueCus] = useState(1)
@@ -216,19 +156,14 @@ const TabsContentJoined = (props): any => {
       params.lastTime = state.idoListJoinedMore[state.idoListJoinedMore.length - 1].created
     }
 
-    console.log('params', params)
-
     actions.getProjectJoinedMore(params).then((data) => {
       if (data.length === 0) setEnableLoadMore(false)
     })
   }
 
   function handleChangeZ(value) {
-    console.log(`selected ${value}`)
     setValueCus(value)
   }
-
-  console.log(valueCus)
 
   if (isMobile) {
     return (
