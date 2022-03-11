@@ -84,7 +84,6 @@ const Schedules = (props) => {
       setShowDetail(false);
     }
   }, [tabSymbol]);
-
   if (isMobile) {
     return (
       <>
@@ -113,7 +112,7 @@ const Schedules = (props) => {
           <div className="box-table">
             <table>
               <tr>
-                <th>Pool</th>
+                <th>Project</th>
                 <th>Symbol</th>
                 <th>Start Date</th>
               </tr>
@@ -140,7 +139,7 @@ const Schedules = (props) => {
               )}
             </table>
             {/* <div className="btn-more-v3"> */}
-            {/*   {enableLoadMore && state.idoListJoined.length !== 0 ? ( */}
+            {/*   {enableLoadMore && newSchedule.length ? ( */}
             {/*     <button className="load-more-v3" type="button" onClick={handleLoadMore}> */}
             {/*       Load more */}
             {/*     </button> */}
