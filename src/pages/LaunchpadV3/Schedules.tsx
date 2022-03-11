@@ -20,13 +20,7 @@ type ScheduleProps = {
 const Schedules = (props) => {
   const { idoListSchedule, activeTab, optionSchedule } = props;
   const [state, actions]: any = useHookProjects();
-  const [newSchedule, setNewSchedule] = useState<ScheduleProps[]>([
-    {
-      start: new Date(),
-      title: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Button_Icon_Red.svg/1200px-Button_Icon_Red.svg.png",
-      id:"12312"
-    }
-  ]);
+  const [newSchedule, setNewSchedule] = useState<ScheduleProps[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showDetail, setShowDetail] = useState(false);
   const history = useHistory();
@@ -160,7 +154,7 @@ const Schedules = (props) => {
               datesSet={getMonthYear}
             />
           </div>
-        ) : <TabDetail activeTab={activeTab} />}
+      ) : <TabDetail activeTab={activeTab} />}
     </>
   );
 };
