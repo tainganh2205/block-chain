@@ -1,0 +1,13 @@
+.slick-track {
+  @apply flex;
+}
+
+.slick-slide {
+  @apply transition duration-200 opacity-50;
+
+  transform: scale(0.9);
+}
+
+.slick-center {
+  @apply scale-100 opacity-100;
+}

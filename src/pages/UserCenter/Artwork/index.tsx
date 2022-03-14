@@ -78,7 +78,7 @@ const Artworks = memo(() => {
       [PropertiesArtwork.PAGE_NUMBER]: _params[PropertiesArtwork.PAGE_NUMBER]
     })
   }, [getArtworks])
-  
+
   const ListArtwork = (
     (
       <List
@@ -90,8 +90,8 @@ const Artworks = memo(() => {
         filters={[]}
         getMore={getMore}
         onFilter={onFilter}
-        artworks={state.nftList} 
-        isLoading={isLoading} 
+        artworks={state.nftList}
+        isLoading={isLoading}
       />
     )
   )
