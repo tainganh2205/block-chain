@@ -93,7 +93,7 @@ function MenuNewMobile() {
   const menuAbout = (
     <>
       <ul>
-        <a href="https://docsend.com/view/45icxw8ga4kqkzwr" rel="noreferrer" target="_blank">
+        <a href="https://docsend.com/view/x8qrgrr8iq37aug9" rel="noreferrer" target="_blank">
           <li>Pitch Deck</li>
         </a>
       </ul>

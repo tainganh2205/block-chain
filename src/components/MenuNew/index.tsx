@@ -188,7 +188,7 @@ const MenuNew = () => {
                   About
                   <div className="submenu-nav">
                     <ul>
-                      <a style={{color:'#b8bdb9'}} href="https://docsend.com/view/45icxw8ga4kqkzwr" rel="noreferrer" target="_blank">Pitch Deck</a>
+                      <a style={{color:'#b8bdb9'}} href="https://docsend.com/view/x8qrgrr8iq37aug9" rel="noreferrer" target="_blank">Pitch Deck</a>
                     </ul>
                   </div>
                 </li>
