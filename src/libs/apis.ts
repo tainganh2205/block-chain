@@ -2,7 +2,7 @@ import { HandlerStakingInfoResponse } from 'types/schema'
 
 import fetcher from './fetcher'
 
-export const BASE_URL = process.env.BASE_URL
+export const BASE_URL = process.env.REACT_APP_BASE_URL
 
 export const GET_PATHS = {
   getStakingInfo: '/v1/gem-center/staking-info',

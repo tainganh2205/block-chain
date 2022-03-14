@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { useHistory } from 'react-router-dom'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { store } from 'react-notifications-component'
+import { Store } from 'react-notifications-component'
 import { isMobile } from 'react-device-detect'
 import { CHAINID_FULLNAME, CHAINID_CONVERT, MAPPING_CHAINID } from 'config/constants'
 import { useActiveWeb3React } from 'hooks'
@@ -151,7 +151,7 @@ const TabDetail = (props): any => {
                         <CopyToClipboard
                           text={activeDetail?.idoContract}
                           onCopy={() =>
-                            store.addNotification({
+                            Store.addNotification({
                               title: 'Copied',
                               message: (
                                 <div className="custom-fontsize">
@@ -161,7 +161,7 @@ const TabDetail = (props): any => {
                               ),
                               type: 'warning',
                               width: 300,
-                              insert: 'center',
+                              insert: 'top',
                               container: 'top-center',
                               animationIn: ['animate__animated success', 'animate__fadeIn'],
                               animationOut: ['animate__animated success', 'animate__fadeOut'],

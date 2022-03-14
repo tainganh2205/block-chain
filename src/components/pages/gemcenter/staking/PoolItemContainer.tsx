@@ -1,3 +1,4 @@
+import React from 'react'
 import { useCallback, useMemo } from 'react'
 import { useAuthContext } from 'context/auth'
 import { PoolGridCard } from 'components/PoolCard'
@@ -27,7 +28,7 @@ export function PoolItemContainer({
     isEnded,
   } = poolInfo
 
-  const { isWalletConnected, openWalletModal } = useAuthContext()
+  // const { isWalletConnected, openWalletModal } = useAuthContext()
 
   const poolStatus = useMemo(() => {
     let status: PoolStatus = 'UNDETERMINED'
@@ -48,8 +49,8 @@ export function PoolItemContainer({
 
   return (
     <PoolGridCard
-      isConnected={isWalletConnected}
-      onConnectWallet={openWalletModal}
+      // isConnected={isWalletConnected}
+      // onConnectWallet={openWalletModal}
       poolInfo={poolInfo}
       isEnabledContract={isEnabledContract}
       stakedBalance={stakedBalance}

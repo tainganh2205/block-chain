@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
 import { Modal, Button } from 'antd'
-import { store } from 'react-notifications-component'
+import { Store } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { useNftContract, useNftMarketContract } from '../../hooks/useContract'
@@ -430,7 +430,7 @@ const List = ({ props }: any): any => {
           value={formikEdit.values.name}
           onChange={formikEdit.handleChange}
         />
-  
+
       </div>
 
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
@@ -445,7 +445,7 @@ const List = ({ props }: any): any => {
           value={formikEdit.values.social}
           onChange={formikEdit.handleChange}
         />
-       
+
       </div>
 
       <div className="form-group">
@@ -460,7 +460,7 @@ const List = ({ props }: any): any => {
           value={formikEdit.values.bio}
           onChange={formikEdit.handleChange}
         />
-       
+
       </div>
       <hr />
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
@@ -470,7 +470,7 @@ const List = ({ props }: any): any => {
       <div className="formfile">
         <div className="form-group avatar-upload">
           <UploadFile name="fileName" id="imgFile" accept="image/*" onChange={upLoadFileAvatarEdit} />
-         
+
         </div>
       </div>
       <div className="btn-inf" id="btn-submit-artist">
@@ -553,7 +553,7 @@ const List = ({ props }: any): any => {
                   <CopyToClipboard
                     text={`https://bscscan.com/`}
                     onCopy={() =>
-                      store.addNotification({
+                      Store.addNotification({
                         title: 'Copied referral link',
                         message: (
                           <div className="custom-fontsize">
@@ -563,7 +563,7 @@ const List = ({ props }: any): any => {
                         ),
                         type: 'warning',
                         width: 300,
-                        insert: 'center',
+                        insert: 'top',
                         container: 'top-center',
                         animationIn: ['animate__animated success', 'animate__fadeIn'],
                         animationOut: ['animate__animated success', 'animate__fadeOut'],
@@ -595,10 +595,9 @@ const List = ({ props }: any): any => {
                       )}`}
                   </p>
                     <CopyToClipboard
-                      // className='dsfsdfas2134567'
                       text={objData && objData.ownerAddress}
                       onCopy={() =>
-                        store.addNotification({
+                        Store.addNotification({
                           title: 'Copied',
                           message: (
                             <div className="custom-fontsize">
@@ -608,7 +607,7 @@ const List = ({ props }: any): any => {
                           ),
                           type: 'warning',
                           width: 300,
-                          insert: 'center',
+                          insert: 'top',
                           container: 'top-center',
                           animationIn: ['animate__animated success', 'animate__fadeIn'],
                           animationOut: ['animate__animated success', 'animate__fadeOut'],
@@ -635,7 +634,7 @@ const List = ({ props }: any): any => {
                   <button
                     type="button"
                     onClick={() =>
-                      store.addNotification({
+                      Store.addNotification({
                         title: 'Warning !',
                         message: (
                           <div className="custom-fontsize">
@@ -645,7 +644,7 @@ const List = ({ props }: any): any => {
                         ),
                         type: 'warning',
                         width: 300,
-                        insert: 'center',
+                        insert: 'top',
                         container: 'top-center',
                         animationIn: ['animate__animated', 'animate__fadeIn'],
                         animationOut: ['animate__animated', 'animate__fadeOut'],

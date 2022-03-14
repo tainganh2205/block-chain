@@ -1,6 +1,6 @@
 /* eslint-disable no-return-await, import/no-cycle, react-hooks/exhaustive-deps, no-return-assign, jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */
 import React, { memo, useCallback, useMemo, useContext, useEffect, useState } from 'react'
-import { store } from 'react-notifications-component'
+import { Store } from 'react-notifications-component'
 import { useApproveCallbackCustom, useApproveNFTCallbackCustom } from 'hooks/useApproveCallback'
 import { CONTRACT_BID_VERSION, CONTRACT_NFT, TOKEN_BSCS_TESTNET, API_IMAGE, STAKE_NFT } from 'constants/index'
 import { useActiveWeb3React } from 'hooks'
@@ -51,7 +51,7 @@ const ItemStake = memo<ArtworkItemProps>((props) => {
                   setTimeout(() => {
                     setStatusStake(false)
                     actions.getMoreStakeNFT(account)
-                    store.addNotification({
+                    Store.addNotification({
                       title: 'Stake',
                       message: (
                         <div className="custom-fontsize">
@@ -61,7 +61,7 @@ const ItemStake = memo<ArtworkItemProps>((props) => {
                       ),
                       type: 'warning',
                       width: 300,
-                      insert: 'center',
+                      insert: 'top',
                       container: 'top-center',
                       animationIn: ['animate__animated success', 'animate__fadeIn'],
                       animationOut: ['animate__animated success', 'animate__fadeOut'],
@@ -82,7 +82,7 @@ const ItemStake = memo<ArtworkItemProps>((props) => {
             if (response.code === 4001) {
               return
             }
-            store.addNotification({
+            Store.addNotification({
               title: 'Error',
               message: (
                 <div className="custom-fontsize">
@@ -92,7 +92,7 @@ const ItemStake = memo<ArtworkItemProps>((props) => {
               ),
               type: 'warning',
               width: 300,
-              insert: 'center',
+              insert: 'top',
               container: 'top-center',
               animationIn: ['animate__animated fail', 'animate__fadeIn'],
               animationOut: ['animate__animated fail', 'animate__fadeOut'],
@@ -126,7 +126,7 @@ const ItemStake = memo<ArtworkItemProps>((props) => {
                   setStatusUnStake(false)
                   actions.getMoreStakeNFT(account)
                   setLoadApprove(true)
-                  store.addNotification({
+                  Store.addNotification({
                     title: 'Unstake',
                     message: (
                       <div className="custom-fontsize">
@@ -136,7 +136,7 @@ const ItemStake = memo<ArtworkItemProps>((props) => {
                     ),
                     type: 'warning',
                     width: 300,
-                    insert: 'center',
+                    insert: 'top',
                     container: 'top-center',
                     animationIn: ['animate__animated success', 'animate__fadeIn'],
                     animationOut: ['animate__animated success', 'animate__fadeOut'],
@@ -156,7 +156,7 @@ const ItemStake = memo<ArtworkItemProps>((props) => {
           if (response.code === 4001) {
             return
           }
-          store.addNotification({
+          Store.addNotification({
             title: 'Error',
             message: (
               <div className="custom-fontsize">
@@ -166,7 +166,7 @@ const ItemStake = memo<ArtworkItemProps>((props) => {
             ),
             type: 'warning',
             width: 300,
-            insert: 'center',
+            insert: 'top',
             container: 'top-center',
             animationIn: ['animate__animated fail', 'animate__fadeIn'],
             animationOut: ['animate__animated fail', 'animate__fadeOut'],
@@ -216,7 +216,7 @@ const ItemStake = memo<ArtworkItemProps>((props) => {
       if (response.hash) {
         setTimeout(() => {
           setStatusHarvest(false)
-          store.addNotification({
+          Store.addNotification({
             title: 'Successfully',
             message: (
               <div className="custom-fontsize">
@@ -226,7 +226,7 @@ const ItemStake = memo<ArtworkItemProps>((props) => {
             ),
             type: 'warning',
             width: 300,
-            insert: 'center',
+            insert: 'top',
             container: 'top-center',
             animationIn: ['animate__animated success', 'animate__fadeIn'],
             animationOut: ['animate__animated success', 'animate__fadeOut'],
@@ -245,7 +245,7 @@ const ItemStake = memo<ArtworkItemProps>((props) => {
         if (response.code === 4001) {
           return
         }
-        store.addNotification({
+        Store.addNotification({
           title: 'Error',
           message: (
             <div className="custom-fontsize">
@@ -255,7 +255,7 @@ const ItemStake = memo<ArtworkItemProps>((props) => {
           ),
           type: 'warning',
           width: 300,
-          insert: 'center',
+          insert: 'top',
           container: 'top-center',
           animationIn: ['animate__animated fail', 'animate__fadeIn'],
           animationOut: ['animate__animated fail', 'animate__fadeOut'],

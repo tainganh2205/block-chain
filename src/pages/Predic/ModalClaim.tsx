@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Modal, Checkbox } from 'antd'
-import { store } from 'react-notifications-component'
+import { Store } from 'react-notifications-component'
 import './styless.css'
 
 const ModalClaim = React.memo((props: any): any => {
@@ -21,7 +21,7 @@ const ModalClaim = React.memo((props: any): any => {
           onClick={() => {
             actions.claim(account, objHistory.id).then((res) => {
               if (res.succeeded) {
-                store.addNotification({
+                Store.addNotification({
                   title: 'Collecting',
                   message: (
                     <div className="custom-fontsize">
@@ -30,7 +30,7 @@ const ModalClaim = React.memo((props: any): any => {
                   ),
                   type: 'warning',
                   width: 300,
-                  insert: 'center',
+                  insert: 'top',
                   container: 'top-center',
                   animationIn: ['animate__animated success', 'animate__fadeIn'],
                   animationOut: ['animate__animated success', 'animate__fadeOut'],
@@ -43,7 +43,7 @@ const ModalClaim = React.memo((props: any): any => {
                   },
                 })
               } else {
-                store.addNotification({
+                Store.addNotification({
                   title: 'Collecting',
                   message: (
                     <div className="custom-fontsize">
@@ -52,7 +52,7 @@ const ModalClaim = React.memo((props: any): any => {
                   ),
                   type: 'warning',
                   width: 300,
-                  insert: 'center',
+                  insert: 'top',
                   container: 'top-center',
                   animationIn: ['animate__animated fail', 'animate__fadeIn'],
                   animationOut: ['animate__animated fail', 'animate__fadeOut'],

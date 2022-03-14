@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 import React, { forwardRef, memo, useState, useMemo, useImperativeHandle, useContext } from 'react'
 import Modal from 'react-modal'
-import { store } from 'react-notifications-component'
+import { Store } from 'react-notifications-component'
 import _mintToken, {
   _cancelTokenTo,
   _getOwnerToken,
@@ -49,7 +49,7 @@ const ArtworkItemModal = memo(forwardRef((props: any, ref: any) => {
   const addTransaction = useTransactionAdder()
   const { account } = useActiveWeb3React()
   const { convertedBalance, nftContract, bidContract } = useContext(ListArtworkContext)
-  
+
   const handleCloseModal = () => {
     setInnerState(defaultInnerState)
     actions.updateTokenId('')
@@ -76,7 +76,7 @@ const ArtworkItemModal = memo(forwardRef((props: any, ref: any) => {
       actionsDetail.getProductsDetail(id)
     })
   }
-  
+
   const updatePriceNFT = async () => {
     _setCurrentPrice(bidContract, innerState.artwork.tokenId, state.amount).then((response: any) => {
       addTransaction(response, {
@@ -88,7 +88,7 @@ const ArtworkItemModal = memo(forwardRef((props: any, ref: any) => {
   }
   const bindingNFT = async () => {
     if (state.amount > convertedBalance) {
-      store.addNotification({
+      Store.addNotification({
         title: 'Warning !',
         message: (
           <div className="custom-fontsize">
@@ -98,7 +98,7 @@ const ArtworkItemModal = memo(forwardRef((props: any, ref: any) => {
         ),
         type: 'warning',
         width: 300,
-        insert: 'center',
+        insert: 'top',
         container: 'top-center',
         animationIn: ['animate__animated', 'animate__fadeIn'],
         animationOut: ['animate__animated', 'animate__fadeOut'],
@@ -262,7 +262,7 @@ const ArtworkItemModal = memo(forwardRef((props: any, ref: any) => {
                   disabled={innerState.loading}
                   type="button"
                   onClick={() =>
-                    store.addNotification({
+                    Store.addNotification({
                       title: 'Warning !',
                       message: (
                         <div className="custom-fontsize">
@@ -271,7 +271,7 @@ const ArtworkItemModal = memo(forwardRef((props: any, ref: any) => {
                       ),
                       type: 'warning',
                       width: 300,
-                      insert: 'center',
+                      insert: 'top',
                       container: 'top-center',
                       animationIn: ['animate__animated', 'animate__fadeIn'],
                       animationOut: ['animate__animated', 'animate__fadeOut'],

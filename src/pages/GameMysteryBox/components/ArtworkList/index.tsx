@@ -8,7 +8,7 @@ import { isMobile } from 'react-device-detect'
 import Loader from 'components/Loader'
 import { useBalanceBSCS, useTokenAllowanceCustom } from 'data/Allowances'
 import { useAllTransactions, isTransactionRecent, useTransactionAdder } from 'state/transactions/hooks'
-import { store } from 'react-notifications-component'
+import { Store } from 'react-notifications-component'
 import _mintToken, {
   _cancelTokenTo,
   _getOwnerToken,
@@ -185,7 +185,7 @@ const ListArtwork = memo<ArtworkListProps>((props) => {
 
   const biding = (_type, artwork) => {
     if (convertedBalance <= 0) {
-      store.addNotification({
+      Store.addNotification({
         title: 'Warning !',
         message: (
           <div className="custom-fontsize">
@@ -194,7 +194,7 @@ const ListArtwork = memo<ArtworkListProps>((props) => {
         ),
         type: 'warning',
         width: 300,
-        insert: 'center',
+        insert: 'top',
         container: 'top-center',
         animationIn: ['animate__animated', 'animate__fadeIn'],
         animationOut: ['animate__animated', 'animate__fadeOut'],

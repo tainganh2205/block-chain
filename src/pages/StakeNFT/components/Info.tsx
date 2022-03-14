@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { memo, useCallback, useEffect, useRef } from 'react'
-import { store } from 'react-notifications-component'
+import { Store } from 'react-notifications-component'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { useActiveWeb3React } from 'hooks'
 
@@ -136,7 +136,7 @@ const Info = memo(() => {
                       // className='dsfsdfas2134567'
                       text={objData && objData.ownerAddress}
                       onCopy={() =>
-                        store.addNotification({
+                        Store.addNotification({
                           title: 'Copied',
                           message: (
                             <div className="custom-fontsize">
@@ -146,7 +146,7 @@ const Info = memo(() => {
                           ),
                           type: 'warning',
                           width: 300,
-                          insert: 'center',
+                          insert: 'top',
                           container: 'top-center',
                           animationIn: ['animate__animated success', 'animate__fadeIn'],
                           animationOut: ['animate__animated success', 'animate__fadeOut'],

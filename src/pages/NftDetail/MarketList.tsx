@@ -3,7 +3,8 @@ import List from '../Nft/List'
 
 export default function MarketList() {
     function refreshPage() {
-        window.location.reload(false);
+        // @ts-ignore
+      window.location.reload(false);
       }
     return (
         <>

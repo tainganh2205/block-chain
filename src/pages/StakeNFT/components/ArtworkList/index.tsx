@@ -7,17 +7,8 @@ import { isMobile } from 'react-device-detect'
 import Loader from 'components/Loader'
 import { useBalanceBSCS, useTokenAllowanceCustom } from 'data/Allowances'
 import { useAllTransactions, isTransactionRecent, useTransactionAdder } from 'state/transactions/hooks'
-import { store } from 'react-notifications-component'
 import _mintToken, {
   _cancelTokenTo,
-  _getOwnerToken,
-  _sellTokenTo,
-  _getBids,
-  _bidToken,
-  _buyToken,
-  _readyToSellToken,
-  _transferNFT,
-  _setCurrentPrice,
 } from 'pages/Nft/utils'
 import { TOKEN_BSCS_TESTNET, CONTRACT_BID } from 'constants/index'
 import { useActiveWeb3React } from 'hooks'

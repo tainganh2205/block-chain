@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState, useMemo } from 'react'
 // import { useHookNft as useHookNftDetail } from './Store'
 import Modal from 'react-modal'
-import { store } from 'react-notifications-component'
+import { Store } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { ButtonArt } from 'components/Art'
@@ -485,7 +485,7 @@ const InfoDetail = ({ props }: any): any => {
             <CopyToClipboard
               text={objData && objData.creatorAddress}
               onCopy={() =>
-                store.addNotification({
+                Store.addNotification({
                   title: 'Copied',
                   message: (
                     <div className="custom-fontsize">
@@ -496,7 +496,7 @@ const InfoDetail = ({ props }: any): any => {
                   ),
                   type: 'warning',
                   width: 300,
-                  insert: 'center',
+                  insert: 'top',
                   container: 'top-center',
                   animationIn: ['animate__animated success', 'animate__fadeIn'],
                   animationOut: ['animate__animated success', 'animate__fadeOut'],
@@ -525,7 +525,7 @@ const InfoDetail = ({ props }: any): any => {
             <CopyToClipboard
               text={objData && objData.ownerAddress}
               onCopy={() =>
-                store.addNotification({
+                Store.addNotification({
                   title: 'Copied',
                   message: (
                     <div className="custom-fontsize">
@@ -536,7 +536,7 @@ const InfoDetail = ({ props }: any): any => {
                   ),
                   type: 'warning',
                   width: 300,
-                  insert: 'center',
+                  insert: 'top',
                   container: 'top-center',
                   animationIn: ['animate__animated success', 'animate__fadeIn'],
                   animationOut: ['animate__animated success', 'animate__fadeOut'],
@@ -757,7 +757,7 @@ const InfoDetail = ({ props }: any): any => {
                                       <ButtonArt
                                         type="button"
                                         onClick={() =>
-                                          store.addNotification({
+                                          Store.addNotification({
                                             title: 'Warning !',
                                             message: (
                                               <div className="custom-fontsize">
@@ -770,7 +770,7 @@ const InfoDetail = ({ props }: any): any => {
                                             ),
                                             type: 'warning',
                                             width: 300,
-                                            insert: 'center',
+                                            insert: 'top',
                                             container: 'top-center',
                                             animationIn: ['animate__animated', 'animate__fadeIn'],
                                             animationOut: ['animate__animated', 'animate__fadeOut'],
@@ -800,7 +800,7 @@ const InfoDetail = ({ props }: any): any => {
                                       <ButtonArt
                                         type="button"
                                         onClick={() =>
-                                          store.addNotification({
+                                          Store.addNotification({
                                             title: 'Warning !',
                                             message: (
                                               <div className="custom-fontsize">
@@ -813,7 +813,7 @@ const InfoDetail = ({ props }: any): any => {
                                             ),
                                             type: 'warning',
                                             width: 300,
-                                            insert: 'center',
+                                            insert: 'top',
                                             container: 'top-center',
                                             animationIn: ['animate__animated', 'animate__fadeIn'],
                                             animationOut: ['animate__animated', 'animate__fadeOut'],
@@ -846,7 +846,7 @@ const InfoDetail = ({ props }: any): any => {
                                       <ButtonArt
                                         type="button"
                                         onClick={() =>
-                                          store.addNotification({
+                                          Store.addNotification({
                                             title: 'Warning !',
                                             message: (
                                               <div className="custom-fontsize">
@@ -859,7 +859,7 @@ const InfoDetail = ({ props }: any): any => {
                                             ),
                                             type: 'warning',
                                             width: 300,
-                                            insert: 'center',
+                                            insert: 'top',
                                             container: 'top-center',
                                             animationIn: ['animate__animated', 'animate__fadeIn'],
                                             animationOut: ['animate__animated', 'animate__fadeOut'],
@@ -990,7 +990,7 @@ const InfoDetail = ({ props }: any): any => {
                                   <CopyToClipboard
                                     text={objData && objData.creatorAddress}
                                     onCopy={() =>
-                                      store.addNotification({
+                                      Store.addNotification({
                                         title: 'Copied',
                                         message: (
                                           <div className="custom-fontsize">
@@ -1001,7 +1001,7 @@ const InfoDetail = ({ props }: any): any => {
                                         ),
                                         type: 'warning',
                                         width: 300,
-                                        insert: 'center',
+                                        insert: 'top',
                                         container: 'top-center',
                                         animationIn: ['animate__animated success', 'animate__fadeIn'],
                                         animationOut: ['animate__animated success', 'animate__fadeOut'],
@@ -1087,7 +1087,7 @@ const InfoDetail = ({ props }: any): any => {
                                 <CopyToClipboard
                                   text={objData && objData.creatorAddress}
                                   onCopy={() =>
-                                    store.addNotification({
+                                    Store.addNotification({
                                       title: 'Copied',
                                       message: (
                                         <div className="custom-fontsize">
@@ -1098,7 +1098,7 @@ const InfoDetail = ({ props }: any): any => {
                                       ),
                                       type: 'warning',
                                       width: 300,
-                                      insert: 'center',
+                                      insert: 'top',
                                       container: 'top-center',
                                       animationIn: ['animate__animated success', 'animate__fadeIn'],
                                       animationOut: ['animate__animated success', 'animate__fadeOut'],
@@ -1184,7 +1184,7 @@ const InfoDetail = ({ props }: any): any => {
                                 <CopyToClipboard
                                   text={objData && objData.creatorAddress}
                                   onCopy={() =>
-                                    store.addNotification({
+                                    Store.addNotification({
                                       title: 'Copied',
                                       message: (
                                         <div className="custom-fontsize">
@@ -1195,7 +1195,7 @@ const InfoDetail = ({ props }: any): any => {
                                       ),
                                       type: 'warning',
                                       width: 300,
-                                      insert: 'center',
+                                      insert: 'top',
                                       container: 'top-center',
                                       animationIn: ['animate__animated success', 'animate__fadeIn'],
                                       animationOut: ['animate__animated success', 'animate__fadeOut'],

@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useMemo, useRef } from 'react'
 import Modal from 'react-modal'
-import { store } from 'react-notifications-component'
+import { Store } from 'react-notifications-component'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
 import { ButtonArt, InputArtNew } from 'components/Art'
@@ -319,7 +319,7 @@ export default function Form1() {
                   className="noti-mess"
                   type="button"
                   onClick={() =>
-                    store.addNotification({
+                    Store.addNotification({
                       title: 'Warning !',
                       message: (
                         <div className="custom-fontsize">
@@ -329,7 +329,7 @@ export default function Form1() {
                       ),
                       type: 'warning',
                       width: 300,
-                      insert: 'center',
+                      insert: 'top',
                       container: 'top-center',
                       animationIn: ['animate__animated', 'animate__fadeIn'],
                       animationOut: ['animate__animated', 'animate__fadeOut'],
@@ -356,7 +356,7 @@ export default function Form1() {
                       primary
                       text="Mint NFT"
                       onClick={() =>
-                        store.addNotification({
+                        Store.addNotification({
                           title: 'Warning !',
                           message: (
                             <div className="custom-fontsize">
@@ -366,7 +366,7 @@ export default function Form1() {
                           ),
                           type: 'warning',
                           width: 300,
-                          insert: 'center',
+                          insert: 'top',
                           container: 'top-center',
                           animationIn: ['animate__animated', 'animate__fadeIn'],
                           animationOut: ['animate__animated', 'animate__fadeOut'],

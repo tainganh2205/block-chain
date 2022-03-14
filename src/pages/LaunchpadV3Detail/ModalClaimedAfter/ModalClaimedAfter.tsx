@@ -2,7 +2,7 @@
 import React, { useEffect, useState, memo } from 'react'
 import { Modal } from 'antd';
 import { useWeb3React } from '@web3-react/core'
-import { store } from 'react-notifications-component'
+import { Store } from 'react-notifications-component'
 import addNotify from 'components/Notify/addNotify'
 import { isRefundedRC, claimTokens, isClaimed, totalClaimAble } from './utils'
 import { useIdoTokenClaimContract } from '../../../hooks/useContract'
@@ -31,15 +31,31 @@ const ItemIdo = ({ account, item, isShowButton }) => {
           }, 10000)
         })
       }
-    } catch (error) {
+    } catch (error:any) {
       setLoadingClaim(false)
       actions.changeRefundStatus(false)
       if (error.data) {
-        store.addNotification(addNotify(error.data.message, 'warning'))
+        Store.addNotification({
+          title: "Notify !",
+          message: error.data.message,
+          type: "warning",
+          width: 300,
+          insert: "top",
+          container: "top-center",
+          animationIn: ["animate__animated", "animate__fadeIn"],
+          animationOut: ["animate__animated", "animate__fadeOut"],
+          dismiss: {
+            duration: 2000,
+            onScreen: true,
+            pauseOnHover: true,
+            click: true,
+            touch: true
+          }
+        });
       }
     }
   }
-  
+
   useEffect(() => {
     try {
       if (idoTokenClaimContract !== null) {

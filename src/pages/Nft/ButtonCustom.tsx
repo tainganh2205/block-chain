@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import Modal from 'react-modal'
-import { store } from 'react-notifications-component'
+import { Store } from 'react-notifications-component'
 import { ButtonArt } from 'components/Art'
 import 'react-notifications-component/dist/theme.css'
 import { useApproveNFTCallbackCustom } from '../../hooks/useApproveCallback'
@@ -67,7 +67,7 @@ const ButtonCustom = (props) => {
     // }
     if (data.type === 'bid' && data.ownerAddress === account) {
       // alert('Owner cannot bid')
-      store.addNotification({
+      Store.addNotification({
         title: 'Warning !',
         message: (
           <div className="custom-fontsize">
@@ -76,7 +76,7 @@ const ButtonCustom = (props) => {
         ),
         type: 'warning',
         width: 300,
-        insert: 'center',
+        insert: 'top',
         container: 'top-center',
         animationIn: ['animate__animated', 'animate__fadeIn'],
         animationOut: ['animate__animated', 'animate__fadeOut'],
@@ -177,7 +177,7 @@ const ButtonCustom = (props) => {
   }
   const bindingNFT = async () => {
     if (state.amount > data.balance) {
-      store.addNotification({
+      Store.addNotification({
         title: 'Warning !',
         message: (
           <div className="custom-fontsize">
@@ -187,7 +187,7 @@ const ButtonCustom = (props) => {
         ),
         type: 'warning',
         width: 300,
-        insert: 'center',
+        insert: 'top',
         container: 'top-center',
         animationIn: ['animate__animated', 'animate__fadeIn'],
         animationOut: ['animate__animated', 'animate__fadeOut'],
@@ -207,7 +207,7 @@ const ButtonCustom = (props) => {
           summary: 'Biding successfully!',
           attr1: `${state.tokenId}-bid`,
         })
-        actions.insertBiding({ amount: state.amount, account, hash: response.hash, code: data.code })       
+        actions.insertBiding({ amount: state.amount, account, hash: response.hash, code: data.code })
     })
   }
 
@@ -273,7 +273,7 @@ const ButtonCustom = (props) => {
       return
     }
     if (data.balance <= 0) {
-      store.addNotification({
+      Store.addNotification({
         title: 'Warning !',
         message: (
           <div className="custom-fontsize">
@@ -282,7 +282,7 @@ const ButtonCustom = (props) => {
         ),
         type: 'warning',
         width: 300,
-        insert: 'center',
+        insert: 'top',
         container: 'top-center',
         animationIn: ['animate__animated', 'animate__fadeIn'],
         animationOut: ['animate__animated', 'animate__fadeOut'],
@@ -391,7 +391,7 @@ const ButtonCustom = (props) => {
                   disabled={isLoading}
                   type="button"
                   onClick={() =>
-                    store.addNotification({
+                    Store.addNotification({
                       title: 'Warning !',
                       message: (
                         <div className="custom-fontsize">
@@ -401,7 +401,7 @@ const ButtonCustom = (props) => {
                       ),
                       type: 'warning',
                       width: 300,
-                      insert: 'center',
+                      insert: 'top',
                       container: 'top-center',
                       animationIn: ['animate__animated', 'animate__fadeIn'],
                       animationOut: ['animate__animated', 'animate__fadeOut'],

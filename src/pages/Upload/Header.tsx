@@ -1,6 +1,6 @@
 import React, {ReactNode} from 'react'
 import Modal from 'react-modal'
-import {store} from 'react-notifications-component'
+import {Store} from 'react-notifications-component'
 import {ButtonArt} from 'components/Art'
 import styled from 'styled-components'
 import {Heading, Text, Flex} from '@artechain/uikit'
@@ -55,7 +55,7 @@ const Header = ({title, description}: PageHeaderProps) => {
               <>
                 {account === null ? (
                   <ButtonArt data-variant='tertiary' variant='tertiary' type="button" onClick={() =>
-                    store.addNotification({
+                    Store.addNotification({
                       title: 'Warning !',
                       message: (
                         <div className="custom-fontsize">
@@ -65,7 +65,7 @@ const Header = ({title, description}: PageHeaderProps) => {
                       ),
                       type: 'warning',
                       width: 300,
-                      insert: 'center',
+                      insert: 'top',
                       container: 'top-center',
                       animationIn: ['animate__animated', 'animate__fadeIn'],
                       animationOut: ['animate__animated', 'animate__fadeOut'],

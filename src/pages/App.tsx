@@ -4,7 +4,7 @@ import { useCookies } from 'react-cookie'
 import styled from 'styled-components'
 import { isMobile } from 'react-device-detect'
 import { Credentials, StringTranslations } from '@crowdin/crowdin-api-client'
-import ReactNotification from 'react-notifications-component'
+import { ReactNotifications } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 import yall from 'yall-js'
 import Popups from '../components/Popups'
@@ -175,11 +175,12 @@ export default function App() {
     })
   }, [])
 
+  // @ts-ignore
   return (
     <Suspense fallback={null}>
       <HashRouter>
         <AppWrapper>
-          <ReactNotification />
+          <ReactNotifications />
           <LanguageContext.Provider
             value={{ selectedLanguage, setSelectedLanguage, translatedLanguage, setTranslatedLanguage }}
           >

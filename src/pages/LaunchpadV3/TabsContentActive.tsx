@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { store } from "react-notifications-component";
+import { Store } from "react-notifications-component";
 
 import { useHookProjects } from "./Store";
 import TabDetail from "./TabDetail";
@@ -90,7 +90,7 @@ const TabsContentActive = (props): any => {
                           <CopyToClipboard
                             text={ido.idoContract}
                             onCopy={() =>
-                              store.addNotification({
+                              Store.addNotification({
                                 title: "Copied",
                                 message: (
                                   <div className="custom-fontsize">
@@ -100,7 +100,7 @@ const TabsContentActive = (props): any => {
                                 ),
                                 type: "warning",
                                 width: 300,
-                                insert: "center",
+                                insert: "top",
                                 container: "top-center",
                                 animationIn: ["animate__animated success", "animate__fadeIn"],
                                 animationOut: ["animate__animated success", "animate__fadeOut"],

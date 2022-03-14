@@ -12,6 +12,7 @@ export const addTokenToWallet = async (props: TokenProps) => {
   const { address, symbol, decimals, image } = props
 
   try {
+    // @ts-ignore
     const wasAdded = await window.ethereum.request({
       method: 'wallet_watchAsset',
       params: {
@@ -24,6 +25,7 @@ export const addTokenToWallet = async (props: TokenProps) => {
         },
       },
     })
+    // @ts-ignore
     if (!wasAdded) {
       toast.error({
         title: 'Error',

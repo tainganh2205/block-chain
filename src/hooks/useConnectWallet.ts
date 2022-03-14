@@ -14,7 +14,7 @@ import {
   connectorsByName,
   connectorLocalStorageKey,
 } from 'utils/connector'
-import { setupNetwork } from 'utils/wallet'
+// import { setupNetwork } from 'utils/wallet'
 import { toast } from 'components/Toast'
 
 export const useConnectWallet = () => {
@@ -27,12 +27,12 @@ export const useConnectWallet = () => {
         window.localStorage.setItem(connectorLocalStorageKey, connectorID)
         activate(connector, async (error: Error) => {
           if (error instanceof UnsupportedChainIdError) {
-            const hasSetup = await setupNetwork(connectorID)
-            if (hasSetup) {
-              activate(connector)
-            } else {
-              setError(error)
-            }
+            // const hasSetup = await setupNetwork(connectorID)
+            // if (hasSetup) {
+            //   activate(connector)
+            // } else {
+            //   setError(error)
+            // }
           } else {
             window.localStorage.removeItem(connectorLocalStorageKey)
             if (

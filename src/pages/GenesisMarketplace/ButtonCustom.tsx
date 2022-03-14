@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import Modal from 'react-modal'
 import { useHistory } from 'react-router-dom'
-import { store } from "react-notifications-component";
+import { Store } from "react-notifications-component";
 
 import "react-notifications-component/dist/theme.css";
 
@@ -70,7 +70,7 @@ const ButtonCustom = (props) => {
     // }
     if (data.type === 'bid' && data.ownerAddress === account) {
       // alert('Owner cannot bid')
-      store.addNotification({
+      Store.addNotification({
         title: 'Warning !',
         message: (
           <div className="custom-fontsize">
@@ -79,7 +79,7 @@ const ButtonCustom = (props) => {
         ),
         type: 'warning',
         width: 300,
-        insert: 'center',
+        insert: 'top',
         container: 'top-center',
         animationIn: ['animate__animated', 'animate__fadeIn'],
         animationOut: ['animate__animated', 'animate__fadeOut'],

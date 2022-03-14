@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { store } from 'react-notifications-component'
+import { Store } from 'react-notifications-component'
 import { CloseOutlined } from '@ant-design/icons'
 import { useHookPrediction } from './Store'
 import { useActiveWeb3React } from '../../hooks'
@@ -14,7 +14,7 @@ const ShowNotifiClaimWin = () => {
 
   useEffect(() => {
     if (roundIdToClaim !== 0) {
-      store.addNotification({
+      Store.addNotification({
         title: 'Warning !',
         message: (
           <div className="box-colleting-win cus over-flow">
@@ -36,7 +36,7 @@ const ShowNotifiClaimWin = () => {
         ),
         type: 'warning',
         width: 350,
-        insert: 'center',
+        insert: 'top',
         container: 'bottom-right',
         animationIn: ['animate__animated', 'animate__fadeIn'],
         animationOut: ['animate__animated', 'animate__fadeOut'],

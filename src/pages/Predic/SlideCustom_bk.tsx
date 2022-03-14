@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, useMemo } from 'react'
 import ReactDOM from 'react-dom'
-import { store } from 'react-notifications-component'
+import { Store } from 'react-notifications-component'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Navigation, Mousewheel, Pagination, Keyboard, Scrollbar, A11y } from 'swiper'
 import { Slider, Input, Button, InputNumber } from 'antd'
@@ -123,7 +123,7 @@ const SliderContent = ({ item }) => {
             type="button"
             onClick={() => {
               setBetUp(true)
-              store.addNotification({
+              Store.addNotification({
                 message: (
                   <div className="custom-fontsize custome-checked">
                     <img src="/images/imagesPrediction/checked.png" alt="" /> DOWN position entered
@@ -131,7 +131,7 @@ const SliderContent = ({ item }) => {
                 ),
                 type: 'warning',
                 width: 300,
-                insert: 'center',
+                insert: 'top',
                 container: 'top-center',
                 animationIn: ['animate__animated success', 'animate__fadeIn'],
                 animationOut: ['animate__animated success', 'animate__fadeOut'],
@@ -155,7 +155,7 @@ const SliderContent = ({ item }) => {
             type="button"
             onClick={() => {
               setBetDown(true)
-              store.addNotification({
+              Store.addNotification({
                 message: (
                   <div className="custom-fontsize custome-checked">
                     <img src="/images/imagesPrediction/checked.png" alt="" /> Claim successfully
@@ -163,7 +163,7 @@ const SliderContent = ({ item }) => {
                 ),
                 type: 'warning',
                 width: 300,
-                insert: 'center',
+                insert: 'top',
                 container: 'top-center',
                 animationIn: ['animate__animated success', 'animate__fadeIn'],
                 animationOut: ['animate__animated success', 'animate__fadeOut'],

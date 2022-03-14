@@ -6,7 +6,7 @@
 import React, { useState } from 'react'
 import { Modal } from 'antd'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { store } from 'react-notifications-component'
+import { Store } from 'react-notifications-component'
 import Button from 'components/Button'
 
 import { POOL_WEIGHT } from './index.d'
@@ -98,7 +98,7 @@ const IdoTop = () => {
                       <CopyToClipboard
                         text={state.owner?.ownerAddress}
                         onCopy={() =>
-                          store.addNotification({
+                          Store.addNotification({
                             title: 'Copied',
                             message: (
                               <div className="custom-fontsize">
@@ -109,7 +109,7 @@ const IdoTop = () => {
                             ),
                             type: 'warning',
                             width: 300,
-                            insert: 'center',
+                            insert: 'top',
                             container: 'top-center',
                             animationIn: ['animate__animated success', 'animate__fadeIn'],
                             animationOut: ['animate__animated success', 'animate__fadeOut'],

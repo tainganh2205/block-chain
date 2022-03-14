@@ -5,7 +5,7 @@
 import React, { memo, useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import ModalDisClaimer from 'pages/LaunchpadDetail/ModalDisClaimer'
-import { store } from 'react-notifications-component'
+import { Store } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 import { isMobile } from 'react-device-detect'
 import { Modal, Checkbox } from 'antd'
@@ -99,15 +99,63 @@ const Actions = memo(({ props }: any): any => {
   const _handleJoinPool = () => {
     const amtJoin = objJoin.busd
     if (is_network_bep && chainId !== 56) {
-      store.addNotification(addNotify('Please select network BSC', 'danger'))
+      Store.addNotification({
+        title: "Notify !",
+        message: "Please select network BSC",
+        type: "danger",
+        width: 300,
+        insert: "top",
+        container: "top-center",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 2000,
+          onScreen: true,
+          pauseOnHover: true,
+          click: true,
+          touch: true
+        }
+      });
       return
     }
     if (is_network_erc && chainId !== 1) {
-      store.addNotification(addNotify('Please select network Ethereum', 'danger'))
+      Store.addNotification({
+        title: "Notify !",
+        message: "Please select network Ethereum",
+        type: "danger",
+        width: 300,
+        insert: "top",
+        container: "top-center",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 2000,
+          onScreen: true,
+          pauseOnHover: true,
+          click: true,
+          touch: true
+        }
+      });
       return
     }
     if (is_network_poly && chainId !== 137) {
-      store.addNotification(addNotify('Please select network Polygon', 'danger'))
+      Store.addNotification({
+        title: "Notify !",
+        message: "Please select network Polygon",
+        type: "danger",
+        width: 300,
+        insert: "top",
+        container: "top-center",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 2000,
+          onScreen: true,
+          pauseOnHover: true,
+          click: true,
+          touch: true
+        }
+      });
       return
     }
     if (amount && !isJoinPool && parseFloat(amount) / decimal >= objJoin.busd) {
@@ -120,7 +168,23 @@ const Actions = memo(({ props }: any): any => {
         .then((response) => {
           if (!response.succeeded) {
             setLoading(false)
-            store.addNotification(addNotify(response.message, 'danger'))
+            Store.addNotification({
+              title: "Notify !",
+              message: response.message,
+              type: "danger",
+              width: 300,
+              insert: "top",
+              container: "top-center",
+              animationIn: ["animate__animated", "animate__fadeIn"],
+              animationOut: ["animate__animated", "animate__fadeOut"],
+              dismiss: {
+                duration: 2000,
+                onScreen: true,
+                pauseOnHover: true,
+                click: true,
+                touch: true
+              }
+            });
           } else if (response.data.isJionPool) {
             _joinPool(busdContract, ADDRESS_RECEVIE_BUSD, amtJoin, account, chainId)
               .then((res) => {
@@ -135,9 +199,41 @@ const Actions = memo(({ props }: any): any => {
                   })
                   .then((rel) => {
                     if (!rel.succeeded) {
-                      store.addNotification(addNotify(`${rel.message} Retry after 15 minutes!`, 'danger'))
+                      Store.addNotification({
+                        title: "Notify !",
+                        message: `${rel.message} Retry after 15 minutes!`,
+                        type: "danger",
+                        width: 300,
+                        insert: "top",
+                        container: "top-center",
+                        animationIn: ["animate__animated", "animate__fadeIn"],
+                        animationOut: ["animate__animated", "animate__fadeOut"],
+                        dismiss: {
+                          duration: 2000,
+                          onScreen: true,
+                          pauseOnHover: true,
+                          click: true,
+                          touch: true
+                        }
+                      });
                     } else {
-                      store.addNotification(addNotify('Join Pool Successful', 'success'))
+                      Store.addNotification({
+                        title: "Notify !",
+                        message: 'Join Pool Successful',
+                        type: "success",
+                        width: 300,
+                        insert: "top",
+                        container: "top-center",
+                        animationIn: ["animate__animated", "animate__fadeIn"],
+                        animationOut: ["animate__animated", "animate__fadeOut"],
+                        dismiss: {
+                          duration: 2000,
+                          onScreen: true,
+                          pauseOnHover: true,
+                          click: true,
+                          touch: true
+                        }
+                      });
                     }
                   })
                 setLoading(false)
@@ -148,7 +244,23 @@ const Actions = memo(({ props }: any): any => {
               })
           } else {
             setLoading(false)
-            store.addNotification(addNotify('Invalid Join Pool', 'danger'))
+            Store.addNotification({
+              title: "Notify !",
+              message: 'Invalid Join Pool',
+              type: "danger",
+              width: 300,
+              insert: "top",
+              container: "top-center",
+              animationIn: ["animate__animated", "animate__fadeIn"],
+              animationOut: ["animate__animated", "animate__fadeOut"],
+              dismiss: {
+                duration: 2000,
+                onScreen: true,
+                pauseOnHover: true,
+                click: true,
+                touch: true
+              }
+            });
           }
         })
     } else {
@@ -157,7 +269,23 @@ const Actions = memo(({ props }: any): any => {
         : is_network_poly
         ? 'Insufficient USDC balance'
         : 'Insufficient USDT balance'
-      store.addNotification(addNotify(_error_meg, 'warning'))
+      Store.addNotification({
+        title: "Notify !",
+        message: _error_meg,
+        type: "warning",
+        width: 300,
+        insert: "top",
+        container: "top-center",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 2000,
+          onScreen: true,
+          pauseOnHover: true,
+          click: true,
+          touch: true
+        }
+      });
     }
   }
 

@@ -1,11 +1,13 @@
+import React from "react";
+
 const addNotify = (_meg, _type) => {
   return {
-    title: 'Notify!',
+    title: 'Notify !',
     message: _meg,
     type: _type,
     width: 300,
     insert: 'top',
-    container: 'top-right',
+    container: 'top-center',
     animationIn: ['animate__animated', 'animate__fadeIn'],
     animationOut: ['animate__animated', 'animate__fadeOut'],
     dismiss: {
@@ -14,7 +16,7 @@ const addNotify = (_meg, _type) => {
       pauseOnHover: true,
       click: true,
       touch: true,
-    }
+    },
   }
 }
 

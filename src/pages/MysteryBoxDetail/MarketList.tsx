@@ -1,9 +1,10 @@
-import React, { useContext, useMemo } from 'react'
+import React from 'react'
 import List from '../Nft/List'
 
 export default function MarketList() {
     function refreshPage() {
-        window.location.reload(false);
+        // @ts-ignore
+      window.location.reload(false);
       }
     return (
         <>

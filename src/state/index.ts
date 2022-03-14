@@ -26,7 +26,9 @@ if (loadedState.user) {
   loadedState.user.userDarkMode = getThemeCache()
 }
 
-const store = configureStore({
+// @ts-ignore
+let store: EnhancedStore<any, AnyAction, (any | Middleware)[]>;
+store = configureStore({
   reducer: {
     application,
     user,
@@ -35,11 +37,10 @@ const store = configureStore({
     mint,
     burn,
     multicall,
-    lists,
+    lists
   },
-  middleware: [...getDefaultMiddleware({ thunk: false } as any), save({ states: PERSISTED_KEYS })],
-  preloadedState: loadedState,
-})
+  middleware: [...getDefaultMiddleware({ thunk: false } as any), save({ states: PERSISTED_KEYS })]
+});
 
 store.dispatch(updateVersion())
 

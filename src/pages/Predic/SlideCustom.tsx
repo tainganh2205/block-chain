@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { store } from 'react-notifications-component'
+import { Store } from 'react-notifications-component'
 import { Swiper as SwiperComponent, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Navigation, Mousewheel, Pagination, Keyboard, Scrollbar, A11y, Controller } from 'swiper/core'
 import { Slider, Modal, Input, Button, InputNumber, Progress, Tooltip } from 'antd'
@@ -399,7 +399,7 @@ const SliderContentSetPosition = ({ item, setBetUp }) => {
           if (res.succeeded) {
             actions.getRounds(account)
             actions.getHitorys(account)
-            store.addNotification({
+            Store.addNotification({
               title: 'Successfully',
               message: (
                 <div className="custom-fontsize">
@@ -408,7 +408,7 @@ const SliderContentSetPosition = ({ item, setBetUp }) => {
               ),
               type: 'warning',
               width: 300,
-              insert: 'center',
+              insert: 'top',
               container: 'top-center',
               animationIn: ['animate__animated success', 'animate__fadeIn'],
               animationOut: ['animate__animated success', 'animate__fadeOut'],
@@ -423,7 +423,7 @@ const SliderContentSetPosition = ({ item, setBetUp }) => {
             setBetUp(false)
             actions.changeAmount(0)
           } else {
-            store.addNotification({
+            Store.addNotification({
               title: res.message,
               message: (
                 <div className="custom-fontsize">
@@ -432,7 +432,7 @@ const SliderContentSetPosition = ({ item, setBetUp }) => {
               ),
               type: 'warning',
               width: 300,
-              insert: 'center',
+              insert: 'top',
               container: 'top-center',
               animationIn: ['animate__animated success', 'animate__fadeIn'],
               animationOut: ['animate__animated success', 'animate__fadeOut'],
@@ -536,7 +536,7 @@ const SliderContentSetPositionDown = ({ item, setBetDown }) => {
           if (res.succeeded) {
             actions.getRounds(account)
             actions.getHitorys(account)
-            store.addNotification({
+            Store.addNotification({
               title: 'Successfully',
               message: (
                 <div className="custom-fontsize">
@@ -545,7 +545,7 @@ const SliderContentSetPositionDown = ({ item, setBetDown }) => {
               ),
               type: 'warning',
               width: 300,
-              insert: 'center',
+              insert: 'top',
               container: 'top-center',
               animationIn: ['animate__animated success', 'animate__fadeIn'],
               animationOut: ['animate__animated success', 'animate__fadeOut'],
@@ -559,7 +559,7 @@ const SliderContentSetPositionDown = ({ item, setBetDown }) => {
             })
             setBetDown(false)
           } else {
-            store.addNotification({
+            Store.addNotification({
               title: res.message,
               message: (
                 <div className="custom-fontsize">
@@ -568,7 +568,7 @@ const SliderContentSetPositionDown = ({ item, setBetDown }) => {
               ),
               type: 'warning',
               width: 300,
-              insert: 'center',
+              insert: 'top',
               container: 'top-center',
               animationIn: ['animate__animated success', 'animate__fadeIn'],
               animationOut: ['animate__animated success', 'animate__fadeOut'],
@@ -729,7 +729,7 @@ const SliderContentDownCollecting = ({ item }) => {
               onClick={() =>
                 actions.claim(account, item.id).then((res) => {
                   if (res.succeeded) {
-                    store.addNotification({
+                    Store.addNotification({
                       title: 'Collecting',
                       message: (
                         <div className="custom-fontsize">
@@ -739,7 +739,7 @@ const SliderContentDownCollecting = ({ item }) => {
                       ),
                       type: 'warning',
                       width: 300,
-                      insert: 'center',
+                      insert: 'top',
                       container: 'top-center',
                       animationIn: ['animate__animated success', 'animate__fadeIn'],
                       animationOut: ['animate__animated success', 'animate__fadeOut'],
@@ -752,7 +752,7 @@ const SliderContentDownCollecting = ({ item }) => {
                       },
                     })
                   } else {
-                    store.addNotification({
+                    Store.addNotification({
                       title: 'Collecting',
                       message: (
                         <div className="custom-fontsize">
@@ -761,7 +761,7 @@ const SliderContentDownCollecting = ({ item }) => {
                       ),
                       type: 'warning',
                       width: 300,
-                      insert: 'center',
+                      insert: 'top',
                       container: 'top-center',
                       animationIn: ['animate__animated fail', 'animate__fadeIn'],
                       animationOut: ['animate__animated fail', 'animate__fadeOut'],
@@ -922,7 +922,7 @@ const SliderContentUpCollecting = ({ item }) => {
               onClick={() =>
                 actions.claim(account, item.id).then((res) => {
                   if (res.succeeded) {
-                    store.addNotification({
+                    Store.addNotification({
                       title: 'Collecting',
                       message: (
                         <div className="custom-fontsize">
@@ -932,7 +932,7 @@ const SliderContentUpCollecting = ({ item }) => {
                       ),
                       type: 'warning',
                       width: 300,
-                      insert: 'center',
+                      insert: 'top',
                       container: 'top-center',
                       animationIn: ['animate__animated success', 'animate__fadeIn'],
                       animationOut: ['animate__animated success', 'animate__fadeOut'],
@@ -945,7 +945,7 @@ const SliderContentUpCollecting = ({ item }) => {
                       },
                     })
                   } else {
-                    store.addNotification({
+                    Store.addNotification({
                       title: 'Collecting',
                       message: (
                         <div className="custom-fontsize">
@@ -954,7 +954,7 @@ const SliderContentUpCollecting = ({ item }) => {
                       ),
                       type: 'warning',
                       width: 300,
-                      insert: 'center',
+                      insert: 'top',
                       container: 'top-center',
                       animationIn: ['animate__animated fail', 'animate__fadeIn'],
                       animationOut: ['animate__animated fail', 'animate__fadeOut'],

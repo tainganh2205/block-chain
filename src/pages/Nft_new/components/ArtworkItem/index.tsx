@@ -6,10 +6,6 @@ import { useActiveWeb3React } from 'hooks'
 import { useHookNft } from 'pages/Nft/Store-Nft'
 import { useTokenAllowanceNFTCustom } from 'data/Allowances'
 import { useOwnerTokenFT } from 'data/Nft'
-import { store } from 'react-notifications-component'
-
-import Button from 'components/Button'
-import ButtonCustom from 'pages/Nft/ButtonCustom'
 import { ListArtworkContext } from '../ArtworkList'
 import { ArtworkItemProps } from './index.d'
 import { STATUS_ARTWORK } from '../ArtworkList/index.d'
@@ -82,66 +78,6 @@ const ItemArtwork = memo<ArtworkItemProps>((props) => {
     }
   }, [])
 
-  const _onCick = (_type) => {
-    // if (data.type === 'bid' ||  data.type === 'buy' || data.type === 'transfer') {
-    //   alert('Coming soon!')
-    //   return
-    // }
-    if (_type === 'bid' && props.artwork.ownerAddress === account) {
-      // alert('Owner cannot bid')
-      store.addNotification({
-        title: 'Warning !',
-        message: (
-          <div className="custom-fontsize">
-            <i className="fa fa-exclamation-triangle icon-warning" aria-hidden="true" /> Owner cannot bid
-          </div>
-        ),
-        type: 'warning',
-        width: 300,
-        insert: 'center',
-        container: 'top-center',
-        animationIn: ['animate__animated', 'animate__fadeIn'],
-        animationOut: ['animate__animated', 'animate__fadeOut'],
-        dismiss: {
-          duration: 3000,
-          onScreen: true,
-          pauseOnHover: true,
-          click: true,
-          touch: true,
-        },
-      })
-      return
-    }
-    actions.updateTokenId(props.artwork.tokenId)
-    switch (_type) {
-      case 'bid':
-        biding(_type, props.artwork)
-        break
-      case 'approveNFT':
-        approveSell(_approvalSell)
-        break
-      case 'revoke':
-        cancelTokenTo(props.artwork)
-        break
-      case 'buy':
-        buyToken(props.artwork)
-        break
-      case 'transfer':
-        openModal(_type)
-        break
-      case 'sell':
-        openModal(_type)
-        break
-      case 'update':
-        openModal(_type)
-        break
-      case 'auction':
-        openModal(_type)
-        break
-      default:
-        break
-    }
-  }
   const ownerNFTTemp = ownerNFT && ownerNFT.toLowerCase()
   const accountTemp = account && account.toLowerCase()
   const allowanceNFTTemp = (allowanceNFT && allowanceNFT.toString().toLowerCase()) || ''
@@ -183,7 +119,7 @@ const ItemArtwork = memo<ArtworkItemProps>((props) => {
           <p className="wrapper-type">
             <span className="file-type">{props.artwork?.fileType === 2 ? 'Video' : 'Image'}</span>
             {/* <img src="/images/checked.png" alt="..." /> */}
-            
+
           </p>
           <div>
             {(() => {
@@ -217,7 +153,7 @@ const ItemArtwork = memo<ArtworkItemProps>((props) => {
           </div>
         </div>
 
-       
+
       </div>
     </li>
   )

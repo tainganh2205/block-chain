@@ -1,6 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState, useMemo } from 'react'
-import Modal from 'react-modal'
-import { store } from 'react-notifications-component'
+import { Store } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { useHookNft } from './Store'
@@ -28,11 +27,6 @@ const Info = ({ props }: any): any => {
           <div className="c-productdetail__title">
             <div className="c-productdetail__img">
               <img className="img-profile" src={`${API_IMAGE}${objData && objData.avatarName}?v=122`} alt="" />{' '}
-              {/* {objData?.avatarName === undefined ? (
-                <img className="img-profile img-default" src="images/defaultNew.png" alt="default" />
-              ) : (
-                <img className="img-profile" src={`${API_IMAGE}${objData.avatarName}?v=122`} alt="" />
-              )} */}
             <div className="social-top">
                 <div className="icon-sc">
                   <img src="images/tele.png" alt="default" />
@@ -77,7 +71,7 @@ const Info = ({ props }: any): any => {
                 <CopyToClipboard
                   text={objData && objData.ownerAddress}
                   onCopy={() =>
-                    store.addNotification({
+                    Store.addNotification({
                       title: 'Copied',
                       message: (
                         <div className="custom-fontsize">
@@ -88,7 +82,7 @@ const Info = ({ props }: any): any => {
                       ),
                       type: 'warning',
                       width: 300,
-                      insert: 'center',
+                      insert: 'top',
                       container: 'top-center',
                       animationIn: ['animate__animated success', 'animate__fadeIn'],
                       animationOut: ['animate__animated success', 'animate__fadeOut'],
