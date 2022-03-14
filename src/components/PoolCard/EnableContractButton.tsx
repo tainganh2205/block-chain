@@ -10,7 +10,7 @@ import { wait } from 'utils/wait'
 import { ERROR_MESSAGES } from 'constant/errorMessages'
 import { toast } from 'components/Toast'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
-import { useERC20 } from 'hooks/useContract'
+import { useERC20 } from 'hooks/useContract1'
 import { useTransactionContext } from 'hooks/useTransactions'
 import { handleTransactionError } from 'utils/error'
 

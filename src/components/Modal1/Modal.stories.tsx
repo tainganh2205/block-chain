@@ -1,6 +1,6 @@
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { storiesOf } from '@storybook/react'
-import { Button } from 'components/Button'
+import { Button } from 'components/Button1'
 import { ClipboardInput } from 'components/ClipboardInput'
 import { IconShare } from 'components/icons/components/IconShare'
 import { Text } from 'components/Text'

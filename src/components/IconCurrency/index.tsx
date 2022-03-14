@@ -1,5 +1,5 @@
 import { IconBNB } from 'components/icons/components/IconBNB'
-import { ImageWithFallback } from 'components/ImageWithFallback'
+import { ImageWithFallback } from 'components/ImageWithFallback1'
 
 export interface IconCurrencyProps {
   symbol?: string

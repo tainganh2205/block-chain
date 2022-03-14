@@ -3,7 +3,7 @@ import cx from 'classnames'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { IconEyeVisible } from 'components/icons/components/IconEyeVisible'
 import { IconEyeInvisible } from 'components/icons/components/IconEyeInvisible'
-import { Button } from 'components/Button'
+import { Button } from 'components/Button1'
 
 export type InputProps = {
   fullWidth?: boolean

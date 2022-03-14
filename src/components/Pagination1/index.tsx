@@ -59,6 +59,7 @@ export const Pagination = (props: PaginationProps) => {
     setPage(page)
   }, [page, setPage])
 
+  // @ts-ignore
   const paginationRange = useMemo(() => {
     const totalPageCount = Math.ceil(count / limit)
 

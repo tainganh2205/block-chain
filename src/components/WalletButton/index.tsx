@@ -1,6 +1,6 @@
 import { HTMLAttributes } from 'react'
 import cx from 'classnames'
-import { ImageWithFallback } from 'components/ImageWithFallback'
+import { ImageWithFallback } from 'components/ImageWithFallback1'
 import { Text } from 'components/Text'
 
 export type WalletNameType =
@@ -14,6 +14,7 @@ interface WalletButtonProps extends HTMLAttributes<HTMLButtonElement> {
   name: WalletNameType
 }
 
+// @ts-ignore
 function getIcon(name: WalletButtonProps['name']) {
   if (name === 'MetaMask') {
     return 'ic-metamask'

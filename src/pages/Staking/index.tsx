@@ -122,7 +122,6 @@ const InnerRender = () => {
 
   return (
     <div className="max-w-[1160px] mx-auto px-5 sm:py-10 py-6 space-y-6">
-      <StakeHeader totalValueLocked={totalValueLocked} isLoading={isLoading} />
       <SwitchTabs tabs={tabsData} />
     </div>
   )

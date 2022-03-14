@@ -1,4 +1,4 @@
-import { Card } from 'components/Card'
+import { Card } from 'components/Card1'
 import { Skeleton } from 'components/Skeleton'
 
 export const AboutSectionSkeleton = () => {

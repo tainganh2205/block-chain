@@ -133,10 +133,10 @@ export const AuthContextProvider: React.FC<any> = ({ children }) => {
       waitingForUpsertAccount.current = true
       try {
         const referralCode = getReferralCode()
-        await client.postUpsertWallet({
-          walletAddress: account,
-          referralCode,
-        })
+        // await client.postUpsertWallet({
+        //   walletAddress: account,
+        //   referralCode,
+        // })
         setIsWalletConnected(true)
         waitingForUpsertAccount.current = false
         removeReferralCode()
@@ -156,8 +156,8 @@ export const AuthContextProvider: React.FC<any> = ({ children }) => {
   useAsyncEffect(async () => {
     if (account && !token.challenge && !waitingForUpsertAccount.current) {
       try {
-        const response = await client.getChallenge(account)
-        setChallenge(response.data.challenge || null)
+        // const response = await client.getChallenge(account)
+        // setChallenge(response.data.challenge || null)
       } catch (e) {
         console.error(e)
       }

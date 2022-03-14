@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/react'
-import { Button } from 'components/Button'
+import { Button } from 'components/Button1'
 import React from 'react'
 import { toast, Toaster } from '.'
 

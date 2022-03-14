@@ -2,7 +2,7 @@ import { Heading } from 'components/Heading'
 import IconGem from 'components/IconGem'
 import { Text } from 'components/Text'
 import cx from 'classnames'
-import { Button } from 'components/Button'
+import { Button } from 'components/Button1'
 import { useAuthContext } from 'context/auth'
 
 interface ConnectWalletRequireCardProps {

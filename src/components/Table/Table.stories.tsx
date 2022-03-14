@@ -1,11 +1,10 @@
 import { useMemo, useState } from 'react'
 import { storiesOf } from '@storybook/react'
 import { Column } from 'react-table'
-import { Card } from 'components/Card'
+import { Card } from 'components/Card1'
 import { IconMoreVertical } from '../icons/components/IconMoreVertical'
-import { Button } from '../Button'
-import { ImageWithFallback } from '../ImageWithFallback'
-import { HeroStat } from '../HeroStat'
+import { Button } from '../Button1'
+import { ImageWithFallback } from '../ImageWithFallback1'
 import { Table } from '.'
 
 type Character = {
@@ -52,31 +51,6 @@ const columnsArray: Array<Column<Character>> = [
   {
     Header: 'Name',
     accessor: 'name',
-  },
-  {
-    Header: 'growth',
-    accessor: 'growth',
-    Cell: ({ value }) => <HeroStat type="growth" value={value} />,
-  },
-  {
-    Header: 'vitality',
-    accessor: 'vitality',
-    Cell: ({ value }) => <HeroStat type="vitality" value={value} />,
-  },
-  {
-    Header: 'strength',
-    accessor: 'strength',
-    Cell: ({ value }) => <HeroStat type="strength" value={value} />,
-  },
-  {
-    Header: 'intelligence',
-    accessor: 'intelligence',
-    Cell: ({ value }) => <HeroStat type="intelligence" value={value} />,
-  },
-  {
-    Header: 'dexterity',
-    accessor: 'dexterity',
-    Cell: ({ value }) => <HeroStat type="dexterity" value={value} />,
   },
   {
     Header: 'Server',

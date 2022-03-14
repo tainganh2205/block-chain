@@ -13,8 +13,8 @@ import {
   ModalContent,
   ModalProps,
   ModalTitle,
-} from './Modal'
-import { Button } from './Button'
+} from './Modal1'
+import { Button } from './Button1'
 
 type connectorConfigType = { name: WalletNameType; connectorId: ConnectorNames }
 

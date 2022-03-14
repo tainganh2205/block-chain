@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card } from 'components/Card'
+import { Card } from 'components/Card1'
 import { Text } from 'components/Text'
 
 export interface PoolListCardProps {}

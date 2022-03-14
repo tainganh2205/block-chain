@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react'
-import { Button } from 'components/Button'
-import { ImageWithFallback } from 'components/ImageWithFallback'
+import { Button } from 'components/Button1'
+import { ImageWithFallback } from 'components/ImageWithFallback1'
 import React from 'react'
 import { Empty } from '.'
 

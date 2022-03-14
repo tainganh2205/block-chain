@@ -116,7 +116,7 @@ export const useFetchUserData = (
 ) => {
   const { data, isLoading, mutate } = useFetchWithCache(
     pools ? [FETCH_USER_STAKR_INFO_KEY, account] : null,
-    async (_, account) => {
+    async (_, account="") => {
       const allowances = await fetchPoolsAllowances(account, pools ?? [])
       const balances = await fetchUserBalances(account, pools ?? [])
       const stakedBalances = await fetchUserStakeBalances(account, pools ?? [])

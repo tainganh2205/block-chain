@@ -5,9 +5,9 @@ import {
   ModalCloseButton,
   ModalContent,
   ModalTitle,
-} from 'components/Modal'
+} from 'components/Modal1'
 import { Text } from 'components/Text'
-import { Button } from 'components/Button'
+import { Button } from 'components/Button1'
 import { Checkbox } from 'components/Checkbox'
 
 interface BuySuccessModalProps extends ModalProps {

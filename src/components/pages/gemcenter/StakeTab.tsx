@@ -54,12 +54,14 @@ export const StakeTab = ({
   let content = null
 
   if (stakingInfo.length === 0) {
+    // @ts-ignore
     content = (
       <div className="py-20">
         <Empty type="data" title="No data" message="No data founded yet." />
       </div>
     )
   } else {
+    // @ts-ignore
     content = (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-10 gap-x-20">
         {stakingInfo.map((item, index) => (

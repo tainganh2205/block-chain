@@ -11,6 +11,7 @@ type CardProps = {
   onClick?: () => void
 }
 
+// @ts-ignore
 function getBackgroundColor(color: CardProps['color']) {
   if (color === 'gray-650') {
     return 'bg-gray-650'

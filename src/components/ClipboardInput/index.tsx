@@ -1,7 +1,7 @@
 import { useClipboard } from '@dwarvesf/react-hooks'
 import { truncate } from '@dwarvesf/react-utils'
 import { Transition } from '@headlessui/react'
-import { Button } from 'components/Button'
+import { Button } from 'components/Button1'
 import { IconCopy } from 'components/icons/components/IconCopy'
 import cx from 'classnames'
 
