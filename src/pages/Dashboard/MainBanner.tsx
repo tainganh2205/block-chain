@@ -11,7 +11,7 @@ const MainBanner = () => {
     autoplay: true,
     infinite: true,
     speed: 1000,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 5000,
     slidesToShow: 1,
     slidesToScroll: 1,
     initialSlide: 0,
@@ -61,7 +61,7 @@ const MainBanner = () => {
           <h3 className="title-banner">
             <span className="main-color">
               <Typed
-                strings={["The most user-friendly and trusted^1500\n"]}
+                strings={["Welcome to^1500\n"]}
                 typeSpeed={50}
                 backSpeed={0}
                 backDelay={1}
@@ -72,7 +72,7 @@ const MainBanner = () => {
             </span>{" "}
             <br />
             <Typed
-              strings={["decentralized development platform.^500\n"]}
+              strings={["Linked Finance World.^500\n"]}
               typeSpeed={70}
               backSpeed={0}
               backDelay={1}
@@ -82,8 +82,8 @@ const MainBanner = () => {
             />
           </h3>
           <p className="desc">
-            Strengths we can create new payouts in transactions with the benefits of speed, cost, quality, reliability
-            and safety in the DeFi space!
+            A Leading Universal Decentralized Exchange to Accelerate Massive Adoption in
+            GameFi, Metaverse, and DeFi from both Users and Creators
           </p>
 
         </div>
@@ -118,7 +118,7 @@ const MainBanner = () => {
                 </div>
                 <div className="text">
                   <p className="desc">The Lowest Trade Fee in the DeFi Space</p>
-                  <p className="number">0.1%</p>
+                  <p className="number">0.22%</p>
                 </div>
               </li>
               <li>
@@ -149,8 +149,30 @@ const MainBanner = () => {
     <div className="main-banner cus">
       <div className="all">
         <div className="content-banner-top content-banner-top2">
-          <h3 className="title-banner">Welcome to linked Finance World</h3>
-          <p className="desc color-fff">
+          <h3 className="title-banner">
+            <span className="main-color">
+              <Typed
+                strings={["Welcome to^1500\n"]}
+                typeSpeed={50}
+                backSpeed={0}
+                backDelay={1}
+                fadeOut
+                loop
+                smartBackspace
+              />
+            </span>{" "}
+            <br />
+            <Typed
+              strings={["Linked Finance World.^500\n"]}
+              typeSpeed={70}
+              backSpeed={0}
+              backDelay={1}
+              fadeOut
+              loop
+              smartBackspace
+            />
+          </h3>
+          <p className="desc">
             Linked Finance World is a leading universal Decentralized Exchange which drives massive adoptions in GameFi, Metaverse and many other blockchain technology project.
           </p>
         </div>

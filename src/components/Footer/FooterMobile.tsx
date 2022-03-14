@@ -37,11 +37,11 @@ const FooterMobile = () => {
         <ul className="list-menu-ft h__dflex gap">
           <li>
             <div className="box-img h__dflex1">
-              <a className="h__boxIcon" href="https://t.me/artinfinityofficial" target="_blank" rel="noreferrer">
+              <a className="h__boxIcon" href="#!">
                 <i className="fa fa-paper-plane h__customIcon" aria-hidden="true" />
               </a>
 
-              <a className="h__boxIcon" href="https://twitter.com/artinfinitynft" target="_blank" rel="noreferrer">
+              <a className="h__boxIcon" href="#!">
                 <i className="fab fa-twitter h__customIcon" aria-hidden="true" />
               </a>
 
@@ -49,7 +49,7 @@ const FooterMobile = () => {
                 <i className="fab fa-youtube h__customIcon" aria-hidden="true" />
               </a>
 
-              <a className="h__boxIcon" href="https://medium.com/@ARTINFINITY" target="_blank" rel="noreferrer">
+              <a className="h__boxIcon" href="#!">
                 <i className="fab fa-medium-m h__customIcon" aria-hidden="true" />
               </a>
             </div>
@@ -57,7 +57,7 @@ const FooterMobile = () => {
 
           <li>
             <button type="button" className="btn-contact h__btnContact">
-              <a href="https://t.me/artinfinityofficial" target="_blank" rel="noreferrer">
+              <a href="#!">
                 <i className="fa fa-paper-plane h__customIcon2" aria-hidden="true" />
                 Contact us
               </a>
