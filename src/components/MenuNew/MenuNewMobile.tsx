@@ -1,31 +1,32 @@
-import React, {  useState } from 'react'
-import { Link } from 'react-router-dom'
-import { Drawer, Button, Collapse } from 'antd'
-import 'antd/dist/antd.css'
-import UnlockButton from '../ConnectWalletButton'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Drawer, Button, Collapse } from "antd";
+import "antd/dist/antd.css";
+import UnlockButton from "../ConnectWalletButton";
 
-import { ReactComponent as IconIdo } from '../../images/img/IDO.svg'
+import { ReactComponent as IconIdo } from "../../images/img/IDO.svg";
 
 function MenuNewMobile() {
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
   const showDrawer = () => {
-    setVisible(true)
-  }
+    setVisible(true);
+  };
   const onClose = () => {
-    setVisible(false)
-  }
-  const { Panel } = Collapse
+    setVisible(false);
+  };
+  const { Panel } = Collapse;
 
   function callback(key) {
-    console.log(key)
+    console.log(key);
   }
+
   const trade = (
     <>
       <div className="header-collapse">
         <img src="/images/trade.png" alt="" /> <span>Trade</span>
       </div>
     </>
-  )
+  );
   const home = (
     <>
       <Link to="/Dashboard">
@@ -34,47 +35,52 @@ function MenuNewMobile() {
         </div>
       </Link>
     </>
-  )
+  );
   const earns = (
     <>
       <div className="header-collapse">
         <img src="/images/coin.png" alt="" /> <span>Earns</span>
       </div>
     </>
-  )
+  );
   const nft = (
     <>
       <div className="header-collapse">
         <img src="/images/shop.png" alt="" /> <span>NFT</span>
       </div>
     </>
-  )
+  );
   const game = (
     <>
       <div className="header-collapse">
         <img src="/images/iconGame1N.png" alt="" /> <span>Game</span>
       </div>
     </>
-  )
+  );
 
   const ido = (
     <>
-        <>
-      <Link to="/IDO">
-        <div className="header-collapse">
-          <IconIdo className='css-icon-home' /> <span className="text-home">IDO</span>
-        </div>
-      </Link>
+      <>
+        <Link to="/coming-soon">
+          <div className="header-collapse">
+            <IconIdo className="css-icon-home" /> <span className="text-home">Launchpad</span>
+          </div>
+        </Link>
+      </>
     </>
-    </>
-  )
-  const docs = (
+  );
+  const about = (
     <>
-      <div className="header-collapse">
-        <img src="/images/icon-menu.png" alt="" />
-      </div>
+      <>
+        <a href="https://docsend.com/view/45icxw8ga4kqkzwr" rel="noreferrer" target="_blank">
+          <div className="header-collapse">
+            <span className="text-home">About</span>
+          </div>
+        </a>
+      </>
     </>
-  )
+  );
+
   const menuTrade = (
     <>
       <ul>
@@ -86,83 +92,53 @@ function MenuNewMobile() {
         </Link>
       </ul>
     </>
-  )
-  const menuHome = (
-    <>
-      <ul>
-        <Link to="/swap">
-          <li>Home</li>
-        </Link>
-      </ul>
-    </>
-  )
+  );
 
-  const menuIdo = (
-    <>
-      <ul>
-        <Link to="/swap">
-          <li>Home</li>
-        </Link>
-      </ul>
-    </>
-  )
   const menuEarn = (
     <>
       <ul>
         <li>
-          <a href="https://stake.artinfinity.app/#/"> Start Pools </a>
+          <Link to="/coming-soon">Staking Pools </Link>
         </li>
         <li>
-          <a href="https://stake.artinfinity.app/#/Farms">Farms</a>
+          <Link to="/coming-soon">Farms</Link>
+        </li>
+        <li>
+          <Link to="/coming-soon">Launchpad Pools</Link>
         </li>
       </ul>
     </>
-  )
+  );
   const menuNFT = (
     <>
       <ul>
-        <Link to="/NFTmarket">
+        <Link to="/coming-soon">
           <li>NFT Markets</li>
         </Link>
-        <Link to="/collections">
+        <Link to="/coming-soon">
           <li>My Collections</li>
         </Link>
-        <Link to="/stakeNFT">
+        <Link to="/coming-soon">
           <li>Stake NFT</li>
         </Link>
-        <Link to="/mintNFT">
+        <Link to="/coming-soon">
           <li>Mint NFT</li>
         </Link>
       </ul>
     </>
-  )
+  );
   const menuGame = (
     <>
       <ul>
-        <Link to="/Introduction">
+        <Link to="/coming-soon">
           <li>Introduction</li>
         </Link>
-        <Link to="/#!">
+        <Link to="/coming-soon">
           <li>Mystery Box</li>
         </Link>
-        <a
-          href="https://docs.artinfinity.app/atf/core-products/gamefi/phase-1-play-to-earn-on-the-web"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <li>Play&Earn</li>
-        </a>
-
-        <a
-          href="https://docs.artinfinity.app/atf/core-products/gamefi/phase-3-metaverse"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <li>Metaverse</li>
-        </a>
       </ul>
     </>
-  )
+  );
   const menuDocs = (
     <>
       <ul>
@@ -180,10 +156,10 @@ function MenuNewMobile() {
         </Link>
       </ul>
     </>
-  )
+  );
   const contentMenuMoblie = (
     <>
-      <Collapse defaultActiveKey={['0']} onChange={callback}>
+      <Collapse defaultActiveKey={["0"]} onChange={callback}>
         {home}
         <Panel header={trade} key="1">
           <p>{menuTrade}</p>
@@ -198,12 +174,7 @@ function MenuNewMobile() {
           <p>{menuGame}</p>
         </Panel>
         {ido}
-        {/* <Panel header={ido} key="5">
-          <p>{''}</p>
-        </Panel> */}
-        <Panel header={docs} key="6">
-          <p>{menuDocs}</p>
-        </Panel>
+        {about}
       </Collapse>
       <div className="footer-menu">
         <div className="box-footer-menu">
@@ -231,7 +202,7 @@ function MenuNewMobile() {
         </div>
       </div>
     </>
-  )
+  );
   return (
     <>
       <div className="main-header-mobile">
@@ -246,7 +217,7 @@ function MenuNewMobile() {
           </div>
           <Link to="/Dashboard">
             <div className="main-logo">
-              <img src="/images/logo-m.png" alt="" />
+              <img src="/images/logo-m.png" width="50" height="50" alt="" />
             </div>
           </Link>
         </div>
@@ -257,6 +228,7 @@ function MenuNewMobile() {
         </div>
       </div>
     </>
-  )
+  );
 }
-export default MenuNewMobile
+
+export default MenuNewMobile;

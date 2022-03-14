@@ -104,13 +104,15 @@ const MenuNew = () => {
                   Earns
                   <div className="submenu-nav">
                     <ul>
-                      <a href="https://stake.artinfinity.app/#/">
-                        <li>Start Pools </li>
-                      </a>
-
-                      <a href="https://stake.artinfinity.app/#/Farms">
+                      <Link to="/coming-soon">
+                        <li>Staking Pools</li>
+                      </Link>
+                      <Link to="/coming-soon">
                         <li>Farms</li>
-                      </a>
+                      </Link>
+                      <Link to="/coming-soon">
+                        <li>Launchpad Pools</li>
+                      </Link>
                     </ul>
                   </div>
                 </li>
@@ -122,18 +124,18 @@ const MenuNew = () => {
                   NFT
                   <div className="submenu-nav">
                     <ul>
-                      <Link to="/NFTmarket">
+                      <Link to="/coming-soon">
                         <li>NFT Markets</li>
                       </Link>
 
-                      <Link to="/collections">
+                      <Link to="/coming-soon">
                         <li>My Collections</li>
                       </Link>
 
-                      <Link to="/stakeNFT">
+                      <Link to="/coming-soon">
                         <li>Stake NFT</li>
                       </Link>
-                      <Link to="/mintNFT">
+                      <Link to="/coming-soon">
                         <li>Mint NFT</li>
                       </Link>
                     </ul>
@@ -147,40 +149,24 @@ const MenuNew = () => {
                   GameFi
                   <div className="submenu-nav">
                     <ul>
-                      <Link to="/Introduction">
+                      <Link to="/coming-soon">
                         <li>Introduction</li>
                       </Link>
 
-                      <Link to="#!">
+                      <Link to="/coming-soon">
                         <li>Mystery Box</li>
                       </Link>
-
-                      <a
-                        href="https://docs.artinfinity.app/atf/core-products/gamefi/phase-1-play-to-earn-on-the-web"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <li>Play&Earn</li>
-                      </a>
-
-                      <a
-                        href="https://docs.artinfinity.app/atf/core-products/gamefi/phase-3-metaverse"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <li>Metaverse</li>
-                      </a>
                     </ul>
                   </div>
                 </li>
 
-                <Link to="/IDO">
+                <Link to="/coming-soon">
                   <li>
                     <div className="h__customLogoTrade">
                       <IconIdo />
                       <IconIdo />
                     </div>
-                    IDO
+                    Launchpad
                   </li>
                 </Link>
 
@@ -192,11 +178,14 @@ const MenuNew = () => {
                   Metaverse
                   <div className="submenu-nav">
                     <ul>
-                      <Link to="/Introduction">
+                      <Link to="/coming-soon">
                         <li>Introduction</li>
                       </Link>
                     </ul>
                   </div>
+                </li>
+                <li>
+                  <a href="https://docsend.com/view/45icxw8ga4kqkzwr" rel="noreferrer" target="_blank">About</a>
                 </li>
               </ul>
             </div>

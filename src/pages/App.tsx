@@ -17,7 +17,6 @@ import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
 import Swap from './Swap'
 import Dashboard from './Dashboard'
-import LaunchpadV3 from './LaunchpadV3'
 import Transactions from './Transactions'
 import Maintenance from '../components/Maintenance/index'
 import NftDetail from './NftDetail'
@@ -41,6 +40,7 @@ import ToTop from '../components/ToTop'
 import './App.less'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Bridge from './Bridge'
+import ComingSoon from "./CommingSoon";
 
 const Nft = React.lazy(() => import('./Nft_new'))
 const MyArtworks = React.lazy(() => import('./MyArtworks'))
@@ -192,6 +192,7 @@ export default function App() {
                       <Switch>
                         <Route exact strict path="/Dashboard" component={Dashboard} />
                         <Route exact strict path="/swap" component={Swap} />
+                        <Route exact strict path="/coming-soon" component={ComingSoon} />
                         <Route exact strict path="/find" component={PoolFinder} />
                         <Route exact strict path="/pool" component={Pool} />
                         <Route exact strict path="/bridge" component={Bridge} />
@@ -208,8 +209,6 @@ export default function App() {
                           component={RedirectOldRemoveLiquidityPathStructure}
                         />
                         <Route exact strict path="/NFTmarket" component={Nft} />
-                        {/* <Route exact strict path="/launchpad" component={Ido} />
-                        <Route exact strict path="/launchpad/:ownerAddress/:id" component={LaunchpadDetail} /> */}
                         <Route exact strict path="/IDO" component={Ido} />
                         <Route exact strict path="/launchpad/:ownerAddress/:id" component={LaunchpadDetail} />
                         {/* <Route exact strict path="/LaunchpadV3/:ownerAddress/:id" component={LaunchpadV3Detail} /> */}
