@@ -94,7 +94,7 @@ function MenuNewMobile() {
     <>
       <ul>
         <a href="https://docsend.com/view/45icxw8ga4kqkzwr" rel="noreferrer" target="_blank">
-          <li>Pitch Peck</li>
+          <li>Pitch Deck</li>
         </a>
       </ul>
     </>
