@@ -101,27 +101,21 @@ const Footer = () => {
                         <h3 className="title">About</h3>
                         <ul className="list-menu-ft">
                           <a
-                            href="https://docs.artinfinity.app/welcome-to-artinfinity/"
-                            target="_blank"
-                            rel="noreferrer"
+                            href="#!"
                           >
                             <li>Docs</li>
                           </a>
                           <a
-                            href="https://docs.artinfinity.app/welcome-to-artinfinity/team/our-team"
-                            target="_blank"
-                            rel="noreferrer"
+                            href="#!"
                           >
                             <li>Team</li>
                           </a>
                           <a
-                            href="https://docs.artinfinity.app/welcome-to-artinfinity/roadmap"
-                            target="_blank"
-                            rel="noreferrer"
+                            href="#!"
                           >
                             <li>Roadmap</li>
                           </a>
-                          <a href="https://github.com/legendfantasywar" target="_blank" rel="noreferrer">
+                          <a href="#!">
                             <li>Github</li>
                           </a>
                         </ul>
@@ -137,13 +131,13 @@ const Footer = () => {
                           <Link to="/pool">
                             <li>Add liquidity</li>
                           </Link>
-                          <a href="https://stake.artinfinity.app/#/">
+                          <a href="#!">
                             <li>Start Pools</li>
                           </a>
-                          <a href="https://stake.artinfinity.app/#/Farms">
+                          <a href="#!">
                             <li>Farms</li>
                           </a>
-                          <Link to="/NFTmarket">
+                          <Link to="/coming-soon">
                             <li>NFT Market</li>
                           </Link>
                         </ul>
@@ -154,17 +148,13 @@ const Footer = () => {
                         <h3 className="title">Developer</h3>
                         <ul className="list-menu-ft">
                           <a
-                            href="https://docs.artinfinity.app/welcome-to-artinfinity/core-products/gamefi"
-                            target="_blank"
-                            rel="noreferrer"
+                            href="#!"
                           >
                             <li>GameFi</li>
                           </a>
 
                           <a
-                            href="https://docs.artinfinity.app/welcome-to-artinfinity/core-products/gamefi/phase-3-metaverse"
-                            target="_blank"
-                            rel="noreferrer"
+                            href="#!"
                           >
                             <li>Metaverse</li>
                           </a>
@@ -178,19 +168,13 @@ const Footer = () => {
                           <li>
                             <div className="box-img">
                               <a
-                                className="h__boxIcon"
-                                href="https://t.me/artinfinityofficial"
-                                target="_blank"
-                                rel="noreferrer"
+                                href="#!"
                               >
                                 <i className="fa fa-paper-plane h__customIcon" aria-hidden="true" />
                               </a>
 
                               <a
-                                className="h__boxIcon"
-                                href="https://twitter.com/artinfinitynft"
-                                target="_blank"
-                                rel="noreferrer"
+                                href="#!"
                               >
                                 <i className="fab fa-twitter h__customIcon" aria-hidden="true" />
                               </a>
@@ -200,10 +184,7 @@ const Footer = () => {
                               </a>
 
                               <a
-                                className="h__boxIcon"
-                                href="https://medium.com/@ARTINFINITY"
-                                target="_blank"
-                                rel="noreferrer"
+                                href="#!"
                               >
                                 <i className="fab fa-medium-m h__customIcon" aria-hidden="true" />
                               </a>
@@ -214,7 +195,7 @@ const Footer = () => {
                           </li>
                           <li>
                             <button type="button" className="btn-contact h__btnContact">
-                              <a href="https://t.me/artinfinityofficial" target="_blank" rel="noreferrer">
+                              <a href="#!">
                                 <i className="fa fa-paper-plane h__customIcon2" aria-hidden="true" />
                                 Contact us
                               </a>
@@ -228,7 +209,7 @@ const Footer = () => {
               </div>
             )}
           </div>
-          <div className="copy-right">Copyright © 2021 artinfinity.app All Rights Reserved</div>
+          <div className="copy-right">Copyright © 2021 linkedfinanceworld.app All Rights Reserved</div>
         </div>
       </div>
     </>

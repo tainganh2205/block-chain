@@ -50,6 +50,13 @@ function MenuNewMobile() {
       </div>
     </>
   );
+  const about = (
+    <>
+      <div className="header-collapse">
+        <span className="text-home">About</span>
+      </div>
+    </>
+  );
   const game = (
     <>
       <div className="header-collapse">
@@ -69,17 +76,6 @@ function MenuNewMobile() {
       </>
     </>
   );
-  const about = (
-    <>
-      <>
-        <a href="https://docsend.com/view/45icxw8ga4kqkzwr" rel="noreferrer" target="_blank">
-          <div className="header-collapse">
-            <span className="text-home">About</span>
-          </div>
-        </a>
-      </>
-    </>
-  );
 
   const menuTrade = (
     <>
@@ -94,11 +90,21 @@ function MenuNewMobile() {
     </>
   );
 
+  const menuAbout = (
+    <>
+      <ul>
+        <a href="https://docsend.com/view/45icxw8ga4kqkzwr" rel="noreferrer" target="_blank">
+          <li>Pitch Peck</li>
+        </a>
+      </ul>
+    </>
+  );
+
   const menuEarn = (
     <>
       <ul>
         <li>
-          <Link to="/coming-soon">Staking Pools </Link>
+          <Link to="/coming-soon">Staking Pools</Link>
         </li>
         <li>
           <Link to="/coming-soon">Farms</Link>
@@ -174,7 +180,9 @@ function MenuNewMobile() {
           <p>{menuGame}</p>
         </Panel>
         {ido}
-        {about}
+        <Panel header={about} key="5">
+          <p>{menuAbout}</p>
+        </Panel>
       </Collapse>
       <div className="footer-menu">
         <div className="box-footer-menu">
