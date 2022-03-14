@@ -14,14 +14,6 @@
   ],
   "tokens": [
     {
-      "name": "CAKE",
-      "symbol": "CAKE",
-      "address": "0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82",
-      "chainId": 56,
-      "decimals": 18,
-      "logoURI": "/images/coins/CAKE.png"
-    },
-    {
       "name": "BUSD Token",
       "symbol": "BUSD",
       "address": "0xe9e7cea3dedca5984780bafc599bd69add087d56",
@@ -33,6 +25,22 @@
       "name": "BUSD Token",
       "symbol": "BUSD",
       "address": "0x615446C0Fd5eA8A5FD7fb763f3FC2C58774474F3",
+      "chainId": 97,
+      "decimals": 18,
+      "logoURI": "/images/coins/BTC.png"
+    },
+    {
+      "name": "LFW Token",
+      "symbol": "LFW",
+      "address": "0xD71239a33C8542Bd42130c1B4ACA0673B4e4f48B",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/BUSD.png"
+    },
+    {
+      "name": "LFW Token",
+      "symbol": "LFW",
+      "address": "0x5a5A4F6E025F7896c7801b0b378495a513f49cD2",
       "chainId": 97,
       "decimals": 18,
       "logoURI": "/images/coins/BTC.png"
