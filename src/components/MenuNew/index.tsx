@@ -17,6 +17,7 @@ import { ReactComponent as GameIcon } from '../../images/img/Game.svg'
 import { ReactComponent as GameIcon1 } from '../../images/img/Game1.svg'
 import { ReactComponent as MetaverseIcon } from '../../images/img/metaverse.svg'
 import { ReactComponent as IconMenu } from '../../images/img/Menu.svg'
+import { ReactComponent as IconLFW } from '../../images/img/MenuLFW.svg'
 import { useFetchWithCache } from "../../hooks/useFetchWithCache";
 import { client, GET_PATHS } from "../../utils/apis";
 import { formatCurrency } from "../../utils";
@@ -73,6 +74,7 @@ const MenuNew = () => {
                 <div className="d-flex align-items-center">
                   <IconMenu className="IconText" />
                   {/* <IconAtc className="Icon" /> */}
+                  <IconLFW className="Icon" />
                 </div>
               </Link>
             </div>
