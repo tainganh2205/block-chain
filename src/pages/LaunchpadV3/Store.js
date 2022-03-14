@@ -5,11 +5,6 @@ import axios from 'axios'
 import { createStore, createHook, createContainer, createSubscriber } from 'react-sweet-state'
 
 import { API_NFT, TOKEN_BSCS, BSCSCAN_APIKEY, BSCSCAN_API_MAINNET } from 'constants/index'
-import { set } from 'lodash'
-
-const headersConfig = {
-  'Content-Type': 'application/json',
-}
 
 const StoreProjects = createStore({
   initialState: {
@@ -76,7 +71,7 @@ const StoreProjects = createStore({
       try {
          await axios.post(`${API_NFT}/launchpad/ended_idos`,params).then((res)=>{
           const { data: { data } } = res
-          setState({ idoListEnd: data || [] })  
+          setState({ idoListEnd: data || [] })
           for(let i=0;i<data.length;i++){
             if(data[i].referenceId !== null && data[i].referenceId !== ""){
               setState({listIdIdo: getState().listIdIdo + data[i].referenceId+ ','})
@@ -98,10 +93,10 @@ const StoreProjects = createStore({
                       params: paramsCoingecko,
                     }).then((res1)=>{
               setState({listPrice : res1.data})
-            })             
+            })
           }
         })
-        
+
       } catch (err) {
         // TODO
       }
@@ -128,14 +123,14 @@ const StoreProjects = createStore({
               sparkline: false,
               price_change_percentage: "24h",
             };
-  
+
             if(getState().listIdIdo !== ''){
               axios
                   .get("https://api.coingecko.com/api/v3/coins/markets", {
                         params: paramsCoingecko,
                       }).then((res1)=>{
                 setState({listPrice : res1.data})
-              })             
+              })
             }
             resolve(data)
           })
@@ -175,7 +170,7 @@ const StoreProjects = createStore({
     },
     getScheduleJoined: (params) => async ({ setState }) => {
       try {
-        const res = await axios.post(`${API_NFT}/launchpad/claim_calendar`, params) 
+        const res = await axios.post(`${API_NFT}/launchpad/claim_calendar`, params)
         const { data: { data } } = res
         setState({ idoListScheduleJoined: data || [] })
       } catch (err) {

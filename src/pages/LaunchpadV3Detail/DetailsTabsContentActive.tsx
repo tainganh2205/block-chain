@@ -53,6 +53,7 @@ const ItemIdo = ({ x, network }) => {
   const scClaimAddress = x.allocation && x.allocation.claimContract
   const claimContract = useContract(scClaimAddress, abiClaimOneButton)
   const scJoinAddress = x.allocation && x.allocation.joinContract
+  console.log('scJoinAddress',scJoinAddress);
   const joinPoolContract = useContract(scJoinAddress, abiJoinPool)
 
   const daily_obj = x.allocation && x.allocation.claimbles.find((f) => f.claimRound === 100)
@@ -556,6 +557,7 @@ const ItemIdo = ({ x, network }) => {
 
 const DetailsTabsContentActive = (props): any => {
   const { activeDetail } = props
+  console.log('activeDetail',activeDetail);
   useState<
     Array<{
       checkJoin: boolean
