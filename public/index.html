@@ -47,6 +47,85 @@ GameFi, Metaverse, and DeFi from both Users and Creators" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontSize: {
+            8: '0.5rem',
+            xxs: '0.625rem',
+            12: '0.75rem',
+            30: '1.875rem',
+            32: '2rem',
+            40: '2.5rem',
+          },
+          boxShadow: {
+            card: '4px 4px 10px rgba(0, 0, 0, 0.15)',
+            'hero-card': 'inset 0px 3px 3px rgba(255, 255, 255, 0.05)',
+          },
+          width: {
+            15: '3.75rem',
+          },
+          colors: {
+            primary: '#17ADBD',
+            white: '#ffffff',
+            black: '#121316',
+            gray: {
+              100: '#FFFDFD',
+              200: '#C4C4C4',
+              300: '#B5B5B5',
+              350: '#73797A',
+              400: '#3D3E44',
+              500: '#494B58',
+              550: '#505050',
+              600: '#2D3030',
+              650: '#272C35',
+              700: '#262832',
+              800: '#212227',
+              900: '#121316',
+            },
+            green: {
+              400: '#38FFA0',
+              650: '#40BA7F',
+              700: '#284E41',
+              800: '#134148',
+            },
+            red: {
+              600: '#FA4464',
+              800: '#A43F3F',
+            },
+            yellow: {
+              600: '#C0A123',
+              800: '#F4A013',
+            },
+            violet: {
+              500: '#92327D',
+            },
+            blue: {
+              500: '#467CB0',
+            },
+            orange: {
+              500: '#AB5B2E',
+            },
+          },
+          cursor: {
+            default: "url('/img/cursor-default.png') 8 8, auto !important",
+            pointer: "url('/img/cursor-pointer.png') 8 8, auto !important",
+            text: "url('/img/caret.png') 8 8, auto !important",
+            grab: "url('/img/cursor-grab.png') 8 8, auto !important",
+            grabbing: "url('/img/cursor-grabbing.png') 8 8, auto !important",
+            'not-allowed': "url('/img/cursor-nodrop.png') 8 8, auto !important",
+          },
+        },
+      },
+      variants: {
+        extend: {
+          borderWidth: ['last'],
+        },
+      },
+    }
+  </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0KTF9SP1S7"></script>
   <script>
     window.dataLayer = window.dataLayer || [];

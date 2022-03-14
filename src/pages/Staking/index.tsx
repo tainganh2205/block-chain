@@ -109,18 +109,9 @@ const InnerRender = () => {
     ]
   }, [allPools, isLoading, error, refetchUserData])
 
-  const totalValueLocked = useMemo(() => {
-    const pools = poolsFromBE?.data ?? []
-    if (!pools || pools.length === 0) return 0
-    return pools.reduce((prev, pool) => {
-      const totalValueLockedUSD =
-        (pool.token?.priceUSD ?? 0) * (pool?.totalStaked ?? 0)
-      return prev + totalValueLockedUSD
-    }, 0)
-  }, [poolsFromBE])
 
   return (
-    <div className="max-w-[1160px] mx-auto px-5 sm:py-10 py-6 space-y-6">
+    <div className="w-75 max-w-[1160px] mx-auto px-5 sm:py-10 py-6 space-y-6">
       <SwitchTabs tabs={tabsData} />
     </div>
   )

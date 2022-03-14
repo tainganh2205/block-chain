@@ -32,6 +32,7 @@ import { PoolStatus } from 'types/common'
 import { EnableContractButton } from './EnableContractButton'
 import { TokenLogo } from './TokenLogo'
 import { ReactComponent as IconMetaMask } from './svg/metamask.svg'
+import ConnectWalletButton from "../ConnectWalletButton";
 
 export interface PoolGridCardProps {
   isConnected?: boolean
@@ -144,12 +145,7 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
   const buttonsSection = useMemo(() => {
     if (!isConnected) {
       return (
-        <Button
-          className="w-full max-w-[185px] mt-10 mb-6 mx-auto"
-          onClick={onConnectWallet}
-        >
-          Connect wallet
-        </Button>
+        <ConnectWalletButton  />
       )
     }
     if (!isEnabledContract) {

@@ -4,6 +4,9 @@ import { useAuthContext } from 'context/auth'
 import { PoolGridCard } from 'components/PoolCard'
 import { noop } from '@dwarvesf/react-utils'
 import { PoolInfo, PoolStatus } from 'types/common'
+import { useWeb3React } from "@web3-react/core";
+import { ConnectorId, useWalletModal } from "@artechain/uikit";
+import { injected, walletconnect } from "../../../../connectors";
 
 interface PoolItemContainerProps {
   poolInfo: PoolInfo
@@ -27,8 +30,7 @@ export function PoolItemContainer({
     unstakingBlock,
     isEnded,
   } = poolInfo
-
-  // const { isWalletConnected, openWalletModal } = useAuthContext()
+  const { account: isWalletConnected, activate, deactivate } = useWeb3React()
 
   const poolStatus = useMemo(() => {
     let status: PoolStatus = 'UNDETERMINED'
@@ -46,10 +48,10 @@ export function PoolItemContainer({
   const refreshData = useCallback(() => {
     refetchUserData()
   }, [refetchUserData])
-
+  console.log(isWalletConnected);
   return (
     <PoolGridCard
-      // isConnected={isWalletConnected}
+      isConnected={!!isWalletConnected}
       // onConnectWallet={openWalletModal}
       poolInfo={poolInfo}
       isEnabledContract={isEnabledContract}
