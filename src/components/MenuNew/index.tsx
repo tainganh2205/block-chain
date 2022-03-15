@@ -126,18 +126,18 @@ const MenuNew = () => {
                   NFT
                   <div className="submenu-nav">
                     <ul>
-                      <Link to="/coming-soon">
+                      <Link to="/NFTmarket">
                         <li>NFT Markets</li>
                       </Link>
 
-                      <Link to="/coming-soon">
+                      <Link to="/collections">
                         <li>My Collections</li>
                       </Link>
 
-                      <Link to="/coming-soon">
+                      <Link to="/stakeNFT">
                         <li>Stake NFT</li>
                       </Link>
-                      <Link to="/coming-soon">
+                      <Link to="/mintNFT">
                         <li>Mint NFT</li>
                       </Link>
                     </ul>
@@ -162,7 +162,7 @@ const MenuNew = () => {
                   </div>
                 </li>
 
-                <Link to="/coming-soon">
+                <Link to="/IDO">
                   <li>
                     <div className="h__customLogoTrade">
                       <IconIdo />
@@ -180,7 +180,7 @@ const MenuNew = () => {
                   Metaverse
                   <div className="submenu-nav">
                     <ul>
-                      <Link to="/coming-soon">
+                      <Link to="/Introduction">
                         <li>Introduction</li>
                       </Link>
                     </ul>
