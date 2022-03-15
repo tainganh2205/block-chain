@@ -29,7 +29,7 @@ export function getProviderOrSigner(
   return account ? getSigner(library, account) : library
 }
 
-export const simpleRpcProvider = new StaticJsonRpcProvider(process.env.RPC_URL)
+export const simpleRpcProvider = new StaticJsonRpcProvider(process.env.REACT_APP_RPC_URL)
 
 export function getContract<T extends Contract>(
   abi: any,

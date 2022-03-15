@@ -15,7 +15,7 @@ export const GAS_PRICE_GWEI = {
  * @returns https://docs.ethers.io/v5/api/providers/types/#providers-TransactionReceipt
  */
 export function useCallWithGasPrice() {
-  const chainId = process.env.SUPPORTED_CHAIN_ID as string
+  const chainId = process.env.REACT_APP_SUPPORTED_CHAIN_ID as string
   const gasPrice =
     parseInt(chainId, 10) === SupportedChainId.MAINNET
       ? GAS_PRICE_GWEI.default
