@@ -11,7 +11,7 @@ axios.interceptors.request.use(
       return config
     }
     const cookies = new Cookies()
-    config.headers['BSCS-Token-Authentication'] = cookies.get('user') || null
+    config.headers['Token-Authentication'] = cookies.get('user') || null
     return config
   },
   function (error) {
