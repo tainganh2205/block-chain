@@ -2772,7 +2772,7 @@ span.decs-info {
 button:disabled,
 button[disabled] {
   /* border: 1px solid #999999; */
-  background-color: rgb(245, 200, 34);
+  /*background-color: rgb(245, 200, 34);*/
   color: #626262;
   cursor: not-allowed;
 }

@@ -48,7 +48,7 @@ export function PoolItemContainer({
   const refreshData = useCallback(() => {
     refetchUserData()
   }, [refetchUserData])
-  console.log(isWalletConnected);
+
   return (
     <PoolGridCard
       isConnected={!!isWalletConnected}
