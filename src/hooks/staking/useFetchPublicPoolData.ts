@@ -62,7 +62,6 @@ export const useFetchPublicPoolsData = (pools?: HandlerStakingInfo[]) => {
       const blockLimits = await fetchPoolBlockLimits(pools ?? [])
       const unstakingBlocks = await fetchPoolUnstakingBlock(pools ?? [])
       const curBlock = await simpleRpcProvider.getBlockNumber()
-      console.log('data',blockLimits);
       const poolData = (pools ?? []).map((pool) => {
         const blockLimit = blockLimits[pool.poolAddress as string]
         return {

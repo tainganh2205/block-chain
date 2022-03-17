@@ -2,10 +2,10 @@ import { HandlerStakingInfoResponse } from 'types/schema'
 
 import fetcher from './fetcher'
 
-export const BASE_URL = process.env.REACT_APP_BASE_URL
+export const BASE_URL = process.env.REACT_APP_API_URL
 
 export const GET_PATHS = {
-  getStakingInfo: '/v1/gem-center/staking-info',
+  getStakingInfo: '/v1/staking',
 }
 
 class Client {
@@ -52,7 +52,7 @@ class Client {
 
   getStakingInfo() {
     return fetcher<Required<HandlerStakingInfoResponse>>(
-      `${BASE_URL}/v1/gem-center/staking-info`,
+      `${BASE_URL}/v1/staking`,
       {
         headers: this.headers,
       },

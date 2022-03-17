@@ -30,6 +30,7 @@ export function PoolItemContainer({
     unstakingBlock,
     isEnded,
   } = poolInfo
+
   const { account: isWalletConnected, activate, deactivate } = useWeb3React()
 
   const poolStatus = useMemo(() => {

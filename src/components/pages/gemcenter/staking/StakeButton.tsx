@@ -31,15 +31,15 @@ interface StakeButtonProps {
 }
 
 export const StakeButton = ({
-  onSuccess,
-  stakedBalance,
-  tokenBalance,
-  poolStatus = 'UNDETERMINED',
-  poolAddress,
-  tokenAddress,
-  tokenSymbol,
-  tokenUrl,
-}: StakeButtonProps) => {
+                              onSuccess,
+                              stakedBalance,
+                              tokenBalance,
+                              poolStatus = 'UNDETERMINED',
+                              poolAddress,
+                              tokenAddress,
+                              tokenSymbol,
+                              tokenUrl,
+                            }: StakeButtonProps) => {
   const [spend, setSpend] = useState(0)
   const { isOpen, onClose, onOpen } = useDisclosure()
 
@@ -47,7 +47,7 @@ export const StakeButton = ({
     useStakeContext()
   // stake
   const { callWithGasPrice } = useCallWithGasPrice()
-  const poolContract = usePoolContract("0xAC6F29565AE098aBEeda221C6B09ae957656E450")
+  const poolContract = usePoolContract(poolAddress)
   const { addTransaction } = useTransactionContext()
   const {
     isOpen: isConfirmOpen,
@@ -76,14 +76,12 @@ export const StakeButton = ({
   const handleStake = async () => {
     setApproved(false)
     try {
-      // onClose()
-      // await wait(200)
-      // onConfirmOpen()
-      console.log('zooo',inputNumberToBigNumber(spend).toString());
+      onClose()
+      await wait(200)
+      onConfirmOpen()
       const tx = await callWithGasPrice(poolContract!.deposit, [
         inputNumberToBigNumber(spend).toString(),
       ])
-      console.log('tx',tx);
       setIsStaking(true)
       setApproved(true)
       addTransaction(tx.hash, {
@@ -105,7 +103,6 @@ export const StakeButton = ({
         })
       }
     } catch (error) {
-      console.log('error',error);
       handleTransactionError('Stake error', error, [
         inputNumberToBigNumber(spend).toString(),
       ])
@@ -126,17 +123,17 @@ export const StakeButton = ({
 
   return (
     <>
-      {!stakedBalance.gt(0) ? (
+      {stakedBalance.gt(0) ? (
         <Button
           className="flex-1 mr-2"
           isLoading={isStaking}
           onClick={handleStakeClick}
-          // disabled={
-          //   isUnstaking ||
-          //   isHarvesting ||
-          //   isWithdrawing ||
-          //   poolStatus !== 'STAKING'
-          // }
+          disabled={
+            isUnstaking ||
+            isHarvesting ||
+            isWithdrawing ||
+            poolStatus !== 'STAKING'
+          }
         >
           Stake
         </Button>
@@ -145,12 +142,12 @@ export const StakeButton = ({
           className="w-full max-w-[140px]"
           isLoading={isStaking}
           onClick={handleStakeClick}
-          // disabled={
-          //   isUnstaking ||
-          //   isHarvesting ||
-          //   isWithdrawing ||
-          //   poolStatus !== 'STAKING'
-          // }
+          disabled={
+            isUnstaking ||
+            isHarvesting ||
+            isWithdrawing ||
+            poolStatus !== 'STAKING'
+          }
         >
           Stake
         </Button>

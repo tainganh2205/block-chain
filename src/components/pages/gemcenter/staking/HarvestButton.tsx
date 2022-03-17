@@ -29,7 +29,7 @@ export const HarvestButton = ({
   poolStatus,
   poolAddress,
 }: HarvestButtonProps) => {
-  const { walletId } = useAuthContext()
+  // const { walletId } = useAuthContext()
   const { isStaking, isUnstaking, isHarvesting, setIsHarvesting } =
     useStakeContext()
   // harvest
@@ -56,7 +56,7 @@ export const HarvestButton = ({
         summary: 'Harvest token',
       })
       const receipt = await tx.wait()
-      if (receipt.status && walletId) {
+      if (receipt.status) {
         onConfirmClose()
         onSuccess()
         toast.success({
