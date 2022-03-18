@@ -104,7 +104,7 @@ function MenuNewMobile() {
     <>
       <ul>
         <li>
-          <Link to="/coming-soon">Staking Pools</Link>
+          <Link to="/staking">Staking Pools</Link>
         </li>
         <li>
           <Link to="/coming-soon">Farms</Link>

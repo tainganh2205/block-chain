@@ -106,7 +106,7 @@ const MenuNew = () => {
                   Earns
                   <div className="submenu-nav">
                     <ul>
-                      <Link to="/coming-soon">
+                      <Link to="/staking">
                         <li>Staking Pools</li>
                       </Link>
                       <Link to="/coming-soon">
