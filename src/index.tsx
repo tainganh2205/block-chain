@@ -8,6 +8,7 @@ import ListsUpdater from "./state/lists/updater";
 import MulticallUpdater from "./state/multicall/updater";
 import TransactionUpdater from "./state/transactions/updater";
 import Providers from "./Providers";
+import { Toaster } from 'components/Toast'
 import "inter-ui";
 import "./i18n";
 import "./axiosClient";
@@ -25,6 +26,7 @@ window.addEventListener("error", () => {
 ReactDOM.render(
   <StrictMode>
     <Providers>
+      <Toaster />
       <TransactionProvider>
         <>
           <ListsUpdater />
