@@ -31,15 +31,15 @@ interface StakeButtonProps {
 }
 
 export const StakeButton = ({
-  onSuccess,
-  stakedBalance,
-  tokenBalance,
-  poolStatus = 'UNDETERMINED',
-  poolAddress,
-  tokenAddress,
-  tokenSymbol,
-  tokenUrl,
-}: StakeButtonProps) => {
+                              onSuccess,
+                              stakedBalance,
+                              tokenBalance,
+                              poolStatus = 'UNDETERMINED',
+                              poolAddress,
+                              tokenAddress,
+                              tokenSymbol,
+                              tokenUrl,
+                            }: StakeButtonProps) => {
   const [spend, setSpend] = useState(0)
   const { isOpen, onClose, onOpen } = useDisclosure()
 

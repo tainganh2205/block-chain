@@ -414,7 +414,7 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
                     appearance="borderless"
                     className="px-0 font-medium"
                     target="_blank"
-                    href={`${process.env.BLOCK_EXPLORER_URL}/block/countdown/${
+                    href={`${process.env.REACT_APP_BLOCK_EXPLORER_URL}/block/countdown/${
                       lastStakingBlock + feePeriod
                     }`}
                   >
@@ -437,7 +437,7 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
                     appearance="borderless"
                     className="px-0 font-medium"
                     target="_blank"
-                    href={`${process.env.BLOCK_EXPLORER_URL}/block/countdown/${unstakingBlock}`}
+                    href={`${process.env.REACT_APP_BLOCK_EXPLORER_URL}/block/countdown/${unstakingBlock}`}
                   >
                     <IconCountdown />
                   </Button>
@@ -509,7 +509,7 @@ const BlockLabel = ({
           appearance="borderless"
           className="h-auto !p-0 font-medium md:hidden"
           target="_blank"
-          href={`${process.env.BLOCK_EXPLORER_URL}/block/countdown/${block}`}
+          href={`${process.env.REACT_APP_BLOCK_EXPLORER_URL}/block/countdown/${block}`}
         >
           <IconCountdown />
         </Button>
@@ -522,7 +522,7 @@ const BlockLabel = ({
         appearance="borderless"
         className="px-0 font-medium hidden md:inline"
         target="_blank"
-        href={`${process.env.BLOCK_EXPLORER_URL}/block/countdown/${block}`}
+        href={`${process.env.REACT_APP_BLOCK_EXPLORER_URL}/block/countdown/${block}`}
       >
         <IconCountdown />
       </Button>

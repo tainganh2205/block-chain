@@ -30,6 +30,7 @@ export function PoolItemContainer({
     unstakingBlock,
     isEnded,
   } = poolInfo
+
   const { account: isWalletConnected, activate, deactivate } = useWeb3React()
 
   const poolStatus = useMemo(() => {
@@ -48,7 +49,7 @@ export function PoolItemContainer({
   const refreshData = useCallback(() => {
     refetchUserData()
   }, [refetchUserData])
-  console.log(isWalletConnected);
+
   return (
     <PoolGridCard
       isConnected={!!isWalletConnected}

@@ -29,6 +29,7 @@ const InnerRender = () => {
     isLoading: isLoadingUserData,
     refetch: refetchUserData,
   } = useFetchUserData(account as string, poolsFromBE?.data)
+
   const { data: poolsData, isLoading: isLoadingPublicData } =
     useFetchPublicPoolsData(poolsFromBE?.data)
 

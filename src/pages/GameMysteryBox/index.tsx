@@ -136,7 +136,7 @@ const Nft = memo(() => {
     >
       <HeaderStyled data-is-mobile={isMobile} className="nft-market-header">
         <div className="titleOverplay">
-          <h2 className="title">The Lords of Galaxy<br />_Mystery box</h2>
+          <h2 className="title">The Legend of Galaxy<br />_Mystery box</h2>
           <p className="sub" />
         </div>
       </HeaderStyled>

@@ -34,7 +34,7 @@ export const EnableContractButton = ({
   } = useDisclosure()
   const { callWithGasPrice } = useCallWithGasPrice()
   const contract = useERC20(tokenAddress)
-  // const { addTransaction } = useTransactionContext()
+  const { addTransaction } = useTransactionContext()
 
   const handleEnableContract = async () => {
     if (submitting) {
@@ -49,13 +49,13 @@ export const EnableContractButton = ({
       ])
       setApproved(true)
       setSubmitting(true)
-      // addTransaction(tx.hash, {
-      //   summary: 'Approve staking',
-      //   approval: {
-      //     tokenAddress,
-      //     spender: poolAddress,
-      //   },
-      // })
+      addTransaction(tx.hash, {
+        summary: 'Approve staking',
+        approval: {
+          tokenAddress,
+          spender: poolAddress,
+        },
+      })
       const receipt = await tx.wait()
       if (receipt.status) {
         onConfirmClose()

@@ -39,7 +39,7 @@ function getButtonStyles({
   if (size === 'lg') {
     classNames.push('text-base h-12 px-8')
   } else if (size === 'base') {
-    classNames.push('px-5 py-2.5 h-10 leading-6')
+    classNames.push('h-10 leading-6')
   } else {
     classNames.push('text-xs h-7 px-5')
   }

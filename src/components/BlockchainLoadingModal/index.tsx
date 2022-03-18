@@ -1,26 +1,27 @@
-import React from 'react'
+import React from "react";
 import {
   Modal,
   ModalProps,
   ModalContent,
-  ModalCloseButton,
-} from 'components/Modal1'
+  ModalCloseButton
+} from "components/Modal1";
+import "./index.scss";
 
 interface BlockchainLoadingModalProps extends ModalProps {
-  topRender?: React.ReactNode
-  bottomRender?: React.ReactNode
-  disabledCloseButton?: boolean
+  topRender?: React.ReactNode;
+  bottomRender?: React.ReactNode;
+  disabledCloseButton?: boolean;
 }
 
 export const BlockchainLoadingModal = ({
-  isOpen,
-  onClose,
-  bottomRender,
-  topRender,
-  disabledCloseButton = false,
-  clickOutsideToDismiss,
-  ...rest
-}: BlockchainLoadingModalProps) => {
+                                         isOpen,
+                                         onClose,
+                                         bottomRender,
+                                         topRender,
+                                         disabledCloseButton = false,
+                                         clickOutsideToDismiss,
+                                         ...rest
+                                       }: BlockchainLoadingModalProps) => {
   return (
     <Modal
       isOpen={isOpen}
@@ -33,6 +34,8 @@ export const BlockchainLoadingModal = ({
         {disabledCloseButton ? null : <ModalCloseButton />}
         <div className="flex flex-col items-center text-center space-y-5">
           {topRender}
+          <div className="planet">
+          </div>
           <video
             width={299}
             className="block mx-auto w-[299px] h-[261px]"
@@ -49,5 +52,5 @@ export const BlockchainLoadingModal = ({
         </div>
       </ModalContent>
     </Modal>
-  )
-}
+  );
+};
