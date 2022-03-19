@@ -170,46 +170,6 @@ const Wrapper = styled.div`
   }
 `;
 const NftGame = () => {
-  const settings = {
-    dots: true,
-    arrows: false,
-    autoplay: true,
-    infinite: true,
-    autoplaySpeed: 5000,
-    speed: 1000,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 1,
-          infinite: true,
-          dots: true,
-          className: "center",
-          centerPadding: "60px"
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          className: "center",
-          centerPadding: "60px"
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          className: "center",
-          centerPadding: "60px"
-        }
-      }
-    ]
-  };
 
   return (
     <>
