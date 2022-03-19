@@ -120,39 +120,14 @@ const MenuNew = () => {
                 </li>
                 <li>
                   <div className="h__customLogoTrade">
-                    <NftIcon />
-                    <NftIcon1 />
-                  </div>
-                  NFT
-                  <div className="submenu-nav">
-                    <ul>
-                      <Link to="/coming-soon">
-                        <li>NFT Markets</li>
-                      </Link>
-
-                      <Link to="/coming-soon">
-                        <li>My Collections</li>
-                      </Link>
-
-                      <Link to="/coming-soon">
-                        <li>Stake NFT</li>
-                      </Link>
-                      <Link to="/coming-soon">
-                        <li>Mint NFT</li>
-                      </Link>
-                    </ul>
-                  </div>
-                </li>
-                <li>
-                  <div className="h__customLogoTrade">
                     <GameIcon />
                     <GameIcon1 />
                   </div>
-                  GameFi
+                  GameHub
                   <div className="submenu-nav">
                     <ul>
-                      <Link to="/coming-soon">
-                        <li>Introduction</li>
+                      <Link to="/legend-of-galaxy">
+                        <li>Legend of Galaxy</li>
                       </Link>
 
                       <Link to="/coming-soon">
@@ -171,6 +146,31 @@ const MenuNew = () => {
                     Launchpad
                   </li>
                 </Link>
+                <li>
+                <div className="h__customLogoTrade">
+                  <NftIcon />
+                  <NftIcon1 />
+                </div>
+                NFT
+                <div className="submenu-nav">
+                  <ul>
+                    <Link to="/coming-soon">
+                      <li>NFT Markets</li>
+                    </Link>
+
+                    <Link to="/coming-soon">
+                      <li>My Collections</li>
+                    </Link>
+
+                    <Link to="/coming-soon">
+                      <li>Stake NFT</li>
+                    </Link>
+                    <Link to="/coming-soon">
+                      <li>Mint NFT</li>
+                    </Link>
+                  </ul>
+                </div>
+              </li>
 
                 <li>
                   <div className="h__customLogoTrade">

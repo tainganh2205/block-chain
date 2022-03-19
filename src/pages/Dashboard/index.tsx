@@ -13,7 +13,7 @@ export default function Dashboard() {
     <main className="full-with">
       <MainBanner />
       <MainOurBenefit />
-      <NftGame />
+      {/* <NftGame /> */}
       <MainOurPartner />
       {/* <MainTeam /> */}
     </main>

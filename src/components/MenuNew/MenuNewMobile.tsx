@@ -60,7 +60,7 @@ function MenuNewMobile() {
   const game = (
     <>
       <div className="header-collapse">
-        <img src="/images/iconGame1N.png" alt="" /> <span>Game</span>
+        <img src="/images/iconGame1N.png" alt="" /> <span>GameHub</span>
       </div>
     </>
   );
@@ -136,8 +136,8 @@ function MenuNewMobile() {
   const menuGame = (
     <>
       <ul>
-        <Link to="/coming-soon">
-          <li>Introduction</li>
+        <Link to="/legend-of-galaxy">
+          <li>Legend of Galaxy</li>
         </Link>
         <Link to="/coming-soon">
           <li>Mystery Box</li>
@@ -173,13 +173,13 @@ function MenuNewMobile() {
         <Panel header={earns} key="2">
           <p>{menuEarn}</p>
         </Panel>
-        <Panel header={nft} key="3">
-          <p>{menuNFT}</p>
-        </Panel>
         <Panel header={game} key="4">
           <p>{menuGame}</p>
         </Panel>
         {ido}
+        <Panel header={nft} key="3">
+          <p>{menuNFT}</p>
+        </Panel>
         <Panel header={about} key="5">
           <p>{menuAbout}</p>
         </Panel>
