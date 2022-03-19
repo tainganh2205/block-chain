@@ -11,7 +11,7 @@ const GIntroduction: any[] = [
   {
     label: 'Introduction',
     title:
-      '“The Legend of Galaxy” is a passing game with card role-playing; Players will have the opportunity to recruit more than 100 characters and build the most powerful ',
+      '“Legend of Galaxy” is a passing game with card role-playing; Players will have the opportunity to recruit more than 100 characters and build the most powerful ',
     video: 'video',
   },
 ]
@@ -22,14 +22,14 @@ const GameInfos: any[] = [
     img: '/images/imgGame/GameInfo0.png',
     label: 'How to play',
     title:
-      '"The Legend of Galaxy" has gameplay that combines collecting, upgrading available cards, and overcoming challenges. ',
+      '"Legend of Galaxy" has gameplay that combines collecting, upgrading available cards, and overcoming challenges. ',
   },
   {
     id: 2,
     img: '/images/imgGame/GameInfo1N.png',
     label: 'PvE Campaign',
     title:
-      'Campaign Mode is the most important game mode of the game as it fits the plot of "The Legend of Galaxy" and also has ',
+      'Campaign Mode is the most important game mode of the game as it fits the plot of "Legend of Galaxy" and also has ',
   },
   {
     id: 3,
