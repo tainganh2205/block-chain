@@ -85,7 +85,7 @@ export const UnstakeButton = ({
       await wait(200)
       onConfirmOpen()
       const tx = await callWithGasPrice(poolContract!.withdraw, [
-        inputNumberToBigNumber(spend).toString(),
+        BigNumber.from(spend).mul(BigNumber.from(10).pow(18))
       ])
       setIsUnstaking(true)
       setApproved(true)
