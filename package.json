@@ -43,6 +43,7 @@
     "@web3-react/walletconnect-connector": "6.1.1",
     "@web3-react/walletlink-connector": "^6.0.9",
     "ajv": "^6.12.3",
+    "bignumber.js": "^9.0.1",
     "antd": "^4.16.2",
     "antd-dayjs-webpack-plugin": "^1.0.6",
     "axios": "^0.21.1",

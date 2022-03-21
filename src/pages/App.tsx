@@ -42,7 +42,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Bridge from './Bridge'
 import ComingSoon from "./CommingSoon";
 import Staking from './Staking'
-
+import { GameLegend } from './LegendOfGalaxy'
 
 const Nft = React.lazy(() => import('./Nft_new'))
 const MyArtworks = React.lazy(() => import('./MyArtworks'))
@@ -197,6 +197,8 @@ export default function App() {
                         <Route exact strict path="/swap" component={Swap} />
                         <Route exact strict path="/coming-soon" component={ComingSoon} />
                         <Route exact strict path="/staking" component={Staking} />
+    <Route exact strict path="/legend-of-galaxy" component={GameLegend} />
+
                         <Route exact strict path="/find" component={PoolFinder} />
                         <Route exact strict path="/pool" component={Pool} />
                         <Route exact strict path="/bridge" component={Bridge} />

@@ -32,12 +32,12 @@ export const Empty = (props: EmptyProps) => {
         src={
           type === 'search-results'
             ? '/img/icon/empty-search.webp'
-            : '/img/icon/empty-data.webp'
+            : '/images/icon/empty-data.webp'
         }
         fallback={
           type === 'search-results'
             ? '/img/icon/empty-search.png'
-            : '/img/icon/empty-data.png'
+            : '/images/icon/empty-data.png'
         }
         width={type === 'search-results' ? 140 : 80}
         height={type === 'search-results' ? 140 : 80}

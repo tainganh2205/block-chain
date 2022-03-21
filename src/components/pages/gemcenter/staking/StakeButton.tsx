@@ -80,7 +80,7 @@ export const StakeButton = ({
       await wait(200)
       onConfirmOpen()
       const tx = await callWithGasPrice(poolContract!.deposit, [
-        inputNumberToBigNumber(spend).toString(),
+        BigNumber.from(spend).mul(BigNumber.from(10).pow(18))
       ])
       setIsStaking(true)
       setApproved(true)
@@ -103,6 +103,7 @@ export const StakeButton = ({
         })
       }
     } catch (error) {
+      console.log('error',error);
       handleTransactionError('Stake error', error, [
         inputNumberToBigNumber(spend).toString(),
       ])
