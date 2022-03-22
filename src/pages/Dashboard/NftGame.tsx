@@ -14,7 +14,7 @@ const GIntroduction: any[] = [
   {
     label: "Introduction",
     title:
-      "“The Legend of Galaxy” is a passing game with card role-playing; Players will have the opportunity to recruit more than 100 characters and build the most powerful ",
+      "“Legend of Galaxy” is a passing game with card role-playing; Players will have the opportunity to recruit more than 100 characters and build the most powerful ",
     video: "video"
   }
 ];
@@ -178,7 +178,7 @@ const NftGame = () => {
           <div className="main-title-benefit">Coming IDO on our Launchpad</div>
           <div className="box-nft-game">
             <p className="desc">
-              &quot;The Legend of Galaxy&quot; has gameplay that combines collecting, upgrading available cards, and overcoming challenges. Your task is to arrange, choose the best lineup of characters
+              &quot;Legend of Galaxy&quot; has gameplay that combines collecting, upgrading available cards, and overcoming challenges. Your task is to arrange, choose the best lineup of characters
               and place
               them in the path of the enemy in the game screen to win and conquer new lands.
             </p>
@@ -198,7 +198,7 @@ const NftGame = () => {
                   <div className="content-row">
                     <div className="title">Style</div>
                     <p className="desc cus">
-                      &quot;The Legend of Galaxy&quot; has gameplay that combines collecting, upgrading available cards, and overcoming challenges. Your task is to arrange, choose the best lineup of characters
+                      &quot;Legend of Galaxy&quot; has gameplay that combines collecting, upgrading available cards, and overcoming challenges. Your task is to arrange, choose the best lineup of characters
                       and place them in the path of the enemy in the game screen to win and conquer new lands. It is known that each hero has a different skill set, so it is imperative to find out who
                       works well with each other.
                     </p>
@@ -214,7 +214,7 @@ const NftGame = () => {
                   <div className="content-row">
                     <div className="title">Characters</div>
                     <p className="desc cus">
-                      &quot;The Legend of Galaxy&quot; is a crossroad game combined with general card role-playing;
+                      &quot;Legend of Galaxy&quot; is a crossroad game combined with general card role-playing;
                       players will have the opportunity to recruit more than 100 characters and build the most powerful
                       squad to participate in campaigns to capture the new land in the galaxy.
                     </p>
