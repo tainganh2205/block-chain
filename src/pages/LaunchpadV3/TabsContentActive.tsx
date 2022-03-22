@@ -56,6 +56,9 @@ const TabsContentActive = (props): any => {
                 <div className="box-img">
                   <img src={ido.logoUrl} alt="" />
                 </div>
+                <h4 className="title">
+                  {ido.name} <span>{ido.unit}</span>
+                </h4>
               </div>
               <div className="body-content">
                 <div className="guide-wrap">
@@ -63,21 +66,34 @@ const TabsContentActive = (props): any => {
                     <p className="desc">{ido.description}</p>
                   </div>
                   <div className="wrap-middle">
-                    <div className="social-address">
-                      <div className="box-social">
-                        <a href={ido.socical.telegram} target="blank">
-                          <img src="/images/imagesV3/telegram.png" alt="" />
-                        </a>
-                        <a href={ido.socical.twitter} target="blank">
-                          <img src="/images/imagesV3/twi.png" alt="" />
-                        </a>
-                        <a href={ido.socical.medium} target="blank">
-                          <img src="/images/imagesV3/medium.png" alt="" />
-                        </a>
-                        <a href={ido.socical.website} target="blank">
-                          <img src="/images/imagesV3/link.png" alt="" />
-                        </a>
+
+                    <div className="list-info-ido">
+                      <div className="item">
+                        <div className="t-left">Swap Rate:</div>
+                        <div className="t-right">{ido.swapAmount}</div>
                       </div>
+                      <div className="item">
+                        <div className="t-left">IDO Supply:</div>
+                        <div className="t-right">
+                          {ido.idoSupply} {ido.symbol}
+                        </div>
+                      </div>
+                      <div className="item">
+                        <div className="t-left">Total Supply:</div>
+                        <div className="t-right">
+                          {ido.totalSupply || "TBA"} {ido.symbol}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="list-info-ido border-none">
+                      {ido.schedules.map((item) => (
+                        <div className="item">
+                          <div className="t-left">{item.round}</div>
+                          <div className="t-right">{item.startDate}</div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="social-address gap-3">
                       <div className="box-address">
                         <div className="address-wl">
                                   <span>
@@ -115,39 +131,29 @@ const TabsContentActive = (props): any => {
                             }
                           >
                                     <span className="img">
-                                      <img src="/images/imagesV3/copy-v3.png" alt="" />
+                                      <img src="/images/imagesV3/copy-v3.png" alt="" style={{ objectFit: "contain", height: "100%" }} />
                                     </span>
                           </CopyToClipboard>
                         </div>
                       </div>
-                    </div>
-                    <div className="list-info-ido">
-                      <div className="item">
-                        <div className="t-left">Swap Rate:</div>
-                        <div className="t-right">{ido.swapAmount}</div>
+
+                      <div className="flex box-social gap-2">
+                        <a href={ido.socical.telegram} target="blank">
+                          <img src="/images/imagesV3/telegram.svg" alt="" />
+                        </a>
+                        <a href={ido.socical.twitter} target="blank">
+                          <img src="/images/imagesV3/twi.svg" alt="" />
+                        </a>
+                        <a href={ido.socical.medium} target="blank">
+                          <img src="/images/imagesV3/medium.svg" alt="" />
+                        </a>
+                        <a href={ido.socical.website} target="blank">
+                          <img src="/images/imagesV3/link.svg" alt="" />
+                        </a>
                       </div>
-                      <div className="item">
-                        <div className="t-left">IDO Supply:</div>
-                        <div className="t-right">
-                          {ido.idoSupply} {ido.symbol}
-                        </div>
-                      </div>
-                      <div className="item">
-                        <div className="t-left">Total Supply:</div>
-                        <div className="t-right">
-                          {ido.totalSupply || "TBA"} {ido.symbol}
-                        </div>
-                      </div>
+
                     </div>
-                    <div className="list-info-ido border-none">
-                      {ido.schedules.map((item) => (
-                        <div className="item">
-                          <div className="t-left">{item.round}</div>
-                          <div className="t-right">{item.startDate}</div>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="box-button-dt">
+                    <div className="box-button-dt mt-2">
                       {state?.owner !== null && typeView === "list" && (
                         <button type="button" className="btn-view-dt" onClick={() => handleCallClick(ido.symbol)}>
                           View details

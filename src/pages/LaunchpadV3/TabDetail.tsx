@@ -138,7 +138,7 @@ const TabDetail = (props): any => {
                       </div>
                     ))}
                   </div>
-                  <div className="social-address">
+                  <div className="social-address gap-3">
                     <div className="box-address">
                       <div className="address-wl">
                         <span>
@@ -181,7 +181,7 @@ const TabDetail = (props): any => {
                         </CopyToClipboard>
                       </div>
                     </div>
-                    <div className="box-social">
+                    <div className="flex box-social gap-2">
                       <a href={activeDetail?.socical.telegram} target="blank">
                         <img src="/images/imagesV3/telegram.svg" alt="" />
                       </a>
