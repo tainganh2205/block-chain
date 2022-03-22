@@ -1,66 +1,66 @@
-import React, { useEffect, useMemo, useRef } from 'react'
-import cx from 'classnames'
-import { BigNumber, constants } from 'ethers'
+import React, { useEffect, useMemo, useRef } from "react";
+import cx from "classnames";
+import { BigNumber, constants } from "ethers";
 
-import { Card } from 'components/Card1'
-import { Text } from 'components/Text'
-import { Button } from 'components/Button1'
-import { BaseButton } from 'components/ButtonBase'
-import ROIModal from 'components/pages/gemcenter/ROIModal'
-import { IconCalculator } from 'components/icons/components/IconCalculator'
-import { IconViewTransaction } from 'components/icons/components/IconViewTransaction'
-import { IconCountdown } from 'components/icons/components/IconCountdown'
-import { IconHelpCircle } from 'components/icons/components/IconHelpCircle'
-import { Skeleton } from 'components/Skeleton'
-import { Tooltip } from 'components/Tooltip1'
-import { StakeButton } from 'components/pages/gemcenter/staking/StakeButton'
-import { UnstakeButton } from 'components/pages/gemcenter/staking/UnstakeButton'
-import { HarvestButton } from 'components/pages/gemcenter/staking/HarvestButton'
-import { WithdrawAllButton } from 'components/pages/gemcenter/staking/WithdrawAllButton'
+import { Card } from "components/Card1";
+import { Text } from "components/Text";
+import { Button } from "components/Button1";
+import { BaseButton } from "components/ButtonBase";
+import ROIModal from "components/pages/gemcenter/ROIModal";
+import { IconCalculator } from "components/icons/components/IconCalculator";
+import { IconViewTransaction } from "components/icons/components/IconViewTransaction";
+import { IconCountdown } from "components/icons/components/IconCountdown";
+import { IconHelpCircle } from "components/icons/components/IconHelpCircle";
+import { Skeleton } from "components/Skeleton";
+import { Tooltip } from "components/Tooltip1";
+import { StakeButton } from "components/pages/gemcenter/staking/StakeButton";
+import { UnstakeButton } from "components/pages/gemcenter/staking/UnstakeButton";
+import { HarvestButton } from "components/pages/gemcenter/staking/HarvestButton";
+import { WithdrawAllButton } from "components/pages/gemcenter/staking/WithdrawAllButton";
 
-import { useDisclosure } from '@dwarvesf/react-hooks'
-import { noop } from '@dwarvesf/react-utils'
-import { useWeb3React } from '@web3-react/core'
-import { roundNumber2D, formatNumber } from 'utils/number'
-import { formatPeriod } from 'utils/datetime'
-import { addTokenToWallet, TokenProps } from 'utils/token'
-import { formatBigNumber } from 'utils/formatBalance'
-import { formatCurrency } from 'utils/currency'
-import { getScanLink } from 'utils/connector'
-import { HandlerStakingInfo, UtilROIResults } from 'types/schema'
-import { PoolStatus } from 'types/common'
-import { EnableContractButton } from './EnableContractButton'
-import { TokenLogo } from './TokenLogo'
-import { ReactComponent as IconMetaMask } from './svg/metamask.svg'
+import { useDisclosure } from "@dwarvesf/react-hooks";
+import { noop } from "@dwarvesf/react-utils";
+import { useWeb3React } from "@web3-react/core";
+import { roundNumber2D, formatNumber } from "utils/number";
+import { formatPeriod } from "utils/datetime";
+import { addTokenToWallet, TokenProps } from "utils/token";
+import { formatBigNumber } from "utils/formatBalance";
+import { formatCurrency } from "utils/currency";
+import { getScanLink } from "utils/connector";
+import { HandlerStakingInfo, UtilROIResults } from "types/schema";
+import { PoolStatus } from "types/common";
+import { EnableContractButton } from "./EnableContractButton";
+import { TokenLogo } from "./TokenLogo";
+import { ReactComponent as IconMetaMask } from "./svg/metamask.svg";
 import ConnectWalletButton from "../ConnectWalletButton";
 
 export interface PoolGridCardProps {
-  isConnected?: boolean
-  onConnectWallet?: () => void
-  poolInfo: HandlerStakingInfo
-  isEnded?: boolean
-  isEnabledContract?: boolean
-  onEnabledContractSuccess?: () => void
-  stakedBalance: BigNumber
-  tokenBalance: BigNumber
-  rewardAmount?: BigNumber
-  onWithdrawSuccess?: () => void
-  onHarvestSuccess?: () => void
-  onStakeSuccess?: () => void
-  onUnstakeSuccess?: () => void
-  poolStatus?: PoolStatus
-  startBlock: number
-  endBlock: number
-  lastStakingBlock: number
-  unstakingBlock: number
-  currentBlock: number
-  isCalculatingBlock?: boolean
+  isConnected?: boolean;
+  onConnectWallet?: () => void;
+  poolInfo: HandlerStakingInfo;
+  isEnded?: boolean;
+  isEnabledContract?: boolean;
+  onEnabledContractSuccess?: () => void;
+  stakedBalance: BigNumber;
+  tokenBalance: BigNumber;
+  rewardAmount?: BigNumber;
+  onWithdrawSuccess?: () => void;
+  onHarvestSuccess?: () => void;
+  onStakeSuccess?: () => void;
+  onUnstakeSuccess?: () => void;
+  poolStatus?: PoolStatus;
+  startBlock: number;
+  endBlock: number;
+  lastStakingBlock: number;
+  unstakingBlock: number;
+  currentBlock: number;
+  isCalculatingBlock?: boolean;
 }
 
 export const PoolGridCard = (props: PoolGridCardProps) => {
   const {
     poolInfo,
-    poolStatus = 'UNDETERMINED',
+    poolStatus = "UNDETERMINED",
     isConnected,
     onConnectWallet = noop,
     isEnded = false,
@@ -77,8 +77,8 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
     startBlock,
     unstakingBlock,
     lastStakingBlock,
-    endBlock,
-  } = props
+    endBlock
+  } = props;
 
   const {
     token,
@@ -86,67 +86,67 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
     apr,
     roi = [],
     rewardToken,
-    poolAddress = '',
+    poolAddress = "",
     totalStaked = 0,
     dailyRewards = 0,
     unstakingFeePercentage,
     feePeriodSeconds = 0,
     feePeriod = 0,
     poolName,
-    getTokenUrl = '',
-  } = poolInfo
+    getTokenUrl = ""
+  } = poolInfo;
 
-  const { isOpen, onClose, onOpen } = useDisclosure()
+  const { isOpen, onClose, onOpen } = useDisclosure();
 
-  const { chainId } = useWeb3React()
+  const { chainId } = useWeb3React();
 
-  const isStaking = poolStatus === 'STAKING'
+  const isStaking = poolStatus === "STAKING";
 
   const startIn = useMemo(() => {
     if (startBlock && currentBlock) {
-      return Math.abs(startBlock - currentBlock)
+      return Math.abs(startBlock - currentBlock);
     }
-    return 0
-  }, [startBlock, currentBlock])
+    return 0;
+  }, [startBlock, currentBlock]);
 
   const endIn = useMemo(() => {
     if (endBlock && currentBlock) {
-      return Math.abs(endBlock - currentBlock)
+      return Math.abs(endBlock - currentBlock);
     }
-    return 0
-  }, [endBlock, currentBlock])
+    return 0;
+  }, [endBlock, currentBlock]);
 
   // determine weather user need to pay fee for unstake or not
   const isInPenaltyPeriod = useMemo(() => {
     if (lastStakingBlock > 0 && currentBlock > 0) {
-      return lastStakingBlock + feePeriod > currentBlock
+      return lastStakingBlock + feePeriod > currentBlock;
     }
-    return false
-  }, [lastStakingBlock, feePeriod, currentBlock])
+    return false;
+  }, [lastStakingBlock, feePeriod, currentBlock]);
 
   const unstakeFeePeriodBlock = useMemo(() => {
-    return feePeriod - (currentBlock - lastStakingBlock)
-  }, [lastStakingBlock, feePeriod, currentBlock])
+    return feePeriod - (currentBlock - lastStakingBlock);
+  }, [lastStakingBlock, feePeriod, currentBlock]);
 
   // unstaking block
   const remainingUnlock = useMemo(() => {
-    return unstakingBlock - currentBlock
-  }, [unstakingBlock, currentBlock])
+    return unstakingBlock - currentBlock;
+  }, [unstakingBlock, currentBlock]);
 
   const formatedRewardToken: TokenProps = {
-    image: rewardToken?.image ?? '',
-    address: rewardToken?.address ?? '',
-    symbol: rewardToken?.symbol ?? '',
-    decimals: rewardToken?.decimals ?? 18,
-  }
+    image: rewardToken?.image ?? "",
+    address: rewardToken?.address ?? "",
+    symbol: rewardToken?.symbol ?? "",
+    decimals: rewardToken?.decimals ?? 18
+  };
 
-  const totalStakedUSD = totalStaked * (token?.priceUSD ?? 0)
+  const totalStakedUSD = totalStaked * (token?.priceUSD ?? 0);
 
   const buttonsSection = useMemo(() => {
     if (!isConnected) {
       return (
-        <ConnectWalletButton  />
-      )
+        <ConnectWalletButton />
+      );
     }
     if (!isEnabledContract) {
       return (
@@ -155,7 +155,7 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
           poolAddress={poolAddress}
           onSuccess={onEnabledContractSuccess}
         />
-      )
+      );
     }
     return (
       <div className="flex flex-col space-y-6 py-6">
@@ -164,7 +164,7 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
             <Text color="white">
               <Text as="span" className="text-primary">
                 {rewardToken?.symbol}
-              </Text>{' '}
+              </Text>{" "}
               earned
             </Text>
             <Text>{formatBigNumber(rewardAmount, 3)}</Text>
@@ -193,7 +193,7 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
             <Text color="white">
               <Text as="span" className="text-primary">
                 {token?.symbol}
-              </Text>{' '}
+              </Text>{" "}
               staked
             </Text>
             <Text>{formatBigNumber(stakedBalance, 3)}</Text>
@@ -206,8 +206,8 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
                 tokenBalance={tokenBalance}
                 poolStatus={poolStatus}
                 poolAddress={poolAddress}
-                tokenAddress={token?.address ?? ''}
-                tokenSymbol={token?.symbol ?? ''}
+                tokenAddress={token?.address ?? ""}
+                tokenSymbol={token?.symbol ?? ""}
                 tokenUrl={getTokenUrl}
               />
             )}
@@ -218,15 +218,15 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
                 poolStatus={poolStatus}
                 onSuccess={onUnstakeSuccess}
                 poolAddress={poolAddress}
-                tokenAddress={token?.address ?? ''}
-                tokenSymbol={token?.symbol ?? ''}
+                tokenAddress={token?.address ?? ""}
+                tokenSymbol={token?.symbol ?? ""}
                 tokenUrl={getTokenUrl}
               />
             )}
           </div>
         </div>
       </div>
-    )
+    );
   }, [
     isConnected,
     onConnectWallet,
@@ -248,40 +248,40 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
     remainingUnlock,
     currentBlock,
     unstakingBlock,
-    getTokenUrl,
-  ])
+    getTokenUrl
+  ]);
 
   const countdownText = useMemo(() => {
-    if (poolStatus === 'UNDETERMINED') {
-      return <Skeleton className="w-48 h-6 rounded-md" />
+    if (poolStatus === "UNDETERMINED") {
+      return <Skeleton className="w-48 h-6 rounded-md" />;
     }
-    if (poolStatus === 'NOT_STARTED') {
+    if (poolStatus === "NOT_STARTED") {
       return (
         <BlockLabel
           label="Starts in"
           block={startBlock}
           blockPeriod={startIn}
         />
-      )
+      );
     }
     if (isEnded) {
-      return <Text className="!text-gray-350">Ended</Text>
+      return <Text className="!text-gray-350">Ended</Text>;
     }
-    return <BlockLabel label="Ends in" block={endBlock} blockPeriod={endIn} />
-  }, [poolStatus, isEnded, startIn, endIn, startBlock, endBlock])
+    return <BlockLabel label="Ends in" block={endBlock} blockPeriod={endIn} />;
+  }, [poolStatus, isEnded, startIn, endIn, startBlock, endBlock]);
 
   // This is to prevent inteference between onClick and onOutsideClick
-  const recoveredClick = useRef(true)
+  const recoveredClick = useRef(true);
   useEffect(() => {
     const timeout = setTimeout(
       () => {
-        recoveredClick.current = !isOpen
+        recoveredClick.current = !isOpen;
       },
-      isOpen ? 0 : 500,
-    )
+      isOpen ? 0 : 500
+    );
 
-    return () => clearTimeout(timeout)
-  }, [isOpen])
+    return () => clearTimeout(timeout);
+  }, [isOpen]);
 
   return (
     <Card className="relative mb-4 w-full max-w-[520px] overflow-hidden">
@@ -305,7 +305,7 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
             <Text as="span" className="text-primary text-2xl">
               {isStaking && totalStaked > 0
                 ? `${formatNumber(roundNumber2D(apr ?? 0))}%`
-                : '--'}
+                : "--"}
             </Text>
             <Button
               appearance="borderless"
@@ -313,15 +313,15 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
               aria-label="Open calculator"
               onClick={() => {
                 if (recoveredClick.current) {
-                  onOpen()
+                  onOpen();
                 }
               }}
               disabled={!isStaking || totalStaked === 0}
             >
               <IconCalculator
                 aria-hidden
-                className={cx('text-gray-300', {
-                  'bg-gray-900': isOpen,
+                className={cx("text-gray-300", {
+                  "bg-gray-900": isOpen
                 })}
               />
             </Button>
@@ -361,8 +361,8 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
                 <Text color="white">
                   {isStaking || isEnded
                     ? `${formatNumber(roundNumber2D(totalStaked))} ${
-                        token?.symbol
-                      }`
+                      token?.symbol
+                    }`
                     : `-- ${token?.symbol}`}
                 </Text>
                 <Text size="sm" color="gray-300" className="ml-0 sm:ml-1">
@@ -376,7 +376,7 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
             <div className="flex justify-between">
               <Text>Daily rewards</Text>
               <Text color="white">
-                {formatNumber(roundNumber2D(dailyRewards ?? 0))}{' '}
+                {formatNumber(roundNumber2D(dailyRewards ?? 0))}{" "}
                 {rewardToken?.symbol}
               </Text>
             </div>
@@ -392,8 +392,8 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
                         Unstaking fee: <b>{unstakingFeePercentage}%</b>
                       </Text>
                       <Text className="!text-gray-900">
-                        Applies within <b>{formatPeriod(feePeriodSeconds)}</b>{' '}
-                        of staking. Unstaking after{' '}
+                        Applies within <b>{formatPeriod(feePeriodSeconds)}</b>{" "}
+                        of staking. Unstaking after{" "}
                         <b>{formatPeriod(feePeriodSeconds)}</b> will not include
                         a fee. Timer resets every time you stake in the pool.
                       </Text>
@@ -406,8 +406,8 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
               {isStaking && isInPenaltyPeriod && stakedBalance.gt(0) && (
                 <div className="flex items-center space-x-2">
                   <Text as="b" size="sm" color="gray-300">
-                    {formatNumber(unstakeFeePeriodBlock)}{' '}
-                    {unstakeFeePeriodBlock <= 1 ? 'block' : 'blocks'}
+                    {unstakeFeePeriodBlock <= 0 ? 0 : formatNumber(unstakeFeePeriodBlock)}{" "}
+                    {unstakeFeePeriodBlock <= 1 ? "block" : "blocks"}
                   </Text>
                   <Button
                     as="a"
@@ -429,8 +429,8 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
                 <Text>Remaining unlock</Text>
                 <div className="flex items-center space-x-2">
                   <Text as="b" size="sm" color="gray-300">
-                    {formatNumber(remainingUnlock)}{' '}
-                    {remainingUnlock <= 1 ? 'block' : 'blocks'}
+                    {formatNumber(remainingUnlock)}{" "}
+                    {remainingUnlock <= 1 ? "block" : "blocks"}
                   </Text>
                   <Button
                     as="a"
@@ -451,7 +451,7 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
                 appearance="borderless"
                 className="px-0 font-medium"
                 target="_blank"
-                href={getScanLink(poolAddress as string, 'address', chainId)}
+                href={getScanLink(poolAddress as string, "address", chainId)}
               >
                 <Text as="span" className="text-primary">
                   View contract
@@ -486,14 +486,14 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
         </Text>
       </div>
     </Card>
-  )
-}
+  );
+};
 
 const BlockLabel = ({
-  label,
-  block,
-  blockPeriod,
-}: {
+                      label,
+                      block,
+                      blockPeriod
+                    }: {
   label: string
   block: number
   blockPeriod: number
@@ -515,7 +515,7 @@ const BlockLabel = ({
         </Button>
       </div>
       <Text as="b" className="text-xs md:text-sm ml-2">
-        {formatNumber(blockPeriod)} {blockPeriod <= 1 ? 'block' : 'blocks'}
+        {formatNumber(blockPeriod)} {blockPeriod <= 1 ? "block" : "blocks"}
       </Text>
       <Button
         as="a"
@@ -527,5 +527,5 @@ const BlockLabel = ({
         <IconCountdown />
       </Button>
     </div>
-  )
-}
+  );
+};
