@@ -23,7 +23,7 @@ const ComingSoonStaking = () => {
   return (
     <PageWrapper className="full-with PageWrapper bg-main-wrapper">
       <h1 style={{ textAlign: "center", color: "white", fontSize: "1rem" }}>
-        Our first and secure staking pool will be online today at 14:00 UTC today (23 March 2022).
+        Our first and secure staking pool will be online today at 14:00 UTC (23 March 2022).
         </h1>
       <h1 style={{ textAlign: "center", color: "white", fontSize: "1rem" }}>
         Get ready to join for attractive APR and the chance to receive airdrop tokens and NFTs from our Game & Metaverse Hub.
