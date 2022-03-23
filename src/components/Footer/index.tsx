@@ -209,7 +209,7 @@ const Footer = () => {
               </div>
             )}
           </div>
-          <div className="copy-right">Copyright © 2021 linkedfinanceworld.app All Rights Reserved</div>
+          <div className="copy-right">Copyright © 2022 Linked Finance World.  All Rights Reserved.</div>
         </div>
       </div>
     </>
