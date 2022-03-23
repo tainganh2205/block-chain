@@ -424,26 +424,26 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
               )}
             </div>
 
-            {remainingUnlock > 0 && (
-              <div className="flex justify-between items-center">
-                <Text>Remaining unlock</Text>
-                <div className="flex items-center space-x-2">
-                  <Text as="b" size="sm" color="gray-300">
-                    {formatNumber(remainingUnlock)}{" "}
-                    {remainingUnlock <= 1 ? "block" : "blocks"}
-                  </Text>
-                  <Button
-                    as="a"
-                    appearance="borderless"
-                    className="px-0 font-medium"
-                    target="_blank"
-                    href={`${process.env.REACT_APP_BLOCK_EXPLORER_URL}/block/countdown/${unstakingBlock}`}
-                  >
-                    <IconCountdown />
-                  </Button>
-                </div>
-              </div>
-            )}
+            {/* {remainingUnlock > 0 && ( */}
+            {/*   <div className="flex justify-between items-center"> */}
+            {/*     <Text>Remaining unlock</Text> */}
+            {/*     <div className="flex items-center space-x-2"> */}
+            {/*       <Text as="b" size="sm" color="gray-300"> */}
+            {/*         {formatNumber(remainingUnlock)}{" "} */}
+            {/*         {remainingUnlock <= 1 ? "block" : "blocks"} */}
+            {/*       </Text> */}
+            {/*       <Button */}
+            {/*         as="a" */}
+            {/*         appearance="borderless" */}
+            {/*         className="px-0 font-medium" */}
+            {/*         target="_blank" */}
+            {/*         href={`${process.env.REACT_APP_BLOCK_EXPLORER_URL}/block/countdown/${unstakingBlock}`} */}
+            {/*       > */}
+            {/*         <IconCountdown /> */}
+            {/*       </Button> */}
+            {/*     </div> */}
+            {/*   </div> */}
+            {/* )} */}
 
             <div className="flex flex-col items-start">
               <Button
