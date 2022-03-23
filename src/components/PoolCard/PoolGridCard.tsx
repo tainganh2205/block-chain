@@ -425,7 +425,7 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
             </div>
 
             {remainingUnlock > 0 && (
-              <div className="flex justify-between align-center">
+              <div className="flex justify-between items-center">
                 <Text>Remaining unlock</Text>
                 <div className="flex items-center space-x-2">
                   <Text as="b" size="sm" color="gray-300">
