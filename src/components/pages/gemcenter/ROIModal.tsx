@@ -52,12 +52,12 @@ export default function ROIModal(props: ROIModalProps) {
       ),
       roi: (
         <Text as="span" className={color}>
-          {item.timeframe === "1 year (APY)" && !roi ? filterFloat(Number(1000)) : roi}%
+          {item.timeframe === "1 year (APY)" && !roi ? filterFloat(Number(10000)) : roi}%
         </Text>
       ),
       rewardTokenPer1k: (
         <Text as="span" className={color}>
-          {item.timeframe === "1 year (APY)" && !rewardTokenPer1k ? filterFloat(Number(1000)) : rewardTokenPer1k}
+          {item.timeframe === "1 year (APY)" && !rewardTokenPer1k ? filterFloat(Number(10000)) : rewardTokenPer1k}
         </Text>
       )
     };
