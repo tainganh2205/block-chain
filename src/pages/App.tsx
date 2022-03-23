@@ -197,7 +197,7 @@ export default function App() {
                         <Route exact strict path="/Dashboard" component={Dashboard} />
                         <Route exact strict path="/swap" component={Swap} />
                         <Route exact strict path="/coming-soon" component={ComingSoon} />
-                        <Route exact strict path="/staking" component={ComingSoonStaking} />
+                        <Route exact strict path="/staking" component={Staking} />
                         <Route exact strict path="/legend-of-galaxy" component={GameLegend} />
 
                         <Route exact strict path="/find" component={PoolFinder} />
