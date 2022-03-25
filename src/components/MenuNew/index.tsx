@@ -67,6 +67,7 @@ const MenuNew = () => {
   return (
     <FixedContainer showMenu={showMenu} height={80}>
       <header>
+
         <MenuNewMobile />
         <div className="xl:flex main-header hidden">
           <div className="header-left">
