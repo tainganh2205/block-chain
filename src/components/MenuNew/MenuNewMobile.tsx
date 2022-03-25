@@ -212,7 +212,7 @@ function MenuNewMobile() {
     </>
   );
   return (
-    <>
+    <div className="xl:hidden">
       <div className="main-header-mobile">
         <div className="header-l-mobile">
           <div className="main-menu">
@@ -235,7 +235,7 @@ function MenuNewMobile() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

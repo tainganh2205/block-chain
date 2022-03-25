@@ -69,7 +69,7 @@ const TabsIDO = () => {
       <div className="tabs-v3 cus">
         <Tabs activeKey={defaultKey} onChange={callback}>
           <TabPane tab="Upcoming" key="Upcoming">
-            <div className="table-collapse-custom">
+            <div className="main-cnt-tabs">
               <div className="w-100">
                 <div className="devCusIdo">
                   <Flex alignItems="center">
@@ -78,14 +78,11 @@ const TabsIDO = () => {
                   </Flex>
                   <Flex justifyContent="space-between">
                     <p className="title-2">UPCOMING</p>
-                    <Select className="devCus__select" onChange={handleChangeOptionSchedule} defaultValue="Calendar" style={{ width: 194 }}>
-                      <Option value="Calendar">Calendar</Option>
-                      <Option value="Table">Table</Option>
-                    </Select>
                   </Flex>
                 </div>
               </div>
-              <Schedules activeTab={activeTab} idoListSchedule={idoListSchedule} optionSchedule={optionSchedule}/>
+              <TabsContentActive activeTab={activeTab} idoList={idoListSchedule} status={STATUS.COMING} />
+              {/* <Schedules activeTab={activeTab} idoListSchedule={idoListSchedule} optionSchedule={optionSchedule}/> */}
             </div>
           </TabPane>
           <TabPane tab="Active" key="Active">
@@ -98,10 +95,6 @@ const TabsIDO = () => {
                   </Flex>
                   <Flex justifyContent="space-between">
                     <p className="title-2">ACTIVE</p>
-                    <Select className="devCus__select" disabled defaultValue="CALENDER" style={{ width: 194 }}>
-                      <Option value="Calendar">Calendar</Option>
-                      <Option value="Table">Table</Option>
-                    </Select>
                   </Flex>
                 </div>
               </div>
@@ -117,10 +110,6 @@ const TabsIDO = () => {
                 </Flex>
                 <Flex justifyContent="space-between">
                   <p className="title-2">ENDED</p>
-                  {/* <Select className="devCus__select" disabled defaultValue="CALENDER" style={{ width: 194 }}>
-                    <Option value="Calendar">Calendar</Option>
-                    <Option value="Table">Table</Option>
-                  </Select> */}
                 </Flex>
               </div>
             </div>
@@ -136,6 +125,7 @@ const TabsIDO = () => {
                 <p className="title-2">JOINED</p>
               </Flex>
             </div>
+            {/* <TabsContentActive activeTab={activeTab} idoList={idoListScheduleJoined} status={STATUS.CLOSE} /> */}
             <TabsContentJoined
               activeTab={activeTab}
               idoList={listIdo}

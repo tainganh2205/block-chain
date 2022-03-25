@@ -57,7 +57,7 @@ const TabsContentJoined = (props): any => {
   const history = useHistory()
   const [state, actions]: any = useHookProjects()
   const { idoList, listIdoJoined, idoListScheduleJoined, status, activeTab } = props
-  console.log(idoListScheduleJoined)
+
   const [isLoading, setIsLoading] = useState(true)
   const [newSchedule, setNewSchedule] = useState([])
   const { Search } = Input
@@ -170,17 +170,6 @@ const TabsContentJoined = (props): any => {
       <>
         {!showDetail && (
           <div className="style-btn">
-             <Select className="devCus__select" defaultValue="Calendar" style={{ width: 194 }} onChange={handleChangeZ}>
-            <Option value={1}>Calendar</Option>
-            <Option value={2}>Table</Option>
-          </Select>
-          {valueCus === 1 ? (
-            <>
-              <div className="main-caledar mar-top-60">
-                <SchedulesJoined activeTab={activeTab} idoListScheduleJoined={idoListScheduleJoined} />
-              </div>
-            </>
-          ) : (
             <>
               <div className="main-table-end">
                 {!showDetail && (
@@ -218,13 +207,13 @@ const TabsContentJoined = (props): any => {
                       )}
                       {state.idoListJoined?.length > 0 && state.idoListJoinedMore?.length > 0
                         ? state.idoListJoinedMore.map((ido, index) => (
-                            <ItemDesktop
-                              handleChangeView={handleChangeView}
-                              account={account}
-                              ido={ido}
-                              index={index}
-                            />
-                          ))
+                          <ItemDesktop
+                            handleChangeView={handleChangeView}
+                            account={account}
+                            ido={ido}
+                            index={index}
+                          />
+                        ))
                         : ''}
                     </table>
                     <div className="btn-more-v3">
@@ -240,7 +229,6 @@ const TabsContentJoined = (props): any => {
                 )}
               </div>
             </>
-          )}
           </div>
         )}
         {showDetail ? <TabDetail activeTab={activeTab} /> : ''}
@@ -251,77 +239,65 @@ const TabsContentJoined = (props): any => {
     <>
       {!showDetail && (
         <div className="list-grid-joined">
-          <Select className="devCus__select" defaultValue="Calendar" style={{ width: 194 }} onChange={handleChangeZ}>
-            <Option value={1}>Calendar</Option>
-            <Option value={2}>Table</Option>
-          </Select>
-          {valueCus === 1 ? (
-            <>
-              <div className="main-caledar mar-top-60">
-                <SchedulesJoined activeTab={activeTab} idoListScheduleJoined={idoListScheduleJoined} />
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="main-table-end cusSearch">
-                {!showDetail && (
-                  <div className="box-search-v3">
-                    <div className="box-search-v3">
-                      <Search placeholder="SEARCH" onSearch={handleChange} />
-                    </div>
-                  </div>
-                )}
-                {showDetail ? (
-                  <TabDetail activeTab={activeTab} />
-                ) : (
-                  <div className="box-table">
-                    <table>
-                      <tr>
-                        <th>Project Name</th>
-                        <th>Symbol</th>
-                        <th>Next Claim</th>
-                        <th>Allocation</th>
-                        <th>Claimed</th>
-                        <th>Claimable</th>
-                      </tr>
+          <>
+            <div className="main-table-end cusSearch">
+              {/* {!showDetail && ( */}
+              {/*   <div className="box-search-v3"> */}
+              {/*     <div className="box-search-v3"> */}
+              {/*       <Search placeholder="SEARCH" onSearch={handleChange} /> */}
+              {/*     </div> */}
+              {/*   </div> */}
+              {/* )} */}
+              {showDetail ? (
+                <TabDetail activeTab={activeTab} />
+              ) : (
+                <div className="box-table">
+                  <table>
+                    <tr>
+                      <th>Project Name</th>
+                      <th>Symbol</th>
+                      <th>Next Claim</th>
+                      <th>Allocation</th>
+                      <th>Claimed</th>
+                      <th>Claimable</th>
+                    </tr>
 
-                      {state.idoListJoined?.length > 0 ? (
-                        state.idoListJoined?.map((ido, index) => (
-                          <ItemDesktop handleChangeView={handleChangeView} account={account} ido={ido} index={index} />
-                        ))
-                      ) : (
-                        <td colSpan={6}>
-                          <div className="box-message res">
-                            <div className="info-message">Empty !</div>
-                            <img src="/images/nobidding.svg" alt="unknown-artwork" className="img-message" />
-                          </div>
-                        </td>
-                      )}
-                      {state.idoListJoined?.length > 0 && state.idoListJoinedMore?.length > 0
-                        ? state.idoListJoinedMore.map((ido, index) => (
-                            <ItemDesktop
-                              handleChangeView={handleChangeView}
-                              account={account}
-                              ido={ido}
-                              index={index}
-                            />
-                          ))
-                        : ''}
-                    </table>
-                    <div className="btn-more-v3">
-                      {enableLoadMore && state.idoListJoined.length !== 0 ? (
-                        <button className="load-more-v3" type="button" onClick={handleLoadMore}>
-                          Load more
-                        </button>
-                      ) : (
-                        ''
-                      )}
-                    </div>
+                    {state.idoListJoined?.length > 0 ? (
+                      state.idoListJoined?.map((ido, index) => (
+                        <ItemDesktop handleChangeView={handleChangeView} account={account} ido={ido} index={index} />
+                      ))
+                    ) : (
+                      <td colSpan={6}>
+                        <div className="box-message res">
+                          <div className="info-message">Empty !</div>
+                          <img src="/images/nobidding.svg" alt="unknown-artwork" className="img-message" />
+                        </div>
+                      </td>
+                    )}
+                    {state.idoListJoined?.length > 0 && state.idoListJoinedMore?.length > 0
+                      ? state.idoListJoinedMore.map((ido, index) => (
+                        <ItemDesktop
+                          handleChangeView={handleChangeView}
+                          account={account}
+                          ido={ido}
+                          index={index}
+                        />
+                      ))
+                      : ''}
+                  </table>
+                  <div className="btn-more-v3">
+                    {enableLoadMore && state.idoListJoined.length !== 0 ? (
+                      <button className="load-more-v3" type="button" onClick={handleLoadMore}>
+                        Load more
+                      </button>
+                    ) : (
+                      ''
+                    )}
                   </div>
-                )}
-              </div>
-            </>
-          )}
+                </div>
+              )}
+            </div>
+          </>
         </div>
       )}
       {showDetail ? <TabDetail activeTab={activeTab} /> : ''}

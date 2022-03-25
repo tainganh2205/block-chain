@@ -148,7 +148,7 @@ const TabsContentActive = (props): any => {
                           <img src="/images/imagesV3/medium.svg" alt="" />
                         </a>
                         <a href={ido.socical.website} target="blank">
-                          <img src="/images/imagesV3/link.svg" alt="" />
+                          <img src="/images/imagesV3/youtube.svg" alt="" />
                         </a>
                       </div>
 
