@@ -8,6 +8,7 @@ import { useFetchPublicPoolsData } from 'hooks/staking/useFetchPublicPoolData'
 import { PoolInfo } from 'types/common'
 import { useFetchWithCache } from 'hooks/useFetchWithCache'
 import { client, GET_PATHS } from 'libs'
+import { isMobile } from "react-device-detect";
 
 const InnerRender = () => {
   const { account } = useWeb3React()
@@ -112,7 +113,12 @@ const InnerRender = () => {
 
 
   return (
-    <div className="w-75 max-w-[1160px] mx-auto px-5 sm:py-10 py-6 space-y-6">
+    <div
+         className="w-full max-w-[1160px] mx-auto px-3 sm:py-10 py-6 space-y-6"
+         style={{
+           marginTop: isMobile ? 80 :0
+         }}
+    >
       <SwitchTabs tabs={tabsData} />
     </div>
   )
