@@ -68,7 +68,7 @@ function MenuNewMobile() {
   const ido = (
     <>
       <>
-        <Link to="/coming-soon">
+        <Link to="/IDO">
           <div className="header-collapse">
             <IconIdo className="css-icon-home" /> <span className="text-home">Launchpad</span>
           </div>
@@ -118,16 +118,16 @@ function MenuNewMobile() {
   const menuNFT = (
     <>
       <ul>
-        <Link to="/coming-soon">
+        <Link to="/NFTmarket">
           <li>NFT Markets</li>
         </Link>
-        <Link to="/coming-soon">
+        <Link to="/collections">
           <li>My Collections</li>
         </Link>
-        <Link to="/coming-soon">
+        <Link to="/stakeNFT">
           <li>Stake NFT</li>
         </Link>
-        <Link to="/coming-soon">
+        <Link to="/mintNFT">
           <li>Mint NFT</li>
         </Link>
       </ul>
@@ -212,7 +212,7 @@ function MenuNewMobile() {
     </>
   );
   return (
-    <>
+    <div className="xl:hidden">
       <div className="main-header-mobile">
         <div className="header-l-mobile">
           <div className="main-menu">
@@ -235,7 +235,7 @@ function MenuNewMobile() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
