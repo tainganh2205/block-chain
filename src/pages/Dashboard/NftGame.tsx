@@ -9,6 +9,7 @@ import { Player, ControlBar } from "video-react";
 import "video-react/dist/video-react.css";
 
 import { ReactComponent as Icon1 } from "../../images/img/comming soon.svg";
+import { isMobile } from "react-device-detect";
 
 const GIntroduction: any[] = [
   {
@@ -173,7 +174,9 @@ const NftGame = () => {
 
   return (
     <>
-      <div className="main-our-benefit nft-game">
+      <div className="main-our-benefit nft-game" style={{
+        marginTop: isMobile ? "5rem" : 0
+      }}>
         <div className="all">
           <div className="main-title-benefit">Coming IDO on our Launchpad</div>
           <div className="box-nft-game">

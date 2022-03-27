@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { WrapperPage } from "components/Art";
 import "./style.less";
+import { isMobile } from "react-device-detect";
 
 const PageWrapper = styled(WrapperPage)`
   padding-top: 46px;
@@ -22,7 +23,7 @@ const PageWrapper = styled(WrapperPage)`
 const AirdropsPortal = () => {
   return (
     <PageWrapper className="full-with PageWrapper bg-main-wrapper">
-      <h1 style={{ textAlign: "center", color: "white", fontSize: "3rem" }}>
+      <h1 style={{ textAlign: "center", color: "white", fontSize: isMobile ? "2rem" : "3rem", marginTop: isMobile ? "3rem" : 0 }}>
         Welcome to
         LFW airdrops portal
       </h1>
