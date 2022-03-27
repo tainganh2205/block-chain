@@ -178,9 +178,10 @@ const NftGame = () => {
           <div className="main-title-benefit">Coming IDO on our Launchpad</div>
           <div className="box-nft-game">
             <p className="desc">
-              &quot;Legend of Galaxy&quot; has gameplay that combines collecting, upgrading available cards, and overcoming challenges. Your task is to arrange, choose the best lineup of characters
-              and place
-              them in the path of the enemy in the game screen to win and conquer new lands.
+              Proudly incubated by LFW ecosystem, <a href="https://atf.kinglive.finance/#" className="text-primary" target="_blank">
+              Legend of Galaxy
+            </a> is an appealing blockchain game with personalized NFT that aims to be a digital universe where every member has fair opportunities to participate, entertain, contribute, express their
+              digital lifestyle and reap the attractive rewards.
             </p>
             <div className="box-img-nft-game">
               <img src="/images/imagesDashboard/gameNftAtr.png" alt="" />
@@ -198,7 +199,8 @@ const NftGame = () => {
                   <div className="content-row">
                     <div className="title">Style</div>
                     <p className="desc cus">
-                      &quot;Legend of Galaxy&quot; has gameplay that combines collecting, upgrading available cards, and overcoming challenges. Your task is to arrange, choose the best lineup of characters
+                      &quot;Legend of Galaxy&quot; has gameplay that combines collecting, upgrading available cards, and overcoming challenges. Your task is to arrange, choose the best lineup of
+                      characters
                       and place them in the path of the enemy in the game screen to win and conquer new lands. It is known that each hero has a different skill set, so it is imperative to find out who
                       works well with each other.
                     </p>

@@ -67,7 +67,6 @@ const MenuNew = () => {
   return (
     <FixedContainer showMenu={showMenu} height={80}>
       <header>
-
         <MenuNewMobile />
         <div className="xl:flex main-header hidden">
           <div className="header-left">
@@ -128,6 +127,9 @@ const MenuNew = () => {
                   GameHub
                   <div className="submenu-nav">
                     <ul>
+                      <Link to="/airdrops">
+                        <li>Airdrops Portal</li>
+                      </Link>
                       <Link to="/legend-of-galaxy">
                         <li>Legend of Galaxy</li>
                       </Link>
