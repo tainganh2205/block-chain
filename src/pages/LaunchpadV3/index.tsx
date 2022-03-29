@@ -18,7 +18,7 @@ const LaunchPadV3 = () => {
   // Get Path Name
   // const typePath = history.location.search.split("?")
   // const typeIdo = typePath[1];
-  
+
 
   const { account } = useWeb3React()
 
@@ -64,29 +64,6 @@ const LaunchPadV3 = () => {
     }
   }, [account, actions])
 
-  const initData = useCallback(() => {
-    const param = {
-      category: 0,
-    }
-    // GET CURRENT MONTH AND YEAR
-
-    
-    // actions.getProject()
-    actions.getProjectNew({
-      category: 0,
-    })
-
-    actions.getProjectEnd({
-      category: 0,
-      symbol: ''
-    })
-
-   // actions.getSchedule(currentMonth, currentYear)
-  }, [actions.getProject, actions.getSchedule, actions.getProjectEnd, actions.getProjectJoined ])
-
-  useEffect(() => {
-    initData()
-  }, [initData])
 
   useEffect(() => {
     loadDataOnConnectWallet()

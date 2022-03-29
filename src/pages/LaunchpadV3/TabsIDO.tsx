@@ -6,7 +6,6 @@ import TabsContentActive from "./TabsContentActive";
 import TabsContentEnd from "./TabsContentEnd";
 import TabsContentJoined from "./TabsContentJoined";
 import { useHookProjects } from "./Store";
-import Schedules from "./Schedules";
 import { STATUS, POOL_WEIGHT } from "./index.d";
 
 const TabsIDO = () => {
@@ -17,10 +16,10 @@ const TabsIDO = () => {
   const { idoListSchedule } = state;
   const { idoListScheduleJoined } = state;
   const { TabPane } = Tabs;
-  const [activeTab, setActiveTab] = useState("Upcoming");
+  const [activeTab, setActiveTab] = useState("tab=Upcoming");
   const [optionSchedule, setOptionSchedule] = useState("Calendar");
   const history = useHistory();
-  const [defaultKey, setDefaultKey] = useState("Upcoming");
+  const [defaultKey, setDefaultKey] = useState("tab=Upcoming");
   const { Option } = Select;
 
   const tierText = (() => {
@@ -45,8 +44,8 @@ const TabsIDO = () => {
   const tabBox = pathname[1];
 
   function callback(key) {
-    setActiveTab(key);
-    setDefaultKey(key);
+    setActiveTab(`tab=${key}`);
+    setDefaultKey(`tab=${key}`);
     history.push({
       pathname: history.location.pathname,
       search: `${key}`
@@ -68,7 +67,7 @@ const TabsIDO = () => {
     <>
       <div className="tabs-v3 cus">
         <Tabs activeKey={defaultKey} onChange={callback}>
-          <TabPane tab="Upcoming" key="Upcoming">
+          <TabPane tab="Upcoming" key="tab=Upcoming">
             <div className="main-cnt-tabs">
               <div className="w-100">
                 <div className="devCusIdo">
@@ -81,11 +80,10 @@ const TabsIDO = () => {
                   </Flex>
                 </div>
               </div>
-              <TabsContentActive activeTab={activeTab} idoList={idoListSchedule} status={STATUS.COMING} />
-              {/* <Schedules activeTab={activeTab} idoListSchedule={idoListSchedule} optionSchedule={optionSchedule}/> */}
+              {activeTab === "tab=Upcoming" ? <TabsContentActive activeTab={activeTab} idoList={listIdo} status={STATUS.COMING} /> : null}
             </div>
           </TabPane>
-          <TabPane tab="Active" key="Active">
+          <TabPane tab="Active" key="tab=Active">
             <div className="main-cnt-tabs">
               <div className="w-100">
                 <div className="devCusIdo">
@@ -98,10 +96,10 @@ const TabsIDO = () => {
                   </Flex>
                 </div>
               </div>
-              <TabsContentActive activeTab={activeTab} idoList={listIdo} status={STATUS.COMING} />
+              {activeTab === "tab=Active" ? <TabsContentActive activeTab={activeTab} idoList={listIdo} status={STATUS.COMING} /> : null}
             </div>
           </TabPane>
-          <TabPane tab="Ended" key="Ended">
+          <TabPane tab="Ended" key="tab=Ended">
             <div className="w-100">
               <div className="devCusIdo">
                 <Flex alignItems="center">
@@ -113,9 +111,9 @@ const TabsIDO = () => {
                 </Flex>
               </div>
             </div>
-            <TabsContentEnd activeTab={activeTab} idoList={listIdo} listIdoEnd={listIdoEnd} status={STATUS.CLOSE} />
+            <TabsContentEnd activeTab={activeTab} idoList={listIdo} listIdoEnd={[]} status={STATUS.CLOSE} />
           </TabPane>
-          <TabPane tab="Joined" key="Joined">
+          <TabPane tab="Joined" key="tab=Joined">
             <div className="devCusIdo">
               <Flex alignItems="center">
                 <p className="title-1">NEXT PROJECTS</p>

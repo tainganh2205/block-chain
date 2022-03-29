@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Store } from "react-notifications-component";
-
+import axios from "axios";
 import { useHookProjects } from "./Store";
 import TabDetail from "./TabDetail";
+import { useAsyncEffect } from "@dwarvesf/react-hooks";
 
+// A custom hook that builds on useLocation to parse
+// the query string for you.
+function useQuery() {
+  const { search } = useLocation();
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+}
+
+const { REACT_APP_API_LAUNCHPAD_URL } = process.env;
 const TabsContentActive = (props): any => {
   const [state]: any = useHookProjects();
   const { idoList, activeTab } = props;
@@ -18,7 +27,14 @@ const TabsContentActive = (props): any => {
 
   const [typeView, setTypeView] = useState("");
 
-  const [idoListView, setIdoListView] = useState(idoList);
+  const [idoListView, setIdoListView] = useState<any>([]);
+  const query = useQuery();
+
+  useAsyncEffect(async () => {
+    const status = query.get("tab");
+    const response = await axios.get(`${REACT_APP_API_LAUNCHPAD_URL}/launchpad?status=${status?.toLowerCase()}`);
+    setIdoListView(response.data.data)
+  }, [query]);
 
   const handleCallClick = (symbol) => {
     history.push({
@@ -34,17 +50,17 @@ const TabsContentActive = (props): any => {
       setTypeView("detail");
     } else {
       setTypeView("list");
-      setIdoListView(state.idoList);
+      setIdoListView(idoListView);
     }
-  }, [state.idoList, tabSymbol]);
+  }, [idoListView, tabSymbol]);
 
 
   useEffect(() => {
     if (!tabSymbol) {
-      setIdoListView(state.idoList);
+      setIdoListView(idoListView);
       setTypeView("list");
     }
-  }, [state, tabSymbol]);
+  }, [idoListView, tabSymbol]);
 
   return (
     <>
@@ -54,7 +70,7 @@ const TabsContentActive = (props): any => {
             <div className="box-content-active">
               <div className="top-content">
                 <div className="box-img">
-                  <img src={ido.logoUrl} alt="" />
+                  <img src={ido.extra_info.LogoUrl} alt="" />
                 </div>
                 <h4 className="title">
                   {ido.name} <span>{ido.unit}</span>
@@ -70,41 +86,33 @@ const TabsContentActive = (props): any => {
                     <div className="list-info-ido">
                       <div className="item">
                         <div className="t-left">Swap Rate:</div>
-                        <div className="t-right">{ido.swapAmount}</div>
+                        <div className="t-right">{ido.swap_rate}</div>
                       </div>
                       <div className="item">
                         <div className="t-left">IDO Supply:</div>
                         <div className="t-right">
-                          {ido.idoSupply} {ido.symbol}
+                          {ido.total_sale} {ido.symbol}
                         </div>
                       </div>
                       <div className="item">
                         <div className="t-left">Total Supply:</div>
                         <div className="t-right">
-                          {ido.totalSupply || "TBA"} {ido.symbol}
+                          {ido.token_supply || "TBA"} {ido.symbol}
                         </div>
                       </div>
-                    </div>
-                    <div className="list-info-ido border-none">
-                      {ido.schedules.map((item) => (
-                        <div className="item">
-                          <div className="t-left">{item.round}</div>
-                          <div className="t-right">{item.startDate}</div>
-                        </div>
-                      ))}
                     </div>
                     <div className="social-address gap-3">
                       <div className="box-address">
                         <div className="address-wl">
                                   <span>
-                                    {ido.idoContract &&
-                                      `${ido.idoContract.substring(0, 8)}...${ido.idoContract.substring(
+                                    {ido.ido_contract_address &&
+                                      `${ido.ido_contract_address.substring(0, 8)}...${ido.ido_contract_address.substring(
                                         28,
-                                        ido.idoContract.length
+                                        ido.ido_contract_address.length
                                       )}`}
                                   </span>
                           <CopyToClipboard
-                            text={ido.idoContract}
+                            text={ido.ido_contract_address}
                             onCopy={() =>
                               Store.addNotification({
                                 title: "Copied",
@@ -138,16 +146,16 @@ const TabsContentActive = (props): any => {
                       </div>
 
                       <div className="flex box-social gap-2">
-                        <a href={ido.socical.telegram} target="blank">
+                        <a href={ido.extra_info.Telegram} target="blank">
                           <img src="/images/imagesV3/telegram.svg" alt="" />
                         </a>
-                        <a href={ido.socical.twitter} target="blank">
+                        <a href={ido.extra_info.Twitter} target="blank">
                           <img src="/images/imagesV3/twi.svg" alt="" />
                         </a>
-                        <a href={ido.socical.medium} target="blank">
+                        <a href={ido.extra_info.Medium} target="blank">
                           <img src="/images/imagesV3/medium.svg" alt="" />
                         </a>
-                        <a href={ido.socical.website} target="blank">
+                        <a href={ido.extra_info.Youtube} target="blank">
                           <img src="/images/imagesV3/youtube.svg" alt="" />
                         </a>
                       </div>

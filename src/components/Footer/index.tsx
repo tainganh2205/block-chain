@@ -169,12 +169,14 @@ const Footer = () => {
                             <div className="box-img">
                               <a
                                 href="#!"
+                                className="h__boxIcon"
                               >
                                 <i className="fa fa-paper-plane h__customIcon" aria-hidden="true" />
                               </a>
 
                               <a
                                 href="#!"
+                                className="h__boxIcon"
                               >
                                 <i className="fab fa-twitter h__customIcon" aria-hidden="true" />
                               </a>
@@ -185,6 +187,7 @@ const Footer = () => {
 
                               <a
                                 href="#!"
+                                className="h__boxIcon"
                               >
                                 <i className="fab fa-medium-m h__customIcon" aria-hidden="true" />
                               </a>
