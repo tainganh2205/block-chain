@@ -194,7 +194,15 @@ const MenuNew = () => {
                   About
                   <div className="submenu-nav">
                     <ul>
-                      <a style={{ color: "#b8bdb9" }} href="https://docsend.com/view/x8qrgrr8iq37aug9" rel="noreferrer" target="_blank">Pitch Deck</a>
+                      <a style={{ color: "#b8bdb9" }} href="https://docsend.com/view/x8qrgrr8iq37aug9" rel="noreferrer" target="_blank">
+                        <li>Pitch Deck</li>
+                      </a>
+                      <a style={{ color: "#b8bdb9" }} href=" https://www.rdauditors.com/wp-content/uploads/2022/03/Linked-Finance-World-Smart-Contract-Security-Report-28.03.22.pdf" rel="noreferrer"
+                         target="_blank">
+                        <li>
+                          Smart Contract Audit
+                        </li>
+                      </a>
                     </ul>
                   </div>
                 </li>
