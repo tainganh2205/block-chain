@@ -24,7 +24,7 @@ const Footer = () => {
                 <div className="col-50">
                   <div className="item-token">
                     <div className="icon">
-                      <img src="/images/icon-lfw.png" height="50" width="50" alt="" />
+                      <img src="/images/logo-lfw.png" height="50" width="50" alt="" />
                     </div>
                     <div className="text">
                       LFW <span className="value-token">{formatCurrency(tokenInfo?.price ?? 0)}</span>
@@ -209,7 +209,7 @@ const Footer = () => {
               </div>
             )}
           </div>
-          <div className="copy-right">Copyright © 2021 linkedfinanceworld.app All Rights Reserved</div>
+          <div className="copy-right">Copyright © 2022 Linked Finance World.  All Rights Reserved.</div>
         </div>
       </div>
     </>

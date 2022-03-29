@@ -29,11 +29,7 @@ export const Empty = (props: EmptyProps) => {
   if (!renderImage) {
     renderImage = (
       <ImageWithFallback
-        src={
-          type === 'search-results'
-            ? '/img/icon/empty-search.webp'
-            : '/images/icon/empty-data.webp'
-        }
+        src={'/images/icon/empty-data.webp'}
         fallback={
           type === 'search-results'
             ? '/img/icon/empty-search.png'

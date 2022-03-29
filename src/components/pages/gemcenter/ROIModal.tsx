@@ -1,47 +1,48 @@
-import { useOnClickOutside } from '@dwarvesf/react-hooks'
-import { FocusTrap, Transition } from '@headlessui/react'
-import { Button } from 'components/Button1'
-import { Card } from 'components/Card1'
-import { IconClose } from 'components/icons/components/IconClose'
-import Table from 'components/Table'
-import { Text } from 'components/Text'
-import { useRef } from 'react'
-import { Column } from 'react-table'
-import { UtilROIResults } from 'types/schema'
-import { formatNumber, roundNumber2D } from 'utils/number'
+import { useOnClickOutside } from "@dwarvesf/react-hooks";
+import { FocusTrap, Transition } from "@headlessui/react";
+import { Button } from "components/Button1";
+import { Card } from "components/Card1";
+import { IconClose } from "components/icons/components/IconClose";
+import Table from "components/Table";
+import { Text } from "components/Text";
+import { useRef } from "react";
+import { Column } from "react-table";
+import { UtilROIResults } from "types/schema";
+import { formatNumber, roundNumber2D } from "utils/number";
 
 interface ROIModalProps {
-  data: UtilROIResults[]
-  rewardToken: string
-  isOpen: boolean
-  onClose: () => void
+  data: UtilROIResults[];
+  rewardToken: string;
+  isOpen: boolean;
+  onClose: () => void;
 }
+
 export interface FilteredROI {
-  timeframe: JSX.Element
-  roi: JSX.Element
-  rewardTokenPer1k: JSX.Element
+  timeframe: JSX.Element;
+  roi: JSX.Element;
+  rewardTokenPer1k: JSX.Element;
 }
 
 function filterFloat(value: number) {
   if (value > 10000) {
-    return `${formatNumber(10000)}+`
+    return `${formatNumber(10000)}+`;
   }
-  return roundNumber2D(value)
+  return roundNumber2D(value);
 }
 
 export default function ROIModal(props: ROIModalProps) {
-  const { data, onClose, isOpen, rewardToken } = props
-  const ref = useRef<HTMLDivElement | null>(null)
-  const closeButtonRef = useRef<HTMLButtonElement | null>(null)
-  useOnClickOutside(ref, onClose)
+  const { data, onClose, isOpen, rewardToken } = props;
+  const ref = useRef<HTMLDivElement | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+  useOnClickOutside(ref, onClose);
 
   const filteredROI = data.map((item: UtilROIResults) => {
     const color =
-      item.timeframe === '1 year (APY)' ? 'text-primary' : 'text-white'
+      item.timeframe === "1 year (APY)" ? "text-primary" : "text-white";
 
-    const rewardTokenPer1k = filterFloat(Number(item.rewardTokenPer1k))
+    const rewardTokenPer1k = filterFloat(Number(item.rewardTokenPer1k));
 
-    const roi = filterFloat(Number(item.roi))
+    const roi = filterFloat(Number(item.roi));
 
     return {
       timeframe: (
@@ -51,16 +52,16 @@ export default function ROIModal(props: ROIModalProps) {
       ),
       roi: (
         <Text as="span" className={color}>
-          {roi}%
+          {item.timeframe === "1 year (APY)" && !roi ? filterFloat(Number(10000)) : roi}%
         </Text>
       ),
       rewardTokenPer1k: (
         <Text as="span" className={color}>
-          {rewardTokenPer1k}
+          {item.timeframe === "1 year (APY)" && !rewardTokenPer1k ? filterFloat(Number(10000)) : rewardTokenPer1k}
         </Text>
-      ),
-    }
-  })
+      )
+    };
+  });
 
   const columns: Array<Column<FilteredROI>> = [
     {
@@ -69,9 +70,9 @@ export default function ROIModal(props: ROIModalProps) {
           TIMEFRAME
         </Text>
       ),
-      accessor: 'timeframe',
+      accessor: "timeframe",
       Cell: ({ value }) => value,
-      width: '33%',
+      width: "33%"
     },
     {
       Header: (
@@ -79,9 +80,9 @@ export default function ROIModal(props: ROIModalProps) {
           ROI
         </Text>
       ),
-      accessor: 'roi',
+      accessor: "roi",
       Cell: ({ value }) => value,
-      width: '32%',
+      width: "32%"
     },
     {
       Header: (
@@ -89,12 +90,12 @@ export default function ROIModal(props: ROIModalProps) {
           {rewardToken} PER $1,000
         </Text>
       ),
-      accessor: 'rewardTokenPer1k',
+      accessor: "rewardTokenPer1k",
       Cell: ({ value }) => value,
-      className: 'text-right',
-      width: '35%',
-    },
-  ]
+      className: "text-right",
+      width: "35%"
+    }
+  ];
 
   return (
     <Transition
@@ -119,5 +120,5 @@ export default function ROIModal(props: ROIModalProps) {
         </Card>
       </FocusTrap>
     </Transition>
-  )
+  );
 }

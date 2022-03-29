@@ -60,9 +60,9 @@ const MenuNew = () => {
     };
   }, []);
 
-  if (isMobile) {
-    return <MenuNewMobile />;
-  }
+  // if (isMobile) {
+  //   return <MenuNewMobile />;
+  // }
 
   return (
     <FixedContainer showMenu={showMenu} height={80}>
@@ -127,6 +127,9 @@ const MenuNew = () => {
                   GameHub
                   <div className="submenu-nav">
                     <ul>
+                      <Link to="/airdrops">
+                        <li>Airdrops Portal</li>
+                      </Link>
                       <Link to="/legend-of-galaxy">
                         <li>Legend of Galaxy</li>
                       </Link>

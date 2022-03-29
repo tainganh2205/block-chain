@@ -136,6 +136,9 @@ function MenuNewMobile() {
   const menuGame = (
     <>
       <ul>
+        <Link to="/airdrops">
+          <li>Airdrops Portal</li>
+        </Link>
         <Link to="/legend-of-galaxy">
           <li>Legend of Galaxy</li>
         </Link>
