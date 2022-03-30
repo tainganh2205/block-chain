@@ -79,7 +79,9 @@ const TabsContentActive = (props): any => {
               <div className="body-content">
                 <div className="guide-wrap">
                   <div className="wrap-top">
-                    <p className="desc">{ido.description}</p>
+                    <p className="desc">{(ido.description || "").replace("Legend of Galaxy",`<a href="https://legendofgalaxy.io/" class="text-primary" target="_blank">
+              Legend of Galaxy
+            </a>`)}</p>
                   </div>
                   <div className="wrap-middle">
 
