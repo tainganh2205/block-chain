@@ -68,7 +68,7 @@ function MenuNewMobile() {
   const ido = (
     <>
       <>
-        <Link to="/IDO">
+        <Link to="/launchpad">
           <div className="header-collapse">
             <IconIdo className="css-icon-home" /> <span className="text-home">Launchpad</span>
           </div>

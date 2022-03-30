@@ -181,7 +181,7 @@ const NftGame = () => {
           <div className="main-title-benefit">Coming IDO on our Launchpad</div>
           <div className="box-nft-game">
             <p className="desc">
-              Proudly incubated by LFW ecosystem, <a href="https://atf.kinglive.finance/#" className="text-primary" target="_blank">
+              Proudly incubated by LFW ecosystem, <a href="https://legendofgalaxy.io/" className="text-primary" target="_blank">
               Legend of Galaxy
             </a> is an appealing blockchain game with personalized NFT that aims to be a digital universe where every member has fair opportunities to participate, entertain, contribute, express their
               digital lifestyle and reap the attractive rewards.
