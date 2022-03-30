@@ -116,48 +116,50 @@ ${(ido.description || "").replace("Legend of Galaxy", "<a href=\"https://legendo
                       </div>
                     </div>
                     <div className="social-address gap-3">
-                      <div className="box-address">
-                        <div className="address-wl">
+                      {ido.ido_contract_address &&
+                        <div className="box-address">
+                          <div className="address-wl">
                                   <span>
-                                    {ido.ido_contract_address &&
-                                      `${ido.ido_contract_address.substring(0, 8)}...${ido.ido_contract_address.substring(
-                                        28,
-                                        ido.ido_contract_address.length
-                                      )}`}
+                                    {`${ido.ido_contract_address.substring(0, 8)}...${ido.ido_contract_address.substring(
+                                      28,
+                                      ido.ido_contract_address.length
+                                    )}`}
                                   </span>
-                          <CopyToClipboard
-                            text={ido.ido_contract_address}
-                            onCopy={() =>
-                              Store.addNotification({
-                                title: "Copied",
-                                message: (
-                                  <div className="custom-fontsize">
-                                    <i className="fa fa-check-square-o icon-success" aria-hidden="true" />
-                                    Successfully !
-                                  </div>
-                                ),
-                                type: "warning",
-                                width: 300,
-                                insert: "top",
-                                container: "top-center",
-                                animationIn: ["animate__animated success", "animate__fadeIn"],
-                                animationOut: ["animate__animated success", "animate__fadeOut"],
-                                dismiss: {
-                                  duration: 1000,
-                                  onScreen: true,
-                                  pauseOnHover: true,
-                                  click: true,
-                                  touch: true
-                                }
-                              })
-                            }
-                          >
+                            <CopyToClipboard
+                              text={ido.ido_contract_address}
+                              onCopy={() =>
+                                Store.addNotification({
+                                  title: "Copied",
+                                  message: (
+                                    <div className="custom-fontsize">
+                                      <i className="fa fa-check-square-o icon-success" aria-hidden="true" />
+                                      Successfully !
+                                    </div>
+                                  ),
+                                  type: "warning",
+                                  width: 300,
+                                  insert: "top",
+                                  container: "top-center",
+                                  animationIn: ["animate__animated success", "animate__fadeIn"],
+                                  animationOut: ["animate__animated success", "animate__fadeOut"],
+                                  dismiss: {
+                                    duration: 1000,
+                                    onScreen: true,
+                                    pauseOnHover: true,
+                                    click: true,
+                                    touch: true
+                                  }
+                                })
+                              }
+                            >
                                     <span className="img">
                                       <img src="/images/imagesV3/copy-v3.png" alt="" style={{ objectFit: "contain", height: "100%" }} />
                                     </span>
-                          </CopyToClipboard>
+                            </CopyToClipboard>
+                          </div>
                         </div>
-                      </div>
+                      }
+
 
                       <div className="flex box-social gap-2">
                         <a href={ido.extra_info.Telegram} target="blank">
