@@ -218,7 +218,7 @@ export default function App() {
                           component={RedirectOldRemoveLiquidityPathStructure}
                         />
                         <Route exact strict path="/NFTmarket" component={Nft} />
-                        <Route exact strict path="/IDO" component={Ido} />
+                        <Route exact strict path="/launchpad" component={Ido} />
                         <Route exact strict path="/launchpad/:ownerAddress/:id" component={LaunchpadDetail} />
                         {/* <Route exact strict path="/LaunchpadV3/:ownerAddress/:id" component={LaunchpadV3Detail} /> */}
                         <Route exact strict path="/genesisMarket" component={GenesisMarketplace} />

@@ -141,7 +141,7 @@ const MenuNew = () => {
                   </div>
                 </li>
 
-                <Link to="/IDO">
+                <Link to="/launchpad">
                   <li>
                     <div className="h__customLogoTrade">
                       <IconIdo />
