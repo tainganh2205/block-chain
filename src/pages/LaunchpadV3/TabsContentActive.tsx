@@ -101,6 +101,12 @@ const TabsContentActive = (props): any => {
                         </div>
                       </div>
                     </div>
+                    <div className="list-info-ido border-none">
+                      <div className="item">
+                        <div className="t-left">1</div>
+                        <div className="t-right">{ido.start_date}</div>
+                      </div>
+                    </div>
                     <div className="social-address gap-3">
                       <div className="box-address">
                         <div className="address-wl">
