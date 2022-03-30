@@ -14,7 +14,7 @@ function useQuery() {
   return React.useMemo(() => new URLSearchParams(search), [search]);
 }
 
-const { REACT_APP_API_LAUNCHPAD_URL } = process.env;
+const { REACT_APP_API_URL } = process.env;
 const TabsContentActive = (props): any => {
   const [state]: any = useHookProjects();
   const { idoList, activeTab } = props;
@@ -32,7 +32,7 @@ const TabsContentActive = (props): any => {
 
   useAsyncEffect(async () => {
     const status = query.get("tab");
-    const response = await axios.get(`${REACT_APP_API_LAUNCHPAD_URL}/launchpad?status=${status?.toLowerCase()}`);
+    const response = await axios.get(`${REACT_APP_API_URL}/v1/launchpad?status=${status?.toLowerCase()}`);
     setIdoListView(response.data.data)
   }, [query]);
 
