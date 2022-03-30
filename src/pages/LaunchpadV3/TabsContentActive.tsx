@@ -33,7 +33,7 @@ const TabsContentActive = (props): any => {
   useAsyncEffect(async () => {
     const status = query.get("tab");
     const response = await axios.get(`${REACT_APP_API_URL}/v1/launchpad?status=${status?.toLowerCase()}`);
-    setIdoListView(response.data.data)
+    setIdoListView(response.data.data);
   }, [query]);
 
   const handleCallClick = (symbol) => {
@@ -70,7 +70,9 @@ const TabsContentActive = (props): any => {
             <div className="box-content-active">
               <div className="top-content">
                 <div className="box-img">
-                  <img src={ido.extra_info.LogoUrl} width="70" height="70" alt="" />
+                  <a href="https://legendofgalaxy.io" target="blank">
+                    <img src={ido.extra_info.LogoUrl} width="70" height="70" alt="" />
+                  </a>
                 </div>
                 <h4 className="title">
                   {ido.name} <span>{ido.unit}</span>
@@ -79,9 +81,13 @@ const TabsContentActive = (props): any => {
               <div className="body-content">
                 <div className="guide-wrap">
                   <div className="wrap-top">
-                    <p className="desc">{(ido.description || "").replace("Legend of Galaxy",`<a href="https://legendofgalaxy.io/" class="text-primary" target="_blank">
-              Legend of Galaxy
-            </a>`)}</p>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: `<p class="desc">
+${(ido.description || "").replace("Legend of Galaxy", "<a href=\"https://legendofgalaxy.io/\" class=\"text-primary\" target=\"_blank\">Legend of Galaxy </a>")}</p>`
+                      }} />
+
+
                   </div>
                   <div className="wrap-middle">
 
@@ -163,7 +169,7 @@ const TabsContentActive = (props): any => {
                         <a href={ido.extra_info.Medium} target="blank">
                           <img src="/images/imagesV3/medium.svg" alt="" />
                         </a>
-                        <a href={ido.extra_info.Youtube} target="blank">
+                        <a href="https://legendofgalaxy.io" target="blank">
                           <img src="/images/imagesV3/youtube.svg" alt="" />
                         </a>
                       </div>
