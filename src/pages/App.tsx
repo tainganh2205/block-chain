@@ -232,7 +232,6 @@ export default function App() {
                         <Route exact strict path="/Introduction" component={Introduction} />
                         <Route exact strict path="/MysteryBox" component={MysteryBox} />
                         <Route exact strict path="/MysteryBoxDetail/:id" component={MysteryBoxDetail} />
-
                         <Route exact strict path="/usercenter/:id" component={UserCenter} />
                         <Route exact strict path="/createArtists" component={PersonalInfo} />
                         <Route component={RedirectPathToSwapOnly} />
