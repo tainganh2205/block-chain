@@ -96,6 +96,11 @@ function MenuNewMobile() {
         <a href="https://docsend.com/view/x8qrgrr8iq37aug9" rel="noreferrer" target="_blank">
           <li>Pitch Deck</li>
         </a>
+        <ul>
+          <a href=" https://www.rdauditors.com/wp-content/uploads/2022/03/Linked-Finance-World-Smart-Contract-Security-Report-28.03.22.pdf" rel="noreferrer" target="_blank"><li>
+            Smart Contract Audit
+          </li></a>
+        </ul>
       </ul>
     </>
   );
