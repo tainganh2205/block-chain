@@ -70,7 +70,7 @@ const TabsContentActive = (props): any => {
             <div className="box-content-active">
               <div className="top-content">
                 <div className="box-img">
-                  <img src={ido.extra_info.LogoUrl} alt="" />
+                  <img src={ido.extra_info.LogoUrl} width="50" height="50" alt="" />
                 </div>
                 <h4 className="title">
                   {ido.name} <span>{ido.unit}</span>
