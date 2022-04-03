@@ -26,7 +26,7 @@ const TabsContentActive = (props): any => {
   const tabSymbol = pathHash[2];
 
   const [typeView, setTypeView] = useState("");
-
+  const [idoDetail, setIdoDetail] = useState(null);
   const [idoListView, setIdoListView] = useState<any>([]);
   const query = useQuery();
 
@@ -36,11 +36,8 @@ const TabsContentActive = (props): any => {
     setIdoListView(response.data.data);
   }, [query]);
 
-  const handleCallClick = (symbol) => {
-    history.push({
-      pathname: history.location.pathname,
-      search: `${activeTab}?${symbol}`
-    });
+  const handleCallClick = (ido) => {
+    setIdoDetail(ido);
     setTypeView("detail");
   };
 
@@ -179,7 +176,7 @@ ${(ido.description || "").replace("Legend of Galaxy", "<a href=\"https://legendo
                     </div>
                     <div className="box-button-dt mt-2">
                       {state?.owner !== null && typeView === "list" && (
-                        <button type="button" className="btn-view-dt" onClick={() => handleCallClick(ido.symbol)}>
+                        <button type="button" className="btn-view-dt" onClick={() => handleCallClick(ido)}>
                           View details
                         </button>
                       )}
@@ -195,7 +192,7 @@ ${(ido.description || "").replace("Legend of Galaxy", "<a href=\"https://legendo
             <div className="info-message">Empty !</div>
             <img src="/images/imagesV3/noEmpty.svg" alt="unknown-artwork" className="img-message" />
           </div>
-        ) : <TabDetail activeTab={activeTab} />
+        ) : <TabDetail activeTab={activeTab} idoDetail={idoDetail} />
 
       }
 

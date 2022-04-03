@@ -1,91 +1,92 @@
-import React, { useRef, useEffect, useState } from 'react'
-import { useWeb3React } from '@web3-react/core'
-import { useHistory } from 'react-router-dom'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { Store } from 'react-notifications-component'
-import { isMobile } from 'react-device-detect'
-import { CHAINID_FULLNAME, CHAINID_CONVERT, MAPPING_CHAINID } from 'config/constants'
-import { useActiveWeb3React } from 'hooks'
-import { Modal } from 'antd'
-import switchNetwork from 'utils/wallet'
-import DetailsTabsContentActive from '../LaunchpadV3Detail/DetailsTabsContentActive'
-import { useHookProjects } from './Store'
-
-import { useHookDetail } from '../LaunchpadV3Detail/Store-Detail'
+import React, { useRef, useEffect, useState } from "react";
+import { useWeb3React } from "@web3-react/core";
+import { useHistory } from "react-router-dom";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { Store } from "react-notifications-component";
+import { isMobile } from "react-device-detect";
+import { CHAINID_FULLNAME, CHAINID_CONVERT, MAPPING_CHAINID } from "config/constants";
+import { useActiveWeb3React } from "hooks";
+import { Modal, Tooltip } from "antd";
+import switchNetwork from "utils/wallet";
+import { useHookProjects } from "./Store";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
+import { useHookDetail } from "../LaunchpadV3Detail/Store-Detail";
 
 function usePrevious(value) {
-  const ref = useRef()
+  const ref = useRef();
   // Store current value in ref
   useEffect(() => {
-    ref.current = value
-  }, [value]) // Only re-run if value changes
-  return ref.current
+    ref.current = value;
+  }, [value]); // Only re-run if value changes
+  return ref.current;
 }
-let loadFirst = false
+
+let loadFirst = false;
 
 
 const TabDetail = (props): any => {
-  const { chainId } = useActiveWeb3React()
-  const [isOtherChain, setOtherChain] = useState(false)
-  const [state, actions]: any = useHookProjects()
-  const [stateDetail, actionsDetail]: any = useHookDetail()
-  const { activeTab } = props
-  const { account } = useWeb3React()
-  const prevCount = usePrevious(account)
+  const { chainId } = useActiveWeb3React();
+  const [isOtherChain, setOtherChain] = useState(false);
+  const [state, actions]: any = useHookProjects();
+  const [stateDetail, actionsDetail]: any = useHookDetail();
+  const { activeTab, idoDetail } = props;
+  const { account } = useWeb3React();
+  const prevCount = usePrevious(account);
   // ------- GET PATH NAME --------
-  const history = useHistory()
-  const pathHash = history.location.search.split('?')
-  const tabSymbol = pathHash[2]
-
-  const [activeDetail, setActiveDetail] = useState<any>(null)
+  const history = useHistory();
+  const pathHash = history.location.search.split("?");
+  const tabSymbol = pathHash[2];
+  console.log(idoDetail);
+  const [activeDetail, setActiveDetail] = useState<any>(idoDetail);
 
   const handleCallDetail = async (symbol) => {
-    const address = account
-    const param = { address, symbol }
+    const address = account;
+    const param = { address, symbol };
     actions.getProjectDetal(param).then((res) => {
       if (res && res.status === 200) {
-        setActiveDetail(res.data.data)
-        actionsDetail.updateShowDisClaimer(res.data?.data?.showdisclaimer)
+        setActiveDetail(res.data.data);
+        actionsDetail.updateShowDisClaimer(res.data?.data?.showdisclaimer);
       }
-    })
-  }
+    });
+  };
 
   useEffect(() => {
 
     if (tabSymbol) {
       if (!loadFirst) {
-        handleCallDetail(tabSymbol)
-        loadFirst = true
+        handleCallDetail(tabSymbol);
+        loadFirst = true;
       } else if (prevCount !== account) {
-        handleCallDetail(tabSymbol)
+        handleCallDetail(tabSymbol);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tabSymbol, account])
+  }, [tabSymbol, account]);
 
   useEffect(() => {
     if (activeDetail) {
       if (isMobile && chainId) {
         if (activeDetail && activeDetail.network !== CHAINID_CONVERT[chainId]) {
-          setOtherChain(true)
+          setOtherChain(true);
         }
       } else {
-        switchNetwork(MAPPING_CHAINID[activeDetail.network])
+        switchNetwork(MAPPING_CHAINID[activeDetail.network]);
       }
     }
     return () => {
       // TODO
-    }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeDetail, account, chainId])
+  }, [activeDetail, account, chainId]);
 
   useEffect(() => {
     if (activeTab && !tabSymbol) {
-      loadFirst = false
+      loadFirst = false;
 
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeTab])
+  }, [activeTab]);
+  console.log(activeDetail);
   return (
     <>
       <Modal onCancel={() => setOtherChain(false)} className="modal-beta-show" title="Alert!" visible={isOtherChain}>
@@ -115,63 +116,61 @@ const TabDetail = (props): any => {
                   <div className="list-info-ido">
                     <div className="item">
                       <div className="t-left">Swap Rate:</div>
-                      <div className="t-right">{activeDetail?.swapAmount}</div>
+                      <div className="t-right">{activeDetail?.swap_rate}</div>
                     </div>
                     <div className="item">
                       <div className="t-left">IDO Supply:</div>
                       <div className="t-right">
-                        {activeDetail?.idoSupply} {activeDetail?.symbol}
+                        {activeDetail?.total_sale} {activeDetail?.symbol}
                       </div>
                     </div>
                     <div className="item">
                       <div className="t-left">Total Supply:</div>
                       <div className="t-right">
-                        {activeDetail?.totalSupply || 'TBA'} {activeDetail?.symbol}
+                        {activeDetail?.token_supply || "TBA"} {activeDetail?.symbol}
                       </div>
                     </div>
                   </div>
                   <div className="list-info-ido border-none">
-                    {activeDetail?.schedules.map((item) => (
-                      <div className="item">
-                        <div className="t-left">{item.round}</div>
-                        <div className="t-right">{item.startDate}</div>
-                      </div>
-                    ))}
+                    <div className="item">
+                      <div className="t-left">Private</div>
+                      <div className="t-right">{activeDetail.start_date}</div>
+                    </div>
                   </div>
                   <div className="social-address gap-3">
                     <div className="box-address">
                       <div className="address-wl">
                         <span>
-                          {activeDetail?.idoContract &&
-                            `${activeDetail?.idoContract.substring(0, 8)}...${activeDetail?.idoContract.substring(
+                          {activeDetail?.ido_contract_address &&
+                            `${activeDetail?.ido_contract_address.substring(0, 8)}...${activeDetail?.ido_contract_address.substring(
                               32,
-                              activeDetail?.idoContract.length
+                              activeDetail?.ido_contract_address.length
                             )}`}
                         </span>
                         <CopyToClipboard
-                          text={activeDetail?.idoContract}
+                          text={activeDetail?.ido_contract_address}
                           onCopy={() =>
                             Store.addNotification({
-                              title: 'Copied',
+                              title: "Copied",
                               message: (
                                 <div className="custom-fontsize">
                                   <i className="fa fa-check-square-o icon-success" aria-hidden="true" />
                                   Successfully !
                                 </div>
                               ),
-                              type: 'warning',
+                              type: "warning",
                               width: 300,
-                              insert: 'top',
-                              container: 'top-center',
-                              animationIn: ['animate__animated success', 'animate__fadeIn'],
-                              animationOut: ['animate__animated success', 'animate__fadeOut'],
+                              insert: "top",
+                              container: "top-center",
+                              animationIn: ["animate__animated success", "animate__fadeIn"],
+                              animationOut: ["animate__animated success", "animate__fadeOut"],
                               dismiss: {
                                 duration: 1000,
                                 onScreen: true,
                                 pauseOnHover: true,
                                 click: true,
-                                touch: true,
-                              },
+                                touch: true
+                              }
                             })
                           }
                         >
@@ -182,16 +181,16 @@ const TabDetail = (props): any => {
                       </div>
                     </div>
                     <div className="flex box-social gap-2">
-                      <a href={activeDetail?.socical.telegram} target="blank">
+                      <a href={activeDetail?.extra_info.Telegram} target="blank">
                         <img src="/images/imagesV3/telegram.svg" alt="" />
                       </a>
-                      <a href={activeDetail?.socical.twitter} target="blank">
+                      <a href={activeDetail?.extra_info.Twitter} target="blank">
                         <img src="/images/imagesV3/twi.svg" alt="" />
                       </a>
-                      <a href={activeDetail?.socical.medium} target="blank">
+                      <a href={activeDetail?.extra_info.Medium} target="blank">
                         <img src="/images/imagesV3/medium.svg" alt="" />
                       </a>
-                      <a href={activeDetail?.socical.website} target="blank">
+                      <a href={activeDetail?.extra_info.Website} target="blank">
                         <img src="/images/imagesV3/youtube.svg" alt="" />
                       </a>
                     </div>
@@ -201,13 +200,43 @@ const TabDetail = (props): any => {
             </div>
           </div>
           <div className="box-content-active-detail">
-            <DetailsTabsContentActive
-              activeDetail={activeDetail}
-            />
+
+            <div className="round-one">
+              <div className="g-title">
+                <h4 className="title">Private</h4>
+                <img className="blur-title" src="/images/imagesV3/blur-title.svg" alt="" />
+              </div>
+              <div className="list-info-ido border-none">
+                <div className="item">
+                  <div className="t-left">Total Raise:</div>
+                  <div className="t-right">$ {Number(activeDetail.total_sale).toFixed(2)}</div>
+                </div>
+                <div className="item">
+                  <div className="t-left">Swap Rate:</div>
+                  <div className="t-right">{activeDetail.swap_rate}</div>
+                </div>
+                <div className="item">
+                  <div className="t-left">Start Pool:</div>
+                  <div className="t-right">{activeDetail.start_date}</div>
+                </div>
+                <div className="item">
+                  <div className="t-left">End Pool:</div>
+                  <div className="t-right">{activeDetail.end_date}</div>
+                </div>
+                <div className="item">
+                  <div className="t-left">Vesting:</div>
+                  <div className="t-right exc-vt">
+                    <Tooltip placement="leftTop" title="TBA">
+                      <ExclamationCircleOutlined />
+                    </Tooltip>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
     </>
-  )
-}
-export default TabDetail
+  );
+};
+export default TabDetail;

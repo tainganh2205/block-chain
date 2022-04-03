@@ -694,9 +694,6 @@ const DetailsTabsContentActive = (props): any => {
   return (
     <>
       {activeDetail && activeDetail.details.map((x) => <ItemIdo x={x} network={activeDetail.network} />)}
-      <ModalClaimedAfter dataFromParent={activeDetail} />
-
-      <ModalDisClaimer isShowDisClaim={activeDetail.showdisclaimer} symbol={activeDetail.symbol} />
     </>
   );
 };
