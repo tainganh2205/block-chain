@@ -19,6 +19,5 @@ export function useFetchWithCache<Data = any, Error = any>(
       setInternalData(data)
     }
   }, [data])
-
   return { data: internalData, isFirstLoading, isLoading, error, ...rest }
 }

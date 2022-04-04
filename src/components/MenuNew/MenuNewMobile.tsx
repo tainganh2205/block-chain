@@ -115,7 +115,7 @@ function MenuNewMobile() {
           <Link to="/coming-soon">Farms</Link>
         </li>
         <li>
-          <Link to="/coming-soon">Launchpad Pools</Link>
+          <Link to="/launchpad-pools">Launchpad Pools</Link>
         </li>
       </ul>
     </>
