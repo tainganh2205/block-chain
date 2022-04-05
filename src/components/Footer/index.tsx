@@ -168,25 +168,25 @@ const Footer = () => {
                           <li>
                             <div className="box-img">
                               <a
-                                href="#!"
+                                href="https://t.me/LFWofficial"
                                 className="h__boxIcon"
                               >
                                 <i className="fa fa-paper-plane h__customIcon" aria-hidden="true" />
                               </a>
 
                               <a
-                                href="#!"
+                                href="https://twitter.com/Legend_LFW"
                                 className="h__boxIcon"
                               >
                                 <i className="fab fa-twitter h__customIcon" aria-hidden="true" />
                               </a>
 
-                              <a className="h__boxIcon" href="#!">
+                              <a className="h__boxIcon" href="https://www.youtube.com/channel/UCV5ULujFsmj7-aWih6ftQoQ">
                                 <i className="fab fa-youtube h__customIcon" aria-hidden="true" />
                               </a>
 
                               <a
-                                href="#!"
+                                href="https://medium.com/legend-of-fantasy-war"
                                 className="h__boxIcon"
                               >
                                 <i className="fab fa-medium-m h__customIcon" aria-hidden="true" />
