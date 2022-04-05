@@ -144,8 +144,14 @@ function MenuNewMobile() {
         <Link to="/airdrops">
           <li>Airdrops Portal</li>
         </Link>
+        <a href="https://legendfantasywar.com/" rel="noreferrer" target="_blank">
+          <li>Legend of Fantasy War</li>
+        </a>
         <Link to="/legend-of-galaxy">
           <li>Legend of Galaxy</li>
+        </Link>
+        <Link to="/coming-soon">
+          <li>Fish Hunting</li>
         </Link>
         <Link to="/coming-soon">
           <li>Mystery Box</li>
@@ -156,7 +162,7 @@ function MenuNewMobile() {
   const menuDocs = (
     <>
       <ul>
-        <a href="https://docs.artinfinity.app/welcome-to-artinfinity/">
+        <a href="https://docs.artinfinity.app/welcome-to-artinfinity/" target="_blank" rel="noreferrer">
           <li>Docs</li>
         </a>
         <Link to="/">
