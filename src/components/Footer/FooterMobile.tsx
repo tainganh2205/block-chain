@@ -37,19 +37,19 @@ const FooterMobile = () => {
         <ul className="list-menu-ft h__dflex gap">
           <li>
             <div className="box-img h__dflex1">
-              <a className="h__boxIcon" href="#!">
+              <a className="h__boxIcon" href="https://t.me/LFWofficial">
                 <i className="fa fa-paper-plane h__customIcon" aria-hidden="true" />
               </a>
 
-              <a className="h__boxIcon" href="#!">
+              <a className="h__boxIcon" href="https://twitter.com/Legend_LFW">
                 <i className="fab fa-twitter h__customIcon" aria-hidden="true" />
               </a>
 
-              <a className="h__boxIcon" href="#!">
+              <a className="h__boxIcon" href="https://www.youtube.com/channel/UCV5ULujFsmj7-aWih6ftQoQ">
                 <i className="fab fa-youtube h__customIcon" aria-hidden="true" />
               </a>
 
-              <a className="h__boxIcon" href="#!">
+              <a className="h__boxIcon" href="https://medium.com/legend-of-fantasy-war">
                 <i className="fab fa-medium-m h__customIcon" aria-hidden="true" />
               </a>
             </div>
