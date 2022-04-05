@@ -61,14 +61,14 @@ const TopIDO = () => {
             <div className='devCus__bt'>
               <UnlockButton text="EXPLORE" />
             </div>
-          </div> 
+          </div>
 
           <div className="text-r-banner">
             <div className="CusAb" />
             <div className="list-staking">
               <div className="text-flex">
                 <span className="t-left">IDO Pool staked:</span>
-                <span className="t-right">{state.owner?.staking || ''}</span>
+                <span className="t-right">0 LFW</span>
               </div>
               <div className="text-flex">
                 <span className="t-left">Tier:</span>

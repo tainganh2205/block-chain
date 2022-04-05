@@ -76,13 +76,13 @@ const Footer = () => {
 
                     </li>
                     <li>
-                      <div className="text-sp-l "/>
+                      <div className="text-sp-l " />
 
                       <div className="text-left h__custom">
                         <div className="text-sp-r">
                           <UpDownChange className="ftext-sp-r">
-                          {tokenInfo?.totalVolumeChange || 0}
-                        </UpDownChange>
+                            {tokenInfo?.totalVolumeChange || 0}
+                          </UpDownChange>
                         </div>
                       </div>
                     </li>
@@ -168,25 +168,28 @@ const Footer = () => {
                           <li>
                             <div className="box-img">
                               <a
-                                href="#!"
+                                href="https://t.me/LFWofficial"
                                 className="h__boxIcon"
+                                target="_blank" aria-hidden="true"
                               >
                                 <i className="fa fa-paper-plane h__customIcon" aria-hidden="true" />
                               </a>
 
                               <a
-                                href="#!"
+                                href="https://twitter.com/Legend_LFW"
+                                target="_blank" aria-hidden="true"
                                 className="h__boxIcon"
                               >
                                 <i className="fab fa-twitter h__customIcon" aria-hidden="true" />
                               </a>
 
-                              <a className="h__boxIcon" href="#!">
+                              <a className="h__boxIcon" target="_blank" aria-hidden="true" href="https://www.youtube.com/channel/UCV5ULujFsmj7-aWih6ftQoQ">
                                 <i className="fab fa-youtube h__customIcon" aria-hidden="true" />
                               </a>
 
                               <a
-                                href="#!"
+                                href="https://medium.com/legend-of-fantasy-war"
+                                target="_blank" aria-hidden="true"
                                 className="h__boxIcon"
                               >
                                 <i className="fab fa-medium-m h__customIcon" aria-hidden="true" />
@@ -212,7 +215,7 @@ const Footer = () => {
               </div>
             )}
           </div>
-          <div className="copy-right">Copyright © 2022 Linked Finance World.  All Rights Reserved.</div>
+          <div className="copy-right">Copyright © 2022 Linked Finance World. All Rights Reserved.</div>
         </div>
       </div>
     </>
