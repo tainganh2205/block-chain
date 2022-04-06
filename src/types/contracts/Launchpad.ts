@@ -17,48 +17,36 @@ import { FunctionFragment, Result, EventFragment } from "@ethersproject/abi";
 import { Listener, Provider } from "@ethersproject/providers";
 import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "./common";
 
-export interface LfwTokenInterface extends utils.Interface {
+export interface LaunchpadInterface extends utils.Interface {
   functions: {
-    "_lgePairAddress()": FunctionFragment;
-    "_lgeTimestamp()": FunctionFragment;
-    "_lgeWhitelistRounds(uint256)": FunctionFragment;
-    "_whitelister()": FunctionFragment;
     "allowance(address,address)": FunctionFragment;
     "approve(address,uint256)": FunctionFragment;
+    "apy()": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
-    "burn(uint256)": FunctionFragment;
-    "burnFrom(address,uint256)": FunctionFragment;
-    "createLGEWhitelist(address,uint256[],uint256[])": FunctionFragment;
+    "changeAPY(uint256)": FunctionFragment;
+    "claim()": FunctionFragment;
     "decimals()": FunctionFragment;
     "decreaseAllowance(address,uint256)": FunctionFragment;
-    "getLGEWhitelistRound()": FunctionFragment;
+    "emergencyWithdraw(uint256)": FunctionFragment;
     "increaseAllowance(address,uint256)": FunctionFragment;
-    "modifyLGEWhitelist(uint256,uint256,uint256,address[],bool)": FunctionFragment;
+    "initialize(address,bool,uint256,address)": FunctionFragment;
+    "isRemovable()": FunctionFragment;
     "name()": FunctionFragment;
-    "renounceWhitelister()": FunctionFragment;
+    "owner()": FunctionFragment;
+    "renounceOwnership()": FunctionFragment;
+    "setRemovePool(bool)": FunctionFragment;
+    "stake(uint256)": FunctionFragment;
+    "stakedToken()": FunctionFragment;
     "symbol()": FunctionFragment;
     "totalSupply()": FunctionFragment;
     "transfer(address,uint256)": FunctionFragment;
     "transferFrom(address,address,uint256)": FunctionFragment;
-    "transferWhitelister(address)": FunctionFragment;
+    "transferOwnership(address)": FunctionFragment;
+    "unStake(uint256)": FunctionFragment;
+    "userInfo(address)": FunctionFragment;
+    "userList(uint256)": FunctionFragment;
   };
 
-  encodeFunctionData(
-    functionFragment: "_lgePairAddress",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "_lgeTimestamp",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "_lgeWhitelistRounds",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "_whitelister",
-    values?: undefined
-  ): string;
   encodeFunctionData(
     functionFragment: "allowance",
     values: [string, string]
@@ -67,36 +55,47 @@ export interface LfwTokenInterface extends utils.Interface {
     functionFragment: "approve",
     values: [string, BigNumberish]
   ): string;
+  encodeFunctionData(functionFragment: "apy", values?: undefined): string;
   encodeFunctionData(functionFragment: "balanceOf", values: [string]): string;
-  encodeFunctionData(functionFragment: "burn", values: [BigNumberish]): string;
   encodeFunctionData(
-    functionFragment: "burnFrom",
-    values: [string, BigNumberish]
+    functionFragment: "changeAPY",
+    values: [BigNumberish]
   ): string;
-  encodeFunctionData(
-    functionFragment: "createLGEWhitelist",
-    values: [string, BigNumberish[], BigNumberish[]]
-  ): string;
+  encodeFunctionData(functionFragment: "claim", values?: undefined): string;
   encodeFunctionData(functionFragment: "decimals", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "decreaseAllowance",
     values: [string, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "getLGEWhitelistRound",
-    values?: undefined
+    functionFragment: "emergencyWithdraw",
+    values: [BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "increaseAllowance",
     values: [string, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "modifyLGEWhitelist",
-    values: [BigNumberish, BigNumberish, BigNumberish, string[], boolean]
+    functionFragment: "initialize",
+    values: [string, boolean, BigNumberish, string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "isRemovable",
+    values?: undefined
   ): string;
   encodeFunctionData(functionFragment: "name", values?: undefined): string;
+  encodeFunctionData(functionFragment: "owner", values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "renounceWhitelister",
+    functionFragment: "renounceOwnership",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setRemovePool",
+    values: [boolean]
+  ): string;
+  encodeFunctionData(functionFragment: "stake", values: [BigNumberish]): string;
+  encodeFunctionData(
+    functionFragment: "stakedToken",
     values?: undefined
   ): string;
   encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
@@ -113,55 +112,56 @@ export interface LfwTokenInterface extends utils.Interface {
     values: [string, string, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "transferWhitelister",
+    functionFragment: "transferOwnership",
     values: [string]
   ): string;
+  encodeFunctionData(
+    functionFragment: "unStake",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(functionFragment: "userInfo", values: [string]): string;
+  encodeFunctionData(
+    functionFragment: "userList",
+    values: [BigNumberish]
+  ): string;
 
-  decodeFunctionResult(
-    functionFragment: "_lgePairAddress",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "_lgeTimestamp",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "_lgeWhitelistRounds",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "_whitelister",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(functionFragment: "allowance", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "apy", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "burn", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "burnFrom", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "createLGEWhitelist",
-    data: BytesLike
-  ): Result;
+  decodeFunctionResult(functionFragment: "changeAPY", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "claim", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "decimals", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "decreaseAllowance",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "getLGEWhitelistRound",
+    functionFragment: "emergencyWithdraw",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
     functionFragment: "increaseAllowance",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "initialize", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "modifyLGEWhitelist",
+    functionFragment: "isRemovable",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "renounceWhitelister",
+    functionFragment: "renounceOwnership",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "setRemovePool",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "stake", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "stakedToken",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
@@ -175,19 +175,30 @@ export interface LfwTokenInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "transferWhitelister",
+    functionFragment: "transferOwnership",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "unStake", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "userInfo", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "userList", data: BytesLike): Result;
 
   events: {
     "Approval(address,address,uint256)": EventFragment;
+    "ChangeAPYvalue(uint256)": EventFragment;
+    "Claimed(address,uint256)": EventFragment;
+    "OwnershipTransferred(address,address)": EventFragment;
+    "Stake(address,uint256)": EventFragment;
     "Transfer(address,address,uint256)": EventFragment;
-    "WhitelisterTransferred(address,address)": EventFragment;
+    "Unstake(address,uint256)": EventFragment;
   };
 
   getEvent(nameOrSignatureOrTopic: "Approval"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "ChangeAPYvalue"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Claimed"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "OwnershipTransferred"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Stake"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "WhitelisterTransferred"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Unstake"): EventFragment;
 }
 
 export type ApprovalEvent = TypedEvent<
@@ -197,6 +208,35 @@ export type ApprovalEvent = TypedEvent<
 
 export type ApprovalEventFilter = TypedEventFilter<ApprovalEvent>;
 
+export type ChangeAPYvalueEvent = TypedEvent<
+  [BigNumber],
+  { amount: BigNumber }
+>;
+
+export type ChangeAPYvalueEventFilter = TypedEventFilter<ChangeAPYvalueEvent>;
+
+export type ClaimedEvent = TypedEvent<
+  [string, BigNumber],
+  { wallet: string; amount: BigNumber }
+>;
+
+export type ClaimedEventFilter = TypedEventFilter<ClaimedEvent>;
+
+export type OwnershipTransferredEvent = TypedEvent<
+  [string, string],
+  { previousOwner: string; newOwner: string }
+>;
+
+export type OwnershipTransferredEventFilter =
+  TypedEventFilter<OwnershipTransferredEvent>;
+
+export type StakeEvent = TypedEvent<
+  [string, BigNumber],
+  { wallet: string; amount: BigNumber }
+>;
+
+export type StakeEventFilter = TypedEventFilter<StakeEvent>;
+
 export type TransferEvent = TypedEvent<
   [string, string, BigNumber],
   { from: string; to: string; value: BigNumber }
@@ -204,20 +244,19 @@ export type TransferEvent = TypedEvent<
 
 export type TransferEventFilter = TypedEventFilter<TransferEvent>;
 
-export type WhitelisterTransferredEvent = TypedEvent<
-  [string, string],
-  { previousWhitelister: string; newWhitelister: string }
+export type UnstakeEvent = TypedEvent<
+  [string, BigNumber],
+  { user: string; amount: BigNumber }
 >;
 
-export type WhitelisterTransferredEventFilter =
-  TypedEventFilter<WhitelisterTransferredEvent>;
+export type UnstakeEventFilter = TypedEventFilter<UnstakeEvent>;
 
-export interface LfwToken extends BaseContract {
+export interface Launchpad extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
 
-  interface: LfwTokenInterface;
+  interface: LaunchpadInterface;
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
@@ -239,19 +278,6 @@ export interface LfwToken extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
-    _lgePairAddress(overrides?: CallOverrides): Promise<[string]>;
-
-    _lgeTimestamp(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    _lgeWhitelistRounds(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<
-      [BigNumber, BigNumber] & { duration: BigNumber; amountMax: BigNumber }
-    >;
-
-    _whitelister(overrides?: CallOverrides): Promise<[string]>;
-
     allowance(
       owner: string,
       spender: string,
@@ -264,23 +290,16 @@ export interface LfwToken extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
+    apy(overrides?: CallOverrides): Promise<[BigNumber]>;
+
     balanceOf(account: string, overrides?: CallOverrides): Promise<[BigNumber]>;
 
-    burn(
-      amount: BigNumberish,
+    changeAPY(
+      _apy: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    burnFrom(
-      account: string,
-      amount: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    createLGEWhitelist(
-      pairAddress: string,
-      durations: BigNumberish[],
-      amountsMax: BigNumberish[],
+    claim(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
@@ -292,11 +311,10 @@ export interface LfwToken extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    getLGEWhitelistRound(
-      overrides?: CallOverrides
-    ): Promise<
-      [BigNumber, BigNumber, BigNumber, BigNumber, boolean, BigNumber]
-    >;
+    emergencyWithdraw(
+      _amount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
 
     increaseAllowance(
       spender: string,
@@ -304,56 +322,77 @@ export interface LfwToken extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    modifyLGEWhitelist(
-      index: BigNumberish,
-      duration: BigNumberish,
-      amountMax: BigNumberish,
-      addresses: string[],
-      enabled: boolean,
+    initialize(
+      _stakedToken: string,
+      _isRemovable: boolean,
+      _apy: BigNumberish,
+      _admin: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
+
+    isRemovable(overrides?: CallOverrides): Promise<[boolean]>;
 
     name(overrides?: CallOverrides): Promise<[string]>;
 
-    renounceWhitelister(
+    owner(overrides?: CallOverrides): Promise<[string]>;
+
+    renounceOwnership(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
+
+    setRemovePool(
+      _remove: boolean,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    stake(
+      _amount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    stakedToken(overrides?: CallOverrides): Promise<[string]>;
 
     symbol(overrides?: CallOverrides): Promise<[string]>;
 
     totalSupply(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     transfer(
-      recipient: string,
+      to: string,
       amount: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     transferFrom(
-      sender: string,
-      recipient: string,
+      from: string,
+      to: string,
       amount: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    transferWhitelister(
-      newWhitelister: string,
+    transferOwnership(
+      newOwner: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
+
+    unStake(
+      _amount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    userInfo(
+      arg0: string,
+      overrides?: CallOverrides
+    ): Promise<
+      [BigNumber, BigNumber, BigNumber, BigNumber] & {
+        stakingTime: BigNumber;
+        lockTime: BigNumber;
+        lastClaimingTime: BigNumber;
+        stakedAmount: BigNumber;
+      }
+    >;
+
+    userList(arg0: BigNumberish, overrides?: CallOverrides): Promise<[string]>;
   };
-
-  _lgePairAddress(overrides?: CallOverrides): Promise<string>;
-
-  _lgeTimestamp(overrides?: CallOverrides): Promise<BigNumber>;
-
-  _lgeWhitelistRounds(
-    arg0: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<
-    [BigNumber, BigNumber] & { duration: BigNumber; amountMax: BigNumber }
-  >;
-
-  _whitelister(overrides?: CallOverrides): Promise<string>;
 
   allowance(
     owner: string,
@@ -367,23 +406,16 @@ export interface LfwToken extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
+  apy(overrides?: CallOverrides): Promise<BigNumber>;
+
   balanceOf(account: string, overrides?: CallOverrides): Promise<BigNumber>;
 
-  burn(
-    amount: BigNumberish,
+  changeAPY(
+    _apy: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  burnFrom(
-    account: string,
-    amount: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  createLGEWhitelist(
-    pairAddress: string,
-    durations: BigNumberish[],
-    amountsMax: BigNumberish[],
+  claim(
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -395,9 +427,10 @@ export interface LfwToken extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  getLGEWhitelistRound(
-    overrides?: CallOverrides
-  ): Promise<[BigNumber, BigNumber, BigNumber, BigNumber, boolean, BigNumber]>;
+  emergencyWithdraw(
+    _amount: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
 
   increaseAllowance(
     spender: string,
@@ -405,57 +438,78 @@ export interface LfwToken extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  modifyLGEWhitelist(
-    index: BigNumberish,
-    duration: BigNumberish,
-    amountMax: BigNumberish,
-    addresses: string[],
-    enabled: boolean,
+  initialize(
+    _stakedToken: string,
+    _isRemovable: boolean,
+    _apy: BigNumberish,
+    _admin: string,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
+
+  isRemovable(overrides?: CallOverrides): Promise<boolean>;
 
   name(overrides?: CallOverrides): Promise<string>;
 
-  renounceWhitelister(
+  owner(overrides?: CallOverrides): Promise<string>;
+
+  renounceOwnership(
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
+
+  setRemovePool(
+    _remove: boolean,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  stake(
+    _amount: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  stakedToken(overrides?: CallOverrides): Promise<string>;
 
   symbol(overrides?: CallOverrides): Promise<string>;
 
   totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
 
   transfer(
-    recipient: string,
+    to: string,
     amount: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   transferFrom(
-    sender: string,
-    recipient: string,
+    from: string,
+    to: string,
     amount: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  transferWhitelister(
-    newWhitelister: string,
+  transferOwnership(
+    newOwner: string,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
+  unStake(
+    _amount: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  userInfo(
+    arg0: string,
+    overrides?: CallOverrides
+  ): Promise<
+    [BigNumber, BigNumber, BigNumber, BigNumber] & {
+      stakingTime: BigNumber;
+      lockTime: BigNumber;
+      lastClaimingTime: BigNumber;
+      stakedAmount: BigNumber;
+    }
+  >;
+
+  userList(arg0: BigNumberish, overrides?: CallOverrides): Promise<string>;
+
   callStatic: {
-    _lgePairAddress(overrides?: CallOverrides): Promise<string>;
-
-    _lgeTimestamp(overrides?: CallOverrides): Promise<BigNumber>;
-
-    _lgeWhitelistRounds(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<
-      [BigNumber, BigNumber] & { duration: BigNumber; amountMax: BigNumber }
-    >;
-
-    _whitelister(overrides?: CallOverrides): Promise<string>;
-
     allowance(
       owner: string,
       spender: string,
@@ -468,22 +522,13 @@ export interface LfwToken extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
+    apy(overrides?: CallOverrides): Promise<BigNumber>;
+
     balanceOf(account: string, overrides?: CallOverrides): Promise<BigNumber>;
 
-    burn(amount: BigNumberish, overrides?: CallOverrides): Promise<void>;
+    changeAPY(_apy: BigNumberish, overrides?: CallOverrides): Promise<void>;
 
-    burnFrom(
-      account: string,
-      amount: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    createLGEWhitelist(
-      pairAddress: string,
-      durations: BigNumberish[],
-      amountsMax: BigNumberish[],
-      overrides?: CallOverrides
-    ): Promise<void>;
+    claim(overrides?: CallOverrides): Promise<void>;
 
     decimals(overrides?: CallOverrides): Promise<number>;
 
@@ -493,11 +538,10 @@ export interface LfwToken extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    getLGEWhitelistRound(
+    emergencyWithdraw(
+      _amount: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<
-      [BigNumber, BigNumber, BigNumber, BigNumber, boolean, BigNumber]
-    >;
+    ): Promise<void>;
 
     increaseAllowance(
       spender: string,
@@ -505,40 +549,65 @@ export interface LfwToken extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    modifyLGEWhitelist(
-      index: BigNumberish,
-      duration: BigNumberish,
-      amountMax: BigNumberish,
-      addresses: string[],
-      enabled: boolean,
+    initialize(
+      _stakedToken: string,
+      _isRemovable: boolean,
+      _apy: BigNumberish,
+      _admin: string,
       overrides?: CallOverrides
     ): Promise<void>;
 
+    isRemovable(overrides?: CallOverrides): Promise<boolean>;
+
     name(overrides?: CallOverrides): Promise<string>;
 
-    renounceWhitelister(overrides?: CallOverrides): Promise<void>;
+    owner(overrides?: CallOverrides): Promise<string>;
+
+    renounceOwnership(overrides?: CallOverrides): Promise<void>;
+
+    setRemovePool(_remove: boolean, overrides?: CallOverrides): Promise<void>;
+
+    stake(_amount: BigNumberish, overrides?: CallOverrides): Promise<void>;
+
+    stakedToken(overrides?: CallOverrides): Promise<string>;
 
     symbol(overrides?: CallOverrides): Promise<string>;
 
     totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
 
     transfer(
-      recipient: string,
+      to: string,
       amount: BigNumberish,
       overrides?: CallOverrides
     ): Promise<boolean>;
 
     transferFrom(
-      sender: string,
-      recipient: string,
+      from: string,
+      to: string,
       amount: BigNumberish,
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    transferWhitelister(
-      newWhitelister: string,
+    transferOwnership(
+      newOwner: string,
       overrides?: CallOverrides
     ): Promise<void>;
+
+    unStake(_amount: BigNumberish, overrides?: CallOverrides): Promise<void>;
+
+    userInfo(
+      arg0: string,
+      overrides?: CallOverrides
+    ): Promise<
+      [BigNumber, BigNumber, BigNumber, BigNumber] & {
+        stakingTime: BigNumber;
+        lockTime: BigNumber;
+        lastClaimingTime: BigNumber;
+        stakedAmount: BigNumber;
+      }
+    >;
+
+    userList(arg0: BigNumberish, overrides?: CallOverrides): Promise<string>;
   };
 
   filters: {
@@ -553,6 +622,30 @@ export interface LfwToken extends BaseContract {
       value?: null
     ): ApprovalEventFilter;
 
+    "ChangeAPYvalue(uint256)"(amount?: null): ChangeAPYvalueEventFilter;
+    ChangeAPYvalue(amount?: null): ChangeAPYvalueEventFilter;
+
+    "Claimed(address,uint256)"(
+      wallet?: string | null,
+      amount?: null
+    ): ClaimedEventFilter;
+    Claimed(wallet?: string | null, amount?: null): ClaimedEventFilter;
+
+    "OwnershipTransferred(address,address)"(
+      previousOwner?: string | null,
+      newOwner?: string | null
+    ): OwnershipTransferredEventFilter;
+    OwnershipTransferred(
+      previousOwner?: string | null,
+      newOwner?: string | null
+    ): OwnershipTransferredEventFilter;
+
+    "Stake(address,uint256)"(
+      wallet?: string | null,
+      amount?: null
+    ): StakeEventFilter;
+    Stake(wallet?: string | null, amount?: null): StakeEventFilter;
+
     "Transfer(address,address,uint256)"(
       from?: string | null,
       to?: string | null,
@@ -564,28 +657,14 @@ export interface LfwToken extends BaseContract {
       value?: null
     ): TransferEventFilter;
 
-    "WhitelisterTransferred(address,address)"(
-      previousWhitelister?: string | null,
-      newWhitelister?: string | null
-    ): WhitelisterTransferredEventFilter;
-    WhitelisterTransferred(
-      previousWhitelister?: string | null,
-      newWhitelister?: string | null
-    ): WhitelisterTransferredEventFilter;
+    "Unstake(address,uint256)"(
+      user?: string | null,
+      amount?: null
+    ): UnstakeEventFilter;
+    Unstake(user?: string | null, amount?: null): UnstakeEventFilter;
   };
 
   estimateGas: {
-    _lgePairAddress(overrides?: CallOverrides): Promise<BigNumber>;
-
-    _lgeTimestamp(overrides?: CallOverrides): Promise<BigNumber>;
-
-    _lgeWhitelistRounds(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    _whitelister(overrides?: CallOverrides): Promise<BigNumber>;
-
     allowance(
       owner: string,
       spender: string,
@@ -598,23 +677,16 @@ export interface LfwToken extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
+    apy(overrides?: CallOverrides): Promise<BigNumber>;
+
     balanceOf(account: string, overrides?: CallOverrides): Promise<BigNumber>;
 
-    burn(
-      amount: BigNumberish,
+    changeAPY(
+      _apy: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    burnFrom(
-      account: string,
-      amount: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    createLGEWhitelist(
-      pairAddress: string,
-      durations: BigNumberish[],
-      amountsMax: BigNumberish[],
+    claim(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -626,7 +698,10 @@ export interface LfwToken extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    getLGEWhitelistRound(overrides?: CallOverrides): Promise<BigNumber>;
+    emergencyWithdraw(
+      _amount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
 
     increaseAllowance(
       spender: string,
@@ -634,56 +709,69 @@ export interface LfwToken extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    modifyLGEWhitelist(
-      index: BigNumberish,
-      duration: BigNumberish,
-      amountMax: BigNumberish,
-      addresses: string[],
-      enabled: boolean,
+    initialize(
+      _stakedToken: string,
+      _isRemovable: boolean,
+      _apy: BigNumberish,
+      _admin: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
+
+    isRemovable(overrides?: CallOverrides): Promise<BigNumber>;
 
     name(overrides?: CallOverrides): Promise<BigNumber>;
 
-    renounceWhitelister(
+    owner(overrides?: CallOverrides): Promise<BigNumber>;
+
+    renounceOwnership(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
+
+    setRemovePool(
+      _remove: boolean,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    stake(
+      _amount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    stakedToken(overrides?: CallOverrides): Promise<BigNumber>;
 
     symbol(overrides?: CallOverrides): Promise<BigNumber>;
 
     totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
 
     transfer(
-      recipient: string,
+      to: string,
       amount: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
     transferFrom(
-      sender: string,
-      recipient: string,
+      from: string,
+      to: string,
       amount: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    transferWhitelister(
-      newWhitelister: string,
+    transferOwnership(
+      newOwner: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
+
+    unStake(
+      _amount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    userInfo(arg0: string, overrides?: CallOverrides): Promise<BigNumber>;
+
+    userList(arg0: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
   };
 
   populateTransaction: {
-    _lgePairAddress(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    _lgeTimestamp(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    _lgeWhitelistRounds(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    _whitelister(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
     allowance(
       owner: string,
       spender: string,
@@ -696,26 +784,19 @@ export interface LfwToken extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
+    apy(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     balanceOf(
       account: string,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    burn(
-      amount: BigNumberish,
+    changeAPY(
+      _apy: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    burnFrom(
-      account: string,
-      amount: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    createLGEWhitelist(
-      pairAddress: string,
-      durations: BigNumberish[],
-      amountsMax: BigNumberish[],
+    claim(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
@@ -727,8 +808,9 @@ export interface LfwToken extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    getLGEWhitelistRound(
-      overrides?: CallOverrides
+    emergencyWithdraw(
+      _amount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
     increaseAllowance(
@@ -737,41 +819,71 @@ export interface LfwToken extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    modifyLGEWhitelist(
-      index: BigNumberish,
-      duration: BigNumberish,
-      amountMax: BigNumberish,
-      addresses: string[],
-      enabled: boolean,
+    initialize(
+      _stakedToken: string,
+      _isRemovable: boolean,
+      _apy: BigNumberish,
+      _admin: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
+
+    isRemovable(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     name(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    renounceWhitelister(
+    owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    renounceOwnership(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
+
+    setRemovePool(
+      _remove: boolean,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    stake(
+      _amount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    stakedToken(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     symbol(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     totalSupply(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     transfer(
-      recipient: string,
+      to: string,
       amount: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
     transferFrom(
-      sender: string,
-      recipient: string,
+      from: string,
+      to: string,
       amount: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    transferWhitelister(
-      newWhitelister: string,
+    transferOwnership(
+      newOwner: string,
       overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    unStake(
+      _amount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    userInfo(
+      arg0: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    userList(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
   };
 }

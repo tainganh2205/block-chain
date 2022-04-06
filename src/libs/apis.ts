@@ -58,6 +58,14 @@ class Client {
       },
     )
   }
+  getLaunchpadPoolInfo() {
+    return fetcher<Required<HandlerStakingInfoResponse>>(
+      `${BASE_URL}/v1/staking/launchpad`,
+      {
+        headers: this.headers,
+      },
+    )
+  }
 
 }
 

@@ -19,13 +19,13 @@ import { formatBigNumber } from "utils/formatBalance";
 import { getScanLink } from "utils/connector";
 import { HandlerStakingInfo, UtilROIResults } from "types/schema";
 import { PoolStatus } from "types/common";
-import { EnableContractButton } from "./EnableContractButton";
 import { ReactComponent as IconMetaMask } from "./svg/metamask.svg";
-import ConnectWalletButton from "components/ConnectWalletButton";
 import { WithdrawAllButton } from "../staking/WithdrawAllButton";
 import { HarvestButton } from "../staking/HarvestButton";
 import { StakeButton } from "../staking/StakeButton";
 import { UnstakeButton } from "../staking/UnstakeButton";
+import { EnableContractButton } from "./EnableContractButton";
+import ConnectWalletButton from "components/ConnectWalletButton";
 
 export interface PoolGridCardProps {
   isConnected?: boolean;
@@ -108,20 +108,20 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
 
 
   const buttonsSection = useMemo(() => {
-    // if (!isConnected) {
-    //   return (
-    //     <ConnectWalletButton />
-    //   );
-    // }
-    // if (!isEnabledContract) {
-    //   return (
-    //     <EnableContractButton
-    //       tokenAddress={token?.address as string}
-    //       poolAddress={poolAddress}
-    //       onSuccess={onEnabledContractSuccess}
-    //     />
-    //   );
-    // }
+    if (!isConnected) {
+      return (
+        <ConnectWalletButton />
+      );
+    }
+    if (!isEnabledContract) {
+      return (
+        <EnableContractButton
+          tokenAddress={token?.address as string}
+          poolAddress={poolAddress}
+          onSuccess={onEnabledContractSuccess}
+        />
+      );
+    }
     return (
       <div className="flex flex-col space-y-6 py-6">
         <div className="flex justify-between items-center space-x-4">

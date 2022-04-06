@@ -32,7 +32,7 @@ export function PoolItemContainer({
 
   const poolStatus = useMemo(() => {
     let status: PoolStatus = 'UNDETERMINED'
-    if (currentBlock === 0 || startBlock === 0 || endBlock === 0) return status
+    // if (currentBlock === 0 || startBlock === 0 || endBlock === 0) return status
     if (currentBlock < startBlock) {
       status = 'NOT_STARTED'
     } else if (currentBlock > endBlock) {

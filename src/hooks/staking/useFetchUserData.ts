@@ -142,3 +142,27 @@ export const useFetchUserData = (
 
   return { data, isLoading, refetch: mutate }
 }
+export const useFetchUserDataLaunchpad = (
+  account: string,
+  pools?: HandlerStakingInfo[],
+) => {
+  const { data, isLoading, mutate } = useFetchWithCache(
+    pools ? [FETCH_USER_STAKR_INFO_KEY, account] : null,
+    async (_, account="") => {
+      const allowances = await fetchPoolsAllowances(account, pools ?? [])
+      const balances = await fetchUserBalances(account, pools ?? [])
+      const stakedBalances = await fetchUserStakeBalances(account, pools ?? [])
+      const userData = (pools ?? []).map((pool) => ({
+        poolAddress: pool.poolAddress,
+        allowance: allowances[pool.poolAddress as string],
+        balance: balances[pool.poolAddress as string],
+        stakedBalance: stakedBalances[pool.poolAddress as string],
+      }))
+
+      return userData
+    },
+    { refreshInterval: 6 * 1000 },
+  )
+  console.log('data',data);
+  return { data, isLoading, refetch: mutate }
+}
