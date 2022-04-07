@@ -3,7 +3,7 @@ import { BigNumber, constants } from "ethers";
 import { StakeTab } from "./StakeTab";
 import { useWeb3React } from "@web3-react/core";
 import { useFetchUserData, useFetchUserDataLaunchpad } from "hooks/staking/useFetchUserData";
-import { useFetchPublicPoolsData } from "hooks/staking/useFetchPublicPoolData";
+import { useFetchPublicLaunchpadPoolsData, useFetchPublicPoolsData } from "hooks/staking/useFetchPublicPoolData";
 import { PoolInfo } from "types/common";
 import { useFetchWithCache } from "hooks/useFetchWithCache";
 import { client, GET_PATHS } from "libs";
@@ -32,9 +32,9 @@ const InnerRender = () => {
     isLoading: isLoadingUserData,
     refetch: refetchUserData
   } = useFetchUserDataLaunchpad(account as string, poolsFromBE?.data);
-      console.log(poolsFromBE);
+
   const { data: poolsData, isLoading: isLoadingPublicData } =
-    useFetchPublicPoolsData(poolsFromBE?.data);
+    useFetchPublicLaunchpadPoolsData(account || "", poolsFromBE?.data);
 
   const isLoading =
     isLoadingPoolsFromBE || isLoadingUserData || isLoadingPublicData;
@@ -48,15 +48,20 @@ const InnerRender = () => {
       const userData = usersData?.find(
         (pool) => pool.poolAddress === poolAddress
       );
-      console.log('userData',usersData);
       const balance = account
         ? BigNumber.from(userData?.balance ?? 0)
         : constants.Zero;
-      const allowance = account
-        ? BigNumber.from(userData?.allowance ?? 0)
-        : constants.Zero;
       const stakedBalance = account
         ? BigNumber.from(userData?.stakedBalance ?? 0)
+        : constants.Zero;
+      const lastStakingBlock = account
+        ? BigNumber.from(userData?.lastStakingBlock ?? 0).toNumber()
+        : constants.Zero
+      const lockTimeStamp = account
+        ? BigNumber.from(userData?.lockTimeStamp ?? 0).toNumber()
+        : constants.Zero
+      const allowance = account
+        ? BigNumber.from(userData?.allowance ?? 0)
         : constants.Zero;
       return {
         ...pool,
@@ -67,9 +72,10 @@ const InnerRender = () => {
         isStaked: stakedBalance.gt(0),
         startBlock: BigNumber.from(publicData?.startBlock ?? 0).toNumber() ?? 0,
         endBlock: BigNumber.from(publicData?.endBlock ?? 0).toNumber() ?? 0,
-        unstakingBlock:
-          BigNumber.from(publicData?.unstakingBlock ?? 0).toNumber() ?? 0,
-        isEnded: publicData?.isEnded as boolean
+        unstakingBlock: BigNumber.from(publicData?.unstakingBlock ?? 0).toNumber() ?? 0,
+        isEnded: publicData?.isEnded as boolean,
+        lastStakingBlock,
+        lockTimeStamp,
       } as PoolInfo;
     });
   }, [poolsFromBE, usersData, poolsData, account]);
@@ -94,7 +100,7 @@ const InnerRender = () => {
 const LaunchpadPools = () => {
   return (
     <div className="w-full">
-      <TopBanner/>
+      <TopBanner />
       <InnerRender />
     </div>
   );

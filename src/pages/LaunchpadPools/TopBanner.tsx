@@ -18,7 +18,7 @@ const TopBanner = () => {
         <div className="text-l-banner">
           <h3 className="title-v3">Launchpad Pools</h3>
           <p className="desc">Artechain Farms offer multiple farming opportunities to you. Get double rewards by staking your LP tokens in return for additional TAC tokens and earning high income from swap transactions</p>
-          <p className="desc">Ethereum and Polygon.</p>
+          <p className="desc">More Details...</p>
         </div>
       </div>
     </div>

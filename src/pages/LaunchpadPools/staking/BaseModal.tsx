@@ -62,8 +62,7 @@ export const BaseModal = ({
           <div className="flex justify-between items-center mb-3">
             <Text color="white">{label}</Text>
             <Text size="sm">
-              Balance: {formatBigNumber(balance, 3)}
-              {tokenSymbol}
+              Balance: <strong className="text-primary-launchpad">{formatBigNumber(balance, 3)}{" "} {tokenSymbol}</strong>
             </Text>
           </div>
           <div className="bg-gray-600 rounded-md flex h-10 justify-between items-center w-full py-2 px-4 mb-2">
@@ -78,7 +77,7 @@ export const BaseModal = ({
             />
             <button
               onClick={onMaxClick}
-              className="text-primary text-sm tracking-wide px-2 cursor-pointer"
+              className="text-primary text-sm tracking-wide px-2 cursor-pointer text-launchpad"
             >
               Max
             </button>
@@ -97,7 +96,7 @@ export const BaseModal = ({
             <Button
               onClick={onSubmit}
               disabled={rightButtonDisabled}
-              className="w-full max-w-[144px]"
+              className="w-full max-w-[144px] btn-contact text-white"
             >
               {rightButtonText}
             </Button>

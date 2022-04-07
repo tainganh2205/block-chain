@@ -13,7 +13,7 @@ import { IconViewTransaction } from "components/icons/components/IconViewTransac
 import { useDisclosure } from "@dwarvesf/react-hooks";
 import { noop } from "@dwarvesf/react-utils";
 import { useWeb3React } from "@web3-react/core";
-import { roundNumber2D, formatNumber } from "utils/number";
+import Countdown from "react-countdown";
 import { addTokenToWallet, TokenProps } from "utils/token";
 import { formatBigNumber } from "utils/formatBalance";
 import { getScanLink } from "utils/connector";
@@ -47,6 +47,7 @@ export interface PoolGridCardProps {
   lastStakingBlock: number;
   unstakingBlock: number;
   currentBlock: number;
+  lockTimeStamp: number;
   isCalculatingBlock?: boolean;
 }
 
@@ -70,7 +71,8 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
     startBlock,
     unstakingBlock,
     lastStakingBlock,
-    endBlock
+    endBlock,
+    lockTimeStamp
   } = props;
 
   const {
@@ -89,15 +91,7 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
   const { chainId } = useWeb3React();
 
   const isStaking = poolStatus === "STAKING";
-
-  const unstakeFeePeriodBlock = useMemo(() => {
-    return feePeriod - (currentBlock - lastStakingBlock);
-  }, [lastStakingBlock, feePeriod, currentBlock]);
-
-  // unstacking block
-  const remainingUnlock = useMemo(() => {
-    return unstakingBlock - currentBlock;
-  }, [unstakingBlock, currentBlock]);
+  const timeCountDown = lockTimeStamp * 1000;
 
   const formatedRewardToken: TokenProps = {
     image: rewardToken?.image ?? "",
@@ -144,14 +138,12 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
               unstakingBlock={unstakingBlock}
             />
           )}
-          {isStaking && (
-            <HarvestButton
-              reward={rewardAmount}
-              onSuccess={onHarvestSuccess}
-              poolStatus={poolStatus}
-              poolAddress={poolAddress}
-            />
-          )}
+          <HarvestButton
+            reward={rewardAmount}
+            onSuccess={onHarvestSuccess}
+            poolStatus={poolStatus}
+            poolAddress={poolAddress}
+          />
         </div>
         <div className="flex justify-between items-center space-x-4">
           <div>
@@ -163,7 +155,7 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
             </Text>
             <Text className="mt-2 text-primary-launchpad">{formatBigNumber(stakedBalance, 3)}</Text>
           </div>
-          <div className="flex w-[140px]">
+          <div className="flex gap-1">
             <StakeButton
               onSuccess={onStakeSuccess}
               stakedBalance={stakedBalance}
@@ -174,7 +166,7 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
               tokenSymbol={token?.symbol ?? ""}
               tokenUrl={getTokenUrl}
             />
-            {isStaking && stakedBalance.gt(0) && remainingUnlock <= 0 && (
+            {isStaking && stakedBalance.gt(0) && unstakingBlock <= 0 && (
               <UnstakeButton
                 stakedBalance={stakedBalance}
                 tokenBalance={tokenBalance}
@@ -208,7 +200,7 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
     poolStatus,
     stakedBalance,
     tokenBalance,
-    remainingUnlock,
+    unstakingBlock,
     currentBlock,
     unstakingBlock,
     getTokenUrl
@@ -300,10 +292,9 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
           <div className="w-full flex flex-col mt-6 space-y-4">
 
             <div className="flex justify-between">
-              <Text>Unstacking time</Text>
-              <Text color="white">
-                {formatNumber(roundNumber2D(dailyRewards ?? 0))}{" "}
-                {rewardToken?.symbol}
+              <Text>Unstaking time</Text>
+              <Text color="white" className="text-primary-launchpad">
+                {lockTimeStamp ? <Countdown date={timeCountDown} /> : null}
               </Text>
             </div>
 
@@ -312,9 +303,8 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
                 <Text>Tickets eligible for IDO allocation</Text>
               </div>
               <div className="flex items-center space-x-2">
-                <Text as="b" size="sm" color="gray-300">
-                  {unstakeFeePeriodBlock <= 0 ? 0 : formatNumber(unstakeFeePeriodBlock)}{" "}
-                  {unstakeFeePeriodBlock <= 1 ? "ticket" : "tickets"}
+                <Text as="b" size="sm" color="gray-300" className="text-primary-launchpad">
+                  100 tickets
                 </Text>
               </div>
             </div>

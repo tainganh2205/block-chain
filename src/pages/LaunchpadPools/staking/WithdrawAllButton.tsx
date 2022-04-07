@@ -100,7 +100,7 @@ export const WithdrawAllButton = ({
   return (
     <>
       <Button
-        className="w-full max-w-[124px]"
+        className="w-full"
         isLoading={isWithdrawing}
         onClick={handleWithdrawAllClick}
         disabled={

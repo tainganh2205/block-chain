@@ -26,6 +26,7 @@ export function PoolItemContainer({
     endBlock,
     unstakingBlock,
     isEnded,
+    lockTimeStamp
   } = poolInfo
 
   const { account: isWalletConnected } = useWeb3React()
@@ -58,6 +59,7 @@ export function PoolItemContainer({
       isEnded={isEnded}
       startBlock={startBlock}
       endBlock={endBlock}
+      lockTimeStamp={lockTimeStamp}
       lastStakingBlock={lastStakingBlock}
       unstakingBlock={unstakingBlock}
       currentBlock={currentBlock}

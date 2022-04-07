@@ -91,7 +91,6 @@ export const HarvestButton = ({
       <Button
         className="min-w-[140px]"
         isLoading={isHarvesting}
-        appearance="border-white"
         onClick={handleHarvestClick}
         disabled={
           isStaking || isUnstaking || reward.eq(0) || poolStatus !== 'STAKING'

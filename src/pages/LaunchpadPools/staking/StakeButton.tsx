@@ -122,11 +122,12 @@ export const StakeButton = ({
       onOpen();
     }
   };
+
   return (
     <>
       {stakedBalance.gt(0) ? (
         <Button
-          className="flex-1 mr-2"
+          className="flex-1 min-w-[140px] btn-contact"
           isLoading={isStaking}
           onClick={handleStakeClick}
           disabled={
@@ -140,13 +141,14 @@ export const StakeButton = ({
         </Button>
       ) : (
         <Button
-          className="w-full max-w-[140px]"
+          className="w-full min-w-[140px] btn-contact"
           isLoading={isStaking}
           onClick={handleStakeClick}
           disabled={
             isUnstaking ||
             isHarvesting ||
-            isWithdrawing
+            isWithdrawing ||
+            poolStatus !== "STAKING"
           }
         >
           Stake
@@ -158,8 +160,8 @@ export const StakeButton = ({
         tokenAddress={tokenAddress}
         tokenSymbol={tokenSymbol}
         balance={tokenBalance}
-        rightButtonText={isSufficientAmount ? "Stake" : "Insufficient funds"}
         staked={stakedBalance}
+        rightButtonText={isSufficientAmount ? "Stake" : "Insufficient funds"}
         url={tokenUrl}
         rightButtonDisabled={isInvalidAmount}
         isOpen={isOpen}

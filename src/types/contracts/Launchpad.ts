@@ -28,8 +28,9 @@ export interface LaunchpadInterface extends utils.Interface {
     "decimals()": FunctionFragment;
     "decreaseAllowance(address,uint256)": FunctionFragment;
     "emergencyWithdraw(uint256)": FunctionFragment;
+    "endBlock()": FunctionFragment;
     "increaseAllowance(address,uint256)": FunctionFragment;
-    "initialize(address,bool,uint256,address)": FunctionFragment;
+    "initialize(address,bool,uint256,uint256,address)": FunctionFragment;
     "isRemovable()": FunctionFragment;
     "name()": FunctionFragment;
     "owner()": FunctionFragment;
@@ -37,6 +38,7 @@ export interface LaunchpadInterface extends utils.Interface {
     "setRemovePool(bool)": FunctionFragment;
     "stake(uint256)": FunctionFragment;
     "stakedToken()": FunctionFragment;
+    "startBlock()": FunctionFragment;
     "symbol()": FunctionFragment;
     "totalSupply()": FunctionFragment;
     "transfer(address,uint256)": FunctionFragment;
@@ -45,6 +47,7 @@ export interface LaunchpadInterface extends utils.Interface {
     "unStake(uint256)": FunctionFragment;
     "userInfo(address)": FunctionFragment;
     "userList(uint256)": FunctionFragment;
+    "viewCountDown(address)": FunctionFragment;
   };
 
   encodeFunctionData(
@@ -71,13 +74,14 @@ export interface LaunchpadInterface extends utils.Interface {
     functionFragment: "emergencyWithdraw",
     values: [BigNumberish]
   ): string;
+  encodeFunctionData(functionFragment: "endBlock", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "increaseAllowance",
     values: [string, BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "initialize",
-    values: [string, boolean, BigNumberish, string]
+    values: [string, boolean, BigNumberish, BigNumberish, string]
   ): string;
   encodeFunctionData(
     functionFragment: "isRemovable",
@@ -96,6 +100,10 @@ export interface LaunchpadInterface extends utils.Interface {
   encodeFunctionData(functionFragment: "stake", values: [BigNumberish]): string;
   encodeFunctionData(
     functionFragment: "stakedToken",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "startBlock",
     values?: undefined
   ): string;
   encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
@@ -124,6 +132,10 @@ export interface LaunchpadInterface extends utils.Interface {
     functionFragment: "userList",
     values: [BigNumberish]
   ): string;
+  encodeFunctionData(
+    functionFragment: "viewCountDown",
+    values: [string]
+  ): string;
 
   decodeFunctionResult(functionFragment: "allowance", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
@@ -140,6 +152,7 @@ export interface LaunchpadInterface extends utils.Interface {
     functionFragment: "emergencyWithdraw",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "endBlock", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "increaseAllowance",
     data: BytesLike
@@ -164,6 +177,7 @@ export interface LaunchpadInterface extends utils.Interface {
     functionFragment: "stakedToken",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "startBlock", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "totalSupply",
@@ -181,6 +195,10 @@ export interface LaunchpadInterface extends utils.Interface {
   decodeFunctionResult(functionFragment: "unStake", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "userInfo", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "userList", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "viewCountDown",
+    data: BytesLike
+  ): Result;
 
   events: {
     "Approval(address,address,uint256)": EventFragment;
@@ -316,6 +334,8 @@ export interface Launchpad extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
+    endBlock(overrides?: CallOverrides): Promise<[BigNumber]>;
+
     increaseAllowance(
       spender: string,
       addedValue: BigNumberish,
@@ -326,6 +346,7 @@ export interface Launchpad extends BaseContract {
       _stakedToken: string,
       _isRemovable: boolean,
       _apy: BigNumberish,
+      _startBlock: BigNumberish,
       _admin: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
@@ -351,6 +372,8 @@ export interface Launchpad extends BaseContract {
     ): Promise<ContractTransaction>;
 
     stakedToken(overrides?: CallOverrides): Promise<[string]>;
+
+    startBlock(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     symbol(overrides?: CallOverrides): Promise<[string]>;
 
@@ -383,15 +406,21 @@ export interface Launchpad extends BaseContract {
       arg0: string,
       overrides?: CallOverrides
     ): Promise<
-      [BigNumber, BigNumber, BigNumber, BigNumber] & {
+      [BigNumber, BigNumber, BigNumber, BigNumber, BigNumber] & {
         stakingTime: BigNumber;
         lockTime: BigNumber;
+        lockTimeStamp: BigNumber;
         lastClaimingTime: BigNumber;
         stakedAmount: BigNumber;
       }
     >;
 
     userList(arg0: BigNumberish, overrides?: CallOverrides): Promise<[string]>;
+
+    viewCountDown(
+      _usr: string,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
   };
 
   allowance(
@@ -432,6 +461,8 @@ export interface Launchpad extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
+  endBlock(overrides?: CallOverrides): Promise<BigNumber>;
+
   increaseAllowance(
     spender: string,
     addedValue: BigNumberish,
@@ -442,6 +473,7 @@ export interface Launchpad extends BaseContract {
     _stakedToken: string,
     _isRemovable: boolean,
     _apy: BigNumberish,
+    _startBlock: BigNumberish,
     _admin: string,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
@@ -467,6 +499,8 @@ export interface Launchpad extends BaseContract {
   ): Promise<ContractTransaction>;
 
   stakedToken(overrides?: CallOverrides): Promise<string>;
+
+  startBlock(overrides?: CallOverrides): Promise<BigNumber>;
 
   symbol(overrides?: CallOverrides): Promise<string>;
 
@@ -499,15 +533,18 @@ export interface Launchpad extends BaseContract {
     arg0: string,
     overrides?: CallOverrides
   ): Promise<
-    [BigNumber, BigNumber, BigNumber, BigNumber] & {
+    [BigNumber, BigNumber, BigNumber, BigNumber, BigNumber] & {
       stakingTime: BigNumber;
       lockTime: BigNumber;
+      lockTimeStamp: BigNumber;
       lastClaimingTime: BigNumber;
       stakedAmount: BigNumber;
     }
   >;
 
   userList(arg0: BigNumberish, overrides?: CallOverrides): Promise<string>;
+
+  viewCountDown(_usr: string, overrides?: CallOverrides): Promise<BigNumber>;
 
   callStatic: {
     allowance(
@@ -543,6 +580,8 @@ export interface Launchpad extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
+    endBlock(overrides?: CallOverrides): Promise<BigNumber>;
+
     increaseAllowance(
       spender: string,
       addedValue: BigNumberish,
@@ -553,6 +592,7 @@ export interface Launchpad extends BaseContract {
       _stakedToken: string,
       _isRemovable: boolean,
       _apy: BigNumberish,
+      _startBlock: BigNumberish,
       _admin: string,
       overrides?: CallOverrides
     ): Promise<void>;
@@ -570,6 +610,8 @@ export interface Launchpad extends BaseContract {
     stake(_amount: BigNumberish, overrides?: CallOverrides): Promise<void>;
 
     stakedToken(overrides?: CallOverrides): Promise<string>;
+
+    startBlock(overrides?: CallOverrides): Promise<BigNumber>;
 
     symbol(overrides?: CallOverrides): Promise<string>;
 
@@ -599,15 +641,18 @@ export interface Launchpad extends BaseContract {
       arg0: string,
       overrides?: CallOverrides
     ): Promise<
-      [BigNumber, BigNumber, BigNumber, BigNumber] & {
+      [BigNumber, BigNumber, BigNumber, BigNumber, BigNumber] & {
         stakingTime: BigNumber;
         lockTime: BigNumber;
+        lockTimeStamp: BigNumber;
         lastClaimingTime: BigNumber;
         stakedAmount: BigNumber;
       }
     >;
 
     userList(arg0: BigNumberish, overrides?: CallOverrides): Promise<string>;
+
+    viewCountDown(_usr: string, overrides?: CallOverrides): Promise<BigNumber>;
   };
 
   filters: {
@@ -703,6 +748,8 @@ export interface Launchpad extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
+    endBlock(overrides?: CallOverrides): Promise<BigNumber>;
+
     increaseAllowance(
       spender: string,
       addedValue: BigNumberish,
@@ -713,6 +760,7 @@ export interface Launchpad extends BaseContract {
       _stakedToken: string,
       _isRemovable: boolean,
       _apy: BigNumberish,
+      _startBlock: BigNumberish,
       _admin: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
@@ -738,6 +786,8 @@ export interface Launchpad extends BaseContract {
     ): Promise<BigNumber>;
 
     stakedToken(overrides?: CallOverrides): Promise<BigNumber>;
+
+    startBlock(overrides?: CallOverrides): Promise<BigNumber>;
 
     symbol(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -769,6 +819,8 @@ export interface Launchpad extends BaseContract {
     userInfo(arg0: string, overrides?: CallOverrides): Promise<BigNumber>;
 
     userList(arg0: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
+
+    viewCountDown(_usr: string, overrides?: CallOverrides): Promise<BigNumber>;
   };
 
   populateTransaction: {
@@ -813,6 +865,8 @@ export interface Launchpad extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
+    endBlock(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     increaseAllowance(
       spender: string,
       addedValue: BigNumberish,
@@ -823,6 +877,7 @@ export interface Launchpad extends BaseContract {
       _stakedToken: string,
       _isRemovable: boolean,
       _apy: BigNumberish,
+      _startBlock: BigNumberish,
       _admin: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
@@ -848,6 +903,8 @@ export interface Launchpad extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     stakedToken(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    startBlock(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     symbol(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
@@ -883,6 +940,11 @@ export interface Launchpad extends BaseContract {
 
     userList(
       arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    viewCountDown(
+      _usr: string,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
   };

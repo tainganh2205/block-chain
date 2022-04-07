@@ -297,6 +297,19 @@ const _abi = [
     type: "function",
   },
   {
+    inputs: [],
+    name: "endBlock",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [
       {
         internalType: "address",
@@ -335,6 +348,11 @@ const _abi = [
       {
         internalType: "uint256",
         name: "_apy",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_startBlock",
         type: "uint256",
       },
       {
@@ -428,6 +446,19 @@ const _abi = [
         internalType: "contract ERC20",
         name: "",
         type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "startBlock",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
       },
     ],
     stateMutability: "view",
@@ -560,6 +591,11 @@ const _abi = [
       },
       {
         internalType: "uint256",
+        name: "lockTimeStamp",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
         name: "lastClaimingTime",
         type: "uint256",
       },
@@ -586,6 +622,25 @@ const _abi = [
         internalType: "address",
         name: "",
         type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "_usr",
+        type: "address",
+      },
+    ],
+    name: "viewCountDown",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
       },
     ],
     stateMutability: "view",

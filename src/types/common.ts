@@ -25,4 +25,5 @@ export interface PoolInfo extends HandlerStakingInfo {
   endBlock: number
   lastStakingBlock: number
   unstakingBlock: number
+  lockTimeStamp: number
 }
