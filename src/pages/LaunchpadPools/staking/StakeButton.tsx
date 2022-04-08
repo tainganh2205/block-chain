@@ -109,6 +109,7 @@ export const StakeButton = ({
         inputNumberToBigNumber(spend).toString()
       ]);
       onConfirmClose();
+
     } finally {
       setIsStaking(false);
       setSpend(0);
