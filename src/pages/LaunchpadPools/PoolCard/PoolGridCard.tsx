@@ -218,7 +218,26 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
 
     return () => clearTimeout(timeout);
   }, [isOpen]);
-
+  const totalTicket = useMemo(() => {
+    let total = 0;
+    const newStakedBalance = parseInt(formatBigNumber(stakedBalance, 3));
+    if (newStakedBalance >= 800 && newStakedBalance < 3200) {
+      total = 1;
+    }
+    if (newStakedBalance >= 3200 && newStakedBalance < 8000) {
+      total = 5;
+    }
+    if (newStakedBalance >= 8000 && newStakedBalance < 21600) {
+      total = 15;
+    }
+    if (newStakedBalance >= 21600 && newStakedBalance < 60000) {
+      total = 50;
+    }
+    if (newStakedBalance >= 60000) {
+      total = 150;
+    }
+    return total;
+  }, [formatBigNumber(stakedBalance, 3)]);
   return (
     <Card className="relative mb-4 w-full max-w-[520px] overflow-hidden">
       <div className="absolute top-0 left-0 w-full rounded-t-[10px] h-14 p-6 bg-gray-500 flex items-center justify-between text-white">
@@ -304,7 +323,7 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
               </div>
               <div className="flex items-center space-x-2">
                 <Text as="b" size="sm" color="gray-300" className="text-primary-launchpad">
-                  100 tickets
+                  {totalTicket} tickets
                 </Text>
               </div>
             </div>
