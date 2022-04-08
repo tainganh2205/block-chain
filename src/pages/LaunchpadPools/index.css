@@ -3,7 +3,7 @@
 }
 
 .text-primary-launchpad {
-  color: #05D8F5;
+  color: #05D8F5 !important;
 }
 
 .launchpad-content {
