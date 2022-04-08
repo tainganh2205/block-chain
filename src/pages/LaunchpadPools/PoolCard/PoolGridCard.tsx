@@ -323,7 +323,7 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
               </div>
               <div className="flex items-center space-x-2">
                 <Text as="b" size="sm" color="gray-300" className="text-primary-launchpad">
-                  {totalTicket} tickets
+                  {totalTicket} ticket(s)
                 </Text>
               </div>
             </div>
