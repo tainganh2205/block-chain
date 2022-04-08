@@ -651,6 +651,7 @@ export interface HandlerStakingInfo {
   token?: HandlerStakingTokenData
   totalStaked?: number
   unstakingFeePercentage?: number
+  lockTimeStamp?: number
 }
 
 export interface HandlerStakingInfoResponse {

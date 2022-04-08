@@ -8,7 +8,7 @@ import { toast } from "components/Toast";
 
 import { useDisclosure } from "@dwarvesf/react-hooks";
 import { useCallWithGasPrice } from "hooks/useCallWithGasPrice";
-import { usePoolContract } from "hooks/useContract1";
+import { useLaunchpadPoolContract } from "hooks/useContract1";
 import { useTransactionContext } from "hooks/useTransactions";
 import { useStakeContext } from "context/stake";
 import { wait } from "utils/wait";
@@ -47,7 +47,8 @@ export const StakeButton = ({
     useStakeContext();
   // stake
   const { callWithGasPrice } = useCallWithGasPrice();
-  const poolContract = usePoolContract(poolAddress);
+  const poolContract = useLaunchpadPoolContract(poolAddress);
+
   const { addTransaction } = useTransactionContext();
   const {
     isOpen: isConfirmOpen,
@@ -79,7 +80,7 @@ export const StakeButton = ({
       onClose();
       await wait(200);
       onConfirmOpen();
-      const tx = await callWithGasPrice(poolContract!.deposit, [
+      const tx = await callWithGasPrice(poolContract!.stake, [
         BigNumber.from(spend).mul(BigNumber.from(10).pow(18))
       ]);
       setIsStaking(true);
@@ -126,7 +127,7 @@ export const StakeButton = ({
     <>
       {stakedBalance.gt(0) ? (
         <Button
-          className="flex-1 mr-2"
+          className="flex-1 min-w-[140px] btn-contact"
           isLoading={isStaking}
           onClick={handleStakeClick}
           disabled={
@@ -140,7 +141,7 @@ export const StakeButton = ({
         </Button>
       ) : (
         <Button
-          className="w-full max-w-[140px]"
+          className="w-full min-w-[140px] btn-contact"
           isLoading={isStaking}
           onClick={handleStakeClick}
           disabled={
@@ -159,8 +160,8 @@ export const StakeButton = ({
         tokenAddress={tokenAddress}
         tokenSymbol={tokenSymbol}
         balance={tokenBalance}
-        rightButtonText={isSufficientAmount ? "Stake" : "Insufficient funds"}
         staked={stakedBalance}
+        rightButtonText={isSufficientAmount ? "Stake" : "Insufficient funds"}
         url={tokenUrl}
         rightButtonDisabled={isInvalidAmount}
         isOpen={isOpen}

@@ -9,9 +9,6 @@ export const GAS_PRICE_GWEI = {
 
 /**
  * Perform a contract call with a gas price returned from useGasPrice
- * @param contractMethod contract method called
- * @param methodArgs An array of arguments to pass to the method
- * @param overrides An overrides object to pass to the method. gasPrice passed in here will take priority over the price returned by useGasPrice
  * @returns https://docs.ethers.io/v5/api/providers/types/#providers-TransactionReceipt
  */
 export function useCallWithGasPrice() {

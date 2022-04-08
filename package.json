@@ -43,11 +43,11 @@
     "@web3-react/walletconnect-connector": "6.1.1",
     "@web3-react/walletlink-connector": "^6.0.9",
     "ajv": "^6.12.3",
-    "bignumber.js": "^9.0.1",
     "antd": "^4.16.2",
     "antd-dayjs-webpack-plugin": "^1.0.6",
     "axios": "^0.21.1",
     "babel-plugin-import": "^1.13.3",
+    "bignumber.js": "^9.0.1",
     "bootstrap": "4.6.0",
     "cids": "^1.0.0",
     "classnames": "^2.3.1",
@@ -59,6 +59,7 @@
     "ethers": "^5.0.7",
     "flickity": "^2.2.2",
     "formik": "^2.2.6",
+    "glob": "^7.2.0",
     "i": "^0.3.6",
     "i18next": "^15.0.9",
     "i18next-browser-languagedetector": "^3.0.1",
@@ -114,6 +115,7 @@
     "rebass": "^4.0.7",
     "recharts": "^2.1.2",
     "redux-localstorage-simple": "^2.3.1",
+    "replace-in-file": "^6.3.2",
     "rsuite": "^4.10.2",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.2.1",
@@ -132,6 +134,7 @@
     "@commitlint/cli": "^12.0.0",
     "@commitlint/config-conventional": "^12.0.0",
     "@pancakeswap-libs/eslint-config-pancake": "1.0.0",
+    "@typechain/ethers-v5": "^8.0.2",
     "@types/jest": "^26.0.20",
     "@types/react-table": "^7.7.2",
     "@types/testing-library__cypress": "^5.0.8",
@@ -143,7 +146,8 @@
     "qs": "^6.9.4",
     "sass": "^1.49.9",
     "serve": "^11.3.0",
-    "start-server-and-test": "^1.11.0"
+    "start-server-and-test": "^1.11.0",
+    "typechain": "^6.0.2"
   },
   "resolutions": {
     "@walletconnect/web3-provider": "1.1.1-alpha.0"
@@ -155,6 +159,7 @@
     "eject": "react-app-rewired eject",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
+    "generate-contract-types": "typechain --target ethers-v5 --out-dir src/types/contracts 'src/config/abi/**.json' && node ./scripts/replace-contract-unused-types.js",
     "integration-test": "start-server-and-test 'serve build -l 3000' http://localhost:3000 'cypress run'"
   },
   "browserslist": {

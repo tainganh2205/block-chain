@@ -113,7 +113,7 @@ const MenuNew = () => {
                       <Link to="/coming-soon">
                         <li>Farms</li>
                       </Link>
-                      <Link to="/coming-soon">
+                      <Link to="/launchpad-pools">
                         <li>Launchpad Pools</li>
                       </Link>
                     </ul>

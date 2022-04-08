@@ -17,48 +17,33 @@ import { FunctionFragment, Result, EventFragment } from "@ethersproject/abi";
 import { Listener, Provider } from "@ethersproject/providers";
 import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "./common";
 
-export interface LfwTokenInterface extends utils.Interface {
+export interface AbiBUSDInterface extends utils.Interface {
   functions: {
-    "_lgePairAddress()": FunctionFragment;
-    "_lgeTimestamp()": FunctionFragment;
-    "_lgeWhitelistRounds(uint256)": FunctionFragment;
-    "_whitelister()": FunctionFragment;
+    "_decimals()": FunctionFragment;
+    "_name()": FunctionFragment;
+    "_symbol()": FunctionFragment;
     "allowance(address,address)": FunctionFragment;
     "approve(address,uint256)": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
     "burn(uint256)": FunctionFragment;
-    "burnFrom(address,uint256)": FunctionFragment;
-    "createLGEWhitelist(address,uint256[],uint256[])": FunctionFragment;
     "decimals()": FunctionFragment;
     "decreaseAllowance(address,uint256)": FunctionFragment;
-    "getLGEWhitelistRound()": FunctionFragment;
+    "getOwner()": FunctionFragment;
     "increaseAllowance(address,uint256)": FunctionFragment;
-    "modifyLGEWhitelist(uint256,uint256,uint256,address[],bool)": FunctionFragment;
+    "mint(uint256)": FunctionFragment;
     "name()": FunctionFragment;
-    "renounceWhitelister()": FunctionFragment;
+    "owner()": FunctionFragment;
+    "renounceOwnership()": FunctionFragment;
     "symbol()": FunctionFragment;
     "totalSupply()": FunctionFragment;
     "transfer(address,uint256)": FunctionFragment;
     "transferFrom(address,address,uint256)": FunctionFragment;
-    "transferWhitelister(address)": FunctionFragment;
+    "transferOwnership(address)": FunctionFragment;
   };
 
-  encodeFunctionData(
-    functionFragment: "_lgePairAddress",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "_lgeTimestamp",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "_lgeWhitelistRounds",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "_whitelister",
-    values?: undefined
-  ): string;
+  encodeFunctionData(functionFragment: "_decimals", values?: undefined): string;
+  encodeFunctionData(functionFragment: "_name", values?: undefined): string;
+  encodeFunctionData(functionFragment: "_symbol", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "allowance",
     values: [string, string]
@@ -69,34 +54,21 @@ export interface LfwTokenInterface extends utils.Interface {
   ): string;
   encodeFunctionData(functionFragment: "balanceOf", values: [string]): string;
   encodeFunctionData(functionFragment: "burn", values: [BigNumberish]): string;
-  encodeFunctionData(
-    functionFragment: "burnFrom",
-    values: [string, BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "createLGEWhitelist",
-    values: [string, BigNumberish[], BigNumberish[]]
-  ): string;
   encodeFunctionData(functionFragment: "decimals", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "decreaseAllowance",
     values: [string, BigNumberish]
   ): string;
-  encodeFunctionData(
-    functionFragment: "getLGEWhitelistRound",
-    values?: undefined
-  ): string;
+  encodeFunctionData(functionFragment: "getOwner", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "increaseAllowance",
     values: [string, BigNumberish]
   ): string;
-  encodeFunctionData(
-    functionFragment: "modifyLGEWhitelist",
-    values: [BigNumberish, BigNumberish, BigNumberish, string[], boolean]
-  ): string;
+  encodeFunctionData(functionFragment: "mint", values: [BigNumberish]): string;
   encodeFunctionData(functionFragment: "name", values?: undefined): string;
+  encodeFunctionData(functionFragment: "owner", values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "renounceWhitelister",
+    functionFragment: "renounceOwnership",
     values?: undefined
   ): string;
   encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
@@ -113,55 +85,32 @@ export interface LfwTokenInterface extends utils.Interface {
     values: [string, string, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "transferWhitelister",
+    functionFragment: "transferOwnership",
     values: [string]
   ): string;
 
-  decodeFunctionResult(
-    functionFragment: "_lgePairAddress",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "_lgeTimestamp",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "_lgeWhitelistRounds",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "_whitelister",
-    data: BytesLike
-  ): Result;
+  decodeFunctionResult(functionFragment: "_decimals", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "_name", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "_symbol", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "allowance", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "burn", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "burnFrom", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "createLGEWhitelist",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(functionFragment: "decimals", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "decreaseAllowance",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(
-    functionFragment: "getLGEWhitelistRound",
-    data: BytesLike
-  ): Result;
+  decodeFunctionResult(functionFragment: "getOwner", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "increaseAllowance",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(
-    functionFragment: "modifyLGEWhitelist",
-    data: BytesLike
-  ): Result;
+  decodeFunctionResult(functionFragment: "mint", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "renounceWhitelister",
+    functionFragment: "renounceOwnership",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
@@ -175,19 +124,19 @@ export interface LfwTokenInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "transferWhitelister",
+    functionFragment: "transferOwnership",
     data: BytesLike
   ): Result;
 
   events: {
     "Approval(address,address,uint256)": EventFragment;
+    "OwnershipTransferred(address,address)": EventFragment;
     "Transfer(address,address,uint256)": EventFragment;
-    "WhitelisterTransferred(address,address)": EventFragment;
   };
 
   getEvent(nameOrSignatureOrTopic: "Approval"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "OwnershipTransferred"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "WhitelisterTransferred"): EventFragment;
 }
 
 export type ApprovalEvent = TypedEvent<
@@ -197,6 +146,14 @@ export type ApprovalEvent = TypedEvent<
 
 export type ApprovalEventFilter = TypedEventFilter<ApprovalEvent>;
 
+export type OwnershipTransferredEvent = TypedEvent<
+  [string, string],
+  { previousOwner: string; newOwner: string }
+>;
+
+export type OwnershipTransferredEventFilter =
+  TypedEventFilter<OwnershipTransferredEvent>;
+
 export type TransferEvent = TypedEvent<
   [string, string, BigNumber],
   { from: string; to: string; value: BigNumber }
@@ -204,20 +161,12 @@ export type TransferEvent = TypedEvent<
 
 export type TransferEventFilter = TypedEventFilter<TransferEvent>;
 
-export type WhitelisterTransferredEvent = TypedEvent<
-  [string, string],
-  { previousWhitelister: string; newWhitelister: string }
->;
-
-export type WhitelisterTransferredEventFilter =
-  TypedEventFilter<WhitelisterTransferredEvent>;
-
-export interface LfwToken extends BaseContract {
+export interface AbiBUSD extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
 
-  interface: LfwTokenInterface;
+  interface: AbiBUSDInterface;
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
@@ -239,18 +188,11 @@ export interface LfwToken extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
-    _lgePairAddress(overrides?: CallOverrides): Promise<[string]>;
+    _decimals(overrides?: CallOverrides): Promise<[number]>;
 
-    _lgeTimestamp(overrides?: CallOverrides): Promise<[BigNumber]>;
+    _name(overrides?: CallOverrides): Promise<[string]>;
 
-    _lgeWhitelistRounds(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<
-      [BigNumber, BigNumber] & { duration: BigNumber; amountMax: BigNumber }
-    >;
-
-    _whitelister(overrides?: CallOverrides): Promise<[string]>;
+    _symbol(overrides?: CallOverrides): Promise<[string]>;
 
     allowance(
       owner: string,
@@ -271,19 +213,6 @@ export interface LfwToken extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    burnFrom(
-      account: string,
-      amount: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    createLGEWhitelist(
-      pairAddress: string,
-      durations: BigNumberish[],
-      amountsMax: BigNumberish[],
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
     decimals(overrides?: CallOverrides): Promise<[number]>;
 
     decreaseAllowance(
@@ -292,11 +221,7 @@ export interface LfwToken extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    getLGEWhitelistRound(
-      overrides?: CallOverrides
-    ): Promise<
-      [BigNumber, BigNumber, BigNumber, BigNumber, boolean, BigNumber]
-    >;
+    getOwner(overrides?: CallOverrides): Promise<[string]>;
 
     increaseAllowance(
       spender: string,
@@ -304,18 +229,16 @@ export interface LfwToken extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    modifyLGEWhitelist(
-      index: BigNumberish,
-      duration: BigNumberish,
-      amountMax: BigNumberish,
-      addresses: string[],
-      enabled: boolean,
+    mint(
+      amount: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     name(overrides?: CallOverrides): Promise<[string]>;
 
-    renounceWhitelister(
+    owner(overrides?: CallOverrides): Promise<[string]>;
+
+    renounceOwnership(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
@@ -336,24 +259,17 @@ export interface LfwToken extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    transferWhitelister(
-      newWhitelister: string,
+    transferOwnership(
+      newOwner: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
   };
 
-  _lgePairAddress(overrides?: CallOverrides): Promise<string>;
+  _decimals(overrides?: CallOverrides): Promise<number>;
 
-  _lgeTimestamp(overrides?: CallOverrides): Promise<BigNumber>;
+  _name(overrides?: CallOverrides): Promise<string>;
 
-  _lgeWhitelistRounds(
-    arg0: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<
-    [BigNumber, BigNumber] & { duration: BigNumber; amountMax: BigNumber }
-  >;
-
-  _whitelister(overrides?: CallOverrides): Promise<string>;
+  _symbol(overrides?: CallOverrides): Promise<string>;
 
   allowance(
     owner: string,
@@ -374,19 +290,6 @@ export interface LfwToken extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  burnFrom(
-    account: string,
-    amount: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  createLGEWhitelist(
-    pairAddress: string,
-    durations: BigNumberish[],
-    amountsMax: BigNumberish[],
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
   decimals(overrides?: CallOverrides): Promise<number>;
 
   decreaseAllowance(
@@ -395,9 +298,7 @@ export interface LfwToken extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  getLGEWhitelistRound(
-    overrides?: CallOverrides
-  ): Promise<[BigNumber, BigNumber, BigNumber, BigNumber, boolean, BigNumber]>;
+  getOwner(overrides?: CallOverrides): Promise<string>;
 
   increaseAllowance(
     spender: string,
@@ -405,18 +306,16 @@ export interface LfwToken extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  modifyLGEWhitelist(
-    index: BigNumberish,
-    duration: BigNumberish,
-    amountMax: BigNumberish,
-    addresses: string[],
-    enabled: boolean,
+  mint(
+    amount: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   name(overrides?: CallOverrides): Promise<string>;
 
-  renounceWhitelister(
+  owner(overrides?: CallOverrides): Promise<string>;
+
+  renounceOwnership(
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -437,24 +336,17 @@ export interface LfwToken extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  transferWhitelister(
-    newWhitelister: string,
+  transferOwnership(
+    newOwner: string,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   callStatic: {
-    _lgePairAddress(overrides?: CallOverrides): Promise<string>;
+    _decimals(overrides?: CallOverrides): Promise<number>;
 
-    _lgeTimestamp(overrides?: CallOverrides): Promise<BigNumber>;
+    _name(overrides?: CallOverrides): Promise<string>;
 
-    _lgeWhitelistRounds(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<
-      [BigNumber, BigNumber] & { duration: BigNumber; amountMax: BigNumber }
-    >;
-
-    _whitelister(overrides?: CallOverrides): Promise<string>;
+    _symbol(overrides?: CallOverrides): Promise<string>;
 
     allowance(
       owner: string,
@@ -470,20 +362,7 @@ export interface LfwToken extends BaseContract {
 
     balanceOf(account: string, overrides?: CallOverrides): Promise<BigNumber>;
 
-    burn(amount: BigNumberish, overrides?: CallOverrides): Promise<void>;
-
-    burnFrom(
-      account: string,
-      amount: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    createLGEWhitelist(
-      pairAddress: string,
-      durations: BigNumberish[],
-      amountsMax: BigNumberish[],
-      overrides?: CallOverrides
-    ): Promise<void>;
+    burn(amount: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
 
     decimals(overrides?: CallOverrides): Promise<number>;
 
@@ -493,11 +372,7 @@ export interface LfwToken extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    getLGEWhitelistRound(
-      overrides?: CallOverrides
-    ): Promise<
-      [BigNumber, BigNumber, BigNumber, BigNumber, boolean, BigNumber]
-    >;
+    getOwner(overrides?: CallOverrides): Promise<string>;
 
     increaseAllowance(
       spender: string,
@@ -505,18 +380,13 @@ export interface LfwToken extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    modifyLGEWhitelist(
-      index: BigNumberish,
-      duration: BigNumberish,
-      amountMax: BigNumberish,
-      addresses: string[],
-      enabled: boolean,
-      overrides?: CallOverrides
-    ): Promise<void>;
+    mint(amount: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
 
     name(overrides?: CallOverrides): Promise<string>;
 
-    renounceWhitelister(overrides?: CallOverrides): Promise<void>;
+    owner(overrides?: CallOverrides): Promise<string>;
+
+    renounceOwnership(overrides?: CallOverrides): Promise<void>;
 
     symbol(overrides?: CallOverrides): Promise<string>;
 
@@ -535,8 +405,8 @@ export interface LfwToken extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    transferWhitelister(
-      newWhitelister: string,
+    transferOwnership(
+      newOwner: string,
       overrides?: CallOverrides
     ): Promise<void>;
   };
@@ -553,6 +423,15 @@ export interface LfwToken extends BaseContract {
       value?: null
     ): ApprovalEventFilter;
 
+    "OwnershipTransferred(address,address)"(
+      previousOwner?: string | null,
+      newOwner?: string | null
+    ): OwnershipTransferredEventFilter;
+    OwnershipTransferred(
+      previousOwner?: string | null,
+      newOwner?: string | null
+    ): OwnershipTransferredEventFilter;
+
     "Transfer(address,address,uint256)"(
       from?: string | null,
       to?: string | null,
@@ -563,28 +442,14 @@ export interface LfwToken extends BaseContract {
       to?: string | null,
       value?: null
     ): TransferEventFilter;
-
-    "WhitelisterTransferred(address,address)"(
-      previousWhitelister?: string | null,
-      newWhitelister?: string | null
-    ): WhitelisterTransferredEventFilter;
-    WhitelisterTransferred(
-      previousWhitelister?: string | null,
-      newWhitelister?: string | null
-    ): WhitelisterTransferredEventFilter;
   };
 
   estimateGas: {
-    _lgePairAddress(overrides?: CallOverrides): Promise<BigNumber>;
+    _decimals(overrides?: CallOverrides): Promise<BigNumber>;
 
-    _lgeTimestamp(overrides?: CallOverrides): Promise<BigNumber>;
+    _name(overrides?: CallOverrides): Promise<BigNumber>;
 
-    _lgeWhitelistRounds(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    _whitelister(overrides?: CallOverrides): Promise<BigNumber>;
+    _symbol(overrides?: CallOverrides): Promise<BigNumber>;
 
     allowance(
       owner: string,
@@ -605,19 +470,6 @@ export interface LfwToken extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    burnFrom(
-      account: string,
-      amount: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    createLGEWhitelist(
-      pairAddress: string,
-      durations: BigNumberish[],
-      amountsMax: BigNumberish[],
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
     decimals(overrides?: CallOverrides): Promise<BigNumber>;
 
     decreaseAllowance(
@@ -626,7 +478,7 @@ export interface LfwToken extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    getLGEWhitelistRound(overrides?: CallOverrides): Promise<BigNumber>;
+    getOwner(overrides?: CallOverrides): Promise<BigNumber>;
 
     increaseAllowance(
       spender: string,
@@ -634,18 +486,16 @@ export interface LfwToken extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    modifyLGEWhitelist(
-      index: BigNumberish,
-      duration: BigNumberish,
-      amountMax: BigNumberish,
-      addresses: string[],
-      enabled: boolean,
+    mint(
+      amount: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
     name(overrides?: CallOverrides): Promise<BigNumber>;
 
-    renounceWhitelister(
+    owner(overrides?: CallOverrides): Promise<BigNumber>;
+
+    renounceOwnership(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -666,23 +516,18 @@ export interface LfwToken extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    transferWhitelister(
-      newWhitelister: string,
+    transferOwnership(
+      newOwner: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
   };
 
   populateTransaction: {
-    _lgePairAddress(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    _decimals(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    _lgeTimestamp(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    _name(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    _lgeWhitelistRounds(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    _whitelister(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    _symbol(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     allowance(
       owner: string,
@@ -706,19 +551,6 @@ export interface LfwToken extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    burnFrom(
-      account: string,
-      amount: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    createLGEWhitelist(
-      pairAddress: string,
-      durations: BigNumberish[],
-      amountsMax: BigNumberish[],
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
     decimals(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     decreaseAllowance(
@@ -727,9 +559,7 @@ export interface LfwToken extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    getLGEWhitelistRound(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    getOwner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     increaseAllowance(
       spender: string,
@@ -737,18 +567,16 @@ export interface LfwToken extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    modifyLGEWhitelist(
-      index: BigNumberish,
-      duration: BigNumberish,
-      amountMax: BigNumberish,
-      addresses: string[],
-      enabled: boolean,
+    mint(
+      amount: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
     name(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    renounceWhitelister(
+    owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    renounceOwnership(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
@@ -769,8 +597,8 @@ export interface LfwToken extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    transferWhitelister(
-      newWhitelister: string,
+    transferOwnership(
+      newOwner: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
   };
