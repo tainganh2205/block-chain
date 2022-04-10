@@ -13,6 +13,7 @@ import { useHookProjects } from "./Store";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { useHookDetail } from "../LaunchpadV3Detail/Store-Detail";
 import ModalDisClaimer from "./LaunchpadDetail/ModalDisClaimer";
+import ModalSuccess from "./LaunchpadDetail/ModalSuccess";
 
 function usePrevious(value) {
   const ref = useRef();
@@ -241,10 +242,16 @@ const TabDetail = (props): any => {
                   </div>
                   {activeTab.includes("Upcoming") ?
                     <div className="t-right">
-                      <button type="button" className="btn-contact h__btnContact" onClick={handleConfirm}>Apply Now</button>
+                      <button type="button" className="btn-contact h__btnContact" style={{
+                        background: "linear-gradient(92.34deg, #1682E7 13.61%, #7216E7 104.96%)"
+                      }} onClick={handleConfirm}>Apply Now
+                      </button>
                     </div> :
                     <div className="t-right">
-                      <button type="button" className="btn-contact h__btnContact" onClick={handleConfirm}>Join Now</button>
+                      <button type="button" style={{
+                        background: "linear-gradient(92.34deg, #1682E7 13.61%, #7216E7 104.96%)"
+                      }} className="btn-contact h__btnContact" onClick={handleConfirm}>Join Now
+                      </button>
                     </div>
                   }
 
@@ -252,7 +259,7 @@ const TabDetail = (props): any => {
               </div>
             </div>
           </div>
-          <ModalDisClaimer isOpenJoin={isModalConfirm} setIsModalConfirm={setIsModalConfirm} />
+          <ModalSuccess isOpenJoin={isModalConfirm} setIsModalConfirm={setIsModalConfirm} />
         </div>
       )}
     </>
