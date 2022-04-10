@@ -3,7 +3,8 @@ import { ChainId } from '@lfwfinance/sdk'
 import { useWeb3React as useWeb3ReactCore } from '@web3-react/core'
 // eslint-disable-next-line import/no-unresolved
 import { Web3ReactContextInterface } from '@web3-react/core/dist/types'
-import { useEffect, useState } from 'react'
+import { useEffect,useRef, useState } from 'react'
+import _ from "lodash";
 import { isMobile } from 'react-device-detect'
 import { injected } from '../connectors'
 import { NetworkContextName } from '../constants'
@@ -85,3 +86,17 @@ export function useInactiveListener(suppress = false) {
     return undefined
   }, [active, error, suppress, activate])
 }
+
+
+export const useDeepEffect = (effectFunc, deps) => {
+  const prepDeps = useRef(deps);
+  useEffect(() => {
+    const isChangedDeps = deps.some(
+      (dep, index) => !_.isEqual(dep, prepDeps.current[index])
+    );
+    if (isChangedDeps) {
+      effectFunc();
+      prepDeps.current = deps;
+    }
+  }, deps);
+};

@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import throttle from "lodash/throttle";
 import styled from "styled-components";
-import { isMobile } from "react-device-detect";
 import { Link } from "react-router-dom";
 import MenuNewMobile from "./MenuNewMobile";
 import UnlockButton from "../ConnectWalletButtonHeader";
@@ -59,10 +58,6 @@ const MenuNew = () => {
       window.removeEventListener("scroll", throttledHandleScroll);
     };
   }, []);
-
-  // if (isMobile) {
-  //   return <MenuNewMobile />;
-  // }
 
   return (
     <FixedContainer showMenu={showMenu} height={80}>
@@ -141,7 +136,7 @@ const MenuNew = () => {
                   </div>
                 </li>
 
-                <Link to="/launchpad">
+                <Link to="/launchpad?tab=Upcoming">
                   <li>
                     <div className="h__customLogoTrade">
                       <IconIdo />

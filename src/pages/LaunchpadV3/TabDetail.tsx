@@ -7,12 +7,12 @@ import { isMobile } from "react-device-detect";
 import { CHAINID_FULLNAME, CHAINID_CONVERT, MAPPING_CHAINID } from "config/constants";
 import { useActiveWeb3React } from "hooks";
 import { Modal, Tooltip } from "antd";
-import Button from "components/Button";
 
 import switchNetwork from "utils/wallet";
 import { useHookProjects } from "./Store";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { useHookDetail } from "../LaunchpadV3Detail/Store-Detail";
+import ModalDisClaimer from "./LaunchpadDetail/ModalDisClaimer";
 
 function usePrevious(value) {
   const ref = useRef();
@@ -29,6 +29,7 @@ let loadFirst = false;
 const TabDetail = (props): any => {
   const { chainId } = useActiveWeb3React();
   const [isOtherChain, setOtherChain] = useState(false);
+  const [isModalConfirm, setIsModalConfirm] = useState(false);
   const [state, actions]: any = useHookProjects();
   const [stateDetail, actionsDetail]: any = useHookDetail();
   const { activeTab, idoDetail } = props;
@@ -38,7 +39,6 @@ const TabDetail = (props): any => {
   const history = useHistory();
   const pathHash = history.location.search.split("?");
   const tabSymbol = pathHash[2];
-  console.log(idoDetail);
   const [activeDetail, setActiveDetail] = useState<any>(idoDetail);
 
   const handleCallDetail = async (symbol) => {
@@ -88,7 +88,12 @@ const TabDetail = (props): any => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab]);
-  console.log(activeDetail);
+  const handleConfirm = () => {
+    setIsModalConfirm(!isModalConfirm);
+  };
+  console.log(
+    activeTab
+  );
   return (
     <>
       <Modal onCancel={() => setOtherChain(false)} className="modal-beta-show" title="Alert!" visible={isOtherChain}>
@@ -234,13 +239,20 @@ const TabDetail = (props): any => {
                       </Tooltip>
                     </div>
                   </div>
-                  <div className="t-right">
-                    <button type="button" className="btn-contact h__btnContact">Apply Now</button>
-                  </div>
+                  {activeTab.includes("Upcoming") ?
+                    <div className="t-right">
+                      <button type="button" className="btn-contact h__btnContact" onClick={handleConfirm}>Apply Now</button>
+                    </div> :
+                    <div className="t-right">
+                      <button type="button" className="btn-contact h__btnContact" onClick={handleConfirm}>Join Now</button>
+                    </div>
+                  }
+
                 </div>
               </div>
             </div>
           </div>
+          <ModalDisClaimer isOpenJoin={isModalConfirm} setIsModalConfirm={setIsModalConfirm} />
         </div>
       )}
     </>
