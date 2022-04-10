@@ -22,7 +22,6 @@ const TopBanner = () => {
             Launchpad pools offer multiple opportunities for you. Get double rewards by staking LFW tokens in return for LFW tokens and earning eligible tickets for attractive IDO allocation on our
             Launchpad.
           </p>
-          <p className="desc">More Details...</p>
         </div>
       </div>
     </div>
