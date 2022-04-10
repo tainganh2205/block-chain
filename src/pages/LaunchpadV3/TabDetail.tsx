@@ -7,6 +7,8 @@ import { isMobile } from "react-device-detect";
 import { CHAINID_FULLNAME, CHAINID_CONVERT, MAPPING_CHAINID } from "config/constants";
 import { useActiveWeb3React } from "hooks";
 import { Modal, Tooltip } from "antd";
+import Button from "components/Button";
+
 import switchNetwork from "utils/wallet";
 import { useHookProjects } from "./Store";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
@@ -224,11 +226,16 @@ const TabDetail = (props): any => {
                   <div className="t-right">{activeDetail.end_date}</div>
                 </div>
                 <div className="item">
-                  <div className="t-left">Vesting:</div>
-                  <div className="t-right exc-vt">
-                    <Tooltip placement="leftTop" title="TBA">
-                      <ExclamationCircleOutlined />
-                    </Tooltip>
+                  <div className="t-left">
+                    Vesting:
+                    <div className="exc-vt">
+                      <Tooltip placement="leftTop" title="TBA">
+                        <ExclamationCircleOutlined />
+                      </Tooltip>
+                    </div>
+                  </div>
+                  <div className="t-right">
+                    <button type="button" className="btn-contact h__btnContact">Apply Now</button>
                   </div>
                 </div>
               </div>

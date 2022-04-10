@@ -54,12 +54,15 @@ const InnerRender = () => {
       const stakedBalance = account
         ? BigNumber.from(userData?.stakedBalance ?? 0)
         : constants.Zero;
+      const rewardAmount = account
+        ? BigNumber.from(userData?.reward ?? 0)
+        : constants.Zero;
       const lastStakingBlock = account
         ? BigNumber.from(userData?.lastStakingBlock ?? 0).toNumber()
-        : constants.Zero
+        : constants.Zero;
       const lockTimeStamp = account
         ? BigNumber.from(userData?.lockTimeStamp ?? 0).toNumber()
-        : constants.Zero
+        : constants.Zero;
       const allowance = account
         ? BigNumber.from(userData?.allowance ?? 0)
         : constants.Zero;
@@ -76,6 +79,7 @@ const InnerRender = () => {
         isEnded: publicData?.isEnded as boolean,
         lastStakingBlock,
         lockTimeStamp,
+        rewardAmount
       } as PoolInfo;
     });
   }, [poolsFromBE, usersData, poolsData, account]);

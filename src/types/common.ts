@@ -20,7 +20,6 @@ export interface PoolInfo extends HandlerStakingInfo {
   isEnabledContract: boolean
   isStaked: boolean
   isEnded: boolean
-  hasReward: boolean
   startBlock: number
   endBlock: number
   lastStakingBlock: number

@@ -23,6 +23,7 @@ export interface LaunchpadInterface extends utils.Interface {
     "approve(address,uint256)": FunctionFragment;
     "apy()": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
+    "calculateReward(address)": FunctionFragment;
     "changeAPY(uint256)": FunctionFragment;
     "claim()": FunctionFragment;
     "decimals()": FunctionFragment;
@@ -31,11 +32,11 @@ export interface LaunchpadInterface extends utils.Interface {
     "endBlock()": FunctionFragment;
     "increaseAllowance(address,uint256)": FunctionFragment;
     "initialize(address,bool,uint256,uint256,address)": FunctionFragment;
-    "isRemovable()": FunctionFragment;
+    "isPoolClosed()": FunctionFragment;
     "name()": FunctionFragment;
     "owner()": FunctionFragment;
     "renounceOwnership()": FunctionFragment;
-    "setRemovePool(bool)": FunctionFragment;
+    "setPoolClosed(bool)": FunctionFragment;
     "stake(uint256)": FunctionFragment;
     "stakedToken()": FunctionFragment;
     "startBlock()": FunctionFragment;
@@ -61,6 +62,10 @@ export interface LaunchpadInterface extends utils.Interface {
   encodeFunctionData(functionFragment: "apy", values?: undefined): string;
   encodeFunctionData(functionFragment: "balanceOf", values: [string]): string;
   encodeFunctionData(
+    functionFragment: "calculateReward",
+    values: [string]
+  ): string;
+  encodeFunctionData(
     functionFragment: "changeAPY",
     values: [BigNumberish]
   ): string;
@@ -84,7 +89,7 @@ export interface LaunchpadInterface extends utils.Interface {
     values: [string, boolean, BigNumberish, BigNumberish, string]
   ): string;
   encodeFunctionData(
-    functionFragment: "isRemovable",
+    functionFragment: "isPoolClosed",
     values?: undefined
   ): string;
   encodeFunctionData(functionFragment: "name", values?: undefined): string;
@@ -94,7 +99,7 @@ export interface LaunchpadInterface extends utils.Interface {
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "setRemovePool",
+    functionFragment: "setPoolClosed",
     values: [boolean]
   ): string;
   encodeFunctionData(functionFragment: "stake", values: [BigNumberish]): string;
@@ -141,6 +146,10 @@ export interface LaunchpadInterface extends utils.Interface {
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "apy", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "calculateReward",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "changeAPY", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "claim", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "decimals", data: BytesLike): Result;
@@ -159,7 +168,7 @@ export interface LaunchpadInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(functionFragment: "initialize", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "isRemovable",
+    functionFragment: "isPoolClosed",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
@@ -169,7 +178,7 @@ export interface LaunchpadInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "setRemovePool",
+    functionFragment: "setPoolClosed",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "stake", data: BytesLike): Result;
@@ -202,8 +211,8 @@ export interface LaunchpadInterface extends utils.Interface {
 
   events: {
     "Approval(address,address,uint256)": EventFragment;
-    "ChangeAPYvalue(uint256)": EventFragment;
-    "Claimed(address,uint256)": EventFragment;
+    "ChangeApyValue(uint256)": EventFragment;
+    "Claim(address,uint256)": EventFragment;
     "OwnershipTransferred(address,address)": EventFragment;
     "Stake(address,uint256)": EventFragment;
     "Transfer(address,address,uint256)": EventFragment;
@@ -211,8 +220,8 @@ export interface LaunchpadInterface extends utils.Interface {
   };
 
   getEvent(nameOrSignatureOrTopic: "Approval"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "ChangeAPYvalue"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "Claimed"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "ChangeApyValue"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Claim"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "OwnershipTransferred"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Stake"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
@@ -226,19 +235,19 @@ export type ApprovalEvent = TypedEvent<
 
 export type ApprovalEventFilter = TypedEventFilter<ApprovalEvent>;
 
-export type ChangeAPYvalueEvent = TypedEvent<
+export type ChangeApyValueEvent = TypedEvent<
   [BigNumber],
   { amount: BigNumber }
 >;
 
-export type ChangeAPYvalueEventFilter = TypedEventFilter<ChangeAPYvalueEvent>;
+export type ChangeApyValueEventFilter = TypedEventFilter<ChangeApyValueEvent>;
 
-export type ClaimedEvent = TypedEvent<
+export type ClaimEvent = TypedEvent<
   [string, BigNumber],
   { wallet: string; amount: BigNumber }
 >;
 
-export type ClaimedEventFilter = TypedEventFilter<ClaimedEvent>;
+export type ClaimEventFilter = TypedEventFilter<ClaimEvent>;
 
 export type OwnershipTransferredEvent = TypedEvent<
   [string, string],
@@ -312,6 +321,11 @@ export interface Launchpad extends BaseContract {
 
     balanceOf(account: string, overrides?: CallOverrides): Promise<[BigNumber]>;
 
+    calculateReward(
+      userAddress: string,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
+
     changeAPY(
       _apy: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -344,14 +358,14 @@ export interface Launchpad extends BaseContract {
 
     initialize(
       _stakedToken: string,
-      _isRemovable: boolean,
+      _isPoolClosed: boolean,
       _apy: BigNumberish,
       _startBlock: BigNumberish,
       _admin: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    isRemovable(overrides?: CallOverrides): Promise<[boolean]>;
+    isPoolClosed(overrides?: CallOverrides): Promise<[boolean]>;
 
     name(overrides?: CallOverrides): Promise<[string]>;
 
@@ -361,8 +375,8 @@ export interface Launchpad extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    setRemovePool(
-      _remove: boolean,
+    setPoolClosed(
+      _isPoolClosed: boolean,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
@@ -439,6 +453,11 @@ export interface Launchpad extends BaseContract {
 
   balanceOf(account: string, overrides?: CallOverrides): Promise<BigNumber>;
 
+  calculateReward(
+    userAddress: string,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
   changeAPY(
     _apy: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
@@ -471,14 +490,14 @@ export interface Launchpad extends BaseContract {
 
   initialize(
     _stakedToken: string,
-    _isRemovable: boolean,
+    _isPoolClosed: boolean,
     _apy: BigNumberish,
     _startBlock: BigNumberish,
     _admin: string,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  isRemovable(overrides?: CallOverrides): Promise<boolean>;
+  isPoolClosed(overrides?: CallOverrides): Promise<boolean>;
 
   name(overrides?: CallOverrides): Promise<string>;
 
@@ -488,8 +507,8 @@ export interface Launchpad extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  setRemovePool(
-    _remove: boolean,
+  setPoolClosed(
+    _isPoolClosed: boolean,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -563,6 +582,11 @@ export interface Launchpad extends BaseContract {
 
     balanceOf(account: string, overrides?: CallOverrides): Promise<BigNumber>;
 
+    calculateReward(
+      userAddress: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     changeAPY(_apy: BigNumberish, overrides?: CallOverrides): Promise<void>;
 
     claim(overrides?: CallOverrides): Promise<void>;
@@ -590,14 +614,14 @@ export interface Launchpad extends BaseContract {
 
     initialize(
       _stakedToken: string,
-      _isRemovable: boolean,
+      _isPoolClosed: boolean,
       _apy: BigNumberish,
       _startBlock: BigNumberish,
       _admin: string,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    isRemovable(overrides?: CallOverrides): Promise<boolean>;
+    isPoolClosed(overrides?: CallOverrides): Promise<boolean>;
 
     name(overrides?: CallOverrides): Promise<string>;
 
@@ -605,7 +629,10 @@ export interface Launchpad extends BaseContract {
 
     renounceOwnership(overrides?: CallOverrides): Promise<void>;
 
-    setRemovePool(_remove: boolean, overrides?: CallOverrides): Promise<void>;
+    setPoolClosed(
+      _isPoolClosed: boolean,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     stake(_amount: BigNumberish, overrides?: CallOverrides): Promise<void>;
 
@@ -667,14 +694,14 @@ export interface Launchpad extends BaseContract {
       value?: null
     ): ApprovalEventFilter;
 
-    "ChangeAPYvalue(uint256)"(amount?: null): ChangeAPYvalueEventFilter;
-    ChangeAPYvalue(amount?: null): ChangeAPYvalueEventFilter;
+    "ChangeApyValue(uint256)"(amount?: null): ChangeApyValueEventFilter;
+    ChangeApyValue(amount?: null): ChangeApyValueEventFilter;
 
-    "Claimed(address,uint256)"(
+    "Claim(address,uint256)"(
       wallet?: string | null,
       amount?: null
-    ): ClaimedEventFilter;
-    Claimed(wallet?: string | null, amount?: null): ClaimedEventFilter;
+    ): ClaimEventFilter;
+    Claim(wallet?: string | null, amount?: null): ClaimEventFilter;
 
     "OwnershipTransferred(address,address)"(
       previousOwner?: string | null,
@@ -726,6 +753,11 @@ export interface Launchpad extends BaseContract {
 
     balanceOf(account: string, overrides?: CallOverrides): Promise<BigNumber>;
 
+    calculateReward(
+      userAddress: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     changeAPY(
       _apy: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -758,14 +790,14 @@ export interface Launchpad extends BaseContract {
 
     initialize(
       _stakedToken: string,
-      _isRemovable: boolean,
+      _isPoolClosed: boolean,
       _apy: BigNumberish,
       _startBlock: BigNumberish,
       _admin: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    isRemovable(overrides?: CallOverrides): Promise<BigNumber>;
+    isPoolClosed(overrides?: CallOverrides): Promise<BigNumber>;
 
     name(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -775,8 +807,8 @@ export interface Launchpad extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    setRemovePool(
-      _remove: boolean,
+    setPoolClosed(
+      _isPoolClosed: boolean,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -843,6 +875,11 @@ export interface Launchpad extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
+    calculateReward(
+      userAddress: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
     changeAPY(
       _apy: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -875,14 +912,14 @@ export interface Launchpad extends BaseContract {
 
     initialize(
       _stakedToken: string,
-      _isRemovable: boolean,
+      _isPoolClosed: boolean,
       _apy: BigNumberish,
       _startBlock: BigNumberish,
       _admin: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    isRemovable(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    isPoolClosed(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     name(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
@@ -892,8 +929,8 @@ export interface Launchpad extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    setRemovePool(
-      _remove: boolean,
+    setPoolClosed(
+      _isPoolClosed: boolean,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 

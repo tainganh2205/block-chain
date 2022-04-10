@@ -42,7 +42,7 @@ const _abi = [
         type: "uint256",
       },
     ],
-    name: "ChangeAPYvalue",
+    name: "ChangeApyValue",
     type: "event",
   },
   {
@@ -61,7 +61,7 @@ const _abi = [
         type: "uint256",
       },
     ],
-    name: "Claimed",
+    name: "Claim",
     type: "event",
   },
   {
@@ -229,6 +229,25 @@ const _abi = [
   {
     inputs: [
       {
+        internalType: "address",
+        name: "userAddress",
+        type: "address",
+      },
+    ],
+    name: "calculateReward",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
         internalType: "uint256",
         name: "_apy",
         type: "uint256",
@@ -342,7 +361,7 @@ const _abi = [
       },
       {
         internalType: "bool",
-        name: "_isRemovable",
+        name: "_isPoolClosed",
         type: "bool",
       },
       {
@@ -368,7 +387,7 @@ const _abi = [
   },
   {
     inputs: [],
-    name: "isRemovable",
+    name: "isPoolClosed",
     outputs: [
       {
         internalType: "bool",
@@ -416,11 +435,11 @@ const _abi = [
     inputs: [
       {
         internalType: "bool",
-        name: "_remove",
+        name: "_isPoolClosed",
         type: "bool",
       },
     ],
-    name: "setRemovePool",
+    name: "setPoolClosed",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",

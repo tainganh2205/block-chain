@@ -26,6 +26,8 @@ import { StakeButton } from "../staking/StakeButton";
 import { UnstakeButton } from "../staking/UnstakeButton";
 import { EnableContractButton } from "./EnableContractButton";
 import ConnectWalletButton from "components/ConnectWalletButton";
+import { QuestionCircleOutlined } from "@ant-design/icons";
+import { Tooltip } from "antd";
 
 export interface PoolGridCardProps {
   isConnected?: boolean;
@@ -116,6 +118,7 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
         />
       );
     }
+
     return (
       <div className="flex flex-col space-y-6 py-6">
         <div className="flex justify-between items-center space-x-4">
@@ -238,6 +241,18 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
     }
     return total;
   }, [formatBigNumber(stakedBalance, 3)]);
+  // Random component
+  const Completionist = () => <span>You are good to go unstake!</span>;
+  // Renderer callback with condition
+  const renderer = ({ hours, minutes, seconds, completed, days }) => {
+    if (completed) {
+      // Render a completed state
+      return <Completionist />;
+    } else {
+      // Render a countdown
+      return <span>{days}d {hours}h {minutes}m {seconds}s</span>;
+    }
+  };
   return (
     <Card className="relative mb-4 w-full max-w-[520px] overflow-hidden">
       <div className="absolute top-0 left-0 w-full rounded-t-[10px] h-14 p-6 bg-gray-500 flex items-center justify-between text-white">
@@ -313,7 +328,7 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
             <div className="flex justify-between">
               <Text>Unstaking time</Text>
               <Text color="white" className="text-primary-launchpad">
-                {lockTimeStamp ? <Countdown date={timeCountDown} /> : null}
+                {lockTimeStamp ? <Countdown date={timeCountDown} renderer={renderer} /> : null}
               </Text>
             </div>
 
@@ -324,7 +339,25 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
               <div className="flex items-center space-x-2">
                 <Text as="b" size="sm" color="gray-300" className="text-primary-launchpad">
                   {totalTicket} ticket(s)
+
                 </Text>
+                <Tooltip placement="leftTop" title={(<span className="p-2">
+                    Your eligible tickets from the launchpad pool will be used in a lucky draw for IDO allocation. The more tickets you have, the higher chance you get an allocation (and with a larger allocated amount.)
+                    <br/>
+                    The number of eligible tickets is calculated based on your LFW staked amount:
+                    <br/>
+                    - at least 800 LFW: 1 ticket
+                    <br/>
+                    - up to 3200 LFW: 5 tickets
+                    <br/>
+                    - up to 8000 LFW: 15 tickets
+                    <br/>
+                    - up to 21600 LFW: 50 tickets
+                    <br/>
+                    - up to 60000 LFW: 150 tickets
+                  </span>)}>
+                  <QuestionCircleOutlined className="ml-1 text-white"/>
+                </Tooltip>
               </div>
             </div>
 

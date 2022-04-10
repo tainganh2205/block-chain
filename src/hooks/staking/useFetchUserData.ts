@@ -107,6 +107,27 @@ export const fetchUserLockTimeStampLaunchpad = async (
     {}
   ) as { [key: string]: string };
 };
+export const fetchUserRewardLaunchpad = async (
+  account: string,
+  pools: HandlerStakingInfo[]
+) => {
+  const calls = pools.map((pool) => ({
+    address: pool.poolAddress as string,
+    name: "calculateReward",
+    params: [account]
+  }));
+  const userInfo = await multicall(launchpadABI, calls);
+
+  return pools.reduce(
+    (acc, pool, index) => ({
+      ...acc,
+      [pool.poolAddress as string]: (
+        userInfo[index] as BigNumber
+      ).toString()
+    }),
+    {}
+  ) as { [key: string]: string };
+};
 export const fetchUserPendingRewards = async (
   account: string,
   pools: HandlerStakingInfo[]
@@ -148,6 +169,7 @@ export const fetchUserLastStakingBlock = async (
     {}
   ) as { [key: string]: string };
 };
+
 export const fetchUserLastStakingBlockLaunchpad = async (
   account: string,
   pools: HandlerStakingInfo[]
@@ -220,19 +242,23 @@ export const useFetchUserDataLaunchpad = (
       const balances = await fetchUserBalances(account, pools ?? []);
       const stakedBalances = await fetchUserStakedBalancesLaunchpad(account, pools ?? []);
       const lockTimeStamp = await fetchUserLockTimeStampLaunchpad(account, pools ?? []);
+      const reward = await fetchUserRewardLaunchpad(account, pools ?? []);
       const lastStakingBlocks = await fetchUserLastStakingBlockLaunchpad(
         account,
         pools ?? []
       );
 
-      return (pools ?? []).map((pool) => ({
-        poolAddress: pool.poolAddress,
-        stakedBalance: stakedBalances[pool.poolAddress as string],
-        allowance: allowances[pool.poolAddress as string],
-        balance: balances[pool.poolAddress as string],
-        lastStakingBlock: lastStakingBlocks[pool.poolAddress as string],
-        lockTimeStamp: lockTimeStamp[pool.poolAddress as string]
-      }));
+      return (pools ?? []).map((pool) => {
+        return ({
+          poolAddress: pool.poolAddress,
+          stakedBalance: stakedBalances[pool.poolAddress as string],
+          allowance: allowances[pool.poolAddress as string],
+          balance: balances[pool.poolAddress as string],
+          lastStakingBlock: lastStakingBlocks[pool.poolAddress as string],
+          lockTimeStamp: lockTimeStamp[pool.poolAddress as string],
+          reward: reward[pool.poolAddress as string] as unknown as BigNumber,
+        })
+      });
     },
     { refreshInterval: 6 * 1000 }
   );
