@@ -256,7 +256,7 @@ const ModalDisClaimer = (props) => {
                                     <Option value={238}>Cape</Option>
                                     <Option value={238}>Cape</Option>
                                     <Option value={238}>Cape</Option>
-                                    <Option value={238}>Cape</Option>
+
                                     <Option value={238}>Cape</Option> */}
                 </Select>
               </div>
