@@ -35,6 +35,7 @@ const TabDetail = (props): any => {
   const [isOtherChain, setOtherChain] = useState(false);
   const [isModalConfirm, setIsModalConfirm] = useState(false);
   const [isApplySuccess, setIsApplySuccess] = useState(false);
+  const [isApplied, setIsApplied] = useState(false);
   const [state, actions]: any = useHookProjects();
   const [stateDetail, actionsDetail]: any = useHookDetail();
   const { activeTab, idoDetail } = props;
@@ -56,6 +57,14 @@ const TabDetail = (props): any => {
       }
     });
   };
+  useEffect(() => {
+    if (activeTab.includes("Upcoming") && idoDetail && account) {
+      axios.get(`${REACT_APP_API_URL}/v1/launchpad/${idoDetail._id}/isApplied?walletAddress=${account}`).then(res => {
+        console.log("account", res);
+        setIsApplied(res.data.data.applied);
+      });
+    }
+  }, [account]);
 
   useEffect(() => {
 
@@ -102,9 +111,15 @@ const TabDetail = (props): any => {
         }
       }).then(response => {
         if (response.data.success) {
+          axios.get(`${REACT_APP_API_URL}/v1/launchpad/${idoDetail._id}/isApplied?walletAddress=${account}`).then(res => {
+            setIsApplied(res.data.data.applied);
+          });
           setIsApplySuccess(true);
         }
         setIsModalConfirm(true);
+      }).catch(err => {
+        setIsModalConfirm(true);
+        setIsApplySuccess(false);
       });
     }
   };
@@ -259,9 +274,20 @@ const TabDetail = (props): any => {
                     <ConnectWalletButton /> :
                     activeTab.includes("Upcoming") ?
                       <div className="t-right">
-                        <button type="button" className="btn-contact h__btnContact" style={{
-                          background: "linear-gradient(92.34deg, #1682E7 13.61%, #7216E7 104.96%)"
-                        }} onClick={handleApply}>Apply Now
+                        <button type="button"
+                                className="btn-contact h__btnContact"
+                                style={{
+                                  background: "linear-gradient(92.34deg, #1682E7 13.61%, #7216E7 104.96%)"
+                                }}
+                                onClick={() => {
+                                  if (!isApplied) {
+                                    handleApply()
+                                  }
+                                }
+                                }
+                                disabled={isApplied}
+                        >
+                          {isApplied ? "Applied" : "Apply Now"}
                         </button>
                       </div> :
                       <div className="t-right">
