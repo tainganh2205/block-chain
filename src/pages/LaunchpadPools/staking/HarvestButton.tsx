@@ -1,90 +1,88 @@
-import React, { useState } from 'react'
-import { BigNumber, constants } from 'ethers'
-import { Button } from 'components/Button1'
-import { BlockchainLoadingModal } from 'components/BlockchainLoadingModal'
-import { ModalTitle } from 'components/Modal1'
-import { Text } from 'components/Text'
-import { toast } from 'components/Toast'
+import React, { useState } from "react";
+import { BigNumber, constants } from "ethers";
+import { Button } from "components/Button1";
+import { BlockchainLoadingModal } from "components/BlockchainLoadingModal";
+import { ModalTitle } from "components/Modal1";
+import { Text } from "components/Text";
+import { toast } from "components/Toast";
 
-import { useDisclosure } from '@dwarvesf/react-hooks'
-import { useAuthContext } from 'context/auth'
-import { useStakeContext } from 'context/stake'
-import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
-import { usePoolContract } from 'hooks/useContract1'
-import { useTransactionContext } from 'hooks/useTransactions'
-import { ERROR_MESSAGES } from 'constant/errorMessages'
-import { PoolStatus } from 'types/common'
-import { handleTransactionError } from 'utils/error'
+import { useDisclosure } from "@dwarvesf/react-hooks";
+import { useAuthContext } from "context/auth";
+import { useStakeContext } from "context/stake";
+import { useCallWithGasPrice } from "hooks/useCallWithGasPrice";
+import { useLaunchpadPoolContract, usePoolContract } from "hooks/useContract1";
+import { useTransactionContext } from "hooks/useTransactions";
+import { ERROR_MESSAGES } from "constant/errorMessages";
+import { PoolStatus } from "types/common";
+import { handleTransactionError } from "utils/error";
 
 interface HarvestButtonProps {
-  onSuccess: () => void
-  reward: BigNumber
-  poolStatus?: PoolStatus
-  poolAddress: string
+  onSuccess: () => void;
+  reward: BigNumber;
+  poolStatus?: PoolStatus;
+  poolAddress: string;
 }
 
 export const HarvestButton = ({
-  onSuccess,
-  reward,
-  poolStatus,
-  poolAddress,
-}: HarvestButtonProps) => {
+                                onSuccess,
+                                reward,
+                                poolStatus,
+                                poolAddress
+                              }: HarvestButtonProps) => {
   // const { walletId } = useAuthContext()
   const { isStaking, isUnstaking, isHarvesting, setIsHarvesting } =
-    useStakeContext()
+    useStakeContext();
   // harvest
   const {
     isOpen: isConfirmOpen,
     onClose: onConfirmClose,
-    onOpen: onConfirmOpen,
-  } = useDisclosure()
-  const [approved, setApproved] = useState(false)
-  const { callWithGasPrice } = useCallWithGasPrice()
-  const poolContract = usePoolContract(poolAddress)
-  const { addTransaction } = useTransactionContext()
+    onOpen: onConfirmOpen
+  } = useDisclosure();
+  const [approved, setApproved] = useState(false);
+  const { callWithGasPrice } = useCallWithGasPrice();
+  const poolContract = useLaunchpadPoolContract(poolAddress);
+  const { addTransaction } = useTransactionContext();
 
   const handleHarvest = async () => {
-    setApproved(false)
+    setApproved(false);
     try {
-      onConfirmOpen()
-      const tx = await callWithGasPrice(poolContract!.withdraw, [
-        constants.Zero,
-      ])
-      setIsHarvesting(true)
-      setApproved(true)
+      onConfirmOpen();
+      const tx = await callWithGasPrice(poolContract!.claim, []);
+      setIsHarvesting(true);
+      setApproved(true);
       addTransaction(tx.hash, {
-        summary: 'Harvest token',
-      })
-      const receipt = await tx.wait()
+        summary: "Harvest token"
+      });
+      const receipt = await tx.wait();
       if (receipt.status) {
-        onConfirmClose()
-        onSuccess()
+        onConfirmClose();
+        onSuccess();
         toast.success({
-          title: 'Success',
-          message: 'Harvest successfully',
-        })
+          title: "Success",
+          message: "Harvest successfully"
+        });
       } else {
-        onConfirmClose()
+        onConfirmClose();
         toast.error({
-          title: 'Error',
-          message: ERROR_MESSAGES.TRANSACTION_ERROR,
-        })
+          title: "Error",
+          message: ERROR_MESSAGES.TRANSACTION_ERROR
+        });
       }
     } catch (error) {
-      handleTransactionError('Harvest error', error, [constants.Zero])
-      onConfirmClose()
+      handleTransactionError("Harvest error", error, [constants.Zero]);
+      onConfirmClose();
     } finally {
-      setIsHarvesting(false)
+      setIsHarvesting(false);
     }
-  }
+  };
 
   const handleHarvestClick = () => {
     if (isHarvesting) {
-      onConfirmOpen()
+      onConfirmOpen();
     } else {
-      handleHarvest()
+      handleHarvest();
     }
-  }
+  };
 
   return (
     <>
@@ -93,7 +91,7 @@ export const HarvestButton = ({
         isLoading={isHarvesting}
         onClick={handleHarvestClick}
         disabled={
-          isStaking || isUnstaking || reward.eq(0) || poolStatus !== 'STAKING'
+          isStaking || isUnstaking || reward.eq(0) || poolStatus !== "STAKING"
         }
       >
         Claim
@@ -126,5 +124,5 @@ export const HarvestButton = ({
         }
       />
     </>
-  )
-}
+  );
+};
