@@ -6,14 +6,17 @@ import { Store } from "react-notifications-component";
 import { isMobile } from "react-device-detect";
 import { CHAINID_FULLNAME, CHAINID_CONVERT, MAPPING_CHAINID } from "config/constants";
 import { useActiveWeb3React } from "hooks";
-import { Modal, Tooltip } from "antd";
-
+import { Modal, Tooltip, Progress } from "antd";
 import switchNetwork from "utils/wallet";
 import { useHookProjects } from "./Store";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { useHookDetail } from "../LaunchpadV3Detail/Store-Detail";
-import ModalDisClaimer from "./LaunchpadDetail/ModalDisClaimer";
 import ModalSuccess from "./LaunchpadDetail/ModalSuccess";
+import ConnectWalletButton from "../../components/ConnectWalletButton";
+import axios from "axios";
+import ModalDisClaimer from "./LaunchpadDetail/ModalDisClaimer";
+
+const { REACT_APP_API_URL } = process.env;
 
 function usePrevious(value) {
   const ref = useRef();
@@ -31,6 +34,7 @@ const TabDetail = (props): any => {
   const { chainId } = useActiveWeb3React();
   const [isOtherChain, setOtherChain] = useState(false);
   const [isModalConfirm, setIsModalConfirm] = useState(false);
+  const [isApplySuccess, setIsApplySuccess] = useState(false);
   const [state, actions]: any = useHookProjects();
   const [stateDetail, actionsDetail]: any = useHookDetail();
   const { activeTab, idoDetail } = props;
@@ -89,12 +93,20 @@ const TabDetail = (props): any => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab]);
-  const handleConfirm = () => {
-    setIsModalConfirm(!isModalConfirm);
+  const handleApply = () => {
+    const token = JSON.parse(localStorage.getItem("lfw-signature")!);
+    if (token.access_token) {
+      axios.post(`${REACT_APP_API_URL}/v1/launchpad/${idoDetail._id}/apply`, {}, {
+        headers: {
+          Authorization: "Bearer " + token.access_token
+        }
+      }).then(response => {
+        setIsModalConfirm(true);
+        console.log('response',response);
+      });
+    }
   };
-  console.log(
-    activeTab
-  );
+
   return (
     <>
       <Modal onCancel={() => setOtherChain(false)} className="modal-beta-show" title="Alert!" visible={isOtherChain}>
@@ -232,34 +244,41 @@ const TabDetail = (props): any => {
                   <div className="t-right">{activeDetail.end_date}</div>
                 </div>
                 <div className="item">
-                  <div className="t-left">
+                  <div className="t-left w-50">
                     Vesting:
-                    <div className="exc-vt">
+                    <div className="flex justify-between items-center exc-vt">
+                      <Progress percent={50} size="small" className="mr-2" />
                       <Tooltip placement="leftTop" title="TBA">
                         <ExclamationCircleOutlined />
                       </Tooltip>
                     </div>
                   </div>
-                  {activeTab.includes("Upcoming") ?
-                    <div className="t-right">
-                      <button type="button" className="btn-contact h__btnContact" style={{
-                        background: "linear-gradient(92.34deg, #1682E7 13.61%, #7216E7 104.96%)"
-                      }} onClick={handleConfirm}>Apply Now
-                      </button>
-                    </div> :
-                    <div className="t-right">
-                      <button type="button" style={{
-                        background: "linear-gradient(92.34deg, #1682E7 13.61%, #7216E7 104.96%)"
-                      }} className="btn-contact h__btnContact" onClick={handleConfirm}>Join Now
-                      </button>
-                    </div>
+                  {!account ?
+                    <ConnectWalletButton /> :
+                    activeTab.includes("Upcoming") ?
+                      <div className="t-right">
+                        <button type="button" className="btn-contact h__btnContact" style={{
+                          background: "linear-gradient(92.34deg, #1682E7 13.61%, #7216E7 104.96%)"
+                        }} onClick={handleApply}>Apply Now
+                        </button>
+                      </div> :
+                      <div className="t-right">
+                        <button type="button" style={{
+                          background: "linear-gradient(92.34deg, #1682E7 13.61%, #7216E7 104.96%)"
+                        }} className="btn-contact h__btnContact" onClick={handleApply}>Join Now
+                        </button>
+                      </div>
                   }
 
                 </div>
               </div>
             </div>
           </div>
-          <ModalSuccess isOpenJoin={isModalConfirm} setIsModalConfirm={setIsModalConfirm} />
+          {
+            isApplySuccess ? <ModalSuccess isOpenJoin={isModalConfirm} setIsModalConfirm={setIsModalConfirm} />:
+              <ModalDisClaimer isOpenJoin={isModalConfirm} setIsModalConfirm={setIsModalConfirm} />
+          }
+
         </div>
       )}
     </>

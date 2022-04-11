@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "antd";
-import { useHistory } from "react-router-dom";
 import { CheckCircleFilled } from "@ant-design/icons";
 
 const ModalSuccess = (props) => {
-  const history = useHistory();
   const { isOpenJoin, idoID, setIsModalConfirm } = props;
   const [acceptConfirm, setAcceptConfirm] = useState(false);
   const [listCondition, setListCondition] = useState<string[]>([]);
@@ -38,18 +36,7 @@ const ModalSuccess = (props) => {
           Successful
         </h3>
         <ul className="list-text-claimer">
-          <li>
-            You will be solely responsible to proceed at your own discretion.
-          </li>
-          <li>
-            You are not using, and will not in the future use, a VPN to mask your physical location from a restricted location.
-          </li>
-          <li>
-            You are responsible for ensuring compliance with the laws of your jurisdiction in connections with your use of the our Services.
-          </li>
-          <li>
-            You understand that BSCStation is not liable for your compliance or non-compliance with any such laws.
-          </li>
+          You have been added into allow-list. Your eligible tickets from the Launchpad pool will be used in a lucky draw for IDO allocation. The more tickets you have, the higher chance you get an allocation (and with a larger allocated amount.)
         </ul>
       </div>
     </>
