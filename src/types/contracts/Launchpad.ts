@@ -41,7 +41,10 @@ export interface LaunchpadInterface extends utils.Interface {
     "stakedToken()": FunctionFragment;
     "startBlock()": FunctionFragment;
     "symbol()": FunctionFragment;
+    "totalStakedAmount()": FunctionFragment;
+    "totalStakedAmountInEther()": FunctionFragment;
     "totalSupply()": FunctionFragment;
+    "totalUsers()": FunctionFragment;
     "transfer(address,uint256)": FunctionFragment;
     "transferFrom(address,address,uint256)": FunctionFragment;
     "transferOwnership(address)": FunctionFragment;
@@ -113,7 +116,19 @@ export interface LaunchpadInterface extends utils.Interface {
   ): string;
   encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
   encodeFunctionData(
+    functionFragment: "totalStakedAmount",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "totalStakedAmountInEther",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
     functionFragment: "totalSupply",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "totalUsers",
     values?: undefined
   ): string;
   encodeFunctionData(
@@ -189,9 +204,18 @@ export interface LaunchpadInterface extends utils.Interface {
   decodeFunctionResult(functionFragment: "startBlock", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
   decodeFunctionResult(
+    functionFragment: "totalStakedAmount",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "totalStakedAmountInEther",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "totalSupply",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "totalUsers", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "transfer", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "transferFrom",
@@ -391,7 +415,13 @@ export interface Launchpad extends BaseContract {
 
     symbol(overrides?: CallOverrides): Promise<[string]>;
 
+    totalStakedAmount(overrides?: CallOverrides): Promise<[BigNumber]>;
+
+    totalStakedAmountInEther(overrides?: CallOverrides): Promise<[BigNumber]>;
+
     totalSupply(overrides?: CallOverrides): Promise<[BigNumber]>;
+
+    totalUsers(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     transfer(
       to: string,
@@ -523,7 +553,13 @@ export interface Launchpad extends BaseContract {
 
   symbol(overrides?: CallOverrides): Promise<string>;
 
+  totalStakedAmount(overrides?: CallOverrides): Promise<BigNumber>;
+
+  totalStakedAmountInEther(overrides?: CallOverrides): Promise<BigNumber>;
+
   totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
+
+  totalUsers(overrides?: CallOverrides): Promise<BigNumber>;
 
   transfer(
     to: string,
@@ -642,7 +678,13 @@ export interface Launchpad extends BaseContract {
 
     symbol(overrides?: CallOverrides): Promise<string>;
 
+    totalStakedAmount(overrides?: CallOverrides): Promise<BigNumber>;
+
+    totalStakedAmountInEther(overrides?: CallOverrides): Promise<BigNumber>;
+
     totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
+
+    totalUsers(overrides?: CallOverrides): Promise<BigNumber>;
 
     transfer(
       to: string,
@@ -823,7 +865,13 @@ export interface Launchpad extends BaseContract {
 
     symbol(overrides?: CallOverrides): Promise<BigNumber>;
 
+    totalStakedAmount(overrides?: CallOverrides): Promise<BigNumber>;
+
+    totalStakedAmountInEther(overrides?: CallOverrides): Promise<BigNumber>;
+
     totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
+
+    totalUsers(overrides?: CallOverrides): Promise<BigNumber>;
 
     transfer(
       to: string,
@@ -945,7 +993,15 @@ export interface Launchpad extends BaseContract {
 
     symbol(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
+    totalStakedAmount(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    totalStakedAmountInEther(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
     totalSupply(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    totalUsers(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     transfer(
       to: string,
