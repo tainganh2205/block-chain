@@ -32,7 +32,7 @@ const TabsContentActive = (props): any => {
 
   useAsyncEffect(async () => {
     const status = query.get("tab");
-    const response = await axios.get(`${REACT_APP_API_URL}/v1/launchpad?status=${status?.toLowerCase()}`);
+    const response = await axios.get(`${REACT_APP_API_URL}/v1/launchpad?status=${!status ? "upcoming" : status?.toLowerCase()}`);
     setIdoListView(response.data.data);
   }, [query]);
 

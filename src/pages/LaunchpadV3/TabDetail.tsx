@@ -60,7 +60,6 @@ const TabDetail = (props): any => {
   useEffect(() => {
     if (activeTab.includes("Upcoming") && idoDetail && account) {
       axios.get(`${REACT_APP_API_URL}/v1/launchpad/${idoDetail._id}/isApplied?walletAddress=${account}`).then(res => {
-        console.log("account", res);
         setIsApplied(res.data.data.applied);
       });
     }

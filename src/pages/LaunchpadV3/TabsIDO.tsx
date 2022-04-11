@@ -59,9 +59,6 @@ const TabsIDO = () => {
     }
   }, [tabBox]);
 
-  function handleChangeOptionSchedule(value) {
-    setOptionSchedule(value);
-  }
 
   return (
     <>
