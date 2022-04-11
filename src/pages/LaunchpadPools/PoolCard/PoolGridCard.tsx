@@ -413,7 +413,7 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
       />
       <div className="absolute right-0 bottom-0 bg-black px-4 md:px-9 py-4 rounded-tl-[10px]">
         <Text color="white" className="font-semibold">
-          Stacked LFW to earn LFW
+          Stake LFW to earn LFW
         </Text>
       </div>
     </Card>
