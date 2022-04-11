@@ -53,6 +53,7 @@ export interface PoolGridCardProps {
   isCalculatingBlock?: boolean;
 }
 
+const { REACT_APP_PROMOTION } = process.env;
 export const PoolGridCard = (props: PoolGridCardProps) => {
   const {
     poolInfo,
@@ -223,20 +224,32 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
   }, [isOpen]);
   const totalTicket = useMemo(() => {
     let total = 0;
+    let step1 = 800;
+    let step2 = 3200;
+    let step3 = 8000;
+    let step4 = 21600;
+    let step5 = 60000;
+    if (REACT_APP_PROMOTION) {
+      step1 = 400;
+      step2 = 1600;
+      step3 = 4000;
+      step4 = 10800;
+      step5 = 30000;
+    }
     const newStakedBalance = parseInt(formatBigNumber(stakedBalance, 3));
-    if (newStakedBalance >= 800 && newStakedBalance < 3200) {
+    if (newStakedBalance >= step1 && newStakedBalance < step2) {
       total = 1;
     }
-    if (newStakedBalance >= 3200 && newStakedBalance < 8000) {
+    if (newStakedBalance >= step2 && newStakedBalance < step3) {
       total = 5;
     }
-    if (newStakedBalance >= 8000 && newStakedBalance < 21600) {
+    if (newStakedBalance >= step3 && newStakedBalance < step4) {
       total = 15;
     }
-    if (newStakedBalance >= 21600 && newStakedBalance < 60000) {
+    if (newStakedBalance >= step4 && newStakedBalance < step5) {
       total = 50;
     }
-    if (newStakedBalance >= 60000) {
+    if (newStakedBalance >= step5) {
       total = 150;
     }
     return total;
@@ -343,20 +356,22 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
                 </Text>
                 <Tooltip placement="leftTop" title={(<span className="p-2">
                     Your eligible tickets from the launchpad pool will be used in a lucky draw for IDO allocation. The more tickets you have, the higher chance you get an allocation (and with a larger allocated amount.)
-                    <br/>
+                    <br />
                     The number of eligible tickets is calculated based on your LFW staked amount:
-                    <br/>
+                    <br />
+                  (There will be a 50% reduction of the below required staked amount during promotion period!)
+                    <br />
                     - at least 800 LFW: 1 ticket
-                    <br/>
+                    <br />
                     - up to 3200 LFW: 5 tickets
-                    <br/>
+                    <br />
                     - up to 8000 LFW: 15 tickets
-                    <br/>
+                    <br />
                     - up to 21600 LFW: 50 tickets
-                    <br/>
+                    <br />
                     - up to 60000 LFW: 150 tickets
                   </span>)}>
-                  <QuestionCircleOutlined className="ml-1 text-white"/>
+                  <QuestionCircleOutlined className="ml-1 text-white" />
                 </Tooltip>
               </div>
             </div>
