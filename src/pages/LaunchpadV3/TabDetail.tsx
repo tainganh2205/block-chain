@@ -95,14 +95,16 @@ const TabDetail = (props): any => {
   }, [activeTab]);
   const handleApply = () => {
     const token = JSON.parse(localStorage.getItem("lfw-signature")!);
-    if (token.access_token) {
+    if (token && token.access_token) {
       axios.post(`${REACT_APP_API_URL}/v1/launchpad/${idoDetail._id}/apply`, {}, {
         headers: {
           Authorization: "Bearer " + token.access_token
         }
       }).then(response => {
+        if (response.data.success) {
+          setIsApplySuccess(true);
+        }
         setIsModalConfirm(true);
-        console.log('response',response);
       });
     }
   };
@@ -247,7 +249,7 @@ const TabDetail = (props): any => {
                   <div className="t-left w-50">
                     Vesting:
                     <div className="flex justify-between items-center exc-vt">
-                      <Progress percent={50} size="small" className="mr-2" />
+                      <Progress percent={50} showInfo={false} size="small" className="mr-2" />
                       <Tooltip placement="leftTop" title="TBA">
                         <ExclamationCircleOutlined />
                       </Tooltip>
@@ -275,7 +277,7 @@ const TabDetail = (props): any => {
             </div>
           </div>
           {
-            isApplySuccess ? <ModalSuccess isOpenJoin={isModalConfirm} setIsModalConfirm={setIsModalConfirm} />:
+            isApplySuccess ? <ModalSuccess isOpenJoin={isModalConfirm} setIsModalConfirm={setIsModalConfirm} /> :
               <ModalDisClaimer isOpenJoin={isModalConfirm} setIsModalConfirm={setIsModalConfirm} />
           }
 

@@ -18,8 +18,11 @@ const UnlockButton = (props) => {
     }
     return activate(injected);
   };
-
-  const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(handleLogin, deactivate, account as string);
+  const handleLogout = () => {
+    localStorage.removeItem("lfw-signature");
+    deactivate();
+  };
+  const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(handleLogin, handleLogout, account as string);
   const accountEllipsis = account ? `${account.substring(0, 4)}...${account.substring(account.length - 4)}` : null;
   useDeepEffect(() => {
     const accessToken = localStorage.getItem("lfw-signature");
