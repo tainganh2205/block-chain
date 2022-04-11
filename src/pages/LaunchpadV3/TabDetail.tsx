@@ -245,7 +245,7 @@ const TabDetail = (props): any => {
               <div className="list-info-ido border-none">
                 <div className="item">
                   <div className="t-left">Total Raise:</div>
-                  <div className="t-right">$ {Number(activeDetail.soft_cap).toFixed(2}</div>
+                  <div className="t-right">$ {Number(activeDetail.soft_cap).toFixed(2)}</div>
                 </div>
                 <div className="item">
                   <div className="t-left">Swap Rate:</div>
