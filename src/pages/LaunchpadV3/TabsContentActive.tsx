@@ -175,11 +175,9 @@ ${(ido.description || "").replace("Legend of Galaxy", "<a href=\"https://legendo
 
                     </div>
                     <div className="box-button-dt mt-2">
-                      {state?.owner !== null && typeView === "list" && (
-                        <button type="button" className="btn-view-dt" onClick={() => handleCallClick(ido)}>
-                          View details
-                        </button>
-                      )}
+                      <button type="button" className="btn-view-dt" onClick={() => handleCallClick(ido)}>
+                        View details
+                      </button>
                     </div>
                   </div>
                 </div>
