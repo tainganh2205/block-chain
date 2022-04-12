@@ -256,8 +256,8 @@ export const useFetchUserDataLaunchpad = (
           balance: balances[pool.poolAddress as string],
           lastStakingBlock: lastStakingBlocks[pool.poolAddress as string],
           lockTimeStamp: lockTimeStamp[pool.poolAddress as string],
-          reward: reward[pool.poolAddress as string] as unknown as BigNumber,
-        })
+          reward: reward[pool.poolAddress as string] as unknown as BigNumber
+        });
       });
     },
     { refreshInterval: 6 * 1000 }

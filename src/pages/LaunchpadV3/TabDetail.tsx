@@ -15,6 +15,21 @@ import ModalSuccess from "./LaunchpadDetail/ModalSuccess";
 import ConnectWalletButton from "../../components/ConnectWalletButton";
 import axios from "axios";
 import ModalDisClaimer from "./LaunchpadDetail/ModalDisClaimer";
+import { wait } from "../../utils/wait";
+import { BigNumber, constants, FixedNumber } from "ethers";
+import { toast } from "../../components/Toast";
+import { ERROR_MESSAGES } from "../../constant/errorMessages";
+import { handleTransactionError } from "../../utils/error";
+import { inputNumberToBigNumber } from "../../utils/number";
+import { useCallWithGasPrice } from "../../hooks/useCallWithGasPrice";
+import { useIdoContract, usePoolContract } from "../../hooks/useContract1";
+import { useAsyncEffect, useDisclosure } from "@dwarvesf/react-hooks";
+import { JoinModal } from "./JoinModal";
+import { ModalTitle } from "../../components/Modal1";
+import { BlockchainLoadingModal } from "../../components/BlockchainLoadingModal";
+import { BUSD_CONTRACT, IDO_CONTRACT } from "constant/contracts";
+import erc20ABI from "../../config/abi/erc20.json";
+import multicall from "utils/multicall";
 
 const { REACT_APP_API_URL } = process.env;
 
@@ -32,10 +47,16 @@ let loadFirst = false;
 
 const TabDetail = (props): any => {
   const { chainId } = useActiveWeb3React();
+  const idoContract = useIdoContract();
+  const { isOpen, onClose, onOpen } = useDisclosure();
+  const { callWithGasPrice } = useCallWithGasPrice();
   const [isOtherChain, setOtherChain] = useState(false);
   const [isModalConfirm, setIsModalConfirm] = useState(false);
   const [isApplySuccess, setIsApplySuccess] = useState(false);
   const [isApplied, setIsApplied] = useState(false);
+  const [isEnabled, setIsEnabled] = useState(false);
+  const [isWhitelisted, setIsWhitelisted] = useState(false);
+  const [spend, setSpend] = useState(0);
   const [state, actions]: any = useHookProjects();
   const [stateDetail, actionsDetail]: any = useHookDetail();
   const { activeTab, idoDetail } = props;
@@ -46,6 +67,11 @@ const TabDetail = (props): any => {
   const pathHash = history.location.search.split("?");
   const tabSymbol = pathHash[2];
   const [activeDetail, setActiveDetail] = useState<any>(idoDetail);
+  const {
+    isOpen: isConfirmOpen,
+    onClose: onConfirmClose,
+    onOpen: onConfirmOpen
+  } = useDisclosure();
 
   const handleCallDetail = async (symbol) => {
     const address = account;
@@ -57,12 +83,28 @@ const TabDetail = (props): any => {
       }
     });
   };
-  useEffect(() => {
-    if (activeTab.includes("Upcoming") && idoDetail && account) {
-      axios.get(`${REACT_APP_API_URL}/v1/launchpad/${idoDetail._id}/isApplied?walletAddress=${account}`).then(res => {
-        setIsApplied(res.data.data.applied);
-      });
+
+  useAsyncEffect(async () => {
+    if (idoDetail && account) {
+      if (activeTab.includes("Upcoming")) {
+        axios.get(`${REACT_APP_API_URL}/v1/launchpad/${idoDetail._id}/isApplied?walletAddress=${account}`).then(res => {
+          setIsApplied(res.data.data.applied);
+        });
+      } else {
+        const calls = [{
+          address: BUSD_CONTRACT as string,
+          name: "allowance",
+          params: [account, BUSD_CONTRACT]
+        }];
+        const allowances = await multicall(erc20ABI, calls);
+        const allowance = BigNumber.from((allowances[0] as BigNumber).toString() ?? 0)
+        setIsEnabled(allowance.gt(0))
+        axios.get(`${REACT_APP_API_URL}/v1/launchpad/${idoDetail._id}/whitelist?walletAddress=${account}`).then(res => {
+          setIsWhitelisted(res.data.data.whitelisted);
+        });
+      }
     }
+
   }, [account]);
 
   useEffect(() => {
@@ -75,7 +117,7 @@ const TabDetail = (props): any => {
         handleCallDetail(tabSymbol);
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [tabSymbol, account]);
 
   useEffect(() => {
@@ -91,7 +133,6 @@ const TabDetail = (props): any => {
     return () => {
       // TODO
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeDetail, account, chainId]);
 
   useEffect(() => {
@@ -122,7 +163,41 @@ const TabDetail = (props): any => {
       });
     }
   };
-
+  const handleJoin = async () => {
+    try {
+      onClose();
+      await wait(200);
+      onConfirmOpen();
+      const tx = await callWithGasPrice(idoContract!.join, [
+        BigNumber.from(FixedNumber.fromString(spend.toString(), "fixed128x18"))
+      ]);
+      const receipt = await tx.wait();
+      if (receipt.status) {
+        onConfirmClose();
+        toast.success({
+          title: "Success",
+          message: "Stake successfully"
+        });
+      } else {
+        onConfirmClose();
+        toast.error({
+          title: "Error",
+          message: ERROR_MESSAGES.TRANSACTION_ERROR
+        });
+      }
+    } catch (error) {
+      console.log("error", error);
+      handleTransactionError("Join error", error, [
+        inputNumberToBigNumber(spend).toString()
+      ]);
+      onConfirmClose();
+    } finally {
+      setSpend(0);
+    }
+  };
+  const handleJoinClick = () => {
+    onOpen();
+  };
   return (
     <>
       <Modal onCancel={() => setOtherChain(false)} className="modal-beta-show" title="Alert!" visible={isOtherChain}>
@@ -280,7 +355,7 @@ const TabDetail = (props): any => {
                                 }}
                                 onClick={() => {
                                   if (!isApplied) {
-                                    handleApply()
+                                    handleApply();
                                   }
                                 }
                                 }
@@ -290,24 +365,52 @@ const TabDetail = (props): any => {
                         </button>
                       </div> :
                       <div className="t-right">
-                        <button type="button" style={{
-                          background: "linear-gradient(92.34deg, #1682E7 13.61%, #7216E7 104.96%)"
-                        }} className="btn-contact h__btnContact" onClick={handleApply}>Join Now
-                        </button>
+                        {isWhitelisted ?
+                          <button type="button" style={{
+                            background: "linear-gradient(92.34deg, #1682E7 13.61%, #7216E7 104.96%)"
+                          }} className="btn-contact h__btnContact" onClick={handleJoinClick}>
+                            Join Now
+                          </button> : <span className="text-danger">You’re not whitelisted</span>
+                        }
                       </div>
                   }
-
                 </div>
               </div>
             </div>
           </div>
           {
-            isApplySuccess ? <ModalSuccess isOpenJoin={isModalConfirm} setIsModalConfirm={setIsModalConfirm} /> :
+            isApplySuccess ?
+              <ModalSuccess isOpenJoin={isModalConfirm} setIsModalConfirm={setIsModalConfirm} /> :
               <ModalDisClaimer isOpenJoin={isModalConfirm} setIsModalConfirm={setIsModalConfirm} />
           }
-
         </div>
       )}
+      <JoinModal
+        title="Join IDO with BUSD"
+        label="Join"
+        rightButtonText="Join"
+        rightButtonDisabled={!spend}
+        isOpen={isOpen}
+        onClose={() => {
+          onClose();
+          setSpend(0);
+        }}
+        onSubmit={handleJoin}
+        spend={spend}
+        setSpend={setSpend}
+        hasBottom
+      />
+      <BlockchainLoadingModal
+        isOpen={isConfirmOpen}
+        onClose={onConfirmClose}
+        topRender={<ModalTitle className="text-white text-32 font-semibold">
+          Join asset
+        </ModalTitle>
+        }
+        bottomRender={<ModalTitle className="text-white sm:text-30 text-2xl font-semibold sm:pb-10 pb-5 pt-5">
+          Join your asset...
+        </ModalTitle>}
+      />
     </>
   );
 };

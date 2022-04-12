@@ -71,10 +71,7 @@ export const PoolGridCard = (props: PoolGridCardProps) => {
     onStakeSuccess = noop,
     onUnstakeSuccess = noop,
     currentBlock,
-    startBlock,
     unstakingBlock,
-    lastStakingBlock,
-    endBlock,
     lockTimeStamp
   } = props;
 
