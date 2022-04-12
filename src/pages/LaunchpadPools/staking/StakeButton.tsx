@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { BigNumber, utils } from "ethers";
+import { BigNumber,FixedNumber, utils } from "ethers";
 import { Button } from "components/Button1";
 import { BlockchainLoadingModal } from "components/BlockchainLoadingModal";
 import { ModalTitle } from "components/Modal1";
@@ -73,7 +73,6 @@ export const StakeButton = ({
   const handleMaxClick = () => {
     setSpend(parseFloat(formatBigNumber(tokenBalance, 3)));
   };
-
   const handleStake = async () => {
     setApproved(false);
     try {
@@ -81,7 +80,7 @@ export const StakeButton = ({
       await wait(200);
       onConfirmOpen();
       const tx = await callWithGasPrice(poolContract!.stake, [
-        BigNumber.from(spend).mul(BigNumber.from(10).pow(18))
+        BigNumber.from(FixedNumber.fromString(spend.toString(), "fixed128x18"))
       ]);
       setIsStaking(true);
       setApproved(true);

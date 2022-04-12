@@ -184,7 +184,7 @@ const MenuNew = () => {
                   Metaverse
                   <div className="submenu-nav">
                     <ul>
-                      <Link to="/Introduction">
+                      <Link to="/coming-soon">
                         <li>Introduction</li>
                       </Link>
                     </ul>

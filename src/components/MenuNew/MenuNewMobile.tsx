@@ -5,6 +5,7 @@ import "antd/dist/antd.css";
 import UnlockButton from "../ConnectWalletButton";
 
 import { ReactComponent as IconIdo } from "../../images/img/IDO.svg";
+import { ReactComponent as MetaverseIcon } from "../../images/img/metaverse.svg";
 
 function MenuNewMobile() {
   const [visible, setVisible] = useState(false);
@@ -43,6 +44,13 @@ function MenuNewMobile() {
       </div>
     </>
   );
+  const metaverse = (
+    <>
+      <div className="header-collapse">
+        <MetaverseIcon /> <span>Metaverse</span>
+      </div>
+    </>
+  );
   const nft = (
     <>
       <div className="header-collapse">
@@ -50,6 +58,7 @@ function MenuNewMobile() {
       </div>
     </>
   );
+
   const about = (
     <>
       <div className="header-collapse">
@@ -159,6 +168,15 @@ function MenuNewMobile() {
       </ul>
     </>
   );
+  const menuMetaverse = (
+    <>
+      <ul>
+        <Link to="/coming-soon">
+          <li>Introduction</li>
+        </Link>
+      </ul>
+    </>
+  );
   const menuDocs = (
     <>
       <ul>
@@ -193,6 +211,9 @@ function MenuNewMobile() {
         {ido}
         <Panel header={nft} key="3">
           <p>{menuNFT}</p>
+        </Panel>
+        <Panel header={metaverse} key="6">
+          <p>{menuMetaverse}</p>
         </Panel>
         <Panel header={about} key="5">
           <p>{menuAbout}</p>
