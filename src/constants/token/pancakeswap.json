@@ -33,7 +33,7 @@
       "name": "LFW Token",
       "symbol": "LFW",
       "address": "0x5a5A4F6E025F7896c7801b0b378495a513f49cD2",
-      "chainId": 56,
+      "chainId": 97,
       "decimals": 18,
       "logoURI": "/images/coins/BUSD.png"
     },
