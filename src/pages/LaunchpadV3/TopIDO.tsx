@@ -64,6 +64,7 @@ const TopIDO = () => {
                 "_blank" // <- This is what makes it open in a new window.
               );
             }}>
+
               <UnlockButton text="EXPLORE" />
             </div>
           </div>
