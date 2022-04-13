@@ -15,6 +15,7 @@ import ModalSuccess from "./LaunchpadDetail/ModalSuccess";
 import ConnectWalletButton from "../../components/ConnectWalletButton";
 import axios from "axios";
 import ModalDisClaimer from "./LaunchpadDetail/ModalDisClaimer";
+import moment from "moment";
 
 const { REACT_APP_API_URL } = process.env;
 
@@ -122,7 +123,15 @@ const TabDetail = (props): any => {
       });
     }
   };
+  const whitelistDate = React.useMemo(() => {
+    if (activeDetail) {
+      let date = new Date(activeDetail.start_date);
+      date.setDate(date.getDate() - 3);
 
+      return moment(date).format("MMMM Do YYYY, h:mm:ss a");
+    }
+    return null;
+  }, [activeDetail]);
   return (
     <>
       <Modal onCancel={() => setOtherChain(false)} className="modal-beta-show" title="Alert!" visible={isOtherChain}>
@@ -252,12 +261,16 @@ const TabDetail = (props): any => {
                   <div className="t-right">{activeDetail.swap_rate}</div>
                 </div>
                 <div className="item">
-                  <div className="t-left">Start Pool:</div>
-                  <div className="t-right">{activeDetail.start_date}</div>
+                  <div className="t-left">Whitelist Date:</div>
+                  <div className="t-right">{whitelistDate}</div>
                 </div>
                 <div className="item">
-                  <div className="t-left">End Pool:</div>
-                  <div className="t-right">{activeDetail.end_date}</div>
+                  <div className="t-left">Start IDO Pool:</div>
+                  <div className="t-right">{moment(activeDetail.start_date).format('MMMM Do YYYY, h:mm:ss a')}</div>
+                </div>
+                <div className="item">
+                  <div className="t-left">End IDO Pool:</div>
+                  <div className="t-right">{moment(activeDetail.end_date).format('MMMM Do YYYY, h:mm:ss a')}</div>
                 </div>
                 <div className="item">
                   <div className="t-left w-50">
@@ -280,7 +293,7 @@ const TabDetail = (props): any => {
                                 }}
                                 onClick={() => {
                                   if (!isApplied) {
-                                    handleApply()
+                                    handleApply();
                                   }
                                 }
                                 }
