@@ -30,6 +30,7 @@ import { BlockchainLoadingModal } from "../../components/BlockchainLoadingModal"
 import { BUSD_CONTRACT, IDO_CONTRACT } from "constant/contracts";
 import erc20ABI from "../../config/abi/erc20.json";
 import multicall from "utils/multicall";
+import { EnableContractButton } from "pages/LaunchpadPools/PoolCard/EnableContractButton";
 
 const { REACT_APP_API_URL } = process.env;
 
@@ -94,11 +95,12 @@ const TabDetail = (props): any => {
         const calls = [{
           address: BUSD_CONTRACT as string,
           name: "allowance",
-          params: [account, BUSD_CONTRACT]
+          params: [account, IDO_CONTRACT]
         }];
         const allowances = await multicall(erc20ABI, calls);
-        const allowance = BigNumber.from((allowances[0] as BigNumber).toString() ?? 0)
-        setIsEnabled(allowance.gt(0))
+        const allowance = BigNumber.from((allowances[0] as BigNumber).toString() ?? 0);
+
+        setIsEnabled(allowance.gt(0));
         axios.get(`${REACT_APP_API_URL}/v1/launchpad/${idoDetail._id}/whitelist?walletAddress=${account}`).then(res => {
           setIsWhitelisted(res.data.data.whitelisted);
         });
@@ -163,6 +165,14 @@ const TabDetail = (props): any => {
       });
     }
   };
+  const whitelistDate = React.useMemo(() => {
+    if (activeDetail) {
+      let date = new Date(activeDetail.start_date);
+      date.setDate(date.getDate() - 3);
+      return new Date(date).toUTCString();
+    }
+    return null;
+  }, [activeDetail]);
   const handleJoin = async () => {
     try {
       onClose();
@@ -198,6 +208,37 @@ const TabDetail = (props): any => {
   const handleJoinClick = () => {
     onOpen();
   };
+  const RightButton = React.useMemo(() => {
+    if (!activeTab.includes("Upcoming")) {
+      if (isWhitelisted) {
+        if (!isEnabled) {
+          return <EnableContractButton tokenAddress={BUSD_CONTRACT} poolAddress={IDO_CONTRACT} />;
+        }
+        return <button type="button" style={{
+          background: "linear-gradient(92.34deg, #1682E7 13.61%, #7216E7 104.96%)"
+        }} className="btn-contact h__btnContact" onClick={handleJoinClick}>
+          Join Now
+        </button>;
+      }
+      return <span className="text-danger">You’re not whitelisted</span>;
+    }
+    return <button type="button"
+                   className="btn-contact h__btnContact"
+                   style={{
+                     background: "linear-gradient(92.34deg, #1682E7 13.61%, #7216E7 104.96%)"
+                   }}
+                   onClick={() => {
+                     if (!isApplied) {
+                       handleApply();
+                     }
+                   }
+                   }
+                   disabled={isApplied}
+    >
+      {isApplied ? "Applied" : "Apply Now"}
+    </button>;
+
+  }, [isWhitelisted, isEnabled]);
   return (
     <>
       <Modal onCancel={() => setOtherChain(false)} className="modal-beta-show" title="Alert!" visible={isOtherChain}>
@@ -327,12 +368,16 @@ const TabDetail = (props): any => {
                   <div className="t-right">{activeDetail.swap_rate}</div>
                 </div>
                 <div className="item">
-                  <div className="t-left">Start Pool:</div>
-                  <div className="t-right">{activeDetail.start_date}</div>
+                  <div className="t-left">Whitelist Date:</div>
+                  <div className="t-right">{whitelistDate}</div>
                 </div>
                 <div className="item">
-                  <div className="t-left">End Pool:</div>
-                  <div className="t-right">{activeDetail.end_date}</div>
+                  <div className="t-left">Start IDO Pool:</div>
+                  <div className="t-right">{new Date(activeDetail.start_date).toUTCString()}</div>
+                </div>
+                <div className="item">
+                  <div className="t-left">End IDO Pool:</div>
+                  <div className="t-right">{new Date(activeDetail.end_date).toUTCString()}</div>
                 </div>
                 <div className="item">
                   <div className="t-left w-50">
@@ -346,33 +391,9 @@ const TabDetail = (props): any => {
                   </div>
                   {!account ?
                     <ConnectWalletButton /> :
-                    activeTab.includes("Upcoming") ?
-                      <div className="t-right">
-                        <button type="button"
-                                className="btn-contact h__btnContact"
-                                style={{
-                                  background: "linear-gradient(92.34deg, #1682E7 13.61%, #7216E7 104.96%)"
-                                }}
-                                onClick={() => {
-                                  if (!isApplied) {
-                                    handleApply();
-                                  }
-                                }
-                                }
-                                disabled={isApplied}
-                        >
-                          {isApplied ? "Applied" : "Apply Now"}
-                        </button>
-                      </div> :
-                      <div className="t-right">
-                        {isWhitelisted ?
-                          <button type="button" style={{
-                            background: "linear-gradient(92.34deg, #1682E7 13.61%, #7216E7 104.96%)"
-                          }} className="btn-contact h__btnContact" onClick={handleJoinClick}>
-                            Join Now
-                          </button> : <span className="text-danger">You’re not whitelisted</span>
-                        }
-                      </div>
+                    <div className="t-right">
+                      {RightButton}
+                    </div>
                   }
                 </div>
               </div>
