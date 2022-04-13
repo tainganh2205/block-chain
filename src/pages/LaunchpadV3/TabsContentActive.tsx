@@ -109,7 +109,7 @@ ${(ido.description || "").replace("Legend of Galaxy", "<a href=\"https://legendo
                     <div className="list-info-ido border-none">
                       <div className="item">
                         <div className="t-left">Private</div>
-                        <div className="t-right">{ido.start_date}</div>
+                        <div className="t-right">{new Date(ido.start_date).toUTCString()}</div>
                       </div>
                     </div>
                     <div className="social-address gap-3">

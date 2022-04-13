@@ -127,8 +127,7 @@ const TabDetail = (props): any => {
     if (activeDetail) {
       let date = new Date(activeDetail.start_date);
       date.setDate(date.getDate() - 3);
-
-      return moment(date).format("MMMM Do YYYY, h:mm:ss a");
+      return new Date(date).toUTCString();
     }
     return null;
   }, [activeDetail]);
@@ -179,7 +178,7 @@ const TabDetail = (props): any => {
                   <div className="list-info-ido border-none">
                     <div className="item">
                       <div className="t-left">Private</div>
-                      <div className="t-right">{activeDetail.start_date}</div>
+                      <div className="t-right">{new Date(activeDetail.start_date).toUTCString()}</div>
                     </div>
                   </div>
                   <div className="social-address gap-3">
@@ -266,11 +265,11 @@ const TabDetail = (props): any => {
                 </div>
                 <div className="item">
                   <div className="t-left">Start IDO Pool:</div>
-                  <div className="t-right">{moment(activeDetail.start_date).format('MMMM Do YYYY, h:mm:ss a')}</div>
+                  <div className="t-right">{new Date(activeDetail.start_date).toUTCString()}</div>
                 </div>
                 <div className="item">
                   <div className="t-left">End IDO Pool:</div>
-                  <div className="t-right">{moment(activeDetail.end_date).format('MMMM Do YYYY, h:mm:ss a')}</div>
+                  <div className="t-right">{new Date(activeDetail.end_date).toUTCString()}</div>
                 </div>
                 <div className="item">
                   <div className="t-left w-50">
