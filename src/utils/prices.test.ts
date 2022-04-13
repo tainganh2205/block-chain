@@ -1,4 +1,4 @@
-import { ChainId, JSBI, Pair, Route, Token, TokenAmount, Trade, TradeType } from '@lfwfinance/sdk'
+import { ChainId, JSBI, Pair, Route, Token, TokenAmount, Trade, TradeType } from '@lfwfinance/sdk-dev'
 import { computeTradePriceBreakdown } from './prices'
 
 describe('prices', () => {

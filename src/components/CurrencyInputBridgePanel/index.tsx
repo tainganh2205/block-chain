@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { Currency, Pair } from "@lfwfinance/sdk";
+import { Currency, Pair } from "@lfwfinance/sdk-dev";
 import { Button, Text } from "@artechain/uikit";
 import styled from "styled-components";
 import { darken } from "polished";

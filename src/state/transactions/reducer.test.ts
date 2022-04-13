@@ -1,4 +1,4 @@
-import { ChainId } from '@lfwfinance/sdk'
+import { ChainId } from '@lfwfinance/sdk-dev'
 import { createStore, Store } from 'redux'
 import { addTransaction, checkedTransaction, clearAllTransactions, finalizeTransaction } from './actions'
 import reducer, { initialState, TransactionState } from './reducer'

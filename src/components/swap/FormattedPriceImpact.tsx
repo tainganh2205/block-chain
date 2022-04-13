@@ -1,4 +1,4 @@
-import { Percent } from '@lfwfinance/sdk'
+import { Percent } from '@lfwfinance/sdk-dev'
 import React from 'react'
 import { ONE_BIPS } from '../../constants'
 import { warningSeverity } from '../../utils/prices'

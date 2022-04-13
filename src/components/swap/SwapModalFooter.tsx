@@ -1,4 +1,4 @@
-import { Trade, TradeType } from '@lfwfinance/sdk'
+import { Trade, TradeType } from '@lfwfinance/sdk-dev'
 import React, { useMemo, useState } from 'react'
 import { Text , Button } from '@artechain/uikit'
 import { Repeat } from 'react-feather'

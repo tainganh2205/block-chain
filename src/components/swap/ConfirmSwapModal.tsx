@@ -1,4 +1,4 @@
-import { currencyEquals, Trade } from '@lfwfinance/sdk'
+import { currencyEquals, Trade } from '@lfwfinance/sdk-dev'
 import React, { useCallback, useMemo } from 'react'
 import TransactionConfirmationModal, {
   ConfirmationModalContent,

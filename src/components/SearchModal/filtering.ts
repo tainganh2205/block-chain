@@ -1,4 +1,4 @@
-import { Token } from '@lfwfinance/sdk'
+import { Token } from '@lfwfinance/sdk-dev'
 import { isAddress } from '../../utils'
 
 export function filterTokens(tokens: Token[], search: string): Token[] {

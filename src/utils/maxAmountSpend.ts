@@ -1,4 +1,4 @@
-import { CurrencyAmount, ETHER, JSBI } from '@lfwfinance/sdk'
+import { CurrencyAmount, ETHER, JSBI } from '@lfwfinance/sdk-dev'
 import { MIN_ETH } from '../constants'
 
 /**

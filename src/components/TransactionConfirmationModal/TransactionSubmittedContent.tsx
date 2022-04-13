@@ -1,4 +1,4 @@
-import { ChainId } from '@lfwfinance/sdk'
+import { ChainId } from '@lfwfinance/sdk-dev'
 import React, { useContext } from 'react'
 import { ThemeContext } from 'styled-components'
 import { Button, LinkExternal } from '@artechain/uikit'

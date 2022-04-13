@@ -1,4 +1,4 @@
-import { Token, TokenAmount } from '@lfwfinance/sdk'
+import { Token, TokenAmount } from '@lfwfinance/sdk-dev'
 import { useMemo } from 'react'
 import { useActiveWeb3React } from '../hooks'
 import { useTokenContract, useTokenNFTContract } from '../hooks/useContract'

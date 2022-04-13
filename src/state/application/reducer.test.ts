@@ -1,4 +1,4 @@
-import { ChainId } from '@lfwfinance/sdk'
+import { ChainId } from '@lfwfinance/sdk-dev'
 import { createStore, Store } from 'redux'
 import { addPopup, removePopup, toggleSettingsMenu, toggleWalletModal, updateBlockNumber } from './actions'
 import reducer, { ApplicationState } from './reducer'

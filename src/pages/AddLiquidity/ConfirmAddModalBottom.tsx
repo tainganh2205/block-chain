@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, Fraction, Percent } from '@lfwfinance/sdk'
+import { Currency, CurrencyAmount, Fraction, Percent } from '@lfwfinance/sdk-dev'
 import React from 'react'
 import { Button, Text } from '@artechain/uikit'
 import { RowBetween, RowFixed } from '../../components/Row'

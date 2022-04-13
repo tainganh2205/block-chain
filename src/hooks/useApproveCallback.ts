@@ -1,6 +1,6 @@
 import { MaxUint256 } from '@ethersproject/constants'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Trade, TokenAmount, CurrencyAmount, ETHER } from '@lfwfinance/sdk'
+import { Trade, TokenAmount, CurrencyAmount, ETHER } from '@lfwfinance/sdk-dev'
 import { useCallback, useMemo, useEffect, useState } from 'react'
 import { ROUTER_ADDRESS } from '../constants'
 import { useTokenAllowance, useTokenAllowanceCustom } from '../data/Allowances'

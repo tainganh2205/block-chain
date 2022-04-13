@@ -1,4 +1,4 @@
-import { Currency, ETHER, JSBI, TokenAmount } from '@lfwfinance/sdk'
+import { Currency, ETHER, JSBI, TokenAmount } from '@lfwfinance/sdk-dev'
 import React, { useCallback, useEffect, useState } from 'react'
 import { ChevronDownIcon, AddIcon, CardBody, Text } from '@artechain/uikit'
 import CardNav from 'components/CardNav'

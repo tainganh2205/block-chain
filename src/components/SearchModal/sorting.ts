@@ -1,4 +1,4 @@
-import { Token, TokenAmount } from '@lfwfinance/sdk'
+import { Token, TokenAmount } from '@lfwfinance/sdk-dev'
 import { useMemo } from 'react'
 import { useAllTokenBalances } from '../../state/wallet/hooks'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Price } from '@lfwfinance/sdk'
+import { Price } from '@lfwfinance/sdk-dev'
 import { SyncAltIcon, Text } from '@artechain/uikit'
 import { StyledBalanceMaxMini } from './styleds'
 

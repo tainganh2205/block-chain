@@ -1,4 +1,4 @@
-import { Trade } from '@lfwfinance/sdk'
+import { Trade } from '@lfwfinance/sdk-dev'
 import React, { Fragment, memo, useContext } from 'react'
 import { ChevronRight } from 'react-feather'
 import { Flex, Text } from '@artechain/uikit'

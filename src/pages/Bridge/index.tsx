@@ -1,4 +1,4 @@
-import { CurrencyAmount, JSBI, Token, Trade } from '@lfwfinance/sdk'
+import { CurrencyAmount, JSBI, Token, Trade } from '@lfwfinance/sdk-dev'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { ArrowDown } from 'react-feather'
 import { CardBody, IconButton, Text, Heading } from '@artechain/uikit'

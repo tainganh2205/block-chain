@@ -1,4 +1,4 @@
-import { Currency, ETHER, Token } from '@lfwfinance/sdk'
+import { Currency, ETHER, Token } from '@lfwfinance/sdk-dev'
 import React, { KeyboardEvent, RefObject, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { Text, CloseIcon, Flex } from '@artechain/uikit'
 import { useSelector } from 'react-redux'
