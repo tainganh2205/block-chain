@@ -83,6 +83,7 @@ export const JoinModal = ({
           <div className="bg-gray-600 rounded-md flex h-10 justify-between items-center w-full py-2 px-4 mb-2">
             <NumberFormat
               value={spend}
+              max={leftToJoin}
               onChange={(e) => {
                 setSpend(Number(e.target.value.replace(/,/g, "")));
               }}
