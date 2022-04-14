@@ -106,7 +106,6 @@ const TabDetail = (props): any => {
         });
       }
     }
-
   }, [account]);
 
   useEffect(() => {
