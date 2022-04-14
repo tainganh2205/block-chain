@@ -58,27 +58,19 @@ const TopIDO = () => {
             <h3 className="title-v3">IDO Launchpad</h3>
             <p className="desc">The Ultimate Incubation Hub on Binance Smart Chain,</p>
             <p className="desc">Ethereum and Polygon.</p>
-            <div className='devCus__bt'>
+            <div className="devCus__bt" onClick={() => {
+              window.open(
+                "https://docs.lfw.finance/product/launchpad",
+                "_blank" // <- This is what makes it open in a new window.
+              );
+            }}>
+
               <UnlockButton text="EXPLORE" />
             </div>
           </div>
 
           <div className="text-r-banner">
             <div className="CusAb" />
-            {/* <div className="list-staking"> */}
-            {/*   <div className="text-flex"> */}
-            {/*     <span className="t-left">IDO Pool staked:</span> */}
-            {/*     <span className="t-right">0 LFW</span> */}
-            {/*   </div> */}
-            {/*   <div className="text-flex"> */}
-            {/*     <span className="t-left">Tier:</span> */}
-            {/*     <span className="t-right">{tierText}</span> */}
-            {/*   </div> */}
-            {/*   <div className="text-flex"> */}
-            {/*     <span className="t-left">NFT Boost:</span> */}
-            {/*     <span className="t-right">{state.owner?.nftBoost || 'No'}</span> */}
-            {/*   </div> */}
-            {/* </div> */}
           </div>
         </div>
       </div>
