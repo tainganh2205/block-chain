@@ -25,6 +25,7 @@ export interface IdoInterface extends utils.Interface {
     "approve(address,uint256)": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
     "busdToken()": FunctionFragment;
+    "canJoin(address)": FunctionFragment;
     "changeFundReceiver(address)": FunctionFragment;
     "changeJoinEnd(uint256)": FunctionFragment;
     "changeJoinStart(uint256)": FunctionFragment;
@@ -75,6 +76,7 @@ export interface IdoInterface extends utils.Interface {
   ): string;
   encodeFunctionData(functionFragment: "balanceOf", values: [string]): string;
   encodeFunctionData(functionFragment: "busdToken", values?: undefined): string;
+  encodeFunctionData(functionFragment: "canJoin", values: [string]): string;
   encodeFunctionData(
     functionFragment: "changeFundReceiver",
     values: [string]
@@ -187,6 +189,7 @@ export interface IdoInterface extends utils.Interface {
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "busdToken", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "canJoin", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "changeFundReceiver",
     data: BytesLike
@@ -377,6 +380,8 @@ export interface Ido extends BaseContract {
 
     busdToken(overrides?: CallOverrides): Promise<[string]>;
 
+    canJoin(_usr: string, overrides?: CallOverrides): Promise<[boolean]>;
+
     changeFundReceiver(
       _fundReceiver: string,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -524,6 +529,8 @@ export interface Ido extends BaseContract {
 
   busdToken(overrides?: CallOverrides): Promise<string>;
 
+  canJoin(_usr: string, overrides?: CallOverrides): Promise<boolean>;
+
   changeFundReceiver(
     _fundReceiver: string,
     overrides?: Overrides & { from?: string | Promise<string> }
@@ -664,6 +671,8 @@ export interface Ido extends BaseContract {
     balanceOf(account: string, overrides?: CallOverrides): Promise<BigNumber>;
 
     busdToken(overrides?: CallOverrides): Promise<string>;
+
+    canJoin(_usr: string, overrides?: CallOverrides): Promise<boolean>;
 
     changeFundReceiver(
       _fundReceiver: string,
@@ -852,6 +861,8 @@ export interface Ido extends BaseContract {
 
     busdToken(overrides?: CallOverrides): Promise<BigNumber>;
 
+    canJoin(_usr: string, overrides?: CallOverrides): Promise<BigNumber>;
+
     changeFundReceiver(
       _fundReceiver: string,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -1002,6 +1013,11 @@ export interface Ido extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     busdToken(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    canJoin(
+      _usr: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     changeFundReceiver(
       _fundReceiver: string,
