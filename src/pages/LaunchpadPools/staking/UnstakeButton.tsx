@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react'
-import { BigNumber, utils } from 'ethers'
+import { BigNumber, FixedNumber, utils } from "ethers";
 import { Button } from 'components/Button1'
 import { IconUnstake } from 'components/icons/components/IconUnstake'
 import { BlockchainLoadingModal } from 'components/BlockchainLoadingModal'
@@ -9,7 +9,7 @@ import { toast } from 'components/Toast'
 
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
-import { useLaunchpadPoolContract, usePoolContract } from 'hooks/useContract1'
+import { useLaunchpadPoolContract } from 'hooks/useContract1'
 import { useTransactionContext } from 'hooks/useTransactions'
 import { useStakeContext } from 'context/stake'
 import { wait } from 'utils/wait'
@@ -72,7 +72,7 @@ export const UnstakeButton = ({
       await wait(200)
       onConfirmOpen()
       const tx = await callWithGasPrice(poolContract!.unStake, [
-        BigNumber.from(spend).mul(BigNumber.from(10).pow(18))
+        BigNumber.from(FixedNumber.fromString(spend.toString(), "fixed128x18"))
       ])
       setIsUnstaking(true)
       setApproved(true)

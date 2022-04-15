@@ -200,7 +200,7 @@ const TabDetail = (props): any => {
   const whitelistDate = React.useMemo(() => {
     if (activeDetail) {
       let date = new Date(activeDetail.start_date);
-      date.setDate(date.getDate() - 3);
+      date.setDate(date.getDate() - 1);
       return new Date(date).toUTCString();
     }
     return null;

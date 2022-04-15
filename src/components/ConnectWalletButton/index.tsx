@@ -26,9 +26,7 @@ const UnlockButton = (props) => {
   const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(handleLogin, handleLogout, account as string);
   const accountEllipsis = account ? `${account.substring(0, 4)}...${account.substring(account.length - 4)}` : null;
   useDeepEffect(() => {
-    let accessToken = localStorage.getItem("lfw-signature");
-    accessToken = JSON.parse(accessToken!);
-    if ((account && !accessToken) || (accessToken && get(accessToken, "wallet", "") !== account)) {
+    if (account) {
       axios.get(`${REACT_APP_API_URL}/v1/auth/nonce?walletAddress=${account}`).then(res => {
         library?.getSigner(account).signMessage(res.data.data.nonce.toString()).then(signature => {
           axios.post(`${REACT_APP_API_URL}/v1/auth`, {
