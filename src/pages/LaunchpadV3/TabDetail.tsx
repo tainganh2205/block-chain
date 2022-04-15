@@ -270,7 +270,7 @@ const TabDetail = (props): any => {
       {isApplied ? "Applied" : "Apply Now"}
     </button>;
 
-  }, [isWhitelisted, isEnabled]);
+  }, [isWhitelisted, isEnabled, isApplied]);
   return (
     <>
       <Modal onCancel={() => setOtherChain(false)} className="modal-beta-show" title="Alert!" visible={isOtherChain}>
@@ -438,7 +438,7 @@ const TabDetail = (props): any => {
           }
         </div>
       )}
-      {(poolsFromBE?.data ?? [])[0] &&isOpen &&
+      {(poolsFromBE?.data ?? [])[0] && isOpen &&
         <JoinModal
           title="Join IDO with BUSD"
           label="Join"
