@@ -6,21 +6,16 @@ import MenuNewMobile from "./MenuNewMobile";
 import UnlockButton from "../ConnectWalletButtonHeader";
 import "antd/dist/antd.css";
 import "./style.less";
-import { ReactComponent as TradeIcon } from "../../images/img/trade.svg";
-import { ReactComponent as TradeIcon1 } from "../../images/img/trade1.svg";
+import { ReactComponent as VectorIcon } from "../../images/img/Vector.svg";
 import { ReactComponent as CoinIcon } from "../../images/img/coin.svg";
 import { ReactComponent as CoinIcon1 } from "../../images/img/coin1.svg";
-import { ReactComponent as NftIcon } from "../../images/img/NFT.svg";
-import { ReactComponent as NftIcon1 } from "../../images/img/NFT1.svg";
 import { ReactComponent as GameIcon } from "../../images/img/Game.svg";
 import { ReactComponent as GameIcon1 } from "../../images/img/Game1.svg";
-import { ReactComponent as MetaverseIcon } from "../../images/img/metaverse.svg";
 import { ReactComponent as IconMenu } from "../../images/img/Menu.svg";
-import { ReactComponent as IconLFW } from "../../images/img/MenuLFW.svg";
+import { ReactComponent as IconLFW } from "../../images/img/HuntingFishLogo.svg";
 import { useFetchWithCache } from "../../hooks/useFetchWithCache";
 import { client, GET_PATHS } from "../../utils/apis";
 import { formatCurrency } from "../../utils";
-import { ReactComponent as IconIdo } from "../../images/img/IDO.svg";
 
 
 const MenuNew = () => {
@@ -68,7 +63,7 @@ const MenuNew = () => {
             <div className="main-logo">
               <Link to="/dashboard">
                 <div className="d-flex align-items-center">
-                  <IconMenu className="IconText" />
+                  <IconLFW className="IconText" />
                   {/* <IconAtc className="Icon" /> */}
                   <IconLFW className="Icon" />
                 </div>
@@ -78,141 +73,28 @@ const MenuNew = () => {
               <ul className="list-menu">
                 <li>
                   <div className="h__customLogoTrade">
-                    <TradeIcon />
-                    <TradeIcon1 />
+                    <VectorIcon />
                   </div>
-                  Trade
-                  <div className="submenu-nav">
-                    <ul>
-                      <Link to="/swap">
-                        <li>Exchange</li>
-                      </Link>
-
-                      <Link to="/pool">
-                        <li>Add liquidity</li>
-                      </Link>
-                    </ul>
-                  </div>
+                  Gun NFT
                 </li>
                 <li>
                   <div className="h__customLogoTrade">
                     <CoinIcon />
                     <CoinIcon1 />
                   </div>
-                  Earns
-                  <div className="submenu-nav">
-                    <ul>
-                      <Link to="/staking">
-                        <li>Staking Pools</li>
-                      </Link>
-                      <Link to="/coming-soon">
-                        <li>Farms</li>
-                      </Link>
-                      <Link to="/launchpad-pools">
-                        <li>Launchpad Pools</li>
-                      </Link>
-                    </ul>
-                  </div>
+                  Gem Center
                 </li>
                 <li>
                   <div className="h__customLogoTrade">
                     <GameIcon />
                     <GameIcon1 />
                   </div>
-                  GameHub
-                  <div className="submenu-nav">
-                    <ul>
-                      <Link to="/airdrops">
-                        <li>Airdrops Portal</li>
-                      </Link>
-                      <a style={{ color: "#b8bdb9" }} href="https://legendfantasywar.com/" rel="noreferrer" target="_blank">
-                        <li>Legend of Fantasy War</li>
-                      </a>
-                      <Link to="/legend-of-galaxy">
-                        <li>Legend of Galaxy</li>
-                      </Link>
-                      <Link to="/coming-soon">
-                        <li>Fish Hunting</li>
-                      </Link>
-                      <Link to="/coming-soon">
-                        <li>Mystery Box</li>
-                      </Link>
-                    </ul>
-                  </div>
-                </li>
-
-                <Link to="/launchpad?tab=Upcoming">
-                  <li>
-                    <div className="h__customLogoTrade">
-                      <IconIdo />
-                      <IconIdo />
-                    </div>
-                    Launchpad
-                  </li>
-                </Link>
-                <li>
-                  <div className="h__customLogoTrade">
-                    <NftIcon />
-                    <NftIcon1 />
-                  </div>
-                  NFT
-                  <div className="submenu-nav">
-                    <ul>
-                      <Link to="/coming-soon">
-                        <li>NFT Markets</li>
-                      </Link>
-
-                      <Link to="/coming-soon">
-                        <li>My Collections</li>
-                      </Link>
-
-                      <Link to="/coming-soon">
-                        <li>Stake NFT</li>
-                      </Link>
-                      <Link to="/coming-soon">
-                        <li>Mint NFT</li>
-                      </Link>
-                    </ul>
-                  </div>
-                </li>
-
-                <li>
-                  <div className="h__customLogoTrade">
-                    <MetaverseIcon />
-                    <MetaverseIcon />
-                  </div>
-                  Metaverse
-                  <div className="submenu-nav">
-                    <ul>
-                      <Link to="/coming-soon">
-                        <li>Introduction</li>
-                      </Link>
-                    </ul>
-                  </div>
-                </li>
-                <li>
-                  About
-                  <div className="submenu-nav">
-                    <ul>
-                      <a style={{ color: "#b8bdb9" }} href="https://docsend.com/view/x8qrgrr8iq37aug9" rel="noreferrer" target="_blank">
-                        <li>Pitch Deck</li>
-                      </a>
-                      <a style={{ color: "#b8bdb9" }} href=" https://www.rdauditors.com/wp-content/uploads/2022/03/Linked-Finance-World-Smart-Contract-Security-Report-28.03.22.pdf" rel="noreferrer"
-                         target="_blank">
-                        <li>
-                          Smart Contract Audit
-                        </li>
-                      </a>
-                    </ul>
-                  </div>
+                  My Asset
                 </li>
               </ul>
             </div>
           </div>
           <div className="header-right">
-            <div className="value-token">
-              <img src="/images/logo-lfw.png" width={40} height={40} alt="" /> <span className="value-token">{formatCurrency(tokenInfo?.price ?? 0)}</span>
-            </div>
             <div className="connect-wallet">
               <UnlockButton />
             </div>
