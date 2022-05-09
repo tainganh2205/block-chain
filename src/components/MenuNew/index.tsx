@@ -13,18 +13,12 @@ import { ReactComponent as GameIcon } from "../../images/img/Game.svg";
 import { ReactComponent as GameIcon1 } from "../../images/img/Game1.svg";
 import { ReactComponent as IconMenu } from "../../images/img/Menu.svg";
 import { ReactComponent as IconLFW } from "../../images/img/HuntingFishLogo.svg";
-import { useFetchWithCache } from "../../hooks/useFetchWithCache";
-import { client, GET_PATHS } from "../../utils/apis";
-import { formatCurrency } from "../../utils";
 
 
 const MenuNew = () => {
   const [showMenu, setShowMenu] = useState(true);
   const refPrevOffset = useRef(window.pageYOffset);
-  const { data } = useFetchWithCache(GET_PATHS.tokenInfo, () =>
-    client.getTokenInfo()
-  );
-  const tokenInfo = data?.data;
+
   useEffect(() => {
     const handleScroll = () => {
       const currentOffset = window.pageYOffset;
@@ -89,7 +83,9 @@ const MenuNew = () => {
                     <GameIcon />
                     <GameIcon1 />
                   </div>
-                  My Asset
+                  <Link to="/my-asset">
+                    My Asset
+                  </Link>
                 </li>
               </ul>
             </div>

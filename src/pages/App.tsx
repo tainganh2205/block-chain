@@ -1,6 +1,5 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
-import { useCookies } from "react-cookie";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import { Credentials, StringTranslations } from "@crowdin/crowdin-api-client";
@@ -9,10 +8,10 @@ import "react-notifications-component/dist/theme.css";
 import yall from "yall-js";
 import Popups from "../components/Popups";
 import Web3ReactManager from "../components/Web3ReactManager";
-import Swap from "./Swap";
+import Dashboard from "./Dashboard";
 import { useActiveWeb3React } from "../hooks";
 
-import { RedirectPathToSwapOnly } from "./Swap/redirects";
+import { RedirectPathToSwapOnly } from "./Dashboard/redirects";
 import { EN, allLanguages } from "../constants/localisation/languageCodes";
 import { LanguageContext } from "../hooks/LanguageContext";
 import { TranslationsContext } from "../hooks/TranslationsContext";
@@ -22,6 +21,9 @@ import ToTop from "../components/ToTop";
 
 import "./App.less";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { MyAsset } from "./MyAsset";
+import { Reward } from "./Reward";
+import { WrapperPage } from "../components/Art";
 
 
 
@@ -58,11 +60,19 @@ const BodyWrapper = styled.div`
     min-height: 90vh;
   }
 `;
+export const PageWrapper = styled(WrapperPage)`
 
-const Marginer = styled.div`
-  margin-top: 5rem;
+  .wrapper-body {
+    margin: auto;
+  }
+
+  width: 100%;
+  height: calc(100vh - 80px);
+  background: url(./images/fish/bg-game.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 `;
-
 export default function App() {
 
   const { account } = useActiveWeb3React();
@@ -146,7 +156,9 @@ export default function App() {
 
                     <Web3ReactManager>
                       <Switch>
-                        <Route exact strict path="/Dashboard" component={Swap} />
+                        <Route exact strict path="/Dashboard" component={Dashboard} />
+                        <Route exact strict path="/my-asset" component={MyAsset} />
+                        <Route exact strict path="/reward" component={Reward} />
                         <Route component={RedirectPathToSwapOnly} />
                       </Switch>
                     </Web3ReactManager>

@@ -14,8 +14,6 @@ const Menu: React.FC = (props) => {
   const { account, activate, deactivate } = useWeb3React()
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
   const { isDark, toggleTheme } = useTheme()
-  const priceData:any = useGetPriceData()
-  const cakePriceUsd = priceData ? Number(priceData.data.price) : undefined
   const profile = useGetLocalProfile()
 
   return (
@@ -38,7 +36,6 @@ const Menu: React.FC = (props) => {
       currentLang={selectedLanguage?.code || ''}
       langs={allLanguages}
       setLang={setSelectedLanguage}
-      cakePriceUsd={cakePriceUsd}
       profile={profile}
       {...props}
     />
