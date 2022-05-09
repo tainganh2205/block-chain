@@ -1,6 +1,6 @@
 import React from "react";
-import { PageWrapper } from "../Dashboard";
 import "./style.less";
+import { PageWrapper } from "../App";
 
 const Reward = () => {
   return (

@@ -1,5 +1,5 @@
-import { PageWrapper } from "pages/Dashboard";
 import React from "react";
+import { PageWrapper } from "../App";
 
 const MyAsset = () => {
   return (
