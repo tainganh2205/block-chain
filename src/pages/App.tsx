@@ -1,7 +1,6 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
-import { isMobile } from "react-device-detect";
 import { Credentials, StringTranslations } from "@crowdin/crowdin-api-client";
 import { ReactNotifications } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
@@ -9,6 +8,8 @@ import yall from "yall-js";
 import Popups from "../components/Popups";
 import Web3ReactManager from "../components/Web3ReactManager";
 import Dashboard from "./Dashboard";
+import { MyAsset } from "./MyAsset";
+import { Reward } from "./Reward";
 import { useActiveWeb3React } from "../hooks";
 
 import { RedirectPathToSwapOnly } from "./Dashboard/redirects";
@@ -18,13 +19,10 @@ import { TranslationsContext } from "../hooks/TranslationsContext";
 import Menu from "../components/Menu";
 import MenuNew from "../components/MenuNew";
 import ToTop from "../components/ToTop";
+import { WrapperPage } from "../components/Art";
 
 import "./App.less";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { MyAsset } from "./MyAsset";
-import { Reward } from "./Reward";
-import { WrapperPage } from "../components/Art";
-
 
 
 const AppWrapper = styled.div`
@@ -32,33 +30,28 @@ const AppWrapper = styled.div`
   flex-flow: column;
   align-items: flex-start;
   overflow-x: hidden;
+  min-height: 100vh;
 `;
 const BodyWrapper = styled.div`
-  margin-top: ${(props) => (props["data-is-mobile"] ? "0" : "78px")};
+  padding-top: 60px;
   display: flex;
   flex-direction: column;
   width: 100%;
   align-items: center;
   flex: 1;
-  overflow-y: auto;
+  overflow-y: hidden;
   overflow-x: hidden;
   z-index: 1;
-  justify-content: center;
-  background-repeat: no-repeat;
-  background-position: bottom 24px center;
-  background-size: 90%;
   justify-content: flex-start !important;
 
-  ${({ theme }) => theme.mediaQueries.xs} {
-    background-size: auto;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    min-height: calc(100vh - 60px);
   }
 
-  ${({ theme }) => theme.mediaQueries.lg} {
-    background-repeat: no-repeat;
-    background-position: center 420px, 10% 230px, 90% 230px;
-    background-size: contain, 266px, 266px;
-    min-height: 90vh;
-  }
+  background: url(./images/fish/bg-game.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 `;
 export const PageWrapper = styled(WrapperPage)`
 
@@ -67,11 +60,8 @@ export const PageWrapper = styled(WrapperPage)`
   }
 
   width: 100%;
-  height: calc(100vh - 80px);
-  background: url(./images/fish/bg-game.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  padding: 24px 0;
+  min-height: calc(100vh - 60px);
 `;
 export default function App() {
 
@@ -151,12 +141,15 @@ export default function App() {
               <MenuNew />
               <Menu>
                 <div className="full-with">
-                  <BodyWrapper data-is-mobile={isMobile} id="body-wrapper-bsc">
+                  <BodyWrapper id="body-wrapper-bsc">
                     <Popups />
 
                     <Web3ReactManager>
                       <Switch>
                         <Route exact strict path="/Dashboard" component={Dashboard} />
+                        <Route exact strict path="/gun-nft" component={Dashboard} />
+                        <Route exact strict path="/gem-center" component={() => <PageWrapper className="PageWrapper relative" />} />
+                        <Route exact strict path="/my-asset/:slug" component={MyAsset} />
                         <Route exact strict path="/my-asset" component={MyAsset} />
                         <Route exact strict path="/reward" component={Reward} />
                         <Route component={RedirectPathToSwapOnly} />
