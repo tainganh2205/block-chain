@@ -90,13 +90,21 @@ interface InviteUser {
 }
 
 const ReferralTable = styled.table`
+  width: 100%;
+
+  th, td {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 40px;
+    color: #FFFDFD;
+  }
 `;
 
 const Referral = () => {
   const [invitedUsers, setInvitedUsers] = useState<Array<InviteUser>>();
 
   useEffect(() => {
-    setTimeout(() => setInvitedUsers([]), 1000);
+    // setTimeout(() => setInvitedUsers([]), 1000);
     setTimeout(() => setInvitedUsers([
       {
         wallet: "0x29D7d1dd5B6f9C864d9db560D72a247c178aE86B",
@@ -122,7 +130,7 @@ const Referral = () => {
         wallet: "0x92C38961f55a0E9e3376401162fB642b112f8259",
         status: "Activated"
       }
-    ]), 10000);
+    ]), 1000);
   }, []);
 
   return (
@@ -131,7 +139,7 @@ const Referral = () => {
         <CardDiv className={"mr-4 d-flex flex-column"} width={413} imgUrl={"/images/fish/box-full-blue.png"} padding={25}>
           <TitleH2>Invited friends</TitleH2>
           <TableWrap>
-            {(Array.isArray(invitedUsers) && !!invitedUsers.length) && <InviteTable>
+            <InviteTable>
               <thead>
               <tr>
                 <th>
@@ -143,12 +151,12 @@ const Referral = () => {
               </tr>
               </thead>
               <tbody>
-              {invitedUsers.map((user, index) => <tr key={index}>
+              {(invitedUsers || []).map((user, index) => <tr key={index}>
                 <td title={user.wallet}>{user.wallet}</td>
                 <td className={user.status}>{user.status}</td>
               </tr>)}
               </tbody>
-            </InviteTable>}
+            </InviteTable>
             {(Array.isArray(invitedUsers) && !invitedUsers.length) && <div className={"h-full d-flex items-center justify-center"}>
               <img src={"/images/fish/empty.png"} alt={""} />
             </div>}
@@ -181,10 +189,6 @@ const Referral = () => {
               </tr>
               </thead>
               <tbody>
-              {/* {invitedUsers.map((user, index) => <tr key={index}> */}
-              {/*   <td title={user.wallet}>{user.wallet}</td> */}
-              {/*   <td className={user.status}>{user.status}</td> */}
-              {/* </tr>)} */}
               </tbody>
             </ReferralTable>
             <div className={"h-full d-flex items-center justify-center"}>
