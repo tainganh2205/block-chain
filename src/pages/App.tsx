@@ -23,6 +23,7 @@ import { WrapperPage } from "../components/Art";
 
 import "./App.less";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { GemCenter } from "./GemCenter";
 
 
 const AppWrapper = styled.div`
@@ -47,11 +48,6 @@ const BodyWrapper = styled.div`
   ${({ theme }) => theme.mediaQueries.lg} {
     min-height: calc(100vh - 60px);
   }
-
-  background: url(./images/fish/bg-game.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
 `;
 export const PageWrapper = styled(WrapperPage)`
 
@@ -60,8 +56,11 @@ export const PageWrapper = styled(WrapperPage)`
   }
 
   width: 100%;
-  padding: 24px 0;
-  min-height: calc(100vh - 60px);
+  height: calc(100vh - 60px);
+  background: url(./images/fish/bg-game.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 `;
 export default function App() {
 
@@ -148,7 +147,7 @@ export default function App() {
                       <Switch>
                         <Route exact strict path="/Dashboard" component={Dashboard} />
                         <Route exact strict path="/gun-nft" component={Dashboard} />
-                        <Route exact strict path="/gem-center" component={() => <PageWrapper className="PageWrapper relative" />} />
+                        <Route exact strict path="/gem-center" component={GemCenter} />
                         <Route exact strict path="/my-asset/:slug" component={MyAsset} />
                         <Route exact strict path="/my-asset" component={MyAsset} />
                         <Route exact strict path="/reward" component={Reward} />

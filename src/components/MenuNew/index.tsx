@@ -38,7 +38,7 @@ const MenuNew = () => {
   const refPrevOffset = useRef(window.pageYOffset);
 
   const [showDrawer, setShowDrawer] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
+  const [showMenu, setShowMenu] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -70,7 +70,7 @@ const MenuNew = () => {
   }, []);
 
   return (
-    <FixedContainer showMenu={showMenu} height={60}>
+    <FixedContainer showMenu={showMenu} height={100}>
       <header>
         <div className="flex main-header-new">
           <div className="header-left">
