@@ -23,6 +23,7 @@ import "./App.less";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { MyAsset } from "./MyAsset";
 import { Reward } from "./Reward";
+import { Referral } from "./Referral";
 import { WrapperPage } from "../components/Art";
 
 
@@ -159,6 +160,7 @@ export default function App() {
                         <Route exact strict path="/Dashboard" component={Dashboard} />
                         <Route exact strict path="/my-asset" component={MyAsset} />
                         <Route exact strict path="/reward" component={Reward} />
+                        <Route exact strict path="/referral" component={Referral} />
                         <Route component={RedirectPathToSwapOnly} />
                       </Switch>
                     </Web3ReactManager>
