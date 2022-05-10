@@ -2,20 +2,20 @@ import React from "react";
 import axios from "axios";
 
 import BoxContent from "./BoxContent";
-import { ReactComponent as Logo } from '../../images/fish/busd.svg'
+import { ReactComponent as Logo } from "../../images/fish/busd.svg";
 import { useAsyncEffect } from "@dwarvesf/react-hooks";
 import "./style.less";
 import { PageWrapper } from "pages/App";
 
 const { REACT_APP_API_URL } = process.env;
 
-interface ReceivableOptionsData {
+export interface ReceivableOptionsData {
   description?: string;
   image: string;
   name: string;
   name_id: string;
   power: number;
-  rarity: string;
+  rarity: number;
   rarity_percent: number;
   star: number;
 }
@@ -35,7 +35,7 @@ interface StoryData {
 
 const Dashboard = () => {
   const [stories, setStories] = React.useState<StoryData[]>([]);
-  const [listContent, setListContent] = React.useState<StoryData[]>([]);
+  const [options, setOptions] = React.useState<ReceivableOptionsData[]>();
   useAsyncEffect(async () => {
     const response = await axios.get(`${REACT_APP_API_URL}/v1/mystory`);
     if (response.data.data) {
@@ -43,7 +43,7 @@ const Dashboard = () => {
     }
   }, []);
 
-  const boxes = React.useMemo( () => {
+  const boxes = React.useMemo(() => {
     if (stories.length) {
       return stories.map((item) => {
         return <div className="box-full-blue mt-4" key={item.name_id}>
@@ -60,7 +60,7 @@ const Dashboard = () => {
           </div>
           <div className="flex btn-footer gap-2">
             <img src="/images/fish/btn-buy.png" alt="" />
-            <img src="/images/fish/btn-buy.png" alt="" />
+            <img src="/images/fish/btn-buy.png" alt="" onClick={()=>setOptions(item.receivable_options)}/>
           </div>
         </div>;
       });
@@ -73,7 +73,7 @@ const Dashboard = () => {
         {boxes}
       </div>
       <div className="separator">My Weapon</div>
-      <BoxContent />
+      {options && <BoxContent data={options} />}
     </PageWrapper>
   );
 };

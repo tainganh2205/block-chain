@@ -87,6 +87,15 @@ const MenuNew = () => {
                     My Asset
                   </Link>
                 </li>
+                <li>
+                  <div className="h__customLogoTrade">
+                    <GameIcon />
+                    <GameIcon1 />
+                  </div>
+                  <Link to="/reward">
+                    Reward
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
