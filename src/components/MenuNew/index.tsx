@@ -1,23 +1,44 @@
 import React, { useEffect, useState, useRef } from "react";
 import throttle from "lodash/throttle";
+import classNames from "classnames";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import MenuNewMobile from "./MenuNewMobile";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import UnlockButton from "../ConnectWalletButtonHeader";
 import "antd/dist/antd.css";
 import "./style.less";
-import { ReactComponent as VectorIcon } from "../../images/img/Vector.svg";
-import { ReactComponent as CoinIcon } from "../../images/img/coin.svg";
-import { ReactComponent as CoinIcon1 } from "../../images/img/coin1.svg";
-import { ReactComponent as GameIcon } from "../../images/img/Game.svg";
-import { ReactComponent as GameIcon1 } from "../../images/img/Game1.svg";
-import { ReactComponent as IconMenu } from "../../images/img/Menu.svg";
-import { ReactComponent as IconLFW } from "../../images/img/HuntingFishLogo.svg";
+import { ReactComponent as GunIcon } from "../../images/img/menu/gun.svg";
+import { ReactComponent as GunIcon1 } from "../../images/img/menu/gun1.svg";
+import { ReactComponent as GemIcon } from "../../images/img/menu/gem.svg";
+import { ReactComponent as GemIcon1 } from "../../images/img/menu/gem1.svg";
+import { ReactComponent as AssetIcon } from "../../images/img/menu/asset.svg";
+import { ReactComponent as AssetIcon1 } from "../../images/img/menu/asset1.svg";
+import { ReactComponent as RewardIcon } from "../../images/img/menu/reward.svg";
+import { ReactComponent as RewardIcon1 } from "../../images/img/menu/reward1.svg";
 
+import { ReactComponent as IconLFW } from "../../images/img/HuntingFishLogo.svg";
+import { Button, Drawer } from "antd";
+
+interface Menu {
+  label: string,
+  icon: React.ReactElement,
+  icon1: React.ReactElement,
+  path: string
+}
+
+const menus: Array<Menu> = [
+  { label: "Gun NFT", icon: <GunIcon />, icon1: <GunIcon1 />, path: "/gun-nft" },
+  { label: "Gem Center", icon: <GemIcon />, icon1: <GemIcon1 />, path: "/gem-center" },
+  { label: "My Asset", icon: <AssetIcon />, icon1: <AssetIcon1 />, path: "/my-asset" },
+  { label: "Reward", icon: <RewardIcon />, icon1: <RewardIcon1 />, path: "/reward" }
+];
 
 const MenuNew = () => {
-  const [showMenu, setShowMenu] = useState(true);
+  const history = useHistory();
+  const location = useLocation();
   const refPrevOffset = useRef(window.pageYOffset);
+
+  const [showDrawer, setShowDrawer] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,44 +70,40 @@ const MenuNew = () => {
   }, []);
 
   return (
-    <FixedContainer showMenu={showMenu} height={80}>
+    <FixedContainer showMenu={showMenu} height={60}>
       <header>
-        <MenuNewMobile />
-        <div className="xl:flex main-header hidden">
+        <div className="flex main-header-new">
           <div className="header-left">
+            <div className="drawer-menu-div block xl:hidden">
+              <Button className="btn-show-menu" type="primary" onClick={() => setShowDrawer(true)}>
+                <img src="/images/icon-menu-m.png" alt="" />
+              </Button>
+              <Drawer placement="left" visible={showDrawer} className={"drawer-menu"} onClose={() => setShowDrawer(false)}>
+                <ul className="list-menu">
+                  {menus.map((menu) => <li key={menu.label} onClick={() => history.push(menu.path)} className={classNames({ isActive: location.pathname.startsWith(menu.path) })}>
+                    <div className="h__customLogoTrade">
+                      {menu.icon}{menu.icon1}
+                    </div>
+                    {menu.label}
+                  </li>)}
+                </ul>
+              </Drawer>
+            </div>
             <div className="main-logo">
               <Link to="/dashboard">
                 <div className="d-flex align-items-center">
                   <IconLFW className="IconText" />
-                  {/* <IconAtc className="Icon" /> */}
-                  <IconLFW className="Icon" />
                 </div>
               </Link>
             </div>
-            <div className="main-menu">
+            <div className="main-menu xl:block hidden">
               <ul className="list-menu">
-                <li>
+                {menus.map((menu) => <li key={menu.label} onClick={() => history.push(menu.path)} className={classNames({ isActive: location.pathname.startsWith(menu.path) })}>
                   <div className="h__customLogoTrade">
-                    <VectorIcon />
+                    {menu.icon}{menu.icon1}
                   </div>
-                  Gun NFT
-                </li>
-                <li>
-                  <div className="h__customLogoTrade">
-                    <CoinIcon />
-                    <CoinIcon1 />
-                  </div>
-                  Gem Center
-                </li>
-                <li>
-                  <div className="h__customLogoTrade">
-                    <GameIcon />
-                    <GameIcon1 />
-                  </div>
-                  <Link to="/my-asset">
-                    My Asset
-                  </Link>
-                </li>
+                  {menu.label}
+                </li>)}
               </ul>
             </div>
           </div>

@@ -1,12 +1,18 @@
-import React from "react";
-import { PageWrapper } from "../App";
+import React, { useMemo } from "react";
+import InviteFriend from "./InviteFriend";
+import { useParams } from "react-router-dom";
+import Referral from "./Referral";
 
 const MyAsset = () => {
-  return (
-    <PageWrapper className="PageWrapper relative">
+  const params = useParams();
 
-    </PageWrapper>
-  );
+  return useMemo<React.ReactElement>(() => {
+    // @ts-ignore
+    if (params?.slug === "referral") {
+      return <Referral />;
+    }
+    return <InviteFriend />;
+  }, [params]);
 };
 
 export default MyAsset;
