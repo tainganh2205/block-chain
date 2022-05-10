@@ -1,11 +1,9 @@
 import React from "react";
-import { PageWrapper } from "../App";
+import InviteFriend from "./InviteFriend";
 
 const MyAsset = () => {
   return (
-    <PageWrapper className="PageWrapper relative">
-
-    </PageWrapper>
+    <InviteFriend />
   );
 };
 

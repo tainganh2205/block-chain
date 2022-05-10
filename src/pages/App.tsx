@@ -8,6 +8,8 @@ import yall from "yall-js";
 import Popups from "../components/Popups";
 import Web3ReactManager from "../components/Web3ReactManager";
 import Dashboard from "./Dashboard";
+import { MyAsset } from "./MyAsset";
+import { Reward } from "./Reward";
 import { useActiveWeb3React } from "../hooks";
 
 import { RedirectPathToSwapOnly } from "./Dashboard/redirects";
@@ -17,13 +19,10 @@ import { TranslationsContext } from "../hooks/TranslationsContext";
 import Menu from "../components/Menu";
 import MenuNew from "../components/MenuNew";
 import ToTop from "../components/ToTop";
+import { WrapperPage } from "../components/Art";
 
 import "./App.less";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { MyAsset } from "./MyAsset";
-import { Reward } from "./Reward";
-import { Referral } from "./Referral";
-import { WrapperPage } from "../components/Art";
 
 
 const AppWrapper = styled.div`
@@ -161,7 +160,6 @@ export default function App() {
                         <Route exact strict path="/gem-center" component={() => <PageWrapper className="PageWrapper relative" />} />
                         <Route exact strict path="/my-asset" component={MyAsset} />
                         <Route exact strict path="/reward" component={Reward} />
-                        <Route exact strict path="/referral" component={Referral} />
                         <Route component={RedirectPathToSwapOnly} />
                       </Switch>
                     </Web3ReactManager>

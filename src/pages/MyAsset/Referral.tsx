@@ -3,102 +3,10 @@ import styled from "styled-components";
 
 import { PageWrapper } from "../App";
 
-const CardDiv = styled.div<{ width: number, imgUrl: string, padding: number }>`
-  width: ${({ width }) => width}px;
-  height: 314px;
-  position: relative;
-  padding: 30px ${({ padding }) => padding}px;
-
-  > * {
-    position: relative;
-    z-index: 1;
-  }
-
-  :before {
-    content: '';
-    position: absolute;
-    z-index: 0;
-    top: 0;
-    left: 0;
-    width: ${({ width }) => width}px;
-    height: 314px;
-    opacity: .5;
-    background-image: url("${({ imgUrl }) => imgUrl}");
-    background-size: ${({ width }) => width}px 314px;
-    background-repeat: no-repeat;
-  }
-`;
-
-const TitleH2 = styled.h2`
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 32px;
-  color: #FFFDFD;
-  margin-bottom: 24px;
-`;
-
-const TableWrap = styled.div`
-  flex: 1;
-  max-height: 210px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  margin-right: -15px;
-`;
-
-const InviteTable = styled.table`
-  width: 100%;
-
-  th, td {
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 40px;
-
-    &:first-child {
-      max-width: 270px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    &:last-child {
-      white-space: nowrap;
-      text-align: center;
-    }
-  }
-
-  th {
-    color: #28EBA8;
-  }
-
-  td {
-    color: #FFFDFD;
-    border-bottom: 1px rgba(219, 219, 219, 0.2) solid;
-
-    &.Pending {
-      color: #ECD35E;
-    }
-
-    &.Activated {
-      color: #35eb28;
-    }
-  }
-`;
-
 interface InviteUser {
   wallet: string,
   status: string
 }
-
-const ReferralTable = styled.table`
-  width: 100%;
-
-  th, td {
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 40px;
-    color: #FFFDFD;
-  }
-`;
 
 const Referral = () => {
   const [invitedUsers, setInvitedUsers] = useState<Array<InviteUser>>();
@@ -200,5 +108,97 @@ const Referral = () => {
     </PageWrapper>
   );
 };
+
+const CardDiv = styled.div<{ width: number, imgUrl: string, padding: number }>`
+  width: ${({ width }) => width}px;
+  height: 314px;
+  position: relative;
+  padding: 30px ${({ padding }) => padding}px;
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  :before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: ${({ width }) => width}px;
+    height: 314px;
+    opacity: .5;
+    background-image: url("${({ imgUrl }) => imgUrl}");
+    background-size: ${({ width }) => width}px 314px;
+    background-repeat: no-repeat;
+  }
+`;
+
+const TitleH2 = styled.h2`
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  color: #FFFDFD;
+  margin-bottom: 24px;
+`;
+
+const TableWrap = styled.div`
+  flex: 1;
+  max-height: 210px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-right: -15px;
+`;
+
+const InviteTable = styled.table`
+  width: 100%;
+
+  th, td {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 40px;
+
+    &:first-child {
+      max-width: 270px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &:last-child {
+      white-space: nowrap;
+      text-align: center;
+    }
+  }
+
+  th {
+    color: #28EBA8;
+  }
+
+  td {
+    color: #FFFDFD;
+    border-bottom: 1px rgba(219, 219, 219, 0.2) solid;
+
+    &.Pending {
+      color: #ECD35E;
+    }
+
+    &.Activated {
+      color: #35eb28;
+    }
+  }
+`;
+
+const ReferralTable = styled.table`
+  width: 100%;
+
+  th, td {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 40px;
+    color: #FFFDFD;
+  }
+`;
 
 export default Referral;
