@@ -1,7 +1,6 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
-import { isMobile } from "react-device-detect";
 import { Credentials, StringTranslations } from "@crowdin/crowdin-api-client";
 import { ReactNotifications } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
@@ -27,24 +26,24 @@ import { Referral } from "./Referral";
 import { WrapperPage } from "../components/Art";
 
 
-
 const AppWrapper = styled.div`
   display: flex;
   flex-flow: column;
   align-items: flex-start;
+  overflow-y: hidden;
   overflow-x: hidden;
+  max-height: 100vh;
 `;
 const BodyWrapper = styled.div`
-  margin-top: ${(props) => (props["data-is-mobile"] ? "0" : "78px")};
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
   width: 100%;
   align-items: center;
   flex: 1;
-  overflow-y: auto;
+  overflow-y: hidden;
   overflow-x: hidden;
   z-index: 1;
-  justify-content: center;
   background-repeat: no-repeat;
   background-position: bottom 24px center;
   background-size: 90%;
@@ -58,7 +57,7 @@ const BodyWrapper = styled.div`
     background-repeat: no-repeat;
     background-position: center 420px, 10% 230px, 90% 230px;
     background-size: contain, 266px, 266px;
-    min-height: 90vh;
+    min-height: 100vh;
   }
 `;
 export const PageWrapper = styled(WrapperPage)`
@@ -68,7 +67,7 @@ export const PageWrapper = styled(WrapperPage)`
   }
 
   width: 100%;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 60px);
   background: url(./images/fish/bg-game.png);
   background-repeat: no-repeat;
   background-size: cover;
@@ -152,12 +151,14 @@ export default function App() {
               <MenuNew />
               <Menu>
                 <div className="full-with">
-                  <BodyWrapper data-is-mobile={isMobile} id="body-wrapper-bsc">
+                  <BodyWrapper id="body-wrapper-bsc">
                     <Popups />
 
                     <Web3ReactManager>
                       <Switch>
                         <Route exact strict path="/Dashboard" component={Dashboard} />
+                        <Route exact strict path="/gun-nft" component={Dashboard} />
+                        <Route exact strict path="/gem-center" component={() => <PageWrapper className="PageWrapper relative" />} />
                         <Route exact strict path="/my-asset" component={MyAsset} />
                         <Route exact strict path="/reward" component={Reward} />
                         <Route exact strict path="/referral" component={Referral} />
