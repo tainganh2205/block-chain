@@ -29,12 +29,11 @@ const AppWrapper = styled.div`
   display: flex;
   flex-flow: column;
   align-items: flex-start;
-  overflow-y: hidden;
   overflow-x: hidden;
-  max-height: 100vh;
+  min-height: 100vh;
 `;
 const BodyWrapper = styled.div`
-  margin-top: 60px;
+  padding-top: 60px;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -43,21 +42,16 @@ const BodyWrapper = styled.div`
   overflow-y: hidden;
   overflow-x: hidden;
   z-index: 1;
-  background-repeat: no-repeat;
-  background-position: bottom 24px center;
-  background-size: 90%;
   justify-content: flex-start !important;
 
-  ${({ theme }) => theme.mediaQueries.xs} {
-    background-size: auto;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    min-height: calc(100vh - 60px);
   }
 
-  ${({ theme }) => theme.mediaQueries.lg} {
-    background-repeat: no-repeat;
-    background-position: center 420px, 10% 230px, 90% 230px;
-    background-size: contain, 266px, 266px;
-    min-height: 100vh;
-  }
+  background: url(./images/fish/bg-game.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 `;
 export const PageWrapper = styled(WrapperPage)`
 
@@ -66,11 +60,8 @@ export const PageWrapper = styled(WrapperPage)`
   }
 
   width: 100%;
-  height: calc(100vh - 60px);
-  background: url(./images/fish/bg-game.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  padding: 24px 0;
+  min-height: calc(100vh - 60px);
 `;
 export default function App() {
 
@@ -158,6 +149,7 @@ export default function App() {
                         <Route exact strict path="/Dashboard" component={Dashboard} />
                         <Route exact strict path="/gun-nft" component={Dashboard} />
                         <Route exact strict path="/gem-center" component={() => <PageWrapper className="PageWrapper relative" />} />
+                        <Route exact strict path="/my-asset/:slug" component={MyAsset} />
                         <Route exact strict path="/my-asset" component={MyAsset} />
                         <Route exact strict path="/reward" component={Reward} />
                         <Route component={RedirectPathToSwapOnly} />

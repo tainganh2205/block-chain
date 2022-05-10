@@ -42,8 +42,8 @@ const Referral = () => {
   }, []);
 
   return (
-    <PageWrapper className="PageWrapper relative">
-      <div className={"h-full d-flex flex-row items-center justify-center"}>
+    <PageWrapper className="PageWrapper relative d-flex items-center justify-center">
+      <Wrapper className={"h-full d-flex items-center justify-center"}>
         <CardDiv className={"mr-4 d-flex flex-column"} width={413} imgUrl={"/images/fish/box-full-blue.png"} padding={25}>
           <TitleH2>Invited friends</TitleH2>
           <TableWrap>
@@ -104,16 +104,23 @@ const Referral = () => {
             </div>
           </TableWrap>
         </CardDiv>
-      </div>
+      </Wrapper>
     </PageWrapper>
   );
 };
+
+const Wrapper = styled.div`
+  @media (max-width: 960px) {
+    flex-direction: column;
+  }
+`;
 
 const CardDiv = styled.div<{ width: number, imgUrl: string, padding: number }>`
   width: ${({ width }) => width}px;
   height: 314px;
   position: relative;
   padding: 30px ${({ padding }) => padding}px;
+  margin: 12px 0;
 
   > * {
     position: relative;

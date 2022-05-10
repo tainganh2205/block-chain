@@ -3,12 +3,12 @@ import styled from "styled-components";
 import { Button } from "antd";
 
 import { PageWrapper } from "../App";
+import { useHistory } from "react-router-dom";
 
 const SampleText = styled.p`
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
-  //text-align: center;
   color: #FFFFFF;
 
   .highlight {
@@ -29,44 +29,46 @@ const inviteSteps: Array<{ img: string, content: React.ReactElement }> = [
 ];
 
 const InviteFriend = () => {
+  const history = useHistory();
+
   return (
-    <PageWrapper className="PageWrapper relative">
+    <PageWrapper className="PageWrapper relative d-flex items-center justify-center">
       <div className={"h-full d-flex flex-column items-center justify-center"}>
-        <H1Title>Invite 3 friends and earn more LFW</H1Title>
+        <H1Title className="text-center ml-4 mr-4">Invite 3 friends and earn more LFW</H1Title>
         <InviteLink className="d-flex items-center justify-center mb-5">
           <input value={"0cc30d34f...50e8B6A2222c32"} className="flex-1 mr-4" />
           <Button type="text">
             <img src={"/images/fish/btn-copy.png"} alt="" />
           </Button>
         </InviteLink>
-        <StepsWrap className="flex mb-5">
-          {inviteSteps.map((step, index) => <div key={index} className={"flex-1 flex flex-column items-center justify-center pr-4 pl-4"}>
+        <StepsWrap className="flex">
+          {inviteSteps.map((step, index) => <div key={index} className={"mb-5 flex-1 flex flex-column items-center justify-center pr-4 pl-4"}>
             <img src={step.img} alt="" className="mb-4" />
             {step.content}
           </div>)}
         </StepsWrap>
         <InviteInfo className="flex items-center justify-center">
-          <div className="flex-1 pr-4 pl-4">
+          <div className="flex-1 pr-4 pl-4 mb-4">
             <H1Title>Referral activities</H1Title>
             <span className={"grayText"}>Invite at least 3 friends to play and receive 1% referral bonus for your friends’ GEM purchases</span>
           </div>
-          <div className="pr-4 pl-4 flex-1 flex items-center justify-center">
-            <img src="/images/fish/invite-group.png" alt="" className="mr-4" />
+          <div className="pr-4 pl-4 mb-4 flex-1 flex items-center justify-center w-full">
+            <img src="/images/fish/invite-group.png" alt="" className="groupImg" />
             <div className="flex-1">
               <SampleText>Total invited</SampleText>
               <div className="flex">
                 <H1Title className="flex-1">20</H1Title>
-                <Button className="btnDetail" type="text">Detail</Button>
+                <Button className="btnDetail" type="text" onClick={() => history.push("/my-asset/referral")}>Detail</Button>
               </div>
             </div>
           </div>
-          <div className="pr-4 pl-4 flex-1 flex items-center justify-center">
-            <img src="/images/fish/referral-gem.png" alt="" className="mr-4" />
+          <div className="pr-4 pl-4 mb-4 flex-1 flex items-center justify-center w-full">
+            <img src="/images/fish/referral-gem.png" alt="" className="genImg" />
             <div className="flex-1">
               <SampleText>Total invited</SampleText>
               <div className="flex justify-center">
                 <H1Title className="flex-1">20</H1Title>
-                <Button className="btnDetail" type="text">Detail</Button>
+                <Button className="btnDetail" type="text" onClick={() => history.push("/my-asset/referral")}>Detail</Button>
               </div>
             </div>
           </div>
@@ -132,6 +134,14 @@ const InviteInfo = styled.div`
     line-height: 24px;
     color: #FFFFFF;
     opacity: .7;
+  }
+
+  .groupImg {
+    margin: 0 12px;
+  }
+
+  .genImg {
+    margin: 0 30px;
   }
 
   .btnDetail {

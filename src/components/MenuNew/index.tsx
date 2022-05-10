@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import throttle from "lodash/throttle";
 import classNames from "classnames";
 import styled from "styled-components";
 import { Link, useHistory, useLocation } from "react-router-dom";
@@ -34,13 +35,42 @@ const menus: Array<Menu> = [
 const MenuNew = () => {
   const history = useHistory();
   const location = useLocation();
+  const refPrevOffset = useRef(window.pageYOffset);
 
   const [showDrawer, setShowDrawer] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
 
-  useEffect(() => console.log(location), [location]);
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentOffset = window.pageYOffset;
+      const isBottomOfPage = window.document.body.clientHeight === currentOffset + window.innerHeight;
+      const isTopOfPage = currentOffset === 0;
+      // Always show the menu when user reach the top
+      if (isTopOfPage) {
+        setShowMenu(true);
+      }
+      // Avoid triggering anything at the bottom because of layout shift
+      else if (!isBottomOfPage) {
+        if (currentOffset < refPrevOffset.current) {
+          // Has scroll up
+          setShowMenu(true);
+        } else {
+          // Has scroll down
+          setShowMenu(false);
+        }
+      }
+      refPrevOffset.current = currentOffset;
+    };
+    const throttledHandleScroll = throttle(handleScroll, 200);
+
+    window.addEventListener("scroll", throttledHandleScroll);
+    return () => {
+      window.removeEventListener("scroll", throttledHandleScroll);
+    };
+  }, []);
 
   return (
-    <FixedContainer showMenu={true} height={60}>
+    <FixedContainer showMenu={showMenu} height={60}>
       <header>
         <div className="flex main-header-new">
           <div className="header-left">
@@ -50,7 +80,7 @@ const MenuNew = () => {
               </Button>
               <Drawer placement="left" visible={showDrawer} className={"drawer-menu"} onClose={() => setShowDrawer(false)}>
                 <ul className="list-menu">
-                  {menus.map((menu) => <li key={menu.label} onClick={() => history.push(menu.path)} className={classNames({ isActive: location.pathname === menu.path })}>
+                  {menus.map((menu) => <li key={menu.label} onClick={() => history.push(menu.path)} className={classNames({ isActive: location.pathname.startsWith(menu.path) })}>
                     <div className="h__customLogoTrade">
                       {menu.icon}{menu.icon1}
                     </div>
@@ -68,7 +98,7 @@ const MenuNew = () => {
             </div>
             <div className="main-menu xl:block hidden">
               <ul className="list-menu">
-                {menus.map((menu) => <li key={menu.label} onClick={() => history.push(menu.path)} className={classNames({ isActive: location.pathname === menu.path })}>
+                {menus.map((menu) => <li key={menu.label} onClick={() => history.push(menu.path)} className={classNames({ isActive: location.pathname.startsWith(menu.path) })}>
                   <div className="h__customLogoTrade">
                     {menu.icon}{menu.icon1}
                   </div>
