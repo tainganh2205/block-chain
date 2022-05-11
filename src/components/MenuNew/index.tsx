@@ -108,6 +108,9 @@ const MenuNew = () => {
             </div>
           </div>
           <div className="header-right">
+            <button className="btn-play-game">
+              Play Game
+            </button>
             <div className="connect-wallet">
               <UnlockButton />
             </div>

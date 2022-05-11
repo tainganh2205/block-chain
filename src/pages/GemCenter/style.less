@@ -18,6 +18,27 @@
   }
 }
 
+.gem-input-wrapper {
+  position: absolute !important;
+  left: 52%;
+  top: 48%;
+  transform: translate(-50%, -50%);
+  width: 65% !important;
+}
+
+.gem-input {
+  background-color: rgba(33, 34, 39, 0.1) !important;
+  border: 1px solid rgba(87, 87, 87, 0.1) !important;
+  box-shadow: inset 0 0 11px rgb(0 0 0 / 49%);
+  border-radius: 10px !important;
+  margin-top: 1rem;
+
+  input {
+    background: initial !important;
+    color: #FFFFFF !important;
+  }
+}
+
 @media screen and(max-width: 1025px) and(min-width: 412px) {
   .title-balance {
     font-size: 20px !important;
@@ -27,12 +48,15 @@
     font-size: 30px !important;
   }
 }
+
 .btn-buy-gem {
   position: absolute;
   bottom: -50px;
   left: 50%;
   transform: translate(-50%, -50%);
+  cursor: pointer;
 }
+
 .title-balance {
   font-family: 'Allerta Stencil', serif;
   font-style: normal;
