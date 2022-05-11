@@ -110,7 +110,7 @@ const Referral = () => {
 };
 
 const Wrapper = styled.div`
-  @media (max-width: 960px) {
+  @media (max-width: 1300px) {
     flex-direction: column;
   }
 `;
