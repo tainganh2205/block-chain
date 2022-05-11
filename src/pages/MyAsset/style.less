@@ -1,0 +1,57 @@
+.MyWallet {
+  .walletDiv {
+    max-width: 1160px;
+
+    .walletCard {
+      min-height: 243px;
+
+      > img {
+        object-fit: fill;
+        min-height: 243px;
+      }
+
+      @media screen and(max-width: 1025px) {
+        .title-balance {
+          font-size: 20px !important;
+        }
+
+        .sp-price {
+          font-size: 30px !important;
+        }
+      }
+
+      .btnWithdraw {
+        top: 60%;
+
+        @media screen and(max-width: 600px) {
+          top: 73%;
+        }
+      }
+
+      .title-balance {
+        font-family: 'Allerta Stencil', serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 32px;
+
+        color: #113657;
+      }
+
+      .sp-price {
+        font-family: 'Allerta Stencil', serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 54px;
+        color: #01449B;
+        text-shadow: 1px 1px 0 #FFFFFF;
+      }
+
+      .textValue {
+        color: #06004D;
+      }
+    }
+  }
+}
+

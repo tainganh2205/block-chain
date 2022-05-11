@@ -1,45 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 
 import { PageWrapper } from "../App";
+import { InvitedInfo, InvitedUser } from "./index";
 
-interface InviteUser {
-  wallet: string,
-  status: string
-}
-
-const Referral = () => {
-  const [invitedUsers, setInvitedUsers] = useState<Array<InviteUser>>();
-
-  useEffect(() => {
-    // setTimeout(() => setInvitedUsers([]), 1000);
-    setTimeout(() => setInvitedUsers([
-      {
-        wallet: "0x29D7d1dd5B6f9C864d9db560D72a247c178aE86B",
-        status: "Pending"
-      },
-      {
-        wallet: "0xCfE2cd1e76Ef398B137f9eC8031B87982e18E4AC",
-        status: "Activated"
-      },
-      {
-        wallet: "0x364643Ab982122ca603Ec367CF3DDc920a5B61cD",
-        status: "Activated"
-      },
-      {
-        wallet: "0x92C38961f55a0E9e3376401162fB642b112f8259",
-        status: "Activated"
-      },
-      {
-        wallet: "0x364643Ab982122ca603Ec367CF3DDc920a5B61cD",
-        status: "Activated"
-      },
-      {
-        wallet: "0x92C38961f55a0E9e3376401162fB642b112f8259",
-        status: "Activated"
-      }
-    ]), 1000);
-  }, []);
+const Referral: React.FC<{ invitedInfo: InvitedInfo | undefined }> = ({ invitedInfo }) => {
+  const invitedUsers = useMemo<Array<InvitedUser> | undefined>(() => invitedInfo?.invitedUsers, [invitedInfo]);
 
   return (
     <PageWrapper className="PageWrapper relative d-flex items-center justify-center">
@@ -60,8 +26,8 @@ const Referral = () => {
               </thead>
               <tbody>
               {(invitedUsers || []).map((user, index) => <tr key={index}>
-                <td title={user.wallet}>{user.wallet}</td>
-                <td className={user.status}>{user.status}</td>
+                <td title={user.wallet_address}>{user.wallet_address}</td>
+                <td className={`statusText ${user.status?.toLowerCase()}`}>{user.status}</td>
               </tr>)}
               </tbody>
             </InviteTable>
@@ -110,7 +76,7 @@ const Referral = () => {
 };
 
 const Wrapper = styled.div`
-  @media (max-width: 960px) {
+  @media (max-width: 1300px) {
     flex-direction: column;
   }
 `;
@@ -187,12 +153,16 @@ const InviteTable = styled.table`
     color: #FFFDFD;
     border-bottom: 1px rgba(219, 219, 219, 0.2) solid;
 
-    &.Pending {
-      color: #ECD35E;
-    }
+    &.statusText {
+      text-transform: capitalize;
 
-    &.Activated {
-      color: #35eb28;
+      &.pending {
+        color: #ECD35E;
+      }
+
+      &.active {
+        color: #35eb28;
+      }
     }
   }
 `;

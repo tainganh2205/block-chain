@@ -46,3 +46,8 @@
 html {
   scroll-behavior: smooth;
 }
+
+html > body > iframe {
+  // Workaround for react-error-overlay: https://github.com/facebook/create-react-app/issues/11773
+  display: none;
+}

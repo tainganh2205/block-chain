@@ -68,7 +68,7 @@ const Dashboard = () => {
     return null;
   }, [stories]);
   return (
-    <PageWrapper className="PageWrapper bg-main-wrapper">
+    <PageWrapper className="PageWrapper">
       <div className="flex p-6 gap-6 justify-center flex-wrap">
         {boxes}
       </div>
