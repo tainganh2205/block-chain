@@ -8,7 +8,7 @@ import yall from "yall-js";
 import Popups from "../components/Popups";
 import Web3ReactManager from "../components/Web3ReactManager";
 import Dashboard from "./Dashboard";
-import { MyAsset } from "./MyAsset";
+import MyAsset from "./MyAsset";
 import { Reward } from "./Reward";
 import { useActiveWeb3React } from "../hooks";
 
