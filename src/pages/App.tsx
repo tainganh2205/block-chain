@@ -24,6 +24,7 @@ import { WrapperPage } from "../components/Art";
 import "./App.less";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { GemCenter } from "./GemCenter";
+import { AuthContextProvider } from "../context/authNew";
 
 
 const AppWrapper = styled.div`
@@ -137,27 +138,29 @@ export default function App() {
             value={{ selectedLanguage, setSelectedLanguage, translatedLanguage, setTranslatedLanguage }}
           >
             <TranslationsContext.Provider value={{ translations, setTranslations }}>
-              <MenuNew />
-              <Menu>
-                <div className="full-with">
-                  <BodyWrapper id="body-wrapper-bsc">
-                    <Popups />
+              <AuthContextProvider>
+                <MenuNew />
+                <Menu>
+                  <div className="full-with">
+                    <BodyWrapper id="body-wrapper-bsc">
+                      <Popups />
 
-                    <Web3ReactManager>
-                      <Switch>
-                        <Route exact strict path="/Dashboard" component={Dashboard} />
-                        <Route exact strict path="/gun-nft" component={Dashboard} />
-                        <Route exact strict path="/gem-center" component={GemCenter} />
-                        <Route exact strict path="/my-asset/:slug" component={MyAsset} />
-                        <Route exact strict path="/my-asset" component={MyAsset} />
-                        <Route exact strict path="/reward" component={Reward} />
-                        <Route component={RedirectPathToSwapOnly} />
-                      </Switch>
-                    </Web3ReactManager>
-                  </BodyWrapper>
-                </div>
-              </Menu>
-              <ToTop />
+                      <Web3ReactManager>
+                        <Switch>
+                          <Route exact strict path="/Dashboard" component={Dashboard} />
+                          <Route exact strict path="/gun-nft" component={Dashboard} />
+                          <Route exact strict path="/gem-center" component={GemCenter} />
+                          <Route exact strict path="/my-asset/:slug" component={MyAsset} />
+                          <Route exact strict path="/my-asset" component={MyAsset} />
+                          <Route exact strict path="/reward" component={Reward} />
+                          <Route component={RedirectPathToSwapOnly} />
+                        </Switch>
+                      </Web3ReactManager>
+                    </BodyWrapper>
+                  </div>
+                </Menu>
+                <ToTop />
+              </AuthContextProvider>
             </TranslationsContext.Provider>
           </LanguageContext.Provider>
         </AppWrapper>

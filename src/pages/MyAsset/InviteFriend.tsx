@@ -6,6 +6,7 @@ import copy from "copy-to-clipboard";
 import { Store } from "react-notifications-component";
 
 import { PageWrapper } from "../App";
+import { InvitedInfo } from "./index";
 
 const SampleText = styled.p`
   font-weight: 500;
@@ -31,7 +32,8 @@ const inviteSteps: Array<{ img: string, content: React.ReactElement }> = [
 ];
 
 
-const InviteFriend = ({ inviteLink, account }) => {
+const InviteFriend: React.FC<{ inviteLink: string | undefined, account: string | undefined | null, invitedInfo: InvitedInfo | undefined }>
+  = ({ inviteLink, account, invitedInfo }) => {
   const history = useHistory();
   const onCopy = useCallback(async () => {
     if (inviteLink && copy(inviteLink)) {
@@ -73,9 +75,9 @@ const InviteFriend = ({ inviteLink, account }) => {
           <div className="pr-4 pl-4 mb-2 flex-1 flex items-center justify-center w-full">
             <img src="/images/fish/invite-group.png" alt="" className="groupImg" />
             <div className="flex-1">
-              <SampleText>Total invited</SampleText>
+              <SampleText>Active friends / Total invited</SampleText>
               <div className="flex">
-                <H1Title className="flex-1">20</H1Title>
+                <H1Title className="flex-1"><b>{invitedInfo?.activeUser || 0}</b> / {invitedInfo?.userInvited || 0}</H1Title>
                 <Button className="btnDetail" type="text" onClick={() => history.push("/my-asset/referral")}>Detail</Button>
               </div>
             </div>
@@ -85,7 +87,7 @@ const InviteFriend = ({ inviteLink, account }) => {
             <div className="flex-1">
               <SampleText>Total invited</SampleText>
               <div className="flex justify-center">
-                <H1Title className="flex-1">20</H1Title>
+                <H1Title className="flex-1">{invitedInfo?.totalEarn || 0}</H1Title>
                 <Button className="btnDetail" type="text" onClick={() => history.push("/my-asset/referral")}>Detail</Button>
               </div>
             </div>
@@ -101,6 +103,10 @@ const H1Title = styled.h1`
   font-size: 30px;
   line-height: 38px;
   color: #FFFFFF;
+  
+  b {
+    color: #28EBA8;;
+  }
 `;
 
 const InviteLink = styled.div`
