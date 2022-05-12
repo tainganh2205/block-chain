@@ -4,14 +4,13 @@ import { Web3Provider } from "@ethersproject/providers";
 import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
 import dayjs from "dayjs";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useTokenBalance } from "hooks/useTokenBalance";
-import { BigNumber } from "@ethersproject/bignumber";
+import { TokenBalance, useTokenBalance } from "hooks/useTokenBalance";
 import { ConnectorId, useWalletModal } from "@artechain/uikit";
 import { injected, walletconnect } from "../connectors";
 import axios from "axios";
 import { toast } from "../components/Toast";
 
-interface ContextValues {
+interface ContextValues extends TokenBalance {
   isWalletConnected: boolean;
   isWalletSign: boolean;
   showConnectModal: () => void;
@@ -19,12 +18,6 @@ interface ContextValues {
   token: TokenBlob;
   accessToken?: string | null;
   isExpiredSignature: boolean;
-  balance: BigNumber;
-  balanceFloat: number;
-  refreshBalance: () => void;
-  balanceGem: BigNumber;
-  balanceGemFloat: number;
-  refetchGem: () => void;
 }
 
 const signatureKey = "lfw-signature-fish";
@@ -114,7 +107,7 @@ export const AuthContextProvider: React.FC<any> = ({ children }) => {
     return undefined;
   }, [token, account]);
 
-  const { balance, balanceFloat, refetch: refreshBalance, balanceGem, balanceGemFloat, refetchGem } = useTokenBalance({ accessToken });
+  const tokenBalance = useTokenBalance({ accessToken });
 
   const isWalletSign = useMemo(() => !!account && account === token.walletAddress && !isExpired(token.exp ?? 0) && !!token.accessToken, [account, token, isExpired]);
 
@@ -161,12 +154,7 @@ export const AuthContextProvider: React.FC<any> = ({ children }) => {
         token,
         accessToken,
         isExpiredSignature,
-        balance,
-        balanceFloat,
-        refreshBalance,
-        balanceGem,
-        balanceGemFloat,
-        refetchGem
+        ...tokenBalance
       }}
     >
       {children}

@@ -5,13 +5,13 @@ import classnames from "classnames";
 import { PageWrapper } from "../App";
 import BuyGem from "./BuyGem";
 import DepositGem from "./DepositGem";
-import { useFishContract, useLFWTokenContract } from "../../hooks/useContract1";
+import { useFishContract } from "../../hooks/useContract1";
 import TransactionConfirmationModal from "../../components/TransactionConfirmationModal";
 import { useAuthContext } from "../../context/authNew";
-import { FISH_SERVER_ID, FISH_CONTRACT } from "../../constant/contracts";
+import { FISH_SERVER_ID } from "../../constant/contracts";
+import { inputNumberToBigNumber } from "../../utils/number";
 
 import "./style.less";
-import { bigNumberToFloat, inputNumberToBigNumber } from "../../utils/number";
 
 const showMessage = (message: string, type: NOTIFICATION_TYPE = "warning", duration = 2000) => Store.addNotification({
   message: message, container: "top-center", type, insert: "top", dismiss: { duration }
@@ -23,9 +23,8 @@ const GemCenter = () => {
   const [tab, setTab] = React.useState<string>("buy");
   const [convertRatio, setConvertRatio] = useState(0);
   const fishContract = useFishContract();
-  const lfwContract = useLFWTokenContract();
 
-  const { isWalletSign, walletId, balanceFloat, refreshBalance, refetchGem } = useAuthContext();
+  const { isWalletSign, walletId, balanceFloat, refetch, refetchGem, requestAllowance } = useAuthContext();
 
   useEffect(() => {
     fishContract?.conversionRate()?.then(rate => setConvertRatio(rate.toNumber()));
@@ -54,47 +53,30 @@ const GemCenter = () => {
         if (inputLfwValue <= balanceFloat) {
           let error = "";
           // Check allowance
-          const allowance = await lfwContract?.allowance(walletId, FISH_CONTRACT.trim());
-          const allowanceFloat = bigNumberToFloat(allowance);
-          if (allowanceFloat < inputLfwValue) {
-            // Request allowance
-            setModalText("Approve the allowance before buying gem!");
+          setModalText("Get approval the allowance before buying gem!");
+          openConfirm();
+          // Request allowance
+          if (await requestAllowance(inputLfwValue)) {
+
+            setModalText("Buying gem...");
             openConfirm();
+            // Swap Gem
             let transaction;
             try {
-              // @ts-ignore
-              transaction = await lfwContract?.increaseAllowance(FISH_CONTRACT.trim(), inputNumberToBigNumber(inputLfwValue - allowanceFloat).toString());
+              transaction = await fishContract?.swapDiamond(inputNumberToBigNumber(inputLfwValue).toString(), FISH_SERVER_ID);
             } catch (e) {
               console.error(e);
             }
             if (transaction) {
               const receipt = await transaction.wait();
               if (!receipt.blockNumber) {
-                error = "Not enough allowance for transaction!";
+                error = "Buying Gem fail!";
               }
             } else {
-              error = "Not enough allowance for transaction!";
+              error = "Transaction to buy gem cannot complete!";
             }
-
-            if (!error) {
-              setModalText("Buying gem...");
-              openConfirm();
-              // Swap Gem
-              let transaction;
-              try {
-                transaction = await fishContract?.swapDiamond(inputNumberToBigNumber(inputLfwValue).toString(), FISH_SERVER_ID);
-              } catch (e) {
-                console.error(e);
-              }
-              if (transaction) {
-                const receipt = await transaction.wait();
-                if (!receipt.blockNumber) {
-                  error = "Buying Gem fail!";
-                }
-              } else {
-                error = "Transaction to buy gem cannot complete!";
-              }
-            }
+          } else {
+            error = "Your allowance is not enough!";
           }
 
           closeConfirm();
@@ -105,7 +87,7 @@ const GemCenter = () => {
           }
 
           refetchGem();
-          refreshBalance();
+          refetch();
         } else {
           showMessage("Your balance is not enough!");
         }
@@ -115,7 +97,7 @@ const GemCenter = () => {
     }
 
     setIsLoading(false);
-  }, [tab, inputLfwValue, fishContract, isWalletSign, walletId, balanceFloat, openConfirm, closeConfirm, isLoading, refetchGem, refreshBalance]);
+  }, [tab, inputLfwValue, fishContract, isWalletSign, walletId, balanceFloat, openConfirm, closeConfirm, isLoading, refetchGem, refetch, requestAllowance]);
 
   return (
     <PageWrapper className="PageWrapper GemCenter relative d-flex items-center justify-center">

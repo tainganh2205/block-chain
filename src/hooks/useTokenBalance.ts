@@ -8,11 +8,25 @@ import { LfwToken } from "types/contracts";
 import {
   useLFWTokenContract
 } from "./useContract1";
-import { bigNumberToFloat } from "../utils/number";
+import { bigNumberToFloat, inputNumberToBigNumber } from "../utils/number";
+import { FISH_CONTRACT } from "../constant/contracts";
 
 const { REACT_APP_API_URL } = process.env;
 
-export const useTokenBalance = ({ accessToken = "" }) => {
+export interface TokenBalance {
+  balanceFloat: number,
+  balance: BigNumber,
+  requestAllowance: (allowanceRequest: number, requestMargin?: number) => Promise<true | false>,
+  fetchStatus: FetchStatus,
+  fetchGemStatus: FetchStatus,
+  balanceGemFloat: number,
+  refetch: () => void,
+  checkAllowance: (allowanceRequest: number) => Promise<boolean>,
+  balanceGem: BigNumber,
+  refetchGem: () => void
+}
+
+export const useTokenBalance = ({ accessToken = "" }): TokenBalance => {
   const [fetchStatus, setFetchStatus] = useState(FetchStatus.NOT_FETCHED);
   const [balance, setBalance] = useState(Zero);
   const balanceFloat = useMemo<number>(() => bigNumberToFloat(balance), [balance]);
@@ -73,6 +87,40 @@ export const useTokenBalance = ({ accessToken = "" }) => {
     }
   }, [account, accessToken, fetchBalanceGem]);
 
-  return { balance, balanceFloat, fetchStatus, refetch, balanceGem, balanceGemFloat, fetchGemStatus, refetchGem };
+  const checkAllowance = useCallback(async (allowanceRequest: number) => {
+    const allowance = await contract?.allowance(account || "", FISH_CONTRACT.trim());
+    const allowanceFloat = bigNumberToFloat(allowance);
+    console.log(allowanceFloat, allowanceRequest);
+    return allowanceFloat >= allowanceRequest;
+  }, [account, contract]);
+
+  const requestAllowance = useCallback(async (allowanceRequest: number, requestMargin = 1000000) => {
+    // Check allowance
+    if (!(await checkAllowance(allowanceRequest))) {
+      // Request allowance
+      let transaction;
+      try {
+        console.log(inputNumberToBigNumber(allowanceRequest + requestMargin).toString())
+        transaction = await contract?.increaseAllowance(FISH_CONTRACT.trim(), inputNumberToBigNumber(allowanceRequest + requestMargin).toString());
+      } catch (e) {
+        console.error(e);
+      }
+
+      if (transaction) {
+        const receipt = await transaction.wait();
+        if (receipt.blockNumber) {
+          // success
+          return true;
+        }
+      }
+
+      // fail transaction
+      return false;
+    }
+    // allowance is enough
+    return true;
+  }, [checkAllowance, contract]);
+
+  return { balance, balanceFloat, fetchStatus, refetch, balanceGem, balanceGemFloat, fetchGemStatus, refetchGem, checkAllowance, requestAllowance };
 };
 
