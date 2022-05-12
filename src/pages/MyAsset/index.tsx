@@ -31,7 +31,6 @@ const MyAsset = () => {
   const [invitedInfo, setInvitedInfo] = useState<InvitedInfo>({});
 
   useAsyncEffect(async () => {
-    console.log(account)
     setInviteLink(undefined);
     if (account) {
       const response = await axios.get(`${REACT_APP_API_URL}/v1/user/referral`, {
@@ -39,19 +38,16 @@ const MyAsset = () => {
       });
       if (response?.data?.data) {
         setInviteLink(response.data.data);
-        console.log(response.data.data)
       }
     }
   }, [account]);
 
   // Get Invite user
   useAsyncEffect(async () => {
-    setInvitedInfo({ });
+    setInvitedInfo({});
     if (isWalletSign && accessToken) {
       const response = await axios.get(`${REACT_APP_API_URL}/v1/user/referrals?`, {
-        headers: {
-          "Authorization": `Bearer ${accessToken}`
-        }
+        headers: { "Authorization": `Bearer ${accessToken}` }
       });
       if (response?.data?.data) {
         const data = response.data.data;
@@ -63,12 +59,12 @@ const MyAsset = () => {
   return useMemo<React.ReactElement>(() => {
     // @ts-ignore
     if (params?.slug === "invite") {
-      return <InviteFriend inviteLink={inviteLink} invitedInfo={invitedInfo}/>;
+      return <InviteFriend inviteLink={inviteLink} invitedInfo={invitedInfo} />;
       // @ts-ignore
     } else if (params?.slug === "referral") {
-      return <Referral invitedInfo={invitedInfo}/>;
+      return <Referral invitedInfo={invitedInfo} />;
     }
-    return <MyWallet balanceFloat={balanceFloat} balanceGemFloat={balanceGemFloat}/>;
+    return <MyWallet balanceFloat={balanceFloat} balanceGemFloat={balanceGemFloat} />;
   }, [params, inviteLink, invitedInfo]);
 };
 
