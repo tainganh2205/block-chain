@@ -17,10 +17,14 @@ interface ContextValues {
   showConnectModal: () => void;
   walletId?: string | null;
   token: TokenBlob;
-  getAccessToken: () => (string | undefined);
+  accessToken?: string | null;
   isExpiredSignature: boolean;
   balance: BigNumber;
+  balanceFloat: number;
   refreshBalance: () => void;
+  balanceGem: BigNumber;
+  balanceGemFloat: number;
+  refetchGem: () => void;
 }
 
 const signatureKey = "lfw-signature-fish";
@@ -76,7 +80,6 @@ const [Provider, useAuthContext] = createContext<ContextValues>();
 export const AuthContextProvider: React.FC<any> = ({ children }) => {
   const { account, activate, deactivate, error, library } = useWeb3React<Web3Provider>();
   const [token, setToken] = useState<TokenBlob>({});
-  const { balance, refetch: refreshBalance } = useTokenBalance();
 
   const handleLogin = (connectorId: ConnectorId) => {
     setToken({});
@@ -104,17 +107,14 @@ export const AuthContextProvider: React.FC<any> = ({ children }) => {
     return isExpired(token.exp ?? 0);
   }, [token.exp]);
 
-  const getAccessToken = useCallback(() => {
-    if (account && account === token.walletAddress) {
-      if (!isExpired(token.exp ?? 0)) {
-        return token.accessToken;
-      } else {
-        setToken({});
-      }
+  const accessToken = useMemo(() => {
+    if (account && account === token.walletAddress && !isExpired(token.exp ?? 0)) {
+      return token.accessToken;
     }
-
     return undefined;
   }, [token, account]);
+
+  const { balance, balanceFloat, refetch: refreshBalance, balanceGem, balanceGemFloat, refetchGem } = useTokenBalance({ accessToken });
 
   const isWalletSign = useMemo(() => !!account && account === token.walletAddress && !isExpired(token.exp ?? 0) && !!token.accessToken, [account, token, isExpired]);
 
@@ -159,10 +159,14 @@ export const AuthContextProvider: React.FC<any> = ({ children }) => {
         showConnectModal,
         walletId: account,
         token,
-        getAccessToken,
+        accessToken,
         isExpiredSignature,
         balance,
-        refreshBalance
+        balanceFloat,
+        refreshBalance,
+        balanceGem,
+        balanceGemFloat,
+        refetchGem
       }}
     >
       {children}

@@ -1,4 +1,5 @@
 import BigNumberjs from 'bignumber.js'
+import { BigNumber } from "@ethersproject/bignumber";
 
 export function formatNumber(number: number) {
   return Intl.NumberFormat().format(number)
@@ -37,4 +38,8 @@ export function removeZeroFloatingPoint(value: string) {
  */
 export function inputNumberToBigNumber(value: number | string) {
   return new BigNumberjs(value).times(new BigNumberjs(10).pow(18))
+}
+
+export function bigNumberToFloat(value: number | string | BigNumber|undefined) {
+  return new BigNumberjs((value || "").toString()).div(new BigNumberjs(10).pow(18)).toNumber()
 }

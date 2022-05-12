@@ -22,6 +22,7 @@ import ToTop from "../components/ToTop";
 import { WrapperPage } from "../components/Art";
 
 import "./App.less";
+import "antd/dist/antd.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { GemCenter } from "./GemCenter";
 import { AuthContextProvider } from "../context/authNew";
@@ -45,6 +46,11 @@ const BodyWrapper = styled.div`
   overflow-x: hidden;
   z-index: 1;
   justify-content: flex-start !important;
+  
+  * {
+    font-family: 'Montserrat';
+    font-weight: 500;
+  }
 
   ${({ theme }) => theme.mediaQueries.lg} {
     min-height: calc(100vh - 60px);
@@ -65,7 +71,6 @@ export const PageWrapper = styled(WrapperPage)`
 `;
 export default function App() {
 
-  const { account } = useActiveWeb3React();
   const [selectedLanguage, setSelectedLanguage] = useState<any>(undefined);
   const [translatedLanguage, setTranslatedLanguage] = useState<any>(undefined);
   const [translations, setTranslations] = useState<Array<any>>([]);

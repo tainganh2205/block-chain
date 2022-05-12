@@ -2,10 +2,11 @@ import React, { useEffect, useState, useRef } from "react";
 import throttle from "lodash/throttle";
 import classNames from "classnames";
 import styled from "styled-components";
+import { Button, Drawer } from "antd";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import UnlockButton from "../ConnectWalletButtonHeader";
-import "antd/dist/antd.css";
-import "./style.less";
+import { useAuthContext } from "../../context/authNew";
+import { abbreviateNumber } from "../../utils/number";
 import { ReactComponent as GunIcon } from "../../images/img/menu/gun.svg";
 import { ReactComponent as GunIcon1 } from "../../images/img/menu/gun1.svg";
 import { ReactComponent as GemIcon } from "../../images/img/menu/gem.svg";
@@ -16,7 +17,8 @@ import { ReactComponent as RewardIcon } from "../../images/img/menu/reward.svg";
 import { ReactComponent as RewardIcon1 } from "../../images/img/menu/reward1.svg";
 
 import { ReactComponent as IconLFW } from "../../images/img/HuntingFishLogo.svg";
-import { Button, Drawer } from "antd";
+
+import "./style.less";
 
 interface Menu {
   label: string,
@@ -36,6 +38,8 @@ const MenuNew = () => {
   const history = useHistory();
   const location = useLocation();
   const refPrevOffset = useRef(window.pageYOffset);
+
+  const { balanceFloat, balanceGemFloat, isWalletConnected } = useAuthContext();
 
   const [showDrawer, setShowDrawer] = useState(false);
   const [showMenu, setShowMenu] = useState(true);
@@ -108,6 +112,12 @@ const MenuNew = () => {
             </div>
           </div>
           <div className="header-right">
+            {isWalletConnected && <>
+              <img src="/images/fish/coin-silver.png" alt="" />
+              <BalanceText title={balanceGemFloat + ""}>{abbreviateNumber(balanceGemFloat)}</BalanceText>
+              <img src="/images/fish/lfw-token-logo.png" alt="" />
+              <BalanceText title={balanceFloat + ""}>{abbreviateNumber(balanceFloat)}</BalanceText>
+            </>}
             <button className="btn-play-game">
               Play Game
             </button>
@@ -130,4 +140,13 @@ const FixedContainer = styled.div<{ showMenu: boolean; height: number }>`
   width: 100%;
   z-index: 20;
 `;
+
+const BalanceText = styled.div`
+  color: #FFFFFF;
+  margin-right: 25px;
+  margin-left: 7px;
+  font-size: 18px;
+  font-weight: 700;
+`;
+
 export default MenuNew;

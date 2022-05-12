@@ -1,78 +1,95 @@
-.btn-tab {
-  position: relative;
-  max-width: 10rem;
-  cursor: pointer;
-  margin-right: 1rem;
+.GemCenter {
+  .tabControl {
+    .btn-tab {
+      position: relative;
+      max-width: 10rem;
+      cursor: pointer;
+      margin-right: 1rem;
 
-  .btn-tab-text {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'Allerta Stencil', serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 32px;
-    color: #FFFFFF;
-  }
-}
-
-.gem-input-wrapper {
-  position: absolute !important;
-  left: 52%;
-  top: 48%;
-  transform: translate(-50%, -50%);
-  width: 65% !important;
-}
-
-.gem-input {
-  background-color: rgba(33, 34, 39, 0.1) !important;
-  border: 1px solid rgba(87, 87, 87, 0.1) !important;
-  box-shadow: inset 0 0 11px rgb(0 0 0 / 49%);
-  border-radius: 10px !important;
-  margin-top: 1rem;
-
-  input {
-    background: initial !important;
-    color: #FFFFFF !important;
-  }
-}
-
-@media screen and(max-width: 1025px) and(min-width: 412px) {
-  .title-balance {
-    font-size: 20px !important;
+      .btn-tab-text {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-family: 'Allerta Stencil', serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 32px;
+        color: #FFFFFF;
+      }
+    }
   }
 
-  .sp-price {
-    font-size: 30px !important;
+  .tabContent {
+    .gem-input-wrapper {
+      position: absolute !important;
+      left: 52%;
+      top: 48%;
+      transform: translate(-50%, -50%);
+      width: 65% !important;
+
+      > div {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .ant-input-number-affix-wrapper, .ant-input-affix-wrapper {
+        background-color: rgba(33, 34, 39, 0.1) !important;
+        border: 1px solid rgba(87, 87, 87, 0.1) !important;
+        box-shadow: inset 0 0 11px rgb(0 0 0 / 49%);
+        border-radius: 10px !important;
+        margin-top: 1rem;
+        padding: 0;
+        width: 100%;
+
+        img {
+          margin-left: 5px;
+          max-height: 40px;
+          object-fit: contain;
+        }
+
+        .ant-input-number {
+          background: initial !important;
+
+          .ant-input-number-handler-wrap {
+            opacity: 1;
+            background: initial !important;
+            padding-right: 5px;
+
+            * {
+              border: none;
+              color: white;
+              font-size: 20px;
+            }
+          }
+        }
+
+        input {
+          padding-left: 1rem;
+          font-size: 18px;
+          height: 50px;
+          background: initial !important;
+          color: #FFFFFF !important;
+
+          &:read-only {
+            color: #ababab !important;
+          }
+        }
+      }
+    }
+
+    .btn-buy-gem {
+      position: absolute;
+      bottom: -50px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+
+      &.disable {
+        opacity: .5;
+        cursor: auto;
+      }
+    }
   }
-}
-
-.btn-buy-gem {
-  position: absolute;
-  bottom: -50px;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-}
-
-.title-balance {
-  font-family: 'Allerta Stencil', serif;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 32px;
-
-  color: #113657;
-}
-
-.sp-price {
-  font-family: 'Allerta Stencil', serif;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 40px;
-  line-height: 54px;
-  color: #01449B;
-  text-shadow: 1px 1px 0 #FFFFFF;
 }

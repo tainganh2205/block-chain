@@ -64,7 +64,7 @@ export const AuthContextProvider: React.FC<any> = ({ children }) => {
   const waitingForUpsertAccount = useRef(true);
   const [token, setToken] = useState<SignatureBlob>({});
   const [challenge, setChallenge] = useState<string | null>(null);
-  const { balance, refetch: refreshBalance } = useTokenBalance();
+  const { balance, refetch: refreshBalance } = useTokenBalance({});
 
   const {
     isOpen: isWalletModalOpen,
