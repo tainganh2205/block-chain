@@ -32,8 +32,8 @@ const inviteSteps: Array<{ img: string, content: React.ReactElement }> = [
 ];
 
 
-const InviteFriend: React.FC<{ inviteLink: string | undefined, account: string | undefined | null, invitedInfo: InvitedInfo | undefined }>
-  = ({ inviteLink, account, invitedInfo }) => {
+const InviteFriend: React.FC<{ inviteLink: string | undefined, invitedInfo: InvitedInfo | undefined }>
+  = ({ inviteLink, invitedInfo }) => {
   const history = useHistory();
   const onCopy = useCallback(async () => {
     if (inviteLink && copy(inviteLink)) {
@@ -49,20 +49,20 @@ const InviteFriend: React.FC<{ inviteLink: string | undefined, account: string |
     }
   }, [inviteLink]);
 
-  const accountTitle = useMemo(() => (account && inviteLink) ? `${account.slice(0, 10)}...${account.slice(account.length - 18)}` : "Please login before getting the invite link", [account, inviteLink]);
+  const linkValue = useMemo(() => inviteLink || "Please login before getting the invite link", [inviteLink]);
 
   return (
     <PageWrapper className="PageWrapper relative d-flex items-center justify-center">
       <div className={"h-full d-flex flex-column items-center justify-center"}>
         <H1Title className="text-center ml-4 mr-4">Invite 3 friends and earn more LFW</H1Title>
-        <InviteLink className="d-flex items-center justify-center sm:mb-4 lg:mb-10">
-          <input value={accountTitle} readOnly className="flex-1 mr-4" />
+        <InviteLink className="d-flex items-center justify-center sm:mb-4 lg:mb-8">
+          <input value={linkValue} readOnly className="flex-1 mr-4" />
           <Button type="text" onClick={onCopy}>
             <img src={"/images/fish/btn-copy.png"} alt="" />
           </Button>
         </InviteLink>
         <StepsWrap className="flex">
-          {inviteSteps.map((step, index) => <div key={index} className={"sm:mb-4 lg:mb-10 flex-1 flex flex-column items-center justify-center pr-4 pl-4"}>
+          {inviteSteps.map((step, index) => <div key={index} className={"sm:mb-4 lg:mb-6 flex-1 flex flex-column items-center justify-center pr-4 pl-4"}>
             <img src={step.img} alt="" className="mb-2" />
             {step.content}
           </div>)}
@@ -103,7 +103,7 @@ const H1Title = styled.h1`
   font-size: 30px;
   line-height: 38px;
   color: #FFFFFF;
-  
+
   b {
     color: #28EBA8;;
   }
@@ -111,7 +111,7 @@ const H1Title = styled.h1`
 
 const InviteLink = styled.div`
   width: 100%;
-  max-width: 552px;
+  max-width: 690px;
   margin-top: 24px;
 
   input {
@@ -123,7 +123,8 @@ const InviteLink = styled.div`
     color: #FFFDFD;
     font-weight: 500;
     font-size: 16px;
-    line-height: 40px
+    line-height: 40px;
+    padding: 0 20px;
   }
 
   button {
@@ -136,12 +137,9 @@ const InviteLink = styled.div`
 
 const StepsWrap = styled.div`
   max-width: 1100px;
-  //@media (max-width: 960px) {
-  //  flex-direction: column;
-  //}
 
   img {
-    width: 262px;
+    width: 200px;
   }
 
   @media (max-width: 960px) {

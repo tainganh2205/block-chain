@@ -31,6 +31,7 @@ const MyAsset = () => {
   const [invitedInfo, setInvitedInfo] = useState<InvitedInfo>({});
 
   useAsyncEffect(async () => {
+    console.log(account)
     setInviteLink(undefined);
     if (account) {
       const response = await axios.get(`${REACT_APP_API_URL}/v1/user/referral`, {
@@ -38,6 +39,7 @@ const MyAsset = () => {
       });
       if (response?.data?.data) {
         setInviteLink(response.data.data);
+        console.log(response.data.data)
       }
     }
   }, [account]);
@@ -62,13 +64,13 @@ const MyAsset = () => {
   return useMemo<React.ReactElement>(() => {
     // @ts-ignore
     if (params?.slug === "invite") {
-      return <InviteFriend inviteLink={inviteLink} account={account} invitedInfo={invitedInfo}/>;
+      return <InviteFriend inviteLink={inviteLink} invitedInfo={invitedInfo}/>;
       // @ts-ignore
     } else if (params?.slug === "referral") {
       return <Referral invitedInfo={invitedInfo}/>;
     }
     return <MyWallet />;
-  }, [params]);
+  }, [params, inviteLink, invitedInfo]);
 };
 
 export default MyAsset;
