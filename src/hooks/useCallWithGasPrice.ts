@@ -4,7 +4,7 @@ import { SupportedChainId } from 'utils/connector'
 
 export const GAS_PRICE_GWEI = {
   default: utils.parseUnits('5', 'gwei').toString(),
-  testnet: utils.parseUnits('10', 'gwei').toString(),
+  testnet: utils.parseUnits('20', 'gwei').toString(),
 }
 
 /**

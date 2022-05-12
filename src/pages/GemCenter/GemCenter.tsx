@@ -12,10 +12,9 @@ import { FISH_SERVER_ID } from "../../constant/contracts";
 import { inputNumberToBigNumber } from "../../utils/number";
 
 import "./style.less";
+import { showMessage } from "components/TransactionConfirmationModal/helpers";
 
-const showMessage = (message: string, type: NOTIFICATION_TYPE = "warning", duration = 2000) => Store.addNotification({
-  message: message, container: "top-center", type, insert: "top", dismiss: { duration }
-});
+
 
 const GemCenter = () => {
   const [isLoading, setIsLoading] = React.useState(false);

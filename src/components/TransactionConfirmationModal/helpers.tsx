@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react'
 import styled from 'styled-components'
 import { Heading, IconButton, CloseIcon } from '@artechain/uikit'
 import { AutoColumn, ColumnCenter } from '../Column'
+import { NOTIFICATION_TYPE, Store } from "react-notifications-component";
 
 
 export const Wrapper = styled.div`
@@ -46,3 +47,8 @@ export const ContentHeader = ({ children, onDismiss }: ContentHeaderProps) => (
     </IconButton>
   </StyledContentHeader>
 )
+
+
+export const showMessage = (message: string, type: NOTIFICATION_TYPE = "warning", duration = 2000) => Store.addNotification({
+  message: message, container: "top-center", type, insert: "top", dismiss: { duration }
+});
