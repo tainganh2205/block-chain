@@ -45,9 +45,9 @@ const BodyWrapper = styled.div`
   overflow-x: hidden;
   z-index: 1;
   justify-content: flex-start !important;
-  
+
   * {
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', serif;
     font-weight: 500;
   }
 
