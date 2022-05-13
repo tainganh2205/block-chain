@@ -7,15 +7,12 @@ import { useAsyncEffect, useDisclosure } from "@dwarvesf/react-hooks";
 import "./style.less";
 import { PageWrapper } from "pages/App";
 import classnames from "classnames";
-import { inputNumberToBigNumber } from "../../utils/number";
-import { FISH_SERVER_ID } from "../../constant/contracts";
 import { useAuthContext } from "../../context/authNew";
 import { showMessage } from "components/TransactionConfirmationModal/helpers";
 import { useFishContract } from "../../hooks/useContract1";
 import TransactionConfirmationModal from "../../components/TransactionConfirmationModal";
 import { useCallWithGasPrice } from "../../hooks/useCallWithGasPrice";
 import { BigNumber, FixedNumber, utils } from "ethers";
-import { formatBigNumber } from "../../utils/formatBalance";
 
 const { REACT_APP_API_URL } = process.env;
 
@@ -46,7 +43,7 @@ interface StoryData {
 const Dashboard = () => {
   const [stories, setStories] = React.useState<StoryData[]>([]);
   const [options, setOptions] = React.useState<ReceivableOptionsData[]>();
-  const [weapons, setWeapons] = React.useState<ReceivableOptionsData[]>();
+
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [modalText, setModalText] = useState<string>("");
   const { isWalletSign, walletId, balanceFloat, refetch, refetchGem, requestAllowance } = useAuthContext();
@@ -62,10 +59,6 @@ const Dashboard = () => {
     const response = await axios.get(`${REACT_APP_API_URL}/v1/mystory`);
     if (response.data.data) {
       setStories(response.data.data);
-    }
-    const responseMyWeapon = await axios.get(`${REACT_APP_API_URL}/v1/weapon/list`);
-    if (responseMyWeapon.data.data) {
-      setWeapons(responseMyWeapon.data.data);
     }
   }, []);
 
@@ -160,8 +153,6 @@ const Dashboard = () => {
         <div className="separator">Series Content</div>
         <BoxContent data={options} />
       </>}
-      <div className="separator">My Weapon</div>
-      <BoxContent data={weapons || []} />
     </PageWrapper>
   );
 };
