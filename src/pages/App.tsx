@@ -10,7 +10,6 @@ import Web3ReactManager from "../components/Web3ReactManager";
 import Dashboard from "./Dashboard";
 import MyAsset from "./MyAsset";
 import { Reward } from "./Reward";
-import { useActiveWeb3React } from "../hooks";
 
 import { RedirectPathToSwapOnly } from "./Dashboard/redirects";
 import { EN, allLanguages } from "../constants/localisation/languageCodes";
@@ -55,6 +54,11 @@ const BodyWrapper = styled.div`
   ${({ theme }) => theme.mediaQueries.lg} {
     min-height: calc(100vh - 60px);
   }
+
+  background: url(./images/fish/bg-game.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 `;
 export const PageWrapper = styled(WrapperPage)`
 
@@ -63,11 +67,7 @@ export const PageWrapper = styled(WrapperPage)`
   }
 
   width: 100%;
-  height: calc(100vh - 60px);
-  background: url(./images/fish/bg-game.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  min-height: calc(100vh - 60px);
 `;
 export default function App() {
 
@@ -155,7 +155,6 @@ export default function App() {
                           <Route exact strict path="/Dashboard" component={Dashboard} />
                           <Route exact strict path="/gun-nft" component={Dashboard} />
                           <Route exact strict path="/gem-center" component={GemCenter} />
-                          <Route exact strict path="/my-asset/:slug" component={MyAsset} />
                           <Route exact strict path="/my-asset" component={MyAsset} />
                           <Route exact strict path="/reward" component={Reward} />
                           <Route component={RedirectPathToSwapOnly} />
