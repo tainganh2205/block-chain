@@ -10,7 +10,7 @@ import classnames from "classnames";
 import { useAuthContext } from "../../context/authNew";
 import { showMessage } from "components/TransactionConfirmationModal/helpers";
 import { useFishContract } from "../../hooks/useContract1";
-import TransactionConfirmationModal from "../../components/TransactionConfirmationModal";
+import TransactionFishPendingModal from "../../components/TransactionFishPendingModal";
 import { useCallWithGasPrice } from "../../hooks/useCallWithGasPrice";
 import { BigNumber, FixedNumber, utils } from "ethers";
 
@@ -43,8 +43,9 @@ interface StoryData {
 const Dashboard = () => {
   const [stories, setStories] = React.useState<StoryData[]>([]);
   const [options, setOptions] = React.useState<ReceivableOptionsData[]>();
-
+  const [modalState, setModalState] = useState<0 | 1 | 2>(0);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [modalShowConfirmText, setModalShowConfirmText] = useState<boolean>(true);
   const [modalText, setModalText] = useState<string>("");
   const { isWalletSign, walletId, balanceFloat, refetch, refetchGem, requestAllowance } = useAuthContext();
   const fishContract = useFishContract();
@@ -98,23 +99,35 @@ const Dashboard = () => {
       let error = "";
       // Check allowance
       setModalText("Get approval the allowance before buying gem!");
+      setModalState(0);
+      setModalShowConfirmText(true);
       openConfirm();
       // Request allowance
       if (await requestAllowance(price)) {
         setModalText("Buying gem...");
+        setModalState(1);
         openConfirm();
         // Swap Gem
         let transaction;
         try {
           transaction = await callWithGasPrice(fishContract!.mintNFT, [index], {
-            value:  BigNumber.from(FixedNumber.fromString(price.toString(), "fixed128x18"))
+            value: BigNumber.from(FixedNumber.fromString(price.toString(), "fixed128x18"))
           });
         } catch (e) {
           error = "Buying Gem fail!";
           console.error(e);
         }
         if (transaction) {
+          setModalState(2);
+          setModalShowConfirmText(false);
           const receipt = await transaction.wait();
+          await axios.post(`${REACT_APP_API_URL}/v1/weapon/mint`, {
+            "walletAddress": walletId,
+            "txHash": transaction.hash,
+            "tokenId": 0,
+            "status": "success",
+            blockNumber: receipt.blockNumber
+          });
           if (!receipt.blockNumber) {
             error = "Buying Gem fail!";
           }
@@ -138,13 +151,12 @@ const Dashboard = () => {
 
   return (
     <PageWrapper className="PageWrapper">
-      <TransactionConfirmationModal
+      <TransactionFishPendingModal
+        onClose={closeConfirm}
+        message={modalText}
+        state={modalState}
+        showConfirmText={modalShowConfirmText}
         isOpen={isOpenConfirm}
-        onDismiss={closeConfirm}
-        hash={undefined}
-        content={() => <></>}
-        attemptingTxn={true}
-        pendingText={modalText}
       />
       <div className="flex p-6 gap-6 justify-center flex-wrap">
         {boxes}
