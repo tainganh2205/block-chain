@@ -10,6 +10,8 @@ import TransactionConfirmationModal from "../../components/TransactionConfirmati
 import { useAuthContext } from "../../context/authNew";
 import { FISH_SERVER_ID } from "../../constant/contracts";
 import { inputNumberToBigNumber } from "../../utils/number";
+import { useFishTabs } from "../../hooks/useFishTabs";
+import BalanceCard from "../../components/BalanceCard";
 
 import "./style.less";
 import { showMessage } from "components/TransactionConfirmationModal/helpers";
@@ -19,7 +21,7 @@ import { showMessage } from "components/TransactionConfirmationModal/helpers";
 const GemCenter = () => {
   const [isLoading, setIsLoading] = React.useState(false);
 
-  const [tab, setTab] = React.useState<string>("buy");
+  const { currentTab: tab, tabsDom } = useFishTabs([{ key: "buy", label: "Buy Gem" }, { key: "deposit", label: "Deposit" }]);
   const [convertRatio, setConvertRatio] = useState(0);
   const fishContract = useFishContract();
 
@@ -99,19 +101,11 @@ const GemCenter = () => {
   }, [tab, inputLfwValue, fishContract, isWalletSign, walletId, balanceFloat, openConfirm, closeConfirm, isLoading, refetchGem, refetch, requestAllowance]);
 
   return (
-    <PageWrapper className="PageWrapper GemCenter relative d-flex items-center justify-center">
+    <PageWrapper className="PageWrapper GemCenter relative d-flex flex-column items-center justify-center pb-6">
       <TransactionConfirmationModal isOpen={isOpenConfirm} onDismiss={closeConfirm} hash={undefined} content={() => <></>} attemptingTxn={true} pendingText={modalText} />
-      <div className="flex flex-column items-center justify-center">
-        <div className="tabControl flex gap-1 mb-2">
-          {[{ tab: "buy", title: "Buy Gem" }, { tab: "deposit", title: "Deposit" }].map(btn => <button
-            key={btn.tab} onClick={() => isLoading ? false : setTab(btn.tab)}
-            className={classnames("btn-tab", { "opacity-50": tab !== btn.tab })}>
-            <img src="/images/fish/btn-tab-reward.png" alt="" />
-            <span className="btn-tab-text">
-                {btn.title}
-            </span>
-          </button>)}
-        </div>
+      <BalanceCard />
+      <div className="flex flex-column items-center justify-center pt-6 pb-6">
+        {tabsDom}
         <div className="relative tabContent">
           <img src="/images/fish/box-reward.png" alt="" />
           <img src="/images/fish/btn-buy1.png" alt="" className={classnames("btn-buy-gem", { disable: isLoading || !inputLfwValue })} onClick={onBuy} />
