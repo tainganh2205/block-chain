@@ -39,8 +39,6 @@ const MenuNew = () => {
   const location = useLocation();
   const refPrevOffset = useRef(window.pageYOffset);
 
-  const { balanceFloat, balanceGemFloat, isWalletConnected } = useAuthContext();
-
   const [showDrawer, setShowDrawer] = useState(false);
   const [showMenu, setShowMenu] = useState(true);
 
@@ -112,12 +110,6 @@ const MenuNew = () => {
             </div>
           </div>
           <div className="header-right">
-            {isWalletConnected && <>
-              <img src="/images/fish/coin-silver.png" alt="" />
-              <BalanceText title={balanceGemFloat + ""}>{abbreviateNumber(balanceGemFloat)}</BalanceText>
-              <img src="/images/fish/lfw-token-logo.png" alt="" />
-              <BalanceText title={balanceFloat + ""}>{abbreviateNumber(balanceFloat)}</BalanceText>
-            </>}
             <button className="btn-play-game">
               Play Game
             </button>
@@ -139,14 +131,6 @@ const FixedContainer = styled.div<{ showMenu: boolean; height: number }>`
   height: ${({ height }) => `${height}px`};
   width: 100%;
   z-index: 20;
-`;
-
-const BalanceText = styled.div`
-  color: #FFFFFF;
-  margin-right: 25px;
-  margin-left: 7px;
-  font-size: 18px;
-  font-weight: 700;
 `;
 
 export default MenuNew;

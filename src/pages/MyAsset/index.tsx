@@ -1,16 +1,10 @@
-import React, { useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useAsyncEffect } from "@dwarvesf/react-hooks";
-import axios from "axios";
-
-import InviteFriend from "./InviteFriend";
+import React, { useMemo } from "react";
+import { PageWrapper } from "../App";
+import { useFishTabs } from "../../hooks/useFishTabs";
+import BalanceCard from "../../components/BalanceCard";
 import Referral from "./Referral";
-import MyWallet from "./MyWallet";
-import { useAuthContext } from "../../context/authNew";
 
 import "./style.less";
-
-const { REACT_APP_API_URL } = process.env;
 
 export interface InvitedUser {
   wallet_address?: string;
@@ -25,47 +19,28 @@ export interface InvitedInfo {
 }
 
 const MyAsset = () => {
-  const params = useParams();
-  const { walletId: account, accessToken, isWalletSign, balanceFloat, balanceGemFloat } = useAuthContext();
-  const [inviteLink, setInviteLink] = useState<string | undefined>();
-  const [invitedInfo, setInvitedInfo] = useState<InvitedInfo>({});
+  const { currentTab, tabsDom } = useFishTabs([{ key: "weapon", label: "weapon" }, { key: "referrals", label: "Referrals" }]);
 
-  useAsyncEffect(async () => {
-    setInviteLink(undefined);
-    if (account) {
-      const response = await axios.get(`${REACT_APP_API_URL}/v1/user/referral`, {
-        params: { walletAddress: account }
-      });
-      if (response?.data?.data) {
-        setInviteLink(response.data.data);
-      }
+  const contentDom = useMemo<React.ReactElement>(() => {
+    if (currentTab === "weapon") {
+      return <></>;
+    } else if (currentTab === "referrals") {
+      return <Referral />;
     }
-  }, [account]);
+    return <></>;
+  }, [currentTab]);
 
-  // Get Invite user
-  useAsyncEffect(async () => {
-    setInvitedInfo({});
-    if (isWalletSign && accessToken) {
-      const response = await axios.get(`${REACT_APP_API_URL}/v1/user/referrals?`, {
-        headers: { "Authorization": `Bearer ${accessToken}` }
-      });
-      if (response?.data?.data) {
-        const data = response.data.data;
-        setInvitedInfo({ ...data, invitedUsers: (data.users || []).map(user => ({ status: user.status, wallet_address: user.referred_id?.wallet_address || "" })) });
-      }
-    }
-  }, [isWalletSign, accessToken]);
-
-  return useMemo<React.ReactElement>(() => {
-    // @ts-ignore
-    if (params?.slug === "invite") {
-      return <InviteFriend inviteLink={inviteLink} invitedInfo={invitedInfo} />;
-      // @ts-ignore
-    } else if (params?.slug === "referral") {
-      return <Referral invitedInfo={invitedInfo} />;
-    }
-    return <MyWallet balanceFloat={balanceFloat} balanceGemFloat={balanceGemFloat} />;
-  }, [params, inviteLink, invitedInfo]);
+  return <PageWrapper className="MyAsset relative d-flex flex-column items-center">
+    <div className="walletDiv">
+      <BalanceCard />
+      <div className={"btnControls flex gap-4 mt-2"}>
+        {tabsDom}
+      </div>
+    </div>
+    <div className={"MyAssetContent pt-4 pb-4"}>
+      {contentDom}
+    </div>
+  </PageWrapper>;
 };
 
 export default MyAsset;
