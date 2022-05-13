@@ -19,7 +19,7 @@ export interface InvitedInfo {
 }
 
 const MyAsset = () => {
-  const { currentTab, tabsDom } = useFishTabs([{ key: "weapon", label: "weapon" }, { key: "referrals", label: "Referrals" }]);
+  const { currentTab, tabsDom } = useFishTabs([{ key: "weapon", label: "Weapon" }, { key: "referrals", label: "Referrals" }]);
 
   const contentDom = useMemo<React.ReactElement>(() => {
     if (currentTab === "weapon") {
