@@ -1,13 +1,9 @@
 import React from "react";
-import { useAsyncEffect } from "@dwarvesf/react-hooks";
-import axios from "axios";
 import { ReceivableOptionsData } from "../Dashboard";
 import { Rate } from "antd";
 import { PageWrapper } from "pages/App";
-const { REACT_APP_API_URL } = process.env;
 
-const MyWeapon = () => {
-  const [weapons, setWeapons] = React.useState<ReceivableOptionsData[]>([]);
+const MyWeapon = ({weapons}: {weapons: ReceivableOptionsData[]}) => {
   const content = React.useMemo(() => {
     if (weapons.length) {
       return weapons.map((item => {
@@ -30,12 +26,7 @@ const MyWeapon = () => {
     }
     return null;
   }, [weapons]);
-  useAsyncEffect(async () => {
-    const responseMyWeapon = await axios.get(`${REACT_APP_API_URL}/v1/weapon/list`);
-    if (responseMyWeapon.data.data) {
-      setWeapons(responseMyWeapon.data.data);
-    }
-  }, []);
+
   return (
     <PageWrapper className="PageWrapper relative d-flex flex-column items-center justify-center">
       {content}

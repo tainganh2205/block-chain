@@ -117,9 +117,9 @@ const Referral = () => {
             </div>
           </div>
           <div className="pr-4 pl-4 mb-4 flex-1 flex items-center justify-center w-full">
-            <img src="/images/fish/referral-gem.png" alt="" className="genImg" />
+            <img src="/images/fish/lfw-token-logo.png" alt="" className="genImg" />
             <div className="flex-1">
-              <SampleText>Total invited</SampleText>
+              <SampleText>Total referral earned (LFW)</SampleText>
               <div className="flex justify-center">
                 <H1Title className="flex-1">{invitedInfo?.totalEarn || 0}</H1Title>
               </div>
