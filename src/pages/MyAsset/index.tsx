@@ -5,6 +5,7 @@ import BalanceCard from "../../components/BalanceCard";
 import Referral from "./Referral";
 
 import "./style.less";
+import MyWeapon from "./Weapon";
 
 export interface InvitedUser {
   wallet_address?: string;
@@ -23,7 +24,7 @@ const MyAsset = () => {
 
   const contentDom = useMemo<React.ReactElement>(() => {
     if (currentTab === "weapon") {
-      return <></>;
+      return <MyWeapon />;
     } else if (currentTab === "referrals") {
       return <Referral />;
     }
