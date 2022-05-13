@@ -30,8 +30,8 @@ interface Menu {
 const menus: Array<Menu> = [
   { label: "Gun NFT", icon: <GunIcon />, icon1: <GunIcon1 />, path: "/gun-nft" },
   { label: "Gem Center", icon: <GemIcon />, icon1: <GemIcon1 />, path: "/gem-center" },
-  { label: "My Asset", icon: <AssetIcon />, icon1: <AssetIcon1 />, path: "/my-asset" },
-  { label: "Reward", icon: <RewardIcon />, icon1: <RewardIcon1 />, path: "/reward" }
+  { label: "Reward", icon: <RewardIcon />, icon1: <RewardIcon1 />, path: "/reward" },
+  { label: "Profile", icon: <AssetIcon />, icon1: <AssetIcon1 />, path: "/my-asset" },
 ];
 
 const MenuNew = () => {
