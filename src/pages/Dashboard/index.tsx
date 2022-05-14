@@ -13,6 +13,7 @@ import { useFishContract } from "../../hooks/useContract1";
 import TransactionFishPendingModal from "../../components/TransactionFishPendingModal";
 import { useCallWithGasPrice } from "../../hooks/useCallWithGasPrice";
 import { BigNumber, FixedNumber, utils } from "ethers";
+import FishButton from "../../components/FishButton";
 
 const { REACT_APP_API_URL } = process.env;
 
@@ -67,6 +68,7 @@ const Dashboard = () => {
   const boxes = React.useMemo(() => {
     if (stories.length) {
       return stories.map((item, index) => {
+        console.log('item',item);
         return <div className="box-full-blue mt-4" key={item.name_id}>
           <img src="/images/fish/box-full-blue.png" alt="" />
           <img src={item.image} className="chest" alt="" />
@@ -80,8 +82,11 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="flex btn-footer gap-2">
-            <img src="/images/fish/btn-default.png" alt="" className={classnames({ disable: isLoading })} onClick={() => onBuy(item.price, index + 1)} />
-            <img src="/images/fish/btn-default.png" alt="" onClick={() => setOptions(item.receivable_options)} />
+            <FishButton
+              className={classnames({ disable: isLoading })}
+              action={() => onBuy(item.price, index + 1)}
+              text="Get" />
+            <FishButton action={() => setOptions(item.receivable_options)} text="What’s inside?" />
           </div>
         </div>;
       });
@@ -149,7 +154,6 @@ const Dashboard = () => {
     }
     setIsLoading(false);
   }, [fishContract, isWalletSign, walletId, balanceFloat, openConfirm, closeConfirm, isLoading, refetchGem, refetch, requestAllowance]);
-
   return (
     <PageWrapper className="PageWrapper">
       <TransactionFishPendingModal
