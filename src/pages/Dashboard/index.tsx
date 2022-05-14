@@ -57,8 +57,9 @@ const Dashboard = () => {
 
   useAsyncEffect(async () => {
     const response = await axios.get(`${REACT_APP_API_URL}/v1/mystory`);
-    if (response.data.data) {
+    if (response.data.data && response.data.data.length) {
       setStories(response.data.data);
+      setOptions(response.data.data[0].receivable_options);
     }
   }, []);
 
@@ -78,8 +79,8 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="flex btn-footer gap-2">
-            <img src="/images/fish/btn-buy.png" alt="" className={classnames({ disable: isLoading })} onClick={() => onBuy(item.price, index + 1)} />
-            <img src="/images/fish/btn-buy.png" alt="" onClick={() => setOptions(item.receivable_options)} />
+            <img src="/images/fish/btn-default.png" alt="" className={classnames({ disable: isLoading })} onClick={() => onBuy(item.price, index + 1)} />
+            <img src="/images/fish/btn-default.png" alt="" onClick={() => setOptions(item.receivable_options)} />
           </div>
         </div>;
       });
@@ -107,7 +108,7 @@ const Dashboard = () => {
         let transaction;
         try {
           transaction = await callWithGasPrice(fishContract!.mintNFT, [index], {
-            value:  BigNumber.from(FixedNumber.fromString(price.toString(), "fixed128x18"))
+            value: BigNumber.from(FixedNumber.fromString(price.toString(), "fixed128x18"))
           });
         } catch (e) {
           error = "Buying Gem fail!";
