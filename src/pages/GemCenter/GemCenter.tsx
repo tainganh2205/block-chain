@@ -1,14 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDisclosure } from "@dwarvesf/react-hooks";
 import classnames from "classnames";
+import { Input, InputNumber } from "antd";
 import { PageWrapper } from "../App";
-import BuyGem from "./BuyGem";
-import DepositGem from "./DepositGem";
 import { useFishContract } from "../../hooks/useContract1";
 import { useAuthContext } from "../../context/authNew";
 import { FISH_SERVER_ID } from "../../constant/contracts";
 import { inputNumberToBigNumber } from "../../utils/number";
-import { useFishTabs } from "../../hooks/useFishTabs";
 import BalanceCard from "../../components/BalanceCard";
 import { showMessage } from "../../components/TransactionConfirmationModal/helpers";
 import TransactionFishPendingModal from "../../components/TransactionFishPendingModal";
@@ -18,7 +16,6 @@ import "./style.less";
 const GemCenter = () => {
   const [isLoading, setIsLoading] = React.useState(false);
 
-  const { currentTab: tab, tabsDom } = useFishTabs([{ key: "buy", label: "Buy Gem" }, { key: "deposit", label: "Deposit" }]);
   const [convertRatio, setConvertRatio] = useState(0);
   const fishContract = useFishContract();
 
@@ -49,7 +46,7 @@ const GemCenter = () => {
     if (!isWalletSign || !walletId) {
       showMessage("Please login and sign fist!");
     } else {
-      if (tab === "buy" && inputLfwValue > 0) {
+      if (inputLfwValue > 0) {
         if (inputLfwValue <= balanceFloat) {
           let error = "";
           // Check allowance
@@ -97,25 +94,45 @@ const GemCenter = () => {
         } else {
           showMessage("Your balance is not enough!");
         }
-      } else if (tab === "deposit") {
-        showMessage("Not support yet!");
       }
     }
 
     setIsLoading(false);
-  }, [tab, inputLfwValue, fishContract, isWalletSign, walletId, balanceFloat, openConfirm, closeConfirm, isLoading, refetchGem, refetch, requestAllowance]);
+  }, [inputLfwValue, fishContract, isWalletSign, walletId, balanceFloat, openConfirm, closeConfirm, isLoading, refetchGem, refetch, requestAllowance]);
 
   return (
-    <PageWrapper className="PageWrapper GemCenter relative d-flex flex-column items-center justify-center pb-6">
+    <PageWrapper className="PageWrapper GemCenter relative d-flex flex-column items-center pb-6">
       <TransactionFishPendingModal isOpen={isOpenConfirm} onClose={closeConfirm} message={modalText} state={modalState} showConfirmText={modalShowConfirmText} />
       <BalanceCard />
       <div className="flex flex-column items-center justify-center pt-6 pb-6">
-        {tabsDom}
         <div className="relative tabContent">
-          <img src="/images/fish/box-reward.png" alt="" />
-          <img src="/images/fish/btn-buy1.png" alt="" className={classnames("btn-buy-gem", { disable: isLoading || (tab === "buy" && !inputLfwValue) })} onClick={onBuy} />
+          <img src="/images/fish/box-buy-gem.png" alt="" className={'box-buy-gem'}/>
+          <h1 className="title-buy-gem">Buy Gem</h1>
+          <img src="/images/fish/btn-buy1.png" alt="" className={classnames("btn-buy-gem", { disable: isLoading || !inputLfwValue })} onClick={onBuy} />
           <div className="gem-input-wrapper">
-            {tab === "buy" ? <BuyGem convertRatio={convertRatio} inputLfwValue={inputLfwValue} setInputLfwValue={setInputLfwValue} /> : tab === "deposit" ? <DepositGem /> : <></>}
+            <div className="mb-4">
+              <label htmlFor="" className="text-white">I Spend</label>
+              <InputNumber
+                placeholder="spend"
+                className="gem-input"
+                size="large"
+                value={inputLfwValue}
+                onChange={(v) => setInputLfwValue(v)}
+                min={0}
+                prefix={<img src="/images/fish/lfw-token-logo.png" alt="" width="40" />}
+              />
+            </div>
+            <div>
+              <label htmlFor="" className="text-white">I'll Receive</label>
+              <Input
+                placeholder="receive"
+                className="gem-input"
+                size="large"
+                value={Math.round(inputLfwValue * convertRatio * 100000) / 100000}
+                prefix={<img src="/images/fish/gem.png" alt="" width="40" />}
+                readOnly
+              />
+            </div>
           </div>
         </div>
       </div>
