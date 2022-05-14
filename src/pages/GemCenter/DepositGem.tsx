@@ -8,7 +8,7 @@ const DepositGem = () => {
       placeholder="0"
       className="gem-input"
       size="large"
-      prefix={<img src="/images/fish/coin-silver.png" alt="" width="40" />}
+      prefix={<img src="/images/fish/gem.png" alt="" width="40" />}
     />
   </div>;
 };

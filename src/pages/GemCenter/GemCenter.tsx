@@ -1,22 +1,19 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Store, NOTIFICATION_TYPE } from "react-notifications-component";
 import { useDisclosure } from "@dwarvesf/react-hooks";
 import classnames from "classnames";
 import { PageWrapper } from "../App";
 import BuyGem from "./BuyGem";
 import DepositGem from "./DepositGem";
 import { useFishContract } from "../../hooks/useContract1";
-import TransactionConfirmationModal from "../../components/TransactionConfirmationModal";
 import { useAuthContext } from "../../context/authNew";
 import { FISH_SERVER_ID } from "../../constant/contracts";
 import { inputNumberToBigNumber } from "../../utils/number";
 import { useFishTabs } from "../../hooks/useFishTabs";
 import BalanceCard from "../../components/BalanceCard";
+import { showMessage } from "../../components/TransactionConfirmationModal/helpers";
+import TransactionFishPendingModal from "../../components/TransactionFishPendingModal";
 
 import "./style.less";
-import { showMessage } from "components/TransactionConfirmationModal/helpers";
-
-
 
 const GemCenter = () => {
   const [isLoading, setIsLoading] = React.useState(false);
@@ -34,6 +31,8 @@ const GemCenter = () => {
   const [inputLfwValue, setInputLfwValue] = useState<number>(0);
 
   const [modalText, setModalText] = useState("");
+  const [modalState, setModalState] = useState<0 | 1 | 2>(0);
+  const [modalShowConfirmText, setModalShowConfirmText] = useState<boolean>(true);
 
   const {
     isOpen: isOpenConfirm,
@@ -55,11 +54,14 @@ const GemCenter = () => {
           let error = "";
           // Check allowance
           setModalText("Get approval the allowance before buying gem!");
+          setModalState(0);
+          setModalShowConfirmText(true);
           openConfirm();
           // Request allowance
           if (await requestAllowance(inputLfwValue)) {
 
             setModalText("Buying gem...");
+            setModalState(1);
             openConfirm();
             // Swap Gem
             let transaction;
@@ -69,6 +71,9 @@ const GemCenter = () => {
               console.error(e);
             }
             if (transaction) {
+              setModalText("Wait for transaction complete!");
+              setModalShowConfirmText(false);
+              setModalState(2);
               const receipt = await transaction.wait();
               if (!receipt.blockNumber) {
                 error = "Buying Gem fail!";
@@ -102,13 +107,13 @@ const GemCenter = () => {
 
   return (
     <PageWrapper className="PageWrapper GemCenter relative d-flex flex-column items-center justify-center pb-6">
-      <TransactionConfirmationModal isOpen={isOpenConfirm} onDismiss={closeConfirm} hash={undefined} content={() => <></>} attemptingTxn={true} pendingText={modalText} />
+      <TransactionFishPendingModal isOpen={isOpenConfirm} onClose={closeConfirm} message={modalText} state={modalState} showConfirmText={modalShowConfirmText} />
       <BalanceCard />
       <div className="flex flex-column items-center justify-center pt-6 pb-6">
         {tabsDom}
         <div className="relative tabContent">
           <img src="/images/fish/box-reward.png" alt="" />
-          <img src="/images/fish/btn-buy1.png" alt="" className={classnames("btn-buy-gem", { disable: isLoading || !inputLfwValue })} onClick={onBuy} />
+          <img src="/images/fish/btn-buy1.png" alt="" className={classnames("btn-buy-gem", { disable: isLoading || (tab === "buy" && !inputLfwValue) })} onClick={onBuy} />
           <div className="gem-input-wrapper">
             {tab === "buy" ? <BuyGem convertRatio={convertRatio} inputLfwValue={inputLfwValue} setInputLfwValue={setInputLfwValue} /> : tab === "deposit" ? <DepositGem /> : <></>}
           </div>

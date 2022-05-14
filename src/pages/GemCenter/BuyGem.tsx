@@ -22,7 +22,7 @@ const BuyGem = ({ convertRatio, inputLfwValue, setInputLfwValue }) => {
         className="gem-input"
         size="large"
         value={Math.round(inputLfwValue * convertRatio * 100000) / 100000}
-        prefix={<img src="/images/fish/coin-silver.png" alt="" width="40" />}
+        prefix={<img src="/images/fish/gem.png" alt="" width="40" />}
         readOnly
       />
     </div>

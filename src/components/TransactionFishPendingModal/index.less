@@ -1,0 +1,86 @@
+.TransactionFishPendingModal {
+  .ant-modal {
+    width: 360px !important;
+    height: 260px !important;
+
+    .ant-modal-content {
+      background: transparent;
+      height: 100%;
+
+      .ant-modal-body {
+        position: relative;
+        padding: 0;
+        height: 100%;
+
+        .FishPendingModalBg {
+          position: absolute;
+          z-index: 0;
+        }
+
+        .FishPendingModalCloseBtn {
+          position: absolute;
+          z-index: 2;
+          top: 0;
+          right: 0;
+          cursor: pointer;
+        }
+
+        .FishPendingModalContent {
+          position: relative;
+          z-index: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          height: 100%;
+          padding: 10px 14px;
+
+          * {
+            color: #FFFFFF;
+            text-align: center;
+          }
+
+          h1 {
+            font-weight: 700;
+            font-size: 24px;
+            margin-bottom: 24px;
+            line-height: 38px;
+          }
+
+          .FishPendingModalProgress {
+            position: relative;
+            width: 243px;
+            height: 40px;
+            margin-bottom: 18px;
+
+            img {
+              position: absolute;
+              z-index: 0;
+            }
+
+            h2 {
+              position: relative;
+              z-index: 1;
+              font-weight: 700;
+              font-size: 18px;
+              line-height: 38px;
+            }
+          }
+
+
+          h3 {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 12px;
+          }
+
+          h4 {
+            font-weight: 300;
+            font-size: 14px;
+          }
+        }
+
+      }
+    }
+  }
+}
