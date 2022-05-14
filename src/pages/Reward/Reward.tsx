@@ -5,7 +5,7 @@ import { useFishTabs } from "../../hooks/useFishTabs";
 import "./style.less";
 
 const Reward = () => {
-  const { tabsDom } = useFishTabs([{ key: "claim", label: "Claim" }]);
+  const { tabsDom } = useFishTabs([{ key: "claim", label: "Claim" }, { key: "lucky", label: "Lucky Draw" }, { key: "history", label: "History" }]);
 
   return (
     <PageWrapper className="Reward relative flex flex-column items-center justify-center">

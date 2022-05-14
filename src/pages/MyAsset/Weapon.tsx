@@ -1,7 +1,6 @@
 import React from "react";
 import { ReceivableOptionsData } from "../Dashboard";
 import { Rate } from "antd";
-import { PageWrapper } from "pages/App";
 
 const MyWeapon = ({weapons}: {weapons: ReceivableOptionsData[]}) => {
   const content = React.useMemo(() => {
@@ -28,9 +27,9 @@ const MyWeapon = ({weapons}: {weapons: ReceivableOptionsData[]}) => {
   }, [weapons]);
 
   return (
-    <PageWrapper className="PageWrapper relative d-flex flex-column items-center justify-center">
+    <div className="d-flex flex-column items-center justify-center">
       {content}
-    </PageWrapper>
+    </div>
   );
 };
 

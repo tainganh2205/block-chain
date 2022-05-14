@@ -5,8 +5,6 @@ import { Button } from "antd";
 import copy from "copy-to-clipboard";
 import { Store } from "react-notifications-component";
 import { useAsyncEffect } from "@dwarvesf/react-hooks";
-
-import { PageWrapper } from "../App";
 import { InvitedInfo, InvitedUser } from "./index";
 import { useAuthContext } from "../../context/authNew";
 
@@ -87,8 +85,8 @@ const Referral = () => {
   const linkValue = useMemo(() => inviteLink || "Please login before getting the invite link", [inviteLink]);
 
   return (
-    <PageWrapper className="PageWrapper relative d-flex flex-column items-center justify-center">
-      <div className={"InviteFriend h-full d-flex flex-column items-center justify-center"}>
+    <>
+      <div className={"InviteFriend d-flex flex-column items-center justify-center"}>
         <H1Title className="text-center ml-4 mr-4">Invite 3 friends and earn more LFW</H1Title>
         <InviteLink className="d-flex items-center justify-center sm:mb-4 lg:mb-8">
           <input value={linkValue} readOnly className="flex-1 mr-4" />
@@ -127,7 +125,7 @@ const Referral = () => {
           </div>
         </InviteInfo>
       </div>
-      <ReferralWrapper className={"ReferralWrapper h-full d-flex items-center justify-center"}>
+      <ReferralWrapper className={"ReferralWrapper d-flex items-center justify-center"}>
         <CardDiv className={"mr-4 d-flex flex-column"} width={413} imgUrl={"/images/fish/box-full-blue.png"} padding={25}>
           <TitleH2>Invited friends</TitleH2>
           <TableWrap>
@@ -177,7 +175,7 @@ const Referral = () => {
           </TableWrap>
         </CardDiv>
       </ReferralWrapper>
-    </PageWrapper>
+    </>
   );
 };
 
@@ -227,7 +225,7 @@ const StepsWrap = styled.div`
 
   @media (max-width: 960px) {
     flex-direction: column;
-    
+
     p {
       max-width: 400px;
     }
