@@ -1,3 +1,121 @@
 .Reward {
+  .tabContent {
+    .text-green {
+      color: #3bc95f;
+    }
+    .lucky-draw-content-wrapper {
+      position: absolute !important;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 65% !important;
+      text-align: center;
 
+      .lucky-draw-title {
+        font-family: 'Allerta Stencil', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 32px;
+        text-align: center;
+        color: #FFFFFF;
+      }
+
+      .lucky-draw-title-detail {
+        font-family: 'Allerta Stencil', sans-serif;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 32px;
+        text-align: center;
+        color: #d0cbcb;
+      }
+    }
+
+    .gem-input-wrapper {
+      position: absolute !important;
+      left: 52%;
+      top: 57%;
+      transform: translate(-50%, -50%);
+      width: 65% !important;
+
+      > div {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .gem-input {
+        background-color: rgba(33, 34, 39, 0.1) !important;
+        border: 1px solid rgba(87, 87, 87, 0.1) !important;
+        box-shadow: inset 0 0 11px rgb(0 0 0 / 49%);
+        border-radius: 10px !important;
+        margin-top: 1rem;
+        width: 100%;
+        height: 3rem;
+        padding: 1rem;
+        color: white;
+
+        img {
+          margin-left: 5px;
+          max-height: 40px;
+          object-fit: contain;
+        }
+
+        .ant-input-number {
+          background: initial !important;
+
+          .ant-input-number-handler-wrap {
+            opacity: 1;
+            background: initial !important;
+            padding-right: 5px;
+
+            * {
+              border: none;
+              color: white;
+              font-size: 20px;
+            }
+          }
+        }
+
+        input {
+          padding-left: 1rem;
+          font-size: 18px;
+          background: initial !important;
+          color: #FFFFFF !important;
+          text-overflow: ellipsis;
+          &:read-only {
+            color: #ababab !important;
+          }
+        }
+      }
+    }
+
+    .box-buy-gem {
+      width: 512px;
+      height: 420px;
+    }
+
+    .title-buy-gem {
+      position: absolute;
+      top: 4%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-weight: 700;
+      font-size: 25px;
+      line-height: 32px;
+      color: #FFFFFF;
+    }
+
+    .btn-buy-gem {
+      position: absolute;
+      bottom: -50px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+
+      &.disable {
+        cursor: not-allowed;
+      }
+    }
+  }
 }
