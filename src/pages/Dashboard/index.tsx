@@ -68,7 +68,7 @@ const Dashboard = () => {
   const boxes = React.useMemo(() => {
     if (stories.length) {
       return stories.map((item, index) => {
-        console.log('item',item);
+        console.log("item", item);
         return <div className="box-full-blue mt-4" key={item.name_id}>
           <img src="/images/fish/box-full-blue.png" alt="" />
           <img src={item.image} className="chest" alt="" />
@@ -104,13 +104,13 @@ const Dashboard = () => {
     } else {
       let error = "";
       // Check allowance
-      setModalText("Get approval the allowance before buying gem!");
+      setModalText("Get approval the allowance before buying NFT!");
       setModalState(0);
       setModalShowConfirmText(true);
       openConfirm();
       // Request allowance
       if (await requestAllowance(price)) {
-        setModalText("Buying gem...");
+        setModalText("Buying NFT...");
         setModalState(1);
         openConfirm();
         // Swap Gem
@@ -120,25 +120,25 @@ const Dashboard = () => {
             value: BigNumber.from(FixedNumber.fromString(price.toString(), "fixed128x18"))
           });
         } catch (e) {
-          error = "Buying Gem fail!";
+          error = "Buying NFT fail!";
           console.error(e);
         }
         if (transaction) {
           setModalState(2);
           setModalShowConfirmText(false);
           const receipt = await transaction.wait();
+          console.log(receipt);
           await axios.post(`${REACT_APP_API_URL}/v1/weapon/mint`, {
             "walletAddress": walletId,
             "txHash": transaction.hash,
-            "tokenId": 0,
             "status": "success",
-            blockNumber: receipt.blockNumber
+            tokenId: 0
           });
           if (!receipt.blockNumber) {
-            error = "Buying Gem fail!";
+            error = "Buying NFT fail!";
           }
         } else {
-          error = "Transaction to buy gem cannot complete!";
+          error = "Transaction to buy NFT cannot complete!";
         }
       } else {
         error = "Your allowance is not enough!";
@@ -147,7 +147,7 @@ const Dashboard = () => {
       if (error) {
         showMessage(error, "danger", 0);
       } else {
-        showMessage("Transaction complete! Please refresh page to get your Gem.", "success", 0);
+        showMessage("Transaction complete! Please refresh page to get your NFT.", "success", 0);
       }
       refetchGem();
       refetch();

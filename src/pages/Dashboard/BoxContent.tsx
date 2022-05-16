@@ -22,7 +22,7 @@ const BoxContent = (props: Props) => {
           <div className="w-50 ml-auto mr-auto mt-2">
             <img src={item.image} alt="" />
           </div>
-          <div>
+          <div className="text-center">
             <span className="weapon-name">{item.name}</span>
           </div>
         </div>;
