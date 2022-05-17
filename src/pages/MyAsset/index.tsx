@@ -34,7 +34,7 @@ const MyAsset = () => {
   const [weapons, setWeapons] = React.useState<ReceivableOptionsData[]>([]);
 
   useAsyncEffect(async () => {
-    if(account){
+    if (account) {
       const responseMyWeapon = await axios.get(`${REACT_APP_API_URL}/v1/weapon/list?walletAddress=${account}`);
       if (responseMyWeapon.data.data) {
         setWeapons(responseMyWeapon.data.data);
@@ -60,14 +60,14 @@ const MyAsset = () => {
       <span className="title-connect-detail">
         You need to Connect a Wallet to view your profile dashboard
       </span>
-      <img src="/images/fish/btn-connect.png" className="btn-connect" alt="" onClick={showConnectModal}/>
+      <img src="/images/fish/btn-connect.png" className="btn-connect" alt="" onClick={showConnectModal} />
     </PageWrapper>;
   }, []);
 
   return !account ?
     connectWallet :
     <PageWrapper className="MyAsset relative d-flex flex-column items-center">
-      < div className="walletDiv">
+      <div className="walletDiv">
         <BalanceCard weaponCount={weapons.length} />
         <div className={"btnControls flex gap-4 mt-2"}>
           {tabsDom}

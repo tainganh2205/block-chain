@@ -27,7 +27,7 @@ const MyWeapon = ({weapons}: {weapons: ReceivableOptionsData[]}) => {
   }, [weapons]);
 
   return (
-    <div className="d-flex flex-column items-center justify-center">
+    <div className="d-flex gap-3 justify-center">
       {content}
     </div>
   );
