@@ -32,12 +32,15 @@ const MyAsset = () => {
   const { showConnectModal } = useAuthContext();
   const { currentTab, tabsDom } = useFishTabs([{ key: "weapon", label: "Weapon" }, { key: "referrals", label: "Referrals" }]);
   const [weapons, setWeapons] = React.useState<ReceivableOptionsData[]>([]);
+
   useAsyncEffect(async () => {
-    const responseMyWeapon = await axios.get(`${REACT_APP_API_URL}/v1/weapon/list`);
-    if (responseMyWeapon.data.data) {
-      setWeapons(responseMyWeapon.data.data);
+    if(account){
+      const responseMyWeapon = await axios.get(`${REACT_APP_API_URL}/v1/weapon/list?walletAddress=${account}`);
+      if (responseMyWeapon.data.data) {
+        setWeapons(responseMyWeapon.data.data);
+      }
     }
-  }, []);
+  }, [account]);
 
   const contentDom = useMemo<React.ReactElement>(() => {
     if (currentTab === "weapon") {
