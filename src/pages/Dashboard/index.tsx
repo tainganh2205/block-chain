@@ -127,9 +127,8 @@ const Dashboard = () => {
           setModalState(2);
           setModalShowConfirmText(false);
           const receipt = await transaction.wait();
-          console.log(receipt);
           await axios.post(`${REACT_APP_API_URL}/v1/weapon/mint`, {
-            "walletAddress": walletId,
+            "walletAddress": walletId.toLowerCase(),
             "txHash": transaction.hash,
             "status": "success",
             tokenId: 0
